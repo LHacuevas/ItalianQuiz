@@ -56,8 +56,8 @@ const QuizItaliano = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
     const [reviewMode, setReviewMode] = useState(false);
-    const [startTime, setStartTime] = useState(null);
-    const [endTime, setEndTime] = useState(null);
+    const [startTime, setStartTime] = useState<number | undefined>(undefined);
+    const [endTime, setEndTime] = useState<number | undefined>(undefined); 
 
     useEffect(() => {
         const filteredQuestions = allQuestions.filter(q => q.difficulty === difficulty).sort(() => 0.5 - Math.random());
@@ -188,7 +188,6 @@ const QuizItaliano = () => {
                         <Clock className="mr-2" />
                         <p>Tempo totale: {formatTime(totalTime)}</p>
                     </div>
-
                     <Button onClick={startReview} className="w-full bg-blue-500 hover:bg-blue-700 mt-4">
                         Rivedi le risposte
                     </Button>
