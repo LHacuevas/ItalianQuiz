@@ -259,7 +259,46 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 258,"Qual è il sinonimo di 'tranquillo'?","Agitato","Calmo","Rumoroso",1,"'Calmo' è un sinonimo di 'tranquillo'.",A2,GPT4
 259,"Qual è la forma corretta del congiuntivo presente del verbo 'dimenticare' per 'loro'?","dimentichino","dimenticano","dimenticate",0,"La forma corretta è 'dimentichino'.",B2,GPT4
 260,"Qual è il participio passato del verbo 'vedere'?","visto","veduto","vediuto",0,"La forma corretta è 'visto'.",B1,GPT4
-`
+261,"Qual è il significato di 'argomentare'?","Negare","Spiegare","Rifiutare",1,"'Argomentare' significa 'spiegare o discutere con ragionamenti'.",B2,GPT4
+262,"Qual è il sinonimo di 'complesso'?","Semplice","Facile","Complicato",2,"'Complicato' è un sinonimo di 'complesso'.",B2,GPT4
+263,"Qual è la forma corretta del congiuntivo presente del verbo 'agire' per 'loro'?","agiscano","agiscono","agiate",0,"La forma corretta è 'agiscano'.",B2,GPT4
+264,"Qual è il participio passato del verbo 'scrivere'?","scritto","scrivuto","scriviuto",0,"La forma corretta è 'scritto'.",B2,GPT4
+265,"Qual è il significato di 'differenziare'?","Uniformare","Distinguere","Confondere",1,"'Differenziare' significa 'distinguere o separare cose diverse'.",B2,GPT4
+266,"Qual è il sinonimo di 'accettabile'?","Rifiutabile","Adeguato","Impossibile",1,"'Adeguato' è un sinonimo di 'accettabile'.",B2,GPT4
+267,"Qual è la forma corretta del congiuntivo presente del verbo 'preferire' per 'loro'?","preferiscano","preferiscono","preferiate",0,"La forma corretta è 'preferiscano'.",B2,GPT4
+268,"Qual è il participio passato del verbo 'aggiungere'?","aggiunto","aggiunguto","aggiungiuto",0,"La forma corretta è 'aggiunto'.",B2,GPT4
+269,"Qual è il significato di 'implicare'?","Escludere","Coinvolgere","Ignorare",1,"'Implicare' significa 'coinvolgere o comportare qualcosa'.",B2,GPT4
+270,"Qual è il sinonimo di 'essenziale'?","Superfluo","Necessario","Inutile",1,"'Necessario' è un sinonimo di 'essenziale'.",B2,GPT4
+271,"Qual è la forma corretta del congiuntivo presente del verbo 'ottenere' per 'loro'?","ottengano","ottengono","otteniate",0,"La forma corretta è 'ottengano'.",B2,GPT4
+272,"Qual è il participio passato del verbo 'diffondere'?","diffuso","diffonduto","diffusiuto",0,"La forma corretta è 'diffuso'.",B2,GPT4
+273,"Qual è il significato di 'influenzare'?","Controllare","Determinare","Ignorare",1,"'Influenzare' significa 'determinare o avere un effetto su qualcosa o qualcuno'.",B2,GPT4
+274,"Qual è il sinonimo di 'pessimista'?","Ottimista","Negativo","Positivo",1,"'Negativo' è un sinonimo di 'pessimista'.",B2,GPT4
+275,"Qual è la forma corretta del congiuntivo presente del verbo 'concludere' per 'loro'?","concludano","concludono","concludiate",0,"La forma corretta è 'concludano'.",B2,GPT4
+276,"Qual è il participio passato del verbo 'promettere'?","promesso","promettuto","promessiuto",0,"La forma corretta è 'promesso'.",B2,GPT4
+277,"Qual è il significato di 'suggerire'?","Ordinare","Consigliare","Obbligare",1,"'Suggerire' significa 'consigliare qualcosa a qualcuno'.",B2,GPT4
+278,"Qual è il sinonimo di 'brillante'?","Opaco","Luce","Luminoso",2,"'Luminoso' è un sinonimo di 'brillante'.",B2,GPT4
+279,"Qual è la forma corretta del congiuntivo presente del verbo 'trascorrere' per 'loro'?","trascorrano","trascorrono","trascorriate",0,"La forma corretta è 'trascorrano'.",B2,GPT4
+280,"Qual è il participio passato del verbo 'includere'?","incluso","includuto","inclusiuto",0,"La forma corretta è 'incluso'.",B2,GPT4
+281,"Qual è il significato di 'confermare'?","Smentire","Affermare","Dubitare",1,"'Confermare' significa 'affermare la veridicità di qualcosa'.",B2,GPT4
+282,"Qual è il sinonimo di 'attento'?","Disattento","Prudente","Distratto",1,"'Prudente' è un sinonimo di 'attento'.",B2,GPT4
+283,"Qual è la forma corretta del congiuntivo presente del verbo 'temere' per 'loro'?","temano","temono","temiate",0,"La forma corretta è 'temano'.",B2,GPT4
+284,"Qual è il participio passato del verbo 'concedere'?","concesso","conceduto","concessiuto",0,"La forma corretta è 'concesso'.",B2,GPT4
+285,"Qual è il significato di 'contraddire'?","Assecondare","Negare","Confermare",1,"'Contraddire' significa 'negare o opporsi a qualcosa'.",B2,GPT4
+286,"Qual è il sinonimo di 'difficoltoso'?","Semplice","Facile","Complicato",2,"'Complicato' è un sinonimo di 'difficoltoso'.",B2,GPT4
+287,"Qual è la forma corretta del congiuntivo presente del verbo 'descrivere' per 'loro'?","descrivano","descrivono","descriviate",0,"La forma corretta è 'descrivano'.",B2,GPT4
+288,"Qual è il participio passato del verbo 'intendere'?","inteso","intenduto","intesiuto",0,"La forma corretta è 'inteso'.",B2,GPT4
+289,"Qual è il significato di 'interrompere'?","Continuare","Sospendere","Permettere",1,"'Interrompere' significa 'sospendere temporaneamente un'attività'.",B2,GPT4
+290,"Qual è il sinonimo di 'cautelare'?","Prudente","Sconsiderato","Avventato",0,"'Prudente' è un sinonimo di 'cautelare'.",B2,GPT4
+291,"Qual è la forma corretta del congiuntivo presente del verbo 'sostenere' per 'loro'?","sostengano","sostengono","sosteniate",0,"La forma corretta è 'sostengano'.",B2,GPT4
+292,"Qual è il participio passato del verbo 'insistere'?","insistito","insistuto","insistuto",0,"La forma corretta è 'insistito'.",B2,GPT4
+293,"Qual è il significato di 'definire'?","Indefinire","Descrivere","Ignorare",1,"'Definire' significa 'descrivere o stabilire con precisione'.",B2,GPT4
+294,"Qual è il sinonimo di 'fluido'?","Rigido","Liquido","Solido",1,"'Liquido' è un sinonimo di 'fluido'.",B2,GPT4
+295,"Qual è la forma corretta del congiuntivo presente del verbo 'confondere' per 'loro'?","confondano","confondono","confondiate",0,"La forma corretta è 'confondano'.",B2,GPT4
+296,"Qual è il participio passato del verbo 'consentire'?","consentito","consentuto","consentiuto",0,"La forma corretta è 'consentito'.",B2,GPT4
+297,"Qual è il significato di 'articolare'?","Confondere","Strutturare","Distorcere",1,"'Articolare' significa 'strutturare o esprimere chiaramente'.",B2,GPT4
+298,"Qual è il sinonimo di 'elaborare'?","Trascurare","Ignorare","Sviluppare",2,"'Sviluppare' è un sinonimo di 'elaborare'.",B2,GPT4
+299,"Qual è la forma corretta del congiuntivo presente del verbo 'rilevare' per 'loro'?","rilevino","rilevano","rileviate",0,"La forma corretta è 'rilevino'.",B2,GPT4
+
 
 
 
