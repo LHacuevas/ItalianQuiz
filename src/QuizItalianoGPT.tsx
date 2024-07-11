@@ -13,20 +13,7 @@ import MenuItem from '@mui/material/MenuItem'; // Cambié SelectContent, SelectI
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { CardActions } from '@mui/material';
-
-const questionsCSV = `
-id,question,option1,option2,option3,correct,explanation,difficulty
-1,"Quale forma è corretta?","Mi piace di più","Mi piace più","Mi piace molto più",0,"La forma corretta è 'Mi piace di più'. In italiano, con il verbo 'piacere' si usa 'di più' per fare comparazioni.",A2
-2,"Come si dice correttamente?","Sono interessato in storia","Sono interessato a storia","Sono interessato della storia",1,"Si dice 'Sono interessato a storia'. Il verbo 'interessarsi' richiede la preposizione 'a'.",B1
-3,"Quale frase è corretta?","Benché è difficile","Benché sia difficile","Benché era difficile",1,"La forma corretta è 'Benché sia difficile'. Dopo 'benché' si usa il congiuntivo.",B2
-4,"Come si esprime correttamente il tempo?","Sono le otto della mattina","Sono le otto di mattina","Sono le otto a mattina",1,"Si dice 'Sono le otto di mattina'. In italiano, per esprimere l'ora si usa 'di' con 'mattina' e 'sera'.",A2
-5,"Quale è la forma corretta del passato prossimo?","Mi ho laureato","Mi sono laureato","Ho laureato",1,"La forma corretta è 'Mi sono laureato'. Con i verbi riflessivi, si usa l'ausiliare 'essere' nel passato prossimo.",B1
-6,"Come si esprime correttamente 'vestirse de'?","Vestirsi di","Vestirsi da","Vestirsi con",1,"Si dice 'Vestirsi da'. In italiano, per indicare un travestimento o un ruolo, si usa 'da'.",B1
-7,"Quale preposizione si usa con 'diverso'?","Diverso di","Diverso a","Diverso da",2,"Si usa 'Diverso da'. In italiano, l'aggettivo 'diverso' richiede la preposizione 'da'.",A2
-8,"Come si traduce correctamente 'Para mañana'?","Per domani","Entro domani","Dentro domani",1,"Si dice 'Entro domani'. 'Entro' si usa per indicare un limite di tempo.",B1
-9,"Quale forma è corretta con 'qualsiasi'?","Qualsiasi cosa accade","Qualsiasi cosa accada","Qualsiasi cosa accadrebbe",1,"La forma corretta è 'Qualsiasi cosa accada'. Con 'qualsiasi' seguito da 'che' o 'cosa', si usa il congiuntivo.",B2
-10,"Come si dice correttamente 'De piccolo'?","Di piccolo","Da piccolo","Come piccolo",1,"Si dice 'Da piccolo'. In italiano, per indicare un periodo passato della vita si usa 'da'.",A2
-`;
+import { questionsCSV } from './questionGPT4o.js'
 
 interface Question {
     id: number;
@@ -37,16 +24,18 @@ interface Question {
     correct: number;
     explanation: string;
     difficulty: string;
-    generato: string;
+    generated: string;
 }
 
 const parseCSV = (csv: string): Question[] => {
     const lines = csv.trim().split('\n');
-    const headers = lines[0].split(',');
+    const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
     return lines.slice(1).map(line => {
-        const values = line.split(',');
-        return headers.reduce((obj, header, index) => {
-            obj[header.replace(/"/g, '')] = values[index].replace(/"/g, '');
+        const values = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+        return headers.reduce((obj, header, index) => {            
+            // Limpiamos las comillas y los espacios en blanco alrededor de los valores
+            const value = values[index] ? values[index].replace(/^"|"$/g, '').trim() : '';
+            obj[header] = value;
             return obj;
         }, {} as Question);
     });
