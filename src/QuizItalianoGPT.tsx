@@ -15,7 +15,7 @@ import InputLabel from '@mui/material/InputLabel';
 import { CardActions } from '@mui/material';
 
 const questionsCSV = `
-id,question,option1,option2,option3,correct,explanation,difficulty
+id,question,option1,option2,option3,correct,explanation,difficulty,generato
 1,"Quale forma è corretta?","Mi piace di più","Mi piace più","Mi piace molto più",0,"La forma corretta è 'Mi piace di più'. In italiano, con il verbo 'piacere' si usa 'di più' per fare comparazioni.",A2
 2,"Come si dice correttamente?","Sono interessato in storia","Sono interessato a storia","Sono interessato della storia",1,"Si dice 'Sono interessato a storia'. Il verbo 'interessarsi' richiede la preposizione 'a'.",B1
 3,"Quale frase è corretta?","Benché è difficile","Benché sia difficile","Benché era difficile",1,"La forma corretta è 'Benché sia difficile'. Dopo 'benché' si usa il congiuntivo.",B2
@@ -37,6 +37,7 @@ interface Question {
     correct: number;
     explanation: string;
     difficulty: string;
+    generato: string;
 }
 
 const parseCSV = (csv: string): Question[] => {

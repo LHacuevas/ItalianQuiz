@@ -1,0 +1,62 @@
+const questionsCSV = `
+id,question,option1,option2,option3,correct,explanation,difficulty
+1,"Quale forma è corretta?","Mi piace di più","Mi piace più","Mi piace molto più",0,"La forma corretta è 'Mi piace di più'. In italiano, con il verbo 'piacere' si usa 'di più' per fare comparazioni.",A2
+2,"Come si dice correttamente?","Sono interessato in storia","Sono interessato a storia","Sono interessato della storia",1,"Si dice 'Sono interessato a storia'. Il verbo 'interessarsi' richiede la preposizione 'a'.",B1
+3,"Qual è il plurale corretto di 'uomo'?","Uomini","Uomi","Uome",0,"Il plurale corretto di 'uomo' è 'uomini'. È un plurale irregolare in italiano.",A2
+4,"Quale frase usa correttamente il congiuntivo?","Penso che lui ha ragione","Penso che lui abbia ragione","Penso che lui avrà ragione",1,"La frase corretta è 'Penso che lui abbia ragione'. Dopo 'penso che' si usa il congiuntivo.",B2
+5,"Come si traduce 'I would like' in italiano?","Io vorrei","Io volevo","Io vorrò",0,"'I would like' si traduce come 'Io vorrei' in italiano. È il condizionale presente del verbo 'volere'.",B1
+6,"Quale è la forma corretta del passato prossimo?","Ho andato","Sono andato","Avevo andato",1,"La forma corretta è 'Sono andato'. Il verbo 'andare' usa l'ausiliare 'essere' nel passato prossimo.",B1
+7,"Come si dice 'Her book' in italiano?","Il suo libro","La sua libro","Il lei libro",0,"'Her book' si traduce come 'Il suo libro'. In italiano, 'suo' si accorda con il sostantivo, non con il possessore.",B1
+8,"Quale di queste è una preposizione articolata?","Con","Nella","Per",1,"'Nella' è una preposizione articolata. È la combinazione di 'in' + 'la'.",A2
+9,"Come si forma il superlativo di 'buono'?","Buonissimo","Più buono","Il più buono",0,"Il superlativo di 'buono' è 'buonissimo'. È un superlativo irregolare in italiano.",B1
+10,"Quale verbo richiede il congiuntivo?","Credo che","So che","Dico che",0,"'Credo che' richiede il congiuntivo. Esprime un'opinione o una credenza, non una certezza.",B2
+11,"Qual è il participio passato di 'fare'?","Fatto","Fato","Facciuto",0,"Il participio passato di 'fare' è 'fatto'. È un participio irregolare.",B1
+12,"Come si traduce 'Let's go!' in italiano?","Andiamo!","Andate!","Vado!",0,"'Let's go!' si traduce come 'Andiamo!' in italiano. È la prima persona plurale dell'imperativo.",A2
+13,"Quale articolo si usa prima di 'zaino'?","Il","Lo","La",0,"Si usa 'il' prima di 'zaino'. 'Lo' si usa prima di parole che iniziano con z + vocale, s + consonante, gn, ps, x, y.",B1
+14,"Quale di questi è un verbo riflessivo?","Mangiare","Correre","Lavarsi",2,"'Lavarsi' è un verbo riflessivo. L'azione del verbo si riflette sul soggetto.",B1
+15,"Come si forma il futuro di 'essere'?","Sarò","Essarò","Siarò",0,"Il futuro di 'essere' è 'sarò'. È un futuro irregolare in italiano.",B1
+16,"Qual è il contrario di 'sempre'?","Mai","Spesso","Talvolta",0,"Il contrario di 'sempre' è 'mai'. 'Mai' significa 'never' in inglese.",A2
+17,"Come si dice 'I have to go' in italiano?","Devo andare","Ho da andare","Vado da",0,"'I have to go' si traduce come 'Devo andare'. Si usa il verbo 'dovere' seguito dall'infinito.",B1
+18,"Quale di queste parole è femminile?","Problema","Tema","Mano",2,"'Mano' è femminile in italiano, nonostante termini in -o. È un'eccezione alla regola generale.",B2
+19,"Come si forma il condizionale di 'volere'?","Volerei","Vorrei","Vorrò",1,"Il condizionale di 'volere' è 'vorrei'. È un condizionale irregolare.",B2
+20,"Quale preposizione si usa con il verbo 'parlare'?","A","Di","Con",1,"Con il verbo 'parlare' si usa la preposizione 'di' quando si indica l'argomento di cui si parla.",B1
+21,"Come si dice 'It's raining' in italiano?","Sta piovendo","È piovendo","Fa piovendo",0,"'It's raining' si traduce come 'Sta piovendo'. Si usa il verbo 'stare' + gerundio per esprimere un'azione in corso.",B1
+22,"Qual è il plurale di 'banca'?","Banchi","Banche","Banke",1,"Il plurale di 'banca' è 'banche'. Le parole femminili che terminano in -ca formano il plurale in -che.",B1
+23,"Come si traduce 'Too much' in italiano?","Molto","Troppo","Tanto",1,"'Too much' si traduce come 'Troppo' in italiano. Indica un eccesso.",A2
+24,"Quale di questi è un avverbio di modo?","Qui","Adesso","Lentamente",2,"'Lentamente' è un avverbio di modo. Descrive come si svolge un'azione.",B1
+25,"Come si forma il passato remoto di 'vedere'?","Vedei","Vidi","Vedetti",1,"Il passato remoto di 'vedere' è 'vidi'. È un passato remoto irregolare.",B2
+26,"Qual è la forma corretta?","Vado in Francia","Vado a Francia","Vado alla Francia",0,"La forma corretta è 'Vado in Francia'. Con i nomi di nazioni femminili si usa 'in' senza articolo.",B1
+27,"Come si dice 'I'm cold' in italiano?","Sono freddo","Ho freddo","Faccio freddo",1,"'I'm cold' si traduce come 'Ho freddo'. In italiano si usa il verbo 'avere' per esprimere sensazioni fisiche.",B1
+28,"Quale di queste parole è un falso amico con l'inglese?","Attualmente","Eventualmente","Ultimamente",0,"'Attualmente' è un falso amico. In italiano significa 'currently', non 'actually'.",B2
+29,"Come si forma il comparativo di 'grande'?","Più grande","Grande più","Grandissimo",0,"Il comparativo di 'grande' è 'più grande'. Si forma con 'più' + aggettivo.",B1
+30,"Quale di questi verbi è intransitivo?","Mangiare","Dormire","Leggere",1,"'Dormire' è un verbo intransitivo. Non può avere un complemento oggetto diretto.",B2
+31,"Come si dice 'You're welcome' in italiano?","Prego","Grazie","Per favore",0,"'You're welcome' si traduce come 'Prego' in italiano. È la risposta comune a 'Grazie'.",A2
+32,"Qual è il participio passato di 'aprire'?","Aprito","Aperto","Apruto",1,"Il participio passato di 'aprire' è 'aperto'. È un participio irregolare.",B1
+33,"Come si traduce 'I used to play' in italiano?","Giocavo","Ho giocato","Giocai",0,"'I used to play' si traduce come 'Giocavo'. Si usa l'imperfetto per esprimere azioni abituali nel passato.",B2
+34,"Quale di queste parole è invariabile?","Città","Casa","Libro",0,"'Città' è una parola invariabile. Ha la stessa forma al singolare e al plurale.",B1
+35,"Come si forma il futuro anteriore di 'partire'?","Avrò partito","Sarò partito","Avevo partito",1,"Il futuro anteriore di 'partire' è 'sarò partito'. I verbi di movimento usano l'ausiliare 'essere'.",B2
+36,"Qual è la forma corretta?","Non ho niente","Non ho nulla","Entrambe sono corrette",2,"Entrambe le forme 'Non ho niente' e 'Non ho nulla' sono corrette. Sono sinonimi in italiano.",B1
+37,"Come si dice 'to fall in love' in italiano?","Innamorarsi","Amarsi","Amoreggiare",0,"'To fall in love' si traduce come 'Innamorarsi' in italiano. È un verbo riflessivo.",B1
+38,"Quale di questi è un pronome diretto?","Mi","A me","Mio",0,"'Mi' è un pronome diretto. Si usa come complemento oggetto diretto.",B2
+39,"Come si forma il condizionale passato?","Avrei + participio passato","Avevo + participio passato","Avrò + participio passato",0,"Il condizionale passato si forma con il condizionale presente di avere/essere + participio passato.",B2
+40,"Qual è il plurale di 'uovo'?","Uovi","Uova","Uove",1,"Il plurale di 'uovo' è 'uova'. È un plurale irregolare in italiano.",B1
+41,"Come si traduce 'I wish' in italiano?","Vorrei","Desidero","Magari",0,"'I wish' si traduce spesso come 'Vorrei' in italiano. È il condizionale presente di 'volere'.",B1
+42,"Quale di questi verbi richiede il congiuntivo?","Sapere che","Sperare che","Dire che",1,"'Sperare che' richiede il congiuntivo. Esprime un desiderio o una speranza, non una certezza.",B2
+43,"Come si forma il passivo?","Essere + participio passato","Avere + participio passato","Stare + participio passato",0,"Il passivo si forma con il verbo essere + il participio passato del verbo principale.",B2
+44,"Qual è la forma corretta?","Ci vediamo","Noi vediamoci","Vediamoci noi",0,"La forma corretta è 'Ci vediamo'. È la forma riflessiva del verbo 'vedere' alla prima persona plurale.",B1
+45,"Come si dice 'nevertheless' in italiano?","Tuttavia","Comunque","Entrambe sono corrette",2,"Sia 'Tuttavia' che 'Comunque' possono tradurre 'nevertheless' in italiano, a seconda del contesto.",B2
+46,"Quale di questi è un verbo impersonale?","Piovere","Cantare","Correre",0,"'Piovere' è un verbo impersonale. Non ha un soggetto specifico.",B2
+47,"Come si forma il gerundio di 'fare'?","Facendo","Fando","Faciente",0,"Il gerundio di 'fare' è 'facendo'. È un gerundio irregolare.",B1
+48,"Qual è il significato di 'anzi'?","Invece","Prima","Dopo",0,"'Anzi' significa 'invece' o 'anzi'. Si usa per correggere o rafforzare un'affermazione precedente.",B2
+49,"Come si traduce 'to get along with' in italiano?","Andare d'accordo con","Andare con","Accordarsi con",0,"'To get along with' si traduce come 'Andare d'accordo con' in italiano.",B2
+50,"Quale di questi è un pronome possessivo?","Mio","Mi","Me",0,"'Mio' è un pronome possessivo. Indica possesso o appartenenza.",B1
+51,"Come si forma il superlativo relativo?","Il più + aggettivo","Molto + aggettivo","Più + aggettivo",0,"Il superlativo relativo si forma con 'il più' + aggettivo (o 'il meno' per il negativo).",B2
+52,"Qual è la forma corretta?","Qual'è","Qual è","Quale è",1,"La forma corretta è 'Qual è'. 'Qual' è un'elisione di 'quale' davanti a 'è'.",B1
+53,"Come si dice 'to miss someone' in italiano?","Mancare a qualcuno","Perdere qualcuno","Dimenticare qualcuno",0,"'To miss someone' si traduce come 'mancare a qualcuno'. La costruzione è inversa rispetto all'inglese.",B2
+54,"Quale di questi è un aggettivo dimostrativo?","Questo","Il","Uno",0,"'Questo' è un aggettivo dimostrativo. Indica vicinanza al parlante.",B1
+55,"Come si forma il passato prossimo dei verbi riflessivi?","Essere + participio passato","Avere + participio passato","Stare + participio passato",0,"Il passato prossimo dei verbi riflessivi si forma con essere + participio passato.",B2
+56,"Qual è il plurale di 'dito'?","Diti","Dita","Dite",1,"Il plurale di 'dito' è 'dita'. È un plurale irregolare in italiano.",B1
+57,"Come si traduce 'to happen' in italiano?","Succedere","Accadere","Entrambe sono corrette",2,"Sia 'Succedere' che 'Accadere' possono tradurre 'to happen' in italiano. Sono sinonimi.",B1
+58,"Quale di questi verbi è transitivo?","Dormire","Arrivare","Mangiare",2,"'Mangiare' è un verbo transitivo. Può avere un complemento oggetto diretto.",B2
+59,"Come si forma il condizionale presente?","Infinito + endings (ei, esti, ebbe, emmo, este, ebbero)","Infinito + ò","Infinito + avo",0,"Il condizionale presente si forma con l'infinito + le desinenze specifiche del condizionale.",B2
+60,"Qual è la forma corretta?","Machina","Macchina","Maccina",1,"La forma
