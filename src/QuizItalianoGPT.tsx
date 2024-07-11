@@ -56,10 +56,13 @@ const QuizItaliano = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
     const [reviewMode, setReviewMode] = useState(false);
+    const [startTime, setStartTime] = useState(null);
+    const [endTime, setEndTime] = useState(null);
 
     useEffect(() => {
-        const filteredQuestions = allQuestions.filter(q => q.difficulty === difficulty);
-        setQuestions(filteredQuestions);
+        const filteredQuestions = allQuestions.filter(q => q.difficulty === difficulty).sort(() => 0.5 - Math.random());
+        setQuestions(filteredQuestions.slice(0,3));
+        setStartTime(Date.now());
         setUserAnswers(new Array(filteredQuestions.length).fill(null));
     }, [difficulty]);
 
@@ -104,6 +107,7 @@ const QuizItaliano = () => {
             setSelectedAnswer(null);
         } else {
             setQuizFinished(true);
+            setEndTime(Date.now());
             saveResult();
         }
     };
@@ -117,6 +121,13 @@ const QuizItaliano = () => {
             date: new Date().toLocaleString()
         };
         console.log('Risultato salvato:', result);
+    };
+
+    const formatTime = (milliseconds) => {
+        const seconds = Math.floor(milliseconds / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
 
     const startReview = () => {
@@ -162,6 +173,7 @@ const QuizItaliano = () => {
     }
 
     if (quizFinished && !reviewMode) {
+        const totalTime = 0 // endTime - startTime;
         return (
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
                 <CardHeader className="text-2xl font-bold text-center text-blue-800">Quiz Completato</CardHeader>
@@ -171,10 +183,21 @@ const QuizItaliano = () => {
                     <p className="text-center text-lg">
                         Punteggio: {score} su {questions.length}
                     </p>
+                    <LinearProgress value={(score / questions.length) * 100} className="mt-4" />
+                    <div className="flex items-center justify-center mt-4 text-blue-800">
+                        <Clock className="mr-2" />
+                        <p>Tempo totale: {formatTime(totalTime)}</p>
+                    </div>
+
                     <Button onClick={startReview} className="w-full bg-blue-500 hover:bg-blue-700 mt-4">
                         Rivedi le risposte
                     </Button>
                 </CardContent>
+                <CardActions>
+                    <Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700">
+                        Riprova con Nuove Domande
+                    </Button>
+                </CardActions>
             </Card>
         );
     }
@@ -183,7 +206,7 @@ const QuizItaliano = () => {
         return (
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
                 <CardContent>
-                    <p className="text-center text-blue-800">Caricamento delle domande...</p>
+                    <p className="text-center text-blue-800">Non che domanda</p>
                 </CardContent>
             </Card>
         );
