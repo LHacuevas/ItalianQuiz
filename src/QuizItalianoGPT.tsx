@@ -14,18 +14,8 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { CardActions } from '@mui/material';
 import { questionsCSV } from './questionGPT4o.js'
-
-interface Question {
-    id: number;
-    question: string;
-    option1: string;
-    option2: string;
-    option3: string;
-    correct: number;
-    explanation: string;
-    difficulty: string;
-    generated: string;
-}
+import { Question } from './MyTypes.js'
+import QuizQuestion from './Question.tsx'
 
 const parseCSV = (csv: string): Question[] => {
     const lines = csv.trim().split('\n');
@@ -42,8 +32,11 @@ const parseCSV = (csv: string): Question[] => {
 };
 
 const allQuestions: Question[] = parseCSV(questionsCSV);
+interface QuizParams {
+    numQuestions?: number;    
+}
 
-const QuizItaliano = () => {
+const QuizItaliano = (param?: QuizParams) => {
     const [name, setName] = useState('');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
@@ -51,17 +44,27 @@ const QuizItaliano = () => {
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [quizStarted, setQuizStarted] = useState(false);
     const [quizFinished, setQuizFinished] = useState(false);
-    const [difficulty, setDifficulty] = useState('A2');
+    const [difficulty, setDifficulty] = useState('B1');
     const [timer, setTimer] = useState(30);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
     const [reviewMode, setReviewMode] = useState(false);
     const [startTime, setStartTime] = useState<number | undefined>(undefined);
-    const [endTime, setEndTime] = useState<number | undefined>(undefined); 
-
+    const [endTime, setEndTime] = useState<number | undefined>(undefined);     
+    // Intento recuperar el nombre
+    useEffect(() => {
+        const storedValue = localStorage.getItem('name');
+        if (storedValue) {
+            setName(storedValue);
+        }
+        const storedDifficulty = localStorage.getItem('difficulty');
+        if (storedDifficulty) {
+            setDifficulty(storedDifficulty);
+        }
+    }, []);
     useEffect(() => {
         const filteredQuestions = allQuestions.filter(q => q.difficulty === difficulty).sort(() => 0.5 - Math.random());
-        setQuestions(filteredQuestions.slice(0,3));
+        setQuestions(filteredQuestions.slice(0, param?.numQuestions ?? 3));
         setStartTime(Date.now());
         setUserAnswers(new Array(filteredQuestions.length).fill(null));
     }, [difficulty]);
@@ -143,22 +146,29 @@ const QuizItaliano = () => {
             setQuizFinished(true);
         }
     };
-
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+        localStorage.setItem('name', name);
+    };
+    const handleDifficultyChange = (e) => {
+        setDifficulty(e.target.value);
+        localStorage.setItem('difficulty', difficulty);
+    };
     if (!quizStarted) {
         return (
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-                <CardHeader className="text-2xl font-bold text-center text-blue-800">Quiz di Italiano</CardHeader>
+                <CardHeader className="text-2xl font-bold text-center text-blue-800">Quiz di Italiano v.1.0</CardHeader>
                 <CardContent>
                     <Input
                         type="text"
                         placeholder="Inserisci il tuo nome"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={name}                        
+                        onChange={handleNameChange}
                         className="mb-4"
                     />
                     <FormControl className="mb-4" fullWidth>
                         <InputLabel>Seleziona il livello</InputLabel>
-                        <Select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+                        <Select value={difficulty} onChange={handleDifficultyChange}>
                             <MenuItem value="A2">A2</MenuItem>
                             <MenuItem value="B1">B1</MenuItem>
                             <MenuItem value="B2">B2</MenuItem>
@@ -214,43 +224,30 @@ const QuizItaliano = () => {
     const currentQuestionData = questions[currentQuestion];
 
     return (
-        <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">            
-            <CardHeader className="text-xl font-bold text-center text-blue-800">
+        <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">                        
+            <CardActions className="text-xl font-bold text-center text-blue-800">
                 {reviewMode ? "Revisione" : `Domanda ${currentQuestion + 1} di ${questions.length}`}
-            </CardHeader>
+            </CardActions>
             <CardContent>
                 {!reviewMode && (
-                    <div className="flex justify-between items-center mb-4">
+                    <div className="flex justify-between items-center mb-4">                        
+                        <span className="font-semibold text-blue-800 text-xs">Id: {currentQuestionData.id}</span>
+                        <span className="font-semibold text-blue-800 text-xs">Gen: {currentQuestionData.generated}</span>
                         <span className="font-semibold text-blue-800">Livello: {difficulty}</span>
                         <span className="font-semibold text-blue-800 flex items-center">
                             <Clock className="mr-1" /> {timer}s
                         </span>
                     </div>
                 )}
-                <p className="mb-4 text-lg font-semibold">{currentQuestionData.question}</p>
-                {['option1', 'option2', 'option3'].map((option, index) => (
-                    <Button
-                        key={index}
-                        onClick={() => !reviewMode && handleAnswer(index)}
-                        className="w-full mb-2 text-left justify-start"
-                        variant={
-                            reviewMode || showExplanation
-                                ? index === Number(currentQuestionData.correct)
-                                    ? "contained"
-                                    : userAnswers[currentQuestion] === index
-                                        ? "outlined"
-                                        : "text"
-                                : selectedAnswer === index
-                                    ? "contained"
-                                    : "text"
-                        }
-                        disabled={reviewMode || showExplanation}
-                    >
-                        {(reviewMode || showExplanation) && index === Number(currentQuestionData.correct) && <CheckCircle className="mr-2 h-4 w-4" />}
-                        {(reviewMode || showExplanation) && userAnswers[currentQuestion] === index && index !== currentQuestionData.correct && <XCircle className="mr-2 h-4 w-4" />}
-                        {currentQuestionData[option]}
-                    </Button>
-                ))}
+                <LinearProgress value={(score / questions.length) * 100} className="mt-4" />
+                <QuizQuestion
+                    currentQuestionData={currentQuestionData}
+                    reviewMode={reviewMode}
+                    showExplanation={showExplanation}
+                    handleAnswer={handleAnswer}
+                    userAnswers={userAnswers}
+                    currentQuestion={currentQuestion}
+                />              
                 {(showExplanation || reviewMode) && (
                     <Alert className="mt-4 bg-blue-50 border-blue-200">
                         <AlertTitle className="text-blue-800">
@@ -269,7 +266,8 @@ const QuizItaliano = () => {
                     showExplanation && (
                         <Button onClick={nextQuestion} className="bg-green-500 hover:bg-green-700">
                             {currentQuestion === questions.length - 1 ? "Termina il quiz" : "Prossima domanda"}
-                        </Button>
+                            </Button>
+                            
                     )
                 )}
             </CardActions>    

@@ -4,7 +4,7 @@ import QuizItaliano from './QuizItalianoGPT.tsx';
 
 function App() {
   return (    
-      <QuizItaliano />    
+      <QuizItaliano numQuestions={10}/>    
   );
 }
 
