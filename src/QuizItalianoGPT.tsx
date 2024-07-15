@@ -18,7 +18,7 @@ import { Question } from './MyTypes.js'
 import QuizQuestion from './Question.tsx'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
+//import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
 
 const parseCSV = (csv: string): Question[] => {
     const lines = csv.trim().split('\n');
@@ -195,7 +195,7 @@ const QuizItaliano = (param?: QuizParams) => {
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
                 <CardActions className="text-2xl font-bold text-center text-blue-800">Quiz di Italiano v.1.0</CardActions>
                 <CardContent>
-                    <img src={logo} alt="Logo" className="mb-4 w-32 h-32 mx-auto" /> {/* Aquí añadimos la imagen del logo */}
+                    <img src={`${process.env.PUBLIC_URL}/logo.jpg`} alt="Logo" className="mb-4 w-32 h-32 mx-auto" /> {/* Aquí añadimos la imagen del logo */}
                     <Input
                         type="text"
                         placeholder="Inserisci il tuo nome"
