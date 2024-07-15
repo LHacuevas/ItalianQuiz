@@ -58,4 +58,63 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 57,"Come si traduce 'to happen' in italiano?","Succedere","Accadere","Entrambe sono corrette",2,"Sia 'Succedere' che 'Accadere' possono tradurre 'to happen' in italiano. Sono sinonimi.",B1
 58,"Quale di questi verbi è transitivo?","Dormire","Arrivare","Mangiare",2,"'Mangiare' è un verbo transitivo. Può avere un complemento oggetto diretto.",B2
 59,"Come si forma il condizionale presente?","Infinito + endings (ei, esti, ebbe, emmo, este, ebbero)","Infinito + ò","Infinito + avo",0,"Il condizionale presente si forma con l'infinito + le desinenze specifiche del condizionale.",B2
-60,"Qual è la forma corretta?","Machina","Macchina","Maccina",1,"La forma
+101,"Quale di queste parole è un falso amico tra italiano e spagnolo?","Burro","Cane","Gatto",0,"In italiano 'burro' significa mantequilla, mentre in spagnolo significa asino.",B1,Claude
+102,"Qual è il tempo verbale corretto per esprimere un'azione futura in italiano?","Passato prossimo","Futuro semplice","Presente indicativo",1,"Il futuro semplice si usa per esprimere azioni che avverranno in futuro.",B1,Claude
+103,"Come si traduce correttamente 'Me gustaría' in italiano?","Mi piacerebbe","Mi piacerei","Mi piace",0,"'Mi piacerebbe' è il condizionale presente del verbo piacere, equivalente a 'Me gustaría' in spagnolo.",B1,Claude
+104,"Quale preposizione si usa con il verbo 'andare' per indicare un mezzo di trasporto?","Con","In","A",1,"Si dice 'andare in auto', 'andare in treno', ecc.",B1,Claude
+105,"Qual è il plurale corretto di 'uomo'?","Uomini","Uomi","Uome",0,"'Uomo' ha un plurale irregolare: 'uomini'.",B1,Claude
+106,"Quale di queste frasi usa correttamente il congiuntivo?","Penso che lui viene","Penso che lui venga","Penso che lui venirà",1,"Dopo 'penso che' si usa il congiuntivo presente.",B2,Claude
+107,"Quale di questi verbi è un verbo pronominale?","Mangiare","Dormire","Farcela",2,"'Farcela' è un verbo pronominale che significa 'riuscire'.",B2,Claude
+108,"Come si forma il passato remoto di 'vedere'?","Ho visto","Vedei","Vidi",2,"Il passato remoto irregolare di 'vedere' è 'vidi'.",B2,Claude
+109,"Qual è il significato dell'espressione 'in quattro e quattr'otto'?","Lentamente","Velocemente","Con difficoltà",1,"Significa fare qualcosa molto rapidamente.",B2,Claude
+110,"Quale di queste parole è un vocabolo specificamente toscano?","Ciao","Babbeo","Grazie",1,"'Babbeo' è un termine toscano che significa 'sciocco'.",B2,Claude
+111,"Quale di questi è l'imperativo formale di 'andare'?","Vai","Vada","Andate",1,"L'imperativo formale di 'andare' alla terza persona singolare è 'vada'.",B1,Claude
+112,"Qual è il participio passato del verbo 'rompere'?","Romputo","Rotto","Rompito",1,"Il participio passato irregolare di 'rompere' è 'rotto'.",B1,Claude
+113,"Quale di queste frasi usa correttamente il gerundio?","Sto mangiando","Sono mangiando","Ho mangiando",0,"Il gerundio si forma con 'stare' + gerundio del verbo principale.",B1,Claude
+114,"Come si dice 'Te echo de menos' in italiano?","Ti manco","Mi manchi","Ti manchi",1,"In italiano si dice 'mi manchi' per esprimere 'te echo de menos'.",B1,Claude
+115,"Quale di questi aggettivi non cambia al plurale?","Rosso","Blu","Verde",1,"Gli aggettivi che terminano in -i o -e atona non cambiano al plurale.",B1,Claude
+116,"Quale di queste forme è il trapassato prossimo?","Avevo mangiato","Ho mangiato","Ebbi mangiato",0,"Il trapassato prossimo si forma con l'imperfetto di avere/essere + participio passato.",B2,Claude
+117,"Qual è il significato dell'espressione 'prendere in giro'?","Fare un giro","Burlare","Prendere qualcosa",1,"'Prendere in giro' significa 'burlarse' in spagnolo.",B2,Claude
+118,"Quale di questi è un verbo difettivo?","Andare","Piovere","Mangiare",1,"'Piovere' è un verbo difettivo, usato solo alla terza persona singolare.",B2,Claude
+119,"Come si forma il condizionale passato?","Condizionale presente di avere/essere + participio passato","Imperfetto di avere/essere + participio passato","Condizionale presente + gerundio",0,"Il condizionale passato si forma con il condizionale presente di avere/essere + participio passato.",B2,Claude
+120,"Quale di queste frasi usa correttamente il 'ne' partitivo?","Ne ho comprati due","Ho comprati ne due","Ho ne comprati due",0,"Il 'ne' partitivo si posiziona prima del verbo nelle forme semplici.",B2,Claude
+121,"Quale di queste frasi usa correttamente il congiuntivo imperfetto?","Pensavo che venisse","Pensavo che venga","Pensavo che verrebbe",0,"Dopo 'pensavo che' si usa il congiuntivo imperfetto.",B2,Claude
+122,"Come si traduce 'Se lo hubiera sabido' in italiano?","Se l'avrei saputo","Se lo sapessi","Se l'avessi saputo",2,"In italiano, nel periodo ipotetico dell'impossibilità si usa il congiuntivo trapassato.",B2,Claude
+123,"Qual è il significato della parola 'magari'?","Mai","Forse","Sempre",1,"'Magari' può significare 'forse' o esprimere un desiderio.",B1,Claude
+124,"Quale di queste è la forma corretta del passato remoto di 'fare'?","Facei","Feci","Fai",1,"Il passato remoto irregolare di 'fare' è 'feci'.",B2,Claude
+125,"Come si dice 'jugar al fútbol' in italiano?","Giocare il calcio","Giocare a calcio","Giocare del calcio",1,"In italiano si dice 'giocare a' + sport.",B1,Claude
+126,"Quale di questi è un esempio di futuro anteriore?","Avrò finito","Finirò","Ho finito",0,"Il futuro anteriore si forma con il futuro di avere/essere + participio passato.",B2,Claude
+127,"Cosa significa l'espressione 'non c'è due senza tre'?","Le cose belle finiscono","Le cose brutte si ripetono","Le cose tendono a ripetersi",2,"Equivale a 'No hay dos sin tres' in spagnolo.",B2,Claude
+128,"Quale di queste parole è un falso amico tra italiano e spagnolo?","Salire","Scendere","Esito",2,"'Esito' in italiano significa 'risultato', non 'éxito' (successo).",B1,Claude
+129,"Come si forma il superlativo assoluto di 'buono'?","Buonissimo","Ottimo","Più buono",1,"Il superlativo assoluto irregolare di 'buono' è 'ottimo'.",B1,Claude
+130,"Quale di queste frasi usa correttamente il 'si' passivante?","Si mangia bene qui","Si mangiamo bene qui","Si mangiano bene qui",0,"Il 'si' passivante si usa con il verbo alla terza persona singolare.",B2,Claude
+131,"Come si dice 'tener razón' in italiano?","Avere ragione","Tenere ragione","Essere ragione",0,"In italiano si dice 'avere ragione'.",B1,Claude
+132,"Quale di questi verbi richiede l'ausiliare 'essere' nel passato prossimo?","Mangiare","Dormire","Andare",2,"I verbi di movimento come 'andare' richiedono l'ausiliare 'essere'.",B1,Claude
+133,"Cosa significa l'espressione 'fare il filo a qualcuno'?","Cucire","Corteggiare","Ingannare",1,"'Fare il filo a qualcuno' significa 'corteggiare'.",B2,Claude
+134,"Quale di queste è la forma corretta dell'imperativo negativo alla seconda persona singolare?","Non parla!","Non parlare!","Non parli!",1,"L'imperativo negativo alla seconda persona singolare si forma con 'non' + infinito.",B1,Claude
+135,"Come si traduce 'cualquiera' in italiano?","Qualsiasi","Qualcuno","Chiunque",2,"'Cualquiera' si traduce come 'chiunque' quando si riferisce a persone.",B2,Claude
+136,"Quale di questi è un esempio di discorso indiretto?","Lui dice: 'Vengo domani'","Lui ha detto che sarebbe venuto l'indomani","Vieni domani!",1,"Nel discorso indiretto, i tempi verbali e gli avverbi di tempo cambiano.",B2,Claude
+137,"Cosa significa l'espressione 'acqua in bocca'?","Bere acqua","Mantenere un segreto","Parlare molto",1,"'Acqua in bocca' significa mantenere un segreto, equivale a 'boca cerrada' in spagnolo.",B2,Claude
+138,"Quale di queste parole è un esempio di nome alterato?","Gattino","Gatto","Felino",0,"'Gattino' è un diminutivo di 'gatto', quindi è un nome alterato.",B1,Claude
+139,"Come si forma il condizionale presente di 'andare'?","Anderei","Andai","Andrò",0,"Il condizionale presente di 'andare' è 'andrei'.",B1,Claude
+140,"Quale di queste frasi usa correttamente il pronome 'ci'?","Ci vado domani","Vado ci domani","Vado domani ci",0,"Il pronome 'ci' si posiziona prima del verbo nelle forme semplici.",B2,Claude
+141,"Quale di queste frasi usa correttamente il 'ne' pronominale?","Ne ho comprato uno","Ho comprato ne uno","Ho ne comprato uno",0,"Il 'ne' pronominale si posiziona prima del verbo nelle forme semplici.",B2,Claude
+142,"Come si traduce 'tener prisa' in italiano?","Avere fretta","Tenere fretta","Essere in fretta",0,"In italiano si dice 'avere fretta'.",B1,Claude
+143,"Quale di questi è il plurale corretto di 'uovo'?","Uovi","Uova","Uove",1,"Il plurale di 'uovo' è irregolare: 'uova'.",B1,Claude
+144,"Cosa significa l'espressione 'mettere i puntini sulle i'?","Essere precisi","Scrivere correttamente","Essere indecisi",0,"'Mettere i puntini sulle i' significa essere precisi e chiari.",B2,Claude
+145,"Quale di queste frasi usa correttamente il gerundio con valore causale?","Essendo stanco, sono andato a letto presto","Sto essendo stanco","Sarò essendo stanco",0,"Il gerundio con valore causale esprime la ragione di un'azione.",B2,Claude
+146,"Come si forma il comparativo di maggioranza?","Più + aggettivo + di/che","Aggettivo + er + di/che","Il più + aggettivo",0,"Il comparativo di maggioranza si forma con 'più + aggettivo + di/che'.",B1,Claude
+147,"Quale di questi verbi è riflessivo?","Mangiare","Dormire","Lavarsi",2,"'Lavarsi' è un verbo riflessivo.",B1,Claude
+148,"Cosa significa l'espressione 'avere un diavolo per capello'?","Essere molto arrabbiato","Avere i capelli arruffati","Essere fortunato",0,"'Avere un diavolo per capello' significa essere molto arrabbiato.",B2,Claude
+149,"Quale di queste è la forma corretta del passato remoto di 'dire'?","Dicei","Dissi","Dici",1,"Il passato remoto irregolare di 'dire' è 'dissi'.",B2,Claude
+150,"Come si traduce 'aunque' in italiano?","Anche se","Se","Però",0,"'Aunque' si traduce come 'anche se' in italiano.",B1,Claude
+151,"Quale di questi è un esempio di forma impersonale?","Si dice che pioverà","Io dico che pioverà","Tu dici che pioverà",0,"La forma impersonale si costruisce con 'si' + verbo alla terza persona singolare.",B2,Claude
+152,"Come si forma il superlativo relativo?","Il/la più + aggettivo","Aggettivo + issimo/a","Molto + aggettivo",0,"Il superlativo relativo si forma con 'il/la più + aggettivo'.",B1,Claude
+153,"Quale di queste parole è un falso amico tra italiano e spagnolo?","Carta","Firma","Aceto",1,"'Firma' in italiano significa 'signatura', non 'firma' (azienda).",B1,Claude
+154,"Cosa significa l'espressione 'fare orecchie da mercante'?","Ascoltare attentamente","Fingere di non sentire","Parlare ad alta voce",1,"'Fare orecchie da mercante' significa fingere di non sentire.",B2,Claude
+155,"Quale di queste frasi usa correttamente il congiuntivo presente?","Spero che vieni","Spero che venga","Spero che verrai",1,"Dopo 'spero che' si usa il congiuntivo presente.",B1,Claude
+156,"Come si dice 'echar de menos' in italiano?","Buttare fuori","Mancare","Perdere",1,"'Echar de menos' si traduce come 'mancare' in italiano.",B1,Claude
+157,"Quale di questi è un esempio di futuro nel passato?","Disse che sarebbe venuto","Disse che verrà","Disse che veniva",0,"Il futuro nel passato si esprime con il condizionale passato in frasi subordinate.",B2,Claude
+158,"Cosa significa l'espressione 'prendere due piccioni con una fava'?","Essere fortunati","Ottenere due risultati con una sola azione","Essere golosi",1,"Equivale a 'matar dos pájaros de un tiro' in spagnolo.",B2,Claude
+159,"Quale di queste è la forma corretta dell'imperativo formale di 'dire'?","Di'","Dica","Dici",1,"L'imperativo formale di 'dire' alla terza persona singolare è 'dica'.",B2,Claude
+160,"Come si traduce 'mientras' in italiano?","Mentre","Durante","Intanto",0,"'Mientras' si traduce come 'mentre' in italiano.",B1,Claude

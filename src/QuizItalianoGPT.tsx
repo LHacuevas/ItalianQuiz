@@ -16,6 +16,8 @@ import { CardActions } from '@mui/material';
 import { questionsCSV } from './questionGPT4o.js'
 import { Question } from './MyTypes.js'
 import QuizQuestion from './Question.tsx'
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const parseCSV = (csv: string): Question[] => {
     const lines = csv.trim().split('\n');
@@ -49,6 +51,7 @@ const QuizItaliano = (param?: QuizParams) => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
     const [reviewMode, setReviewMode] = useState(false);
+    const [onlyOptionQuestions, setOnlyOptionQuestions] = useState(false);
     const [startTime, setStartTime] = useState<number | undefined>(undefined);
     const [endTime, setEndTime] = useState<number | undefined>(undefined);     
     // Intento recuperar el nombre
@@ -63,7 +66,16 @@ const QuizItaliano = (param?: QuizParams) => {
         }
     }, []);
     useEffect(() => {
-        const filteredQuestions = allQuestions.filter(q => q.difficulty === difficulty).sort(() => 0.5 - Math.random());
+        const filteredQuestions = allQuestions.filter(q => {
+            const difficultyMatch = q.difficulty === difficulty;
+            // Si onlyOptionQuestions es true, excluir preguntas con Correct === -1
+            const typeMatch = !onlyOptionQuestions || q.correct !== -1;
+            // Verificar si hay opciones repetidas cuando Correct no es -1
+            const hasRepeatedOptions = (q.correct !== -1) &&
+                (q.option1 === q.option2 || q.option1 === q.option3 || q.option2 === q.option3);
+
+            return difficultyMatch && typeMatch && !hasRepeatedOptions;
+        }).sort(() => 0.5 - Math.random());
         setQuestions(filteredQuestions.slice(0, param?.numQuestions ?? 3));
         setStartTime(Date.now());
         setUserAnswers(new Array(filteredQuestions.length).fill(null));
@@ -84,21 +96,25 @@ const QuizItaliano = (param?: QuizParams) => {
             return () => clearInterval(countdown);
         }
     }, [quizStarted, showExplanation, quizFinished, reviewMode, currentQuestion]);
-
+    const handleCheckboxChange = (event) => {
+        setOnlyOptionQuestions(event.target.checked);
+        // Perform any additional actions based on the checkbox state
+    };
     const handleStart = () => {
         if (name.trim()) {
             setQuizStarted(true);
         }
     };
 
-    const handleAnswer = (index: number | null) => {
+    const handleAnswer = (index: number | null) => {             
+        const boAcierto = Number(questions[currentQuestion].correct) !== -1 ? index == Number(questions[currentQuestion].correct) : index === 1
         setSelectedAnswer(index);
         setShowExplanation(true);
         setTimer(30);
         const newUserAnswers = [...userAnswers];
         newUserAnswers[currentQuestion] = index;
         setUserAnswers(newUserAnswers);
-        if (index === Number(questions[currentQuestion].correct)) {
+        if (boAcierto) {
             setScore(score + 1);
         }
     };
@@ -173,6 +189,27 @@ const QuizItaliano = (param?: QuizParams) => {
                             <MenuItem value="B1">B1</MenuItem>
                             <MenuItem value="B2">B2</MenuItem>
                         </Select>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={onlyOptionQuestions}
+                                    onChange={handleCheckboxChange}
+                                    name="onlyOptionQuestions"
+                                    color="primary"
+                                />
+                            }
+                            label={
+                                <div className="flex items-center">
+                                    Solo domande con opzioni
+                                    <span className="ml-2 cursor-pointer" data-tooltip>
+                                        ℹ️
+                                        <span className="tooltip-text absolute hidden bg-gray-700 text-white text-xs rounded py-1 px-2 bottom-full left-1/2 transform -translate-x-1/2">
+                                            Non mostra domande di completamento
+                                        </span>
+                                    </span>
+                                </div>
+                            }
+                        />
                     </FormControl>
                     <Button onClick={handleStart} className="w-full bg-blue-500 hover:bg-blue-700">
                         Inizia il Quiz
@@ -247,6 +284,7 @@ const QuizItaliano = (param?: QuizParams) => {
                     handleAnswer={handleAnswer}
                     userAnswers={userAnswers}
                     currentQuestion={currentQuestion}
+                    onlyOptionQuestions={onlyOptionQuestions}
                 />              
                 {(showExplanation || reviewMode) && (
                     <Alert className="mt-4 bg-blue-50 border-blue-200">

@@ -8,10 +8,9 @@ interface QuizQuestionProps {
     currentQuestionData: Question;
     reviewMode: boolean;
     showExplanation: boolean;
-    handleAnswer: (index: number) => void;
-    userAnswers: (number | null)[]; // Actualizado para permitir null
+    handleAnswer: (answer: number | string) => void;
+    userAnswers: (number | string | null)[];
     currentQuestion: number;
-    onlyOptionQuestions: boolean;
 }
 
 interface Option {
@@ -70,44 +69,32 @@ const getButtonClass = (
         }
     }
 };
-
-
 const QuizQuestion: React.FC<QuizQuestionProps> = ({
     currentQuestionData,
     reviewMode,
     showExplanation,
     handleAnswer,
     userAnswers,
-    currentQuestion,
-    onlyOptionQuestions
+    currentQuestion
 }) => {
     const [randomizedOptions, setRandomizedOptions] = useState<Option[]>([]);
-    const [textQuestion, setTextQuestion] = useState(false);
-    const [answerCorrect, setAnswerCorrect] = useState('');
+    const [hasRepeatedOptions, setHasRepeatedOptions] = useState(false);
     const [userInput, setUserInput] = useState('');
+
     useEffect(() => {
         const options: Option[] = [
             { text: currentQuestionData.option1, originalIndex: 0 },
             { text: currentQuestionData.option2, originalIndex: 1 },
             { text: currentQuestionData.option3, originalIndex: 2 },
         ];
-        const shuffled = [...options].sort(() => Math.random() - 0.5);        
-        const posibleTextQuestion =  (currentQuestionData.correct == -1)
-        setTextQuestion(posibleTextQuestion && !onlyOptionQuestions);
-        if (currentQuestionData.correct == -1) {
-            setAnswerCorrect(currentQuestionData.option1)
-        } else if (currentQuestionData.correct == 0) {
-            setAnswerCorrect(currentQuestionData.option1);
-        } else if (currentQuestionData.correct == 1) {
-            setAnswerCorrect(currentQuestionData.option2);
-        } else {
-            setAnswerCorrect(currentQuestionData.option3);
-        }
-        if (!posibleTextQuestion || onlyOptionQuestions ) {
+
+        const uniqueOptions = [...new Set(options.map(o => o.text))];
+        setHasRepeatedOptions(uniqueOptions.length !== options.length);
+
+        if (!hasRepeatedOptions) {
             const shuffled = [...options].sort(() => Math.random() - 0.5);
             setRandomizedOptions(shuffled);
         }
-
     }, [currentQuestionData]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,17 +102,13 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
     };
 
     const handleSubmit = () => {
-        //handleAnswer(userInput);
-        //Busco el texto que ha entrado userinput en las tres respuestas posibles currenQuestonData.option si no es ninguna de ellas seguro que es incorrecto
-        if (userInput === answerCorrect) { handleAnswer(currentQuestionData.correct != -1?currentQuestionData.correct: 1) }
-        else handleAnswer(-1);
-
+        handleAnswer(userInput);
     };
 
-    if (textQuestion) {
+    if (hasRepeatedOptions) {
         return (
             <>
-                <p className="mb-4 text-lg font-semibold">{currentQuestionData.question} </p>
+                <p className="mb-4 text-lg font-semibold">{currentQuestionData.question}</p>
                 <TextField
                     fullWidth
                     variant="outlined"
@@ -140,19 +123,19 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                     variant="contained"
                     className="mt-3"
                 >
-                    Invia risposta
+                    Enviar respuesta
                 </Button>
                 {(reviewMode || showExplanation) && (
                     <div className="mt-3">
-                        <p>Risposta corretta: {answerCorrect}</p>
-                        <p>La tua risposta: {userInput}</p>
+                        <p>Respuesta correcta: {currentQuestionData.option1}</p>
+                        <p>Tu respuesta: {userAnswers[currentQuestion]}</p>
                     </div>
                 )}
             </>
         );
     }
 
-
+    // El resto del componente permanece igual para el caso de opciones no repetidas
     return (
         <>
             <p className="mb-4 text-lg font-semibold">{currentQuestionData.question}</p>
@@ -190,4 +173,3 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
 };
 
 export default QuizQuestion;
-

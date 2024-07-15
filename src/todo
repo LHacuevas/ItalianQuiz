@@ -3,8 +3,28 @@ Presentacion
 - Cuando se acierta salen los dos iconos el de bien y el de mal @done
 - Que salga el id de la pregunta y con que ha estado generado @done
 - El punteggio de abajo que ponga 1/n.preguntas @done
-- El nivel que se guarde tambien como el nombre
-- Boton de restart desde todas
+- El nivel que se guarde tambien como el nombre @done
+- Boton de restart desde todas @done
+- Cuando hay varias iguales quitar las repetidas, o mejor hacerla de escribir
+- Posible parametro para poner por escribir en vez de selecconar
+- La revision de las escritas como funciona?
+- Borrar el texto de la respuesta de una vez a otra
 Importantes
-- La correcta siempre sale la 1
+- La correcta siempre sale la 1 @done
 - 
+Chat. 
+-Claude.
+Por favor, continúa ampliando el CSV de preguntas de italiano de nivel B1 y B2. Recuerda mantener el siguiente formato:
+El CSV debe incluir las columnas: id,question,option1,option2,option3,correct,explanation,difficulty,generated
+En generated has de poner la constante Claude.
+En explanation pon un poco de teoria de porque es esa la respuesta correcta
+Para preguntas de opción múltiple: Completa todas las columnas normalmente. Dando una pregunta y tres opciones de las que una es correcta, en correct pon el numero de la correcta, 0,1 o 2
+
+Para preguntas de respuesta escrita (una sola palabra):
+            Usa -1 en la columna 'correct'
+            Pon la respuesta correcta (una sola palabra) en 'option1'
+            Deja 'option2' y 'option3' vacías
+
+Alterna entre preguntas de opción múltiple y de respuesta escrita
+Mantén un equilibrio entre niveles B1 y B2, y damelo todo escrito en italiano.
+La última pregunta es la número 80, así que comienza desde la 81
