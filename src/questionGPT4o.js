@@ -118,25 +118,25 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 157,"Quale di questi è un esempio di futuro nel passato?","Disse che sarebbe venuto","Disse che verrà","Disse che veniva",0,"Il futuro nel passato si esprime con il condizionale passato in frasi subordinate.",B2,Claude
 158,"Cosa significa l'espressione 'prendere due piccioni con una fava'?","Essere fortunati","Ottenere due risultati con una sola azione","Essere golosi",1,"Equivale a 'matar dos pájaros de un tiro' in spagnolo.",B2,Claude
 159,"Quale di queste è la forma corretta dell'imperativo formale di 'dire'?","Di'","Dica","Dici",1,"L'imperativo formale di 'dire' alla terza persona singolare è 'dica'.",B2,Claude
-181,"Qual è il participio passato del verbo 'aprire'?","aperto",,,"-1","Il participio passato di 'aprire' è 'aperto'.",B1,Claude
+181,"Qual è il participio passato del verbo 'aprire'?","aperto",,,-1,"Il participio passato di 'aprire' è 'aperto'.",B1,Claude
 182,"Quale di queste parole è un falso amico tra italiano e spagnolo?","Settimana","Oficina","Largo",1,"'Oficina' in italiano significa 'ufficio', non 'officina' (taller).",B1,Claude
-183,"Come si dice 'ayer' in italiano?","ieri",,,"-1","'Ayer' si traduce come 'ieri' in italiano.",B1,Claude
+183,"Come si dice 'ayer' in italiano?","ieri",,,-1,"'Ayer' si traduce come 'ieri' in italiano.",B1,Claude
 184,"Qual è il significato dell'espressione 'avere la coda di paglia'?","Essere innocente","Sentirsi in colpa","Essere fortunato",1,"'Avere la coda di paglia' significa sentirsi in colpa o sulla difensiva.",B2,Claude
-185,"Scrivi l'articolo indeterminativo femminile singolare.","una",,,"-1","L'articolo indeterminativo femminile singolare è 'una'.",B1,Claude
+185,"Scrivi l'articolo indeterminativo femminile singolare.","una",,,-1,"L'articolo indeterminativo femminile singolare è 'una'.",B1,Claude
 186,"Quale di questi verbi è regolare al passato remoto?","Fare","Dire","Parlare",2,"'Parlare' è regolare al passato remoto: parlai, parlasti, parlò, ecc.",B2,Claude
-187,"Come si traduce 'aunque' in italiano?","benché",,,"-1","'Aunque' si traduce come 'benché' o 'anche se' in italiano.",B2,Claude
+187,"Come si traduce 'aunque' in italiano?","benché",,,-1,"'Aunque' si traduce come 'benché' o 'anche se' in italiano.",B2,Claude
 188,"Qual è il modo corretto per formare il plurale di 'uomo'?","Uomini","Uomi","Uome",0,"Il plurale irregolare di 'uomo' è 'uomini'.",B1,Claude
-189,"Scrivi il pronome diretto di prima persona singolare.","mi",,,"-1","Il pronome diretto di prima persona singolare è 'mi'.",B1,Claude
+189,"Scrivi il pronome diretto di prima persona singolare.","mi",,,-1,"Il pronome diretto di prima persona singolare è 'mi'.",B1,Claude
 190,"Quale di queste frasi usa correttamente il congiuntivo?","Penso che lui viene","Penso che lui venga","Penso che lui venirà",1,"Dopo 'penso che' si usa il congiuntivo presente.",B2,Claude
-191,"Qual è l'imperativo informale negativo di 'parlare' alla seconda persona singolare?","non parlare",,,"-1","L'imperativo negativo di 'parlare' è 'non parlare'.",B2,Claude
+191,"Qual è l'imperativo informale negativo di 'parlare' alla seconda persona singolare?","non parlare",,,-1,"L'imperativo negativo di 'parlare' è 'non parlare'.",B2,Claude
 192,"Come si traduce 'tener razón' in italiano?","Avere ragione","Tenere ragione","Essere ragione",0,"'Tener razón' si traduce come 'avere ragione' in italiano.",B1,Claude
-193,"Scrivi il comparativo di maggioranza dell'aggettivo 'buono'.","migliore",,,"-1","Il comparativo di maggioranza irregolare di 'buono' è 'migliore'.",B2,Claude
+193,"Scrivi il comparativo di maggioranza dell'aggettivo 'buono'.","migliore",,,-1,"Il comparativo di maggioranza irregolare di 'buono' è 'migliore'.",B2,Claude
 194,"Quale di questi è un avverbio di tempo?","Velocemente","Ieri","Attentamente",1,"'Ieri' è un avverbio di tempo.",B1,Claude
-195,"Come si dice 'gracias' in italiano?","grazie",,,"-1","'Gracias' si traduce come 'grazie' in italiano.",B1,Claude
+195,"Come si dice 'gracias' in italiano?","grazie",,,-1,"'Gracias' si traduce come 'grazie' in italiano.",B1,Claude
 196,"Qual è il significato dell'espressione 'essere in gamba'?","Essere malato","Essere bravo","Essere stanco",1,"'Essere in gamba' significa essere bravo, capace o in forma.",B2,Claude
-197,"Scrivi la forma corretta del verbo 'andare' al futuro semplice, prima persona singolare.","andrò",,,"-1","La forma corretta è 'andrò'.",B1,Claude
+197,"Scrivi la forma corretta del verbo 'andare' al futuro semplice, prima persona singolare.","andrò",,,-1,"La forma corretta è 'andrò'.",B1,Claude
 198,"Quale di questi verbi richiede l'ausiliare 'essere' nel passato prossimo?","Mangiare","Dormire","Partire",2,"'Partire' richiede l'ausiliare 'essere': sono partito/a.",B1,Claude
-199,"Come si traduce 'todavía' in italiano?","ancora",,,"-1","'Todavía' si traduce come 'ancora' in italiano.",B1,Claude
+199,"Come si traduce 'todavía' in italiano?","ancora",,,-1,"'Todavía' si traduce come 'ancora' in italiano.",B1,Claude
 160,"Come si traduce 'mientras' in italiano?","Mentre","Durante","Intanto",0,"'Mientras' si traduce come 'mentre' in italiano.",B1,Claude
 1001,"Quale forma è corretta?","Mi piace di più","Mi piace più","Mi piace molto più",0,"La forma corretta è 'Mi piace di più'. In italiano, con il verbo 'piacere' si usa 'di più' per fare comparazioni.",A2,GPT4
 1002,"Come si dice 'I am learning Italian' in italiano?","Sto imparando l'italiano","Imparo l'italiano","Sono imparando l'italiano",0,"La traduzione corretta di 'I am learning Italian' è 'Sto imparando l'italiano'.",A2,GPT4

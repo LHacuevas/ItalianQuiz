@@ -18,20 +18,32 @@ import { Question } from './MyTypes.js'
 import QuizQuestion from './Question.tsx'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
 
 const parseCSV = (csv: string): Question[] => {
     const lines = csv.trim().split('\n');
     const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
+
     return lines.slice(1).map(line => {
-        const values = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
-        return headers.reduce((obj, header, index) => {            
+        // Utilizamos una expresión regular mejorada para manejar campos vacíos
+        const values = line.match(/(?:^|,)("(?:[^"]*(?:""[^"]*)*)"|[^,]*)/g) || [];
+
+        return headers.reduce((obj, header, index) => {
             // Limpiamos las comillas y los espacios en blanco alrededor de los valores
-            const value = values[index] ? values[index].replace(/^"|"$/g, '').trim() : '';
-            obj[header] = value;
+            let value = values[index] ? values[index].replace(/^,?"?|"?$/g, '').trim() : '';
+
+            // Convertimos a número si es posible, de lo contrario dejamos como string
+            obj[header] = isNaN(Number(value)) ? value : Number(value);
+
             return obj;
         }, {} as Question);
     });
 };
+
+// Ejemplo de uso
+const csvLine = '0,"Qual è il participio passato del verbo \'aprire\'?","aperto",,,-1,"Il participio passato di \'aprire\' è \'aperto\'.",B1,Claude';
+const result = parseCSV(csvLine);
+console.log(result);
 
 const allQuestions: Question[] = parseCSV(questionsCSV);
 interface QuizParams {
@@ -43,13 +55,13 @@ const QuizItaliano = (param?: QuizParams) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [showExplanation, setShowExplanation] = useState(false);
-    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+    const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);
     const [quizStarted, setQuizStarted] = useState(false);
     const [quizFinished, setQuizFinished] = useState(false);
     const [difficulty, setDifficulty] = useState('B1');
     const [timer, setTimer] = useState(30);
     const [questions, setQuestions] = useState<Question[]>([]);
-    const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
+    const [userAnswers, setUserAnswers] = useState<(string | number | null)[]>([]);
     const [reviewMode, setReviewMode] = useState(false);
     const [onlyOptionQuestions, setOnlyOptionQuestions] = useState(false);
     const [startTime, setStartTime] = useState<number | undefined>(undefined);
@@ -71,10 +83,10 @@ const QuizItaliano = (param?: QuizParams) => {
             // Si onlyOptionQuestions es true, excluir preguntas con Correct === -1
             const typeMatch = !onlyOptionQuestions || q.correct !== -1;
             // Verificar si hay opciones repetidas cuando Correct no es -1
-            const hasRepeatedOptions = (q.correct !== -1) &&
-                (q.option1 === q.option2 || q.option1 === q.option3 || q.option2 === q.option3);
-
-            return difficultyMatch && typeMatch && !hasRepeatedOptions;
+            //const hasRepeatedOptions = (q.correct !== -1) &&
+            //    (q.option1 === q.option2 || q.option1 === q.option3 || q.option2 === q.option3);
+            //return q.correct === -1;
+            return difficultyMatch && typeMatch;  //&& !hasRepeatedOptions;
         }).sort(() => 0.5 - Math.random());
         setQuestions(filteredQuestions.slice(0, param?.numQuestions ?? 3));
         setStartTime(Date.now());
@@ -106,13 +118,20 @@ const QuizItaliano = (param?: QuizParams) => {
         }
     };
 
-    const handleAnswer = (index: number | null) => {             
-        const boAcierto = Number(questions[currentQuestion].correct) !== -1 ? index == Number(questions[currentQuestion].correct) : index === 1
-        setSelectedAnswer(index);
+    const handleAnswer = (resposta: string | number | null) => {             
+        //const boAcierto = Number(questions[currentQuestion].correct) !== -1 ? index == Number(questions[currentQuestion].correct) : index === 1
+        let boAcierto = false;
+        if (Number(questions[currentQuestion].correct) === -1) {
+            boAcierto = (resposta === questions[currentQuestion].option1)
+        } else
+        {
+            boAcierto = (Number(resposta) == Number(questions[currentQuestion].correct)   )              
+        }        
+        setSelectedAnswer(resposta);
         setShowExplanation(true);
         setTimer(30);
         const newUserAnswers = [...userAnswers];
-        newUserAnswers[currentQuestion] = index;
+        newUserAnswers[currentQuestion] = resposta;
         setUserAnswers(newUserAnswers);
         if (boAcierto) {
             setScore(score + 1);
@@ -172,9 +191,11 @@ const QuizItaliano = (param?: QuizParams) => {
     };
     if (!quizStarted) {
         return (
+            
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-                <CardHeader className="text-2xl font-bold text-center text-blue-800">Quiz di Italiano v.1.0</CardHeader>
+                <CardActions className="text-2xl font-bold text-center text-blue-800">Quiz di Italiano v.1.0</CardActions>
                 <CardContent>
+                    <img src={logo} alt="Logo" className="mb-4 w-32 h-32 mx-auto" /> {/* Aquí añadimos la imagen del logo */}
                     <Input
                         type="text"
                         placeholder="Inserisci il tuo nome"
@@ -188,7 +209,7 @@ const QuizItaliano = (param?: QuizParams) => {
                             <MenuItem value="A2">A2</MenuItem>
                             <MenuItem value="B1">B1</MenuItem>
                             <MenuItem value="B2">B2</MenuItem>
-                        </Select>
+                        </Select>                       
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -207,9 +228,12 @@ const QuizItaliano = (param?: QuizParams) => {
                                             Non mostra domande di completamento
                                         </span>
                                     </span>
-                                </div>
+                                </div>                                
                             }
-                        />
+                        />                        
+                    </FormControl>
+                    <FormControl fullWidth>
+                        <InputLabel>{userAnswers.length}</InputLabel>
                     </FormControl>
                     <Button onClick={handleStart} className="w-full bg-blue-500 hover:bg-blue-700">
                         Inizia il Quiz
@@ -223,7 +247,7 @@ const QuizItaliano = (param?: QuizParams) => {
         const totalTime = 0 // endTime - startTime;
         return (
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-                <CardHeader className="text-2xl font-bold text-center text-blue-800">Quiz Completato</CardHeader>
+                <CardActions className="text-2xl font-bold text-center text-blue-800">Quiz Completato</CardActions>
                 <CardContent>
                     <p className="text-center text-xl font-semibold">Grazie, {name}!</p>
                     <p className="text-center text-lg">Hai completato il quiz.</p>
