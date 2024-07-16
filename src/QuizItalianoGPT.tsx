@@ -14,7 +14,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { CardActions } from '@mui/material';
 import { questionsCSV } from './questionGPT4o.js'
-import { Question } from './MyTypes.js'
+import { Question, QuizParams } from './MyTypes.js'
 import QuizQuestion from './Question'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -41,40 +41,35 @@ const parseCSV = (csv: string): Question[] => {
     });
 };
 
-// Ejemplo de uso
-const csvLine = '0,"Qual è il participio passato del verbo \'aprire\'?","aperto",,,-1,"Il participio passato di \'aprire\' è \'aperto\'.",B1,Claude';
-const result = parseCSV(csvLine);
-console.log(result);
-
 const allQuestions: Question[] = parseCSV(questionsCSV);
-interface QuizParams {
-    numQuestions?: number;    
-}
 
-const QuizItaliano = (param?: QuizParams) => {    
-    const [name, setName] = useState<string>(() => {
-        // Inicializa el estado con el valor almacenado en localStorage, si existe
-        return localStorage.getItem('name') || 'anonymous';
-    });
+
+const QuizItaliano: React.FC<QuizParams> = ({
+    numQuestions = 3,
+    name = 'anonymous',
+    onlyOptionQuestions = false,
+    difficulty = 'B1'
+}) => {    
+    
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [showExplanation, setShowExplanation] = useState(false);
-    const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);
-    const [quizStarted, setQuizStarted] = useState(false);
+    const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);        
     const [quizFinished, setQuizFinished] = useState(false);
-    const [difficulty, setDifficulty] = useState<string>(() => {
+    //const [name, setName] = useState<string>(() => {
     // Inicializa el estado con el valor almacenado en localStorage, si existe
-    return localStorage.getItem('difficulty') || 'B1';
-  });
+    //    return localStorage.getItem('name') || initialName;
+    //});
+    const [localdifficulty, setDifficulty] = useState<string>(() => {    
+    return localStorage.getItem('difficulty') || difficulty;
+    });
     const [timer, setTimer] = useState(30);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<(string | number | null)[]>([]);
     const [reviewMode, setReviewMode] = useState(false);
-    const [onlyOptionQuestions, setOnlyOptionQuestions] = useState(false);
     const [startTime, setStartTime] = useState<number | undefined>(undefined);
     const [endTime, setEndTime] = useState<number | undefined>(undefined);     
-    // Intento recuperar el nombre
-    
+  
     useEffect(() => {
         const filteredQuestions = allQuestions.filter(q => {
             const difficultyMatch = q.difficulty === difficulty;
@@ -87,13 +82,13 @@ const QuizItaliano = (param?: QuizParams) => {
             return q.correct === -1;
             return difficultyMatch && typeMatch;  //&& !hasRepeatedOptions;
         }).sort(() => 0.5 - Math.random());
-        setQuestions(filteredQuestions.slice(0, param?.numQuestions ?? 3));
+        setQuestions(filteredQuestions.slice(0, numQuestions ?? 3));
         setStartTime(Date.now());
         setUserAnswers(new Array(filteredQuestions.length).fill(null));
     }, [difficulty]);
 
     useEffect(() => {
-        if (quizStarted && !showExplanation && !quizFinished && !reviewMode) {
+        if (!showExplanation && !quizFinished && !reviewMode) {
             const countdown = setInterval(() => {
                 setTimer((prevTimer) => {
                     if (prevTimer === 1) {
@@ -106,17 +101,8 @@ const QuizItaliano = (param?: QuizParams) => {
             }, 1000);
             return () => clearInterval(countdown);
         }
-    }, [quizStarted, showExplanation, quizFinished, reviewMode, currentQuestion]);
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setOnlyOptionQuestions(event.target.checked);
-        // Perform any additional actions based on the checkbox state
-    };
-    const handleStart = () => {
-        if (name.trim()) {
-            setQuizStarted(true);
-        }
-    };
-
+    }, [showExplanation, quizFinished, reviewMode, currentQuestion]);
+    
     const handleAnswer = (resposta: string | number | null) => {             
         //const boAcierto = Number(questions[currentQuestion].correct) !== -1 ? index == Number(questions[currentQuestion].correct) : index === 1
         let boAcierto = false;
@@ -180,68 +166,7 @@ const QuizItaliano = (param?: QuizParams) => {
             setQuizFinished(true);
         }
     };
-    const handleNameChange = (evento: { target: { value: React.SetStateAction<string>; }; }) => {
-        setName(evento.target.value);
-        localStorage.setItem('name', name);
-    };
-    const handleDifficultyChange = (evento: SelectChangeEvent<string>) => {
-        setDifficulty(evento.target.value);
-        localStorage.setItem('difficulty', difficulty);
-    };
-    if (!quizStarted) {
-        return (
-            
-            <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-                <CardActions className="text-2xl font-bold text-center text-blue-800">Quiz di Italiano v.1.0</CardActions>
-                <CardContent>
-                    <img src={`${process.env.PUBLIC_URL}/logo.jpg`} alt="Logo" className="mb-4 w-32 h-32 mx-auto" /> {/* Aquí añadimos la imagen del logo */}
-                    <Input
-                        type="text"
-                        placeholder="Inserisci il tuo nome"
-                        value={name}                        
-                        onChange={handleNameChange}
-                        className="mb-4"
-                    />
-                    <FormControl className="mb-4" fullWidth>
-                        <InputLabel>Seleziona il livello</InputLabel>
-                        <Select value={difficulty} onChange={handleDifficultyChange}>
-                            <MenuItem value="A2">A2</MenuItem>
-                            <MenuItem value="B1">B1</MenuItem>
-                            <MenuItem value="B2">B2</MenuItem>
-                        </Select>                       
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={onlyOptionQuestions}
-                                    onChange={handleCheckboxChange}
-                                    name="onlyOptionQuestions"
-                                    color="primary"
-                                />
-                            }
-                            label={
-                                <div className="flex items-center">
-                                    Solo domande con opzioni
-                                    <span className="ml-2 cursor-pointer" data-tooltip>
-                                        ℹ️
-                                        <span className="tooltip-text absolute hidden bg-gray-700 text-white text-xs rounded py-1 px-2 bottom-full left-1/2 transform -translate-x-1/2">
-                                            Non mostra domande di completamento
-                                        </span>
-                                    </span>
-                                </div>                                
-                            }
-                        />                        
-                    </FormControl>
-                    <FormControl fullWidth>
-                        <InputLabel>{userAnswers.length}</InputLabel>
-                    </FormControl>
-                    <Button onClick={handleStart} className="w-full bg-blue-500 hover:bg-blue-700">
-                        Inizia il Quiz
-                    </Button>
-                </CardContent>
-            </Card>
-        );
-    }
-
+       
     if (quizFinished && !reviewMode) {
         const totalTime = 0 // endTime - startTime;
         return (

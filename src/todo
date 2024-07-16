@@ -9,10 +9,15 @@ Presentacion
 - Posible parametro para poner por escribir en vez de selecconar @done
 - La revision de las escritas como funciona? @done
 - Borrar el texto de la respuesta de una vez a otra @done
-- Queremos añadir los parrafos completables
+- Queremos añadir los parrafos completables @done
+- Tenemos los dos funcionamientos, los de las preguntas y los completar parrafo.    
+    - A los del parrafo 
+        - Hay que darle el estilo de Card como tiene el otro
+        - Hay que ponerle el numero de pregunta por el que vamos
+        - Hay que contabilizar los errores y aciertos
 Importantes
 - La correcta siempre sale la 1 @done
-- 
+-Mirar como grabar los resultados, se puede hacer con github? Creo que no 
 -Deploy, hay que hacer esto para publicar en gitHub
 npm run build
 npm run deploy
@@ -32,4 +37,42 @@ Para preguntas de respuesta escrita (una sola palabra):
 
 Alterna entre preguntas de opción múltiple y de respuesta escrita
 Mantén un equilibrio entre niveles B1 y B2, y damelo todo escrito en italiano.
-La última pregunta es la número 80, así que comienza desde la 81
+-Parrafo.
+Buenos dias, tengo un programa en react para aprender italiano. La idea es poner un pequeño parrafo unas 100 palabras con unas 5 o 10 palabras que sea un hueco para rellenar, o si el usuario lo prefiere un combobox con tres opciones de las que solo una es válida. Para ello necesito el programa react un csv o dos (uno para el parrafo y otro relacionado para las diferentes respuestas) con las preguntas y respuestas válidas y opcionales. Puedes ayudarme?
+Ahora me gustaria que me dieses 100 paragraphs con sus ParagraphQuestion, el nivel de dificultad ha de ser A2,B1,B2, mezcla verbos, preposiciones, adjetivos, pronombres directos e indirectos, frases hechas o expresiones, lo que se te ocurra.
+Tengo esta interficie y estos strings de ejemplo, quiero que me des mas ejemplos sobre todo nivel B1,B2. Poniendo un intro despues de cada fila. 
+La idea final es ponerlo en un fichero csv asi que dame los dos ficheros uno para los parrafos y otro para las ParagraphQuestion
+
+export interface Paragraph {
+    id: number;
+    text: string; //Parrafo con [] para las palabras a completar ejemplo: "Ieri [1] una giornata [2]. [3] presto e [4] al parco. Lì, [5] molti amici e [6] insieme tutto il pomeriggio.
+    generated: string; //Const always = Claude
+    //Lo añado para poder rellenar por texto
+    [key: string]: any;
+}
+
+export interface ParagraphQuestion {
+    id: number; //Id de la question dentro de su parrafo, se reinicia para cada nuevo parrafo
+    paragraphId: number;
+    correct: string; //texto con las respuestas
+    options: string[]; //3 o 4 possible options
+    hint: string; //In case of questions about verbs, it's the infinitive form. For other types, it's the word type such as noun, adjective...
+    explanation: string; //Pequeña explicacion en italiano de xq es la solucion correcta
+    difficulty: string;  //Level A1,A2,B1,B2
+    //Lo añado para poder rellenar por texto
+    [key: string]: any;
+}
+
+
+export const paragraphsCSV = `
+id,text,generated
+1,"Ieri [1] una giornata [2]. [3] presto e [4] al parco. Lì, [5] molti amici e [6] insieme tutto il pomeriggio.",Claude
+2,...
+
+export const paragraphsQuestionsCSV = `
+id,paragraphId,correct,options,hint,explanation,difficulty
+1,1,"ho avuto","ho avuto|avevo|ebbi",avere,"Si usa 'ho avuto' per esprimere un'azione compiuta nel passato recente.",A2
+2,1,"meravigliosa","meravigliosa|meraviglioso|meravigliosi",aggettivo,"'Giornata' è femminile singolare, quindi l'aggettivo deve concordare.",A2
+3,1,...
+
+Me sigue gustando, ahora cambiamos de tema. Los de la clase fuimos a Bologna, Sara, Jean Marco, David, Dani, Rosa, Ana y Alex. Estuvimos de turismo, puedes decir algunas parrafos de eso? Empieza por el parrafo 61
