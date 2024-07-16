@@ -5,13 +5,18 @@ Presentacion
 - El punteggio de abajo que ponga 1/n.preguntas @done
 - El nivel que se guarde tambien como el nombre @done
 - Boton de restart desde todas @done
-- Cuando hay varias iguales quitar las repetidas, o mejor hacerla de escribir
-- Posible parametro para poner por escribir en vez de selecconar
-- La revision de las escritas como funciona?
-- Borrar el texto de la respuesta de una vez a otra
+- Cuando hay varias iguales quitar las repetidas, o mejor hacerla de escribir @done
+- Posible parametro para poner por escribir en vez de selecconar @done
+- La revision de las escritas como funciona? @done
+- Borrar el texto de la respuesta de una vez a otra @done
+- Queremos añadir los parrafos completables
 Importantes
 - La correcta siempre sale la 1 @done
 - 
+-Deploy, hay que hacer esto para publicar en gitHub
+npm run build
+npm run deploy
+
 Chat. 
 -Claude.
 Por favor, continúa ampliando el CSV de preguntas de italiano de nivel B1 y B2. Recuerda mantener el siguiente formato:

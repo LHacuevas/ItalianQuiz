@@ -8,4 +8,6 @@ export interface Question {
     explanation: string;
     difficulty: string;
     generated: string;
+    //Lo añado para poder rellenar por texto
+    [key: string]: any;
 }

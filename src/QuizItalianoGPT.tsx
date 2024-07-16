@@ -8,14 +8,14 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle'; // Cambié AlertDescription a AlertTitle
 import LinearProgress from '@mui/material/LinearProgress';
 import { CheckCircle, XCircle, Clock } from 'lucide-react';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem'; // Cambié SelectContent, SelectItem, SelectTrigger y SelectValue
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { CardActions } from '@mui/material';
 import { questionsCSV } from './questionGPT4o.js'
 import { Question } from './MyTypes.js'
-import QuizQuestion from './Question.tsx'
+import QuizQuestion from './Question'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 //import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
@@ -33,7 +33,8 @@ const parseCSV = (csv: string): Question[] => {
             let value = values[index] ? values[index].replace(/^,?"?|"?$/g, '').trim() : '';
 
             // Convertimos a número si es posible, de lo contrario dejamos como string
-            obj[header] = isNaN(Number(value)) ? value : Number(value);
+            //TODO: obj.hasOwnProperty(header) && (obj as any)[header] = ...
+            if (obj.hasOwnProperty(header)) { obj[header] = isNaN(Number(value)) ? value : Number(value) };
 
             return obj;
         }, {} as Question);
@@ -50,15 +51,21 @@ interface QuizParams {
     numQuestions?: number;    
 }
 
-const QuizItaliano = (param?: QuizParams) => {
-    const [name, setName] = useState('');
+const QuizItaliano = (param?: QuizParams) => {    
+    const [name, setName] = useState<string>(() => {
+        // Inicializa el estado con el valor almacenado en localStorage, si existe
+        return localStorage.getItem('name') || 'anonymous';
+    });
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [showExplanation, setShowExplanation] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);
     const [quizStarted, setQuizStarted] = useState(false);
     const [quizFinished, setQuizFinished] = useState(false);
-    const [difficulty, setDifficulty] = useState('B1');
+    const [difficulty, setDifficulty] = useState<string>(() => {
+    // Inicializa el estado con el valor almacenado en localStorage, si existe
+    return localStorage.getItem('difficulty') || 'B1';
+  });
     const [timer, setTimer] = useState(30);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<(string | number | null)[]>([]);
@@ -67,16 +74,7 @@ const QuizItaliano = (param?: QuizParams) => {
     const [startTime, setStartTime] = useState<number | undefined>(undefined);
     const [endTime, setEndTime] = useState<number | undefined>(undefined);     
     // Intento recuperar el nombre
-    useEffect(() => {
-        const storedValue = localStorage.getItem('name');
-        if (storedValue) {
-            setName(storedValue);
-        }
-        const storedDifficulty = localStorage.getItem('difficulty');
-        if (storedDifficulty) {
-            setDifficulty(storedDifficulty);
-        }
-    }, []);
+    
     useEffect(() => {
         const filteredQuestions = allQuestions.filter(q => {
             const difficultyMatch = q.difficulty === difficulty;
@@ -85,7 +83,8 @@ const QuizItaliano = (param?: QuizParams) => {
             // Verificar si hay opciones repetidas cuando Correct no es -1
             //const hasRepeatedOptions = (q.correct !== -1) &&
             //    (q.option1 === q.option2 || q.option1 === q.option3 || q.option2 === q.option3);
-            //return q.correct === -1;
+            //para las escritas
+            return q.correct === -1;
             return difficultyMatch && typeMatch;  //&& !hasRepeatedOptions;
         }).sort(() => 0.5 - Math.random());
         setQuestions(filteredQuestions.slice(0, param?.numQuestions ?? 3));
@@ -108,7 +107,7 @@ const QuizItaliano = (param?: QuizParams) => {
             return () => clearInterval(countdown);
         }
     }, [quizStarted, showExplanation, quizFinished, reviewMode, currentQuestion]);
-    const handleCheckboxChange = (event) => {
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setOnlyOptionQuestions(event.target.checked);
         // Perform any additional actions based on the checkbox state
     };
@@ -161,7 +160,7 @@ const QuizItaliano = (param?: QuizParams) => {
         console.log('Risultato salvato:', result);
     };
 
-    const formatTime = (milliseconds) => {
+    const formatTime = (milliseconds: number) => {
         const seconds = Math.floor(milliseconds / 1000);
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
@@ -181,12 +180,12 @@ const QuizItaliano = (param?: QuizParams) => {
             setQuizFinished(true);
         }
     };
-    const handleNameChange = (e) => {
-        setName(e.target.value);
+    const handleNameChange = (evento: { target: { value: React.SetStateAction<string>; }; }) => {
+        setName(evento.target.value);
         localStorage.setItem('name', name);
     };
-    const handleDifficultyChange = (e) => {
-        setDifficulty(e.target.value);
+    const handleDifficultyChange = (evento: SelectChangeEvent<string>) => {
+        setDifficulty(evento.target.value);
         localStorage.setItem('difficulty', difficulty);
     };
     if (!quizStarted) {
