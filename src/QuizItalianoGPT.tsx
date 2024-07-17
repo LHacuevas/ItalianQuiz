@@ -25,22 +25,23 @@ const parseCSV = (csv: string): Question[] => {
     const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
 
     return lines.slice(1).map(line => {
-        // Utilizamos una expresión regular mejorada para manejar campos vacíos
-        const values = line.match(/(?:^|,)("(?:[^"]*(?:""[^"]*)*)"|[^,]*)/g) || [];
+        const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(value =>
+            value.trim().replace(/^"|"$/g, '')
+        );
 
         return headers.reduce((obj, header, index) => {
-            // Limpiamos las comillas y los espacios en blanco alrededor de los valores
-            let value = values[index] ? values[index].replace(/^,?"?|"?$/g, '').trim() : '';
+            let value = values[index] || '';
 
-            // Convertimos a número si es posible, de lo contrario dejamos como string
-            //TODO: obj.hasOwnProperty(header) && (obj as any)[header] = ...
-            if (obj.hasOwnProperty(header)) { obj[header] = isNaN(Number(value)) ? value : Number(value) };
+            if (header === 'id' || header === 'correct') {
+                obj[header] = parseInt(value, 10);
+            } else {
+                obj[header] = value;
+            }
 
             return obj;
         }, {} as Question);
     });
 };
-
 const allQuestions: Question[] = parseCSV(questionsCSV);
 
 
@@ -55,15 +56,8 @@ const QuizItaliano: React.FC<QuizParams> = ({
     const [score, setScore] = useState(0);
     const [showExplanation, setShowExplanation] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);        
-    const [quizFinished, setQuizFinished] = useState(false);
-    //const [name, setName] = useState<string>(() => {
-    // Inicializa el estado con el valor almacenado en localStorage, si existe
-    //    return localStorage.getItem('name') || initialName;
-    //});
-    const [localdifficulty, setDifficulty] = useState<string>(() => {    
-    return localStorage.getItem('difficulty') || difficulty;
-    });
-    const [timer, setTimer] = useState(30);
+    const [quizFinished, setQuizFinished] = useState(false);   
+    const [timer, setTimer] = useState(10);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<(string | number | null)[]>([]);
     const [reviewMode, setReviewMode] = useState(false);
@@ -94,27 +88,29 @@ const QuizItaliano: React.FC<QuizParams> = ({
                     if (prevTimer === 1) {
                         clearInterval(countdown);
                         handleAnswer(null);
-                        return 30;
+                        return 10;
                     }
                     return prevTimer - 1;
                 });
             }, 1000);
             return () => clearInterval(countdown);
         }
-    }, [showExplanation, quizFinished, reviewMode, currentQuestion]);
+    }, [showExplanation, quizFinished, reviewMode, currentQuestion, questions]);
     
     const handleAnswer = (resposta: string | number | null) => {             
         //const boAcierto = Number(questions[currentQuestion].correct) !== -1 ? index == Number(questions[currentQuestion].correct) : index === 1
         let boAcierto = false;
         if (Number(questions[currentQuestion].correct) === -1) {
-            boAcierto = (resposta === questions[currentQuestion].option1)
+            if (typeof resposta === 'string') {
+                boAcierto = (resposta?.toLowerCase() === questions[currentQuestion].option1.toLowerCase())
+            }
         } else
         {
             boAcierto = (Number(resposta) == Number(questions[currentQuestion].correct)   )              
         }        
         setSelectedAnswer(resposta);
         setShowExplanation(true);
-        setTimer(30);
+        setTimer(10);
         const newUserAnswers = [...userAnswers];
         newUserAnswers[currentQuestion] = resposta;
         setUserAnswers(newUserAnswers);
@@ -168,7 +164,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
     };
        
     if (quizFinished && !reviewMode) {
-        const totalTime = 0 // endTime - startTime;
+        const totalTime = endTime! - startTime!;
         return (
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
                 <CardActions className="text-2xl font-bold text-center text-blue-800">Quiz Completato</CardActions>
@@ -200,7 +196,10 @@ const QuizItaliano: React.FC<QuizParams> = ({
         return (
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
                 <CardContent>
-                    <p className="text-center text-blue-800">Non che domanda</p>
+                    <p className="text-center text-blue-800">Non che domanda [{difficulty}]</p>
+                    <Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700">
+                        Riprova con Nuove Domande
+                    </Button>
                 </CardContent>
             </Card>
         );
@@ -224,7 +223,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
                         </span>
                     </div>
                 )}
-                <LinearProgress value={(score / questions.length) * 100} className="mt-4" />
+                <LinearProgress variant="determinate" value={(score / questions.length) * 100} className="mt-4" />
                 <QuizQuestion
                     currentQuestionData={currentQuestionData}
                     reviewMode={reviewMode}

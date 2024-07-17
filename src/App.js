@@ -2,11 +2,18 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import QuizItaliano from './QuizItalianoGPT.tsx';
-import ItalianLearningApp from './parrafoClaude.tsx';
+import ItalianLearningApp from './parrafoClaude2.tsx';
 import { Card, CardContent, Input, Select, MenuItem, FormControl, InputLabel, FormControlLabel, Checkbox, Button } from '@mui/material';
+import { quoteCSV } from './questionMotiva.js';
+import CardHeader from '@mui/material/CardHeader';
 function App() {
-  return (    
-   <AppIniziale/>     
+  return (   
+    <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
+      <CardHeader title="Quiz di Italiano v.2.0" className="text-2xl font-bold text-center text-blue-800 p-4" />      
+      <CardContent>
+        <AppIniziale />     
+      </CardContent>
+      </Card>
   );
 }
 
@@ -44,15 +51,29 @@ const AppIniziale = () => {
   }, [livello]);
 
   const [componenteSelezionato, setComponenteSelezionato] = useState(null);
+  const getRandomQuote = () => {
+    const rows = quoteCSV.trim().split('\n').slice(1);
+    const randomIndex = Math.floor(Math.random() * rows.length);
+    const row = rows[randomIndex];
 
-  //const [name, setName] = useState<string>(() => {
-  // Inicializa el estado con el valor almacenado en localStorage, si existe
-  //    return localStorage.getItem('name') || initialName;
-  //});
-  //const [localdifficulty, setDifficulty] = useState<string>(() => {
-  // Inicializa el estado con el valor almacenado en localStorage, si existe
-  //return localStorage.getItem('difficulty') || difficulty;
-  //});
+    // Usamos una expresión regular para dividir la fila correctamente
+    const match = row.match(/^(\d+),(".*?"|[^,]*),(.*)$/);
+
+    if (match) {
+      const [, id, text, author] = match;
+      // Eliminamos las comillas dobles del texto si existen
+      const cleanText = text.replace(/^"|"$/g, '');
+      return { text: cleanText, author };
+    } else {
+      // En caso de que la fila no coincida con el formato esperado
+      return { text: "Error al cargar la cita", author: "Desconocido" };
+    }
+  };
+  const [quote, setQuote] = useState(() => getRandomQuote());
+  useEffect(() => {
+    setQuote(getRandomQuote());
+  }, []);
+
   const handleStart = (componente) => {
     setComponenteSelezionato(componente);
   };
@@ -67,10 +88,13 @@ const AppIniziale = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-        <div className="text-2xl font-bold text-center text-blue-800 p-4">Quiz di Italiano v.1.0</div>
+      <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">        
         <CardContent>
           <img src={`${process.env.PUBLIC_URL}/logo.jpg`} alt="Logo" className="mb-4 w-32 h-32 mx-auto" />
+          <div className="text-center text-gray-600 mb-4">
+            <p className="italic mb-2 text-lg">"{quote.text}"</p>
+            <p className="font-bold text-sm text-gray-500">{quote.author}</p>
+          </div>
           <Input
             type="text"
             placeholder="Inserisci il tuo nome"
@@ -105,17 +129,17 @@ const AppIniziale = () => {
             }
             label={
               <div className="flex items-center">
-                Solo domande con opzioni
+                Usa menu a tendina
                 <span className="ml-2 cursor-pointer" title="Non mostra domande di completamento">ℹ️</span>
               </div>
             }
             className="mb-4"
           />
           <Button onClick={() => handleStart('quiz')} className="w-full bg-blue-500 hover:bg-blue-700 text-white mb-2">
-            Inizia il Quiz
+            Quiz a Scelta Multipla
           </Button>
           <Button onClick={() => handleStart('learning')} className="w-full bg-green-500 hover:bg-green-700 text-white">
-            Apri App di Apprendimento
+            Completamento del Testo
           </Button>
         </CardContent>
       </Card>

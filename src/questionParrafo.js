@@ -71,6 +71,36 @@ Entiendo, disculpa la omisión. Continuaré con más párrafos, incluyendo el in
 74,"Tornando in città, [1] per caso su una festa di strada nel quartiere del Pratello. [2] musica dal vivo, bancarelle di artigianato e cibo di strada. Alex [3] subito coinvolto nell'atmosfera festosa e [4] a ballare con alcuni ragazzi locali.",Claude
 75,"L'ultimo giorno, prima di [1], [2] di visitare il mercato di Piazza VIII Agosto. [3] prodotti freschi, formaggi, salumi e oggetti vintage. Ana [4] tentata di comprare una borsa antica, ma alla fine [5] per un set di vecchie cartoline di Bologna.",Claude
 76,"Durante il viaggio di ritorno, tutti [1] d'accordo che Bologna [2] superato le loro aspettative. [3] già di organizzare un altro viaggio in Italia, magari a Firenze o Roma. David [4] scherzosamente che la prossima volta [5] prepararsi meglio per tutte le prelibatezze culinarie.",Claude
+85,"[1] le mani al cielo come te, [2] farlo adesso o mai più. [3] i tuoi occhi nel buio, tra la [4] che balla. Noi siamo l'[5], l'[5] che [6].",Måneskin (Zitti e buoni)
+86,"[1] un'altra te, [2] un altro me. Facciamo un [3] e poi un altro [3]. [4] un'altra notte fuori un [5] a [6] i pensieri.",Coez (È sempre bello)
+87,"[1] come un [2] nell'universo, in un mare di [3] e [4]. [5] la rotta in un [6] di emozioni.",Ultimo (Ti dedico il silenzio)
+88,"[1] il tempo di [2], il tempo di [3]. [4] solo quello che [5], solo quello che [6].",Marco Mengoni (Due vite)
+89,"[1] parlare di noi, [2] una storia già [3]. [4] nei tuoi occhi che [5], in silenzio [6] mille cose.",Mahmood (Rapide)
+90,"[1] di questa [2] che ci [3], di questo [4] che ci [5]. [6] insieme un'altra vita.",Elodie (Andromeda)
+91,"[1] la tua voce [2] il rumore, [3] la paura di [4]. [5] da qui all'[6], senza fermarci mai.",Tommaso Paradiso (Non avere paura)
+92,"[1] come [2], come la [3] che non smette mai di [4]. [5] tutto quello che [6], senza fermarci.",Thegiornalisti (Felicità puttana)
+93,"[1] il mondo che [2], che [3] e che [4]. [5] la vita che [6], che cambia in un secondo.",Francesca Michielin (Feat - Stato di natura)
+94,"[1] un universo [2] di noi, [3] di quello che [4]. [5] come non [6] fatto mai prima.",Ghali (Good Times)
+95,"[1] nel buio dei [2], nel [3] di chi non ha [4]. [5] la strada di [6], oltre il limite del cielo.",Levante (Andrà tutto bene)
+96,"[1] la bellezza di un [2] imperfetto, di un [3] che non è mai [4]. [5] la forza di chi [6] nonostante tutto.",Brunori Sas (Per due che come noi)
+97,"[1] come fossi [2] di cristallo, in equilibrio sul [3] del mondo. [4] le mie [5] come [6] al vento.",Elisa (Se piovesse il tuo nome)
+98,"[1] un sogno [2] da [3], una storia [4] da [5]. [6] insieme, oltre ogni confine.",Eros Ramazzotti (Vita ce n'è)
+99,"[1] il coraggio di [2], di [3] tutto da zero. [4] la forza di chi non [5] mai di [6].",Emma (Io sono bella)
+100,"[1] come un [2] tra la folla, [3] come una [4] nel deserto. [5] la mia strada, [6] il mio destino.",Alessandra Amoroso (Immobile)
+101,"[1] il mondo che [2], che [3] e poi [4]. [5] il tempo che [6], che corre e non aspetta.",Annalisa (Nuda)
+102,"[1] i tuoi occhi come [2], le tue [3] come [4]. [5] il tuo cuore che [6] forte nel silenzio.",Irama (La genesi del tuo colore)
+103,"[1] un nuovo [2], un nuovo [3]. [4] la vita che [5], che [6] e non si ferma mai.",Fedez (Prima di ogni cosa)
+104,"[1] il futuro come un [2] da [3], come una [4] da [5]. [6] insieme, oltre ogni orizzonte.",Nek (Mi farò trovare pronto)
+105,"[1] di te, penso [2] noi. [3] quei momenti che [4] hanno fatto sorridere. [5] vorrei tornare [6], rivivere tutto ancora una volta.",Alessandra Amoroso (Vivere a colori)
+106,"[1] gli occhi e [2] vedo qui con me. [3] le mani e [4] sento accanto a te. [5] il mondo [6] noi, siamo invincibili.",Tiziano Ferro (Accetto miracoli)
+107,"Non [1] importa dove [2], ma con [3] io sarò. [4] seguirò dovunque [5] andrai, [6] lascerò mai sola.",Nek (Fatti avanti amore)
+108,"[1] dicono che il tempo [2] tutte le ferite, ma [3] non è vero. [4] porto ancora [5] me, ogni momento vissuto [6] te.",Emma (Io sono bella)
+109,"[1] siamo persi [2] questo mare di parole non dette. [3] nuotiamo contro corrente, [4] arriviamo [5] riva insieme. [6] ce la faremo.",Måneskin (Coraline)
+110,"[1] guardo allo specchio e [2] vedo cambiato. [3] anni sono passati, ma [4] cuore è rimasto lo stesso. [5] porto ancora [6] me i tuoi ricordi.",Gianna Nannini (Fenomenale)
+111,"[1] piove sul nostro amore, [2] ripariamo sotto un cielo di stelle. [3] stringi forte la [4] mano, [5] insieme supereremo questa tempesta. [6] ci arrendiamo mai.",Elisa (O forse sei tu)
+112,"[1] cerco tra la folla, [2] trovo sempre te. [3] mille voci intorno a noi, ma [4] sento solo la tua. [5] sei l'unica costante [6] questo mondo che cambia.",Marco Mengoni (Ti ho voluto bene veramente)
+113,"[1] cammino per le strade della città, [2] penso a quanto [3] sei mancata. [4] vorrei averti qui [5] me, per dirti tutto ciò che [6] ho mai detto.",Francesca Michielin (Nessun grado di separazione)
+114,"Non [1] importa quante volte [2] cadrò, [3] rialzerò sempre. [4] ogni caduta [5] renderà più forte. [6] arrenderò mai, questo è certo.",Ultimo (22 settembre)
 `;
 export const paragraphsQuestionsCSV = `
 id,paragraphId,correct,options,hint,explanation,difficulty
@@ -488,4 +518,185 @@ id,paragraphId,correct,options,hint,explanation,difficulty
 3,76,Parlavano,"Parlavano|Hanno parlato|Parlarono",parlare,"L'imperfetto 'Parlavano' si usa per un'azione continuativa o ripetuta nel passato.",B2
 4,76,ha commentato,"ha commentato|commentava|commentò",commentare,"Il passato prossimo 'ha commentato' è corretto per un commento specifico.",B1
 5,76,avrebbe dovuto,"avrebbe dovuto|doveva|dovette",dovere,"Il condizionale passato 'avrebbe dovuto' si usa per esprimere un rimpianto o un'azione che non è stata fatta.",B2
+1,85,"Alzo","Alzo|Abbasso|Muovo",verbo,"'Alzo le mani al cielo' è un gesto di euforia o liberazione.",B1
+2,85,"Devo","Devo|Posso|Voglio",verbo,"'Devo farlo' indica una necessità o un obbligo percepito.",B1
+3,85,"Vedo","Vedo|Chiudo|Nascondo",verbo,"'Vedo i tuoi occhi' suggerisce una connessione visiva intensa.",B1
+4,85,"gente","gente|musica|luce",sostantivo,"'La gente che balla' crea l'immagine di una festa o un concerto.",B1
+5,85,"energia","energia|amore|felicità",sostantivo,"'Energia' si ripete per enfasi, rappresentando vitalità e forza.",B2
+6,85,"spacca","spacca|crea|unisce",verbo,"'Spacca' in questo contesto significa 'ha un forte impatto' o 'rompe gli schemi'.",B2
+1,86,"Cerco","Cerco|Trovo|Vedo",verbo,"'Cerco un'altra te' implica la ricerca di qualcuno simile.",B1
+2,86,"Cerchi","Cerchi|Trovi|Vedi",verbo,"'Cerchi un altro me' è il parallelo della frase precedente.",B1
+3,86,"giro","giro|salto|passo",sostantivo,"'Facciamo un giro' suggerisce un'uscita o un'avventura.",B1
+4,86,"Passiamo","Passiamo|Viviamo|Dormiamo",verbo,"'Passiamo un'altra notte' indica il trascorrere del tempo insieme.",B1
+5,86,"bar","bar|parco|cinema",sostantivo,"'Un bar' è un luogo comune per uscire e socializzare.",B1
+6,86,"schiarirci","schiarirci|confondere|dimenticare",verbo,"'Schiarirci i pensieri' significa chiarire le idee o rilassarsi.",B2
+1,87,"Navigo","Navigo|Volo|Corro",verbo,"'Navigo come un punto' crea un'immagine di movimento nello spazio.",B2
+2,87,"punto","punto|stella|pianeta",sostantivo,"'Un punto nell'universo' suggerisce la piccolezza rispetto all'immensità.",B2
+3,87,"nuvole","nuvole|stelle|pianeti",sostantivo,"'Nuvole' qui potrebbe riferirsi metaforicamente a ostacoli o pensieri.",B2
+4,87,"vento","vento|luce|buio",sostantivo,"'Vento' può simboleggiare il cambiamento o le forze esterne.",B2
+5,87,"Traccio","Traccio|Perdo|Seguo",verbo,"'Traccio la rotta' indica la determinazione del proprio percorso.",B2
+6,87,"mare","mare|cielo|oceano",sostantivo,"'Mare di emozioni' è una metafora per una grande quantità di sentimenti.",B2
+1,88,"Ho","Ho|Perdo|Trovo",verbo,"'Ho il tempo' indica la disponibilità di un periodo.",B1
+2,88,"imparare","imparare|dimenticare|ignorare",verbo,"'Imparare' suggerisce la crescita personale attraverso l'esperienza.",B1
+3,88,"capire","capire|fraintendere|confondere",verbo,"'Capire' implica la comprensione profonda di qualcosa.",B1
+4,88,"Vedo","Vedo|Ignoro|Dimentico",verbo,"'Vedo solo quello che' indica una percezione selettiva.",B1
+5,88,"sento","sento|penso|credo",verbo,"'Sento' si riferisce a una percezione emotiva o intuitiva.",B1
+6,88,"serve","serve|voglio|chiedo",verbo,"'Serve' indica ciò che è necessario o utile.",B2
+1,89,"Vorrei","Vorrei|Posso|Devo",verbo,"'Vorrei parlare' esprime un desiderio o una volontà.",B1
+2,89,"Abbiamo","Abbiamo|Viviamo|Scriviamo",verbo,"'Abbiamo una storia' indica un'esperienza condivisa.",B1
+3,89,"vissuta","vissuta|scritta|immaginata",participio passato,"'Già vissuta' suggerisce un'esperienza passata e completata.",B2
+4,89,"Leggo","Leggo|Scrivo|Cancello",verbo,"'Leggo nei tuoi occhi' è un modo di dire per interpretare le emozioni altrui.",B2
+5,89,"parlano","parlano|tacciono|gridano",verbo,"'Gli occhi che parlano' è una metafora per espressività non verbale.",B2
+6,89,"dicono","dicono|nascondono|dimenticano",verbo,"'Dicono mille cose' enfatizza la comunicazione non verbale.",B2
+1,90,"Parliamo","Parliamo|Tacciamo|Gridiamo",verbo,"'Parliamo di questa notte' suggerisce una discussione su un evento recente.",B1
+2,90,"notte","notte|giornata|vita",sostantivo,"'Notte' qui potrebbe riferirsi a un'esperienza o un periodo specifico.",B1
+3,90,"racchiude","racchiude|divide|confonde",verbo,"'Racchiude' suggerisce che la notte contiene o simboleggia qualcosa di importante.",B2
+4,90,"mare","mare|cielo|bosco",sostantivo,"'Mare' qui è probabilmente usato in senso metaforico.",B2
+5,90,"bagna","bagna|asciuga|brucia",verbo,"'Bagna' in questo contesto potrebbe significare 'influenza' o 'tocca'.",B2
+6,90,"Viviamo","Viviamo|Sogniamo|Dimentichiamo",verbo,"'Viviamo insieme un'altra vita' suggerisce un nuovo inizio o una trasformazione.",B1
+id,paragraphId,correct,options,hint,explanation,difficulty
+1,91,"Sento","Sento|Ignoro|Perdo",verbo,"'Sento la tua voce' indica la percezione uditiva o emotiva della presenza di qualcuno.",B1
+2,91,"coprire","coprire|aumentare|creare",verbo,"'Coprire il rumore' suggerisce l'idea di superare o nascondere altri suoni.",B2
+3,91,"Supero","Supero|Accetto|Ignoro",verbo,"'Supero la paura' indica il superamento di un ostacolo emotivo.",B2
+4,91,"cadere","cadere|volare|correre",verbo,"'Cadere' qui potrebbe riferirsi metaforicamente al fallimento o alla resa.",B2
+5,91,"Corriamo","Corriamo|Camminiamo|Saltiamo",verbo,"'Corriamo da qui' suggerisce movimento rapido, forse metaforico.",B1
+6,91,"infinito","infinito|alba|tramonto",sostantivo,"'All'infinito' indica una durata o distanza senza fine.",B2
+1,92,"Viviamo","Viviamo|Moriamo|Sogniamo",verbo,"'Viviamo come' introduce un paragone o un modo di vivere.",B1
+2,92,"pazzi","pazzi|saggi|tristi",aggettivo,"'Come pazzi' suggerisce un modo di vivere intenso o senza limiti.",B2
+3,92,"pioggia","pioggia|neve|grandine",sostantivo,"'La pioggia che non smette' è una metafora di costanza o persistenza.",B2
+4,92,"cadere","cadere|brillare|volare",verbo,"'Cadere' qui si riferisce all'azione della pioggia, ma potrebbe avere un significato metaforico.",B2
+5,92,"Prendiamo","Prendiamo|Lasciamo|Ignoriamo",verbo,"'Prendiamo tutto quello che' suggerisce un atteggiamento di accettazione o avidità di esperienze.",B2
+6,92,"viene","viene|va|resta",verbo,"'Viene' in questo contesto significa 'accade' o 'si presenta'.",B1
+1,93,"Vedo","Vedo|Ignoro|Cambio",verbo,"'Vedo il mondo che' introduce una percezione o interpretazione personale della realtà.",B1
+2,93,"cambia","cambia|resta|scompare",verbo,"'Cambia' indica trasformazione o evoluzione.",B1
+3,93,"esplode","esplode|implode|tace",verbo,"'Esplode' suggerisce un cambiamento rapido e intenso.",B2
+4,93,"crolla","crolla|cresce|vola",verbo,"'Crolla' indica un fallimento o una distruzione, forse metaforica.",B2
+5,93,"Vivo","Vivo|Sogno|Immagino",verbo,"'Vivo la vita che' suggerisce un'esperienza diretta e attiva.",B1
+6,93,"brucia","brucia|gela|fiorisce",verbo,"'Brucia' può indicare intensità, passione o anche dolore.",B2
+1,94,"Creiamo","Creiamo|Distruggiamo|Ignoriamo",verbo,"'Creiamo un universo' suggerisce la costruzione di un mondo personale o una realtà condivisa.",B2
+2,94,"fatto","fatto|pieno|vuoto",participio passato,"'Fatto di noi' indica che questo universo è composto dalle esperienze o essenze personali.",B2
+3,94,"Fatto","Fatto|Libero|Privo",participio passato,"Ripetizione di 'fatto' per enfasi.",B2
+4,94,"siamo","siamo|abbiamo|vogliamo",verbo,"'Siamo' in questo contesto si riferisce all'essenza o all'identità.",B1
+5,94,"Viviamo","Viviamo|Moriamo|Dormiamo",verbo,"'Viviamo come' introduce un modo di vivere o comportarsi.",B1
+6,94,"abbiamo","abbiamo|possiamo|dobbiamo",verbo,"'Non abbiamo fatto mai prima' suggerisce un'esperienza nuova o un cambiamento di comportamento.",B2
+1,95,"Navigo","Navigo|Nuoto|Corro",verbo,"'Navigo nel buio' è una metafora per affrontare l'incertezza o le difficoltà.",B2
+2,95,"pensieri","pensieri|sogni|ricordi",sostantivo,"'Buio dei pensieri' suggerisce confusione o negatività mentale.",B2
+3,95,"silenzio","silenzio|rumore|caos",sostantivo,"'Silenzio di chi non ha voce' può riferirsi a chi non può esprimersi o farsi sentire.",B2
+4,95,"voce","voce|forza|speranza",sostantivo,"'Non ha voce' indica l'impossibilità di esprimersi o farsi ascoltare.",B2
+5,95,"Cerco","Cerco|Evito|Ignoro",verbo,"'Cerco la strada' suggerisce la ricerca di una direzione o soluzione.",B1
+6,95,"casa","casa|libertà|felicità",sostantivo,"'Casa' qui potrebbe simboleggiare un luogo di sicurezza o appartenenza.",B2
+1,96,"Vedo","Vedo|Ignoro|Nascondo",verbo,"'Vedo la bellezza' indica la capacità di apprezzare o riconoscere qualcosa di positivo.",B1
+2,96,"amore","amore|mondo|destino",sostantivo,"'Amore imperfetto' suggerisce l'accettazione delle imperfezioni nelle relazioni.",B2
+3,96,"cielo","cielo|mare|sole",sostantivo,"'Cielo' qui potrebbe essere usato metaforicamente.",B1
+4,96,"perfetto","perfetto|completo|finito",aggettivo,"'Non è mai perfetto' sottolinea l'imperfezione come caratteristica naturale.",B2
+5,96,"Ammiro","Ammiro|Critico|Ignoro",verbo,"'Ammiro la forza' esprime apprezzamento e rispetto.",B2
+6,96,"resiste","resiste|cede|fugge",verbo,"'Resiste nonostante tutto' indica perseveranza di fronte alle difficoltà.",B2
+1,97,"Mi sento","Mi sento|Divento|Resto",verbo riflessivo,"'Mi sento come' introduce una similitudine o una percezione di sé.",B1
+2,97,"fatta","fatta|nata|creata",participio passato,"'Fatta di cristallo' è una metafora per fragilità o delicatezza.",B2
+3,97,"bordo","bordo|centro|fondo",sostantivo,"'Sul bordo del mondo' suggerisce una posizione precaria o al limite.",B2
+4,97,"Lancio","Lancio|Nascondo|Tengo",verbo,"'Lancio le mie paure' indica l'atto di liberarsi di sentimenti negativi.",B2
+5,97,"paure","paure|speranze|idee",sostantivo,"'Paure' rappresenta i timori o le ansie personali.",B1
+6,97,"aquiloni","aquiloni|foglie|piume",sostantivo,"'Aquiloni al vento' è una metafora per libertà o leggerezza.",B2
+1,98,"Vivo","Vivo|Sogno|Immagino",verbo,"'Vivo un sogno' suggerisce un'esperienza molto positiva o irreale.",B1
+2,98,"difficile","difficile|facile|impossibile",aggettivo,"'Difficile da realizzare' indica una sfida o un obiettivo complesso.",B2
+3,98,"realizzare","realizzare|dimenticare|abbandonare",verbo,"'Realizzare' in questo contesto significa 'rendere reale' o 'concretizzare'.",B2
+4,98,"ancora","ancora|già|mai",avverbio,"'Ancora da scrivere' suggerisce che la storia è in divenire, non predeterminata.",B1
+5,98,"scrivere","scrivere|leggere|cancellare",verbo,"'Da scrivere' implica che il futuro è aperto e può essere determinato.",B1
+6,98,"Voliamo","Voliamo|Camminiamo|Cadiamo",verbo,"'Voliamo insieme' è una metafora per libertà, unione o realizzazione.",B2
+1,99,"Trovo","Trovo|Perdo|Cerco",verbo,"'Trovo il coraggio' suggerisce la scoperta di una forza interiore.",B1
+2,99,"ricominciare","ricominciare|finire|abbandonare",verbo,"'Ricominciare' indica l'inizio di un nuovo capitolo o fase.",B2
+3,99,"rifare","rifare|distruggere|dimenticare",verbo,"'Rifare tutto da zero' suggerisce un nuovo inizio completo.",B2
+4,99,"Ammiro","Ammiro|Ignoro|Temo",verbo,"'Ammiro la forza' esprime rispetto e apprezzamento.",B2
+5,99,"smette","smette|inizia|continua",verbo,"'Non smette mai' indica persistenza o costanza.",B1
+6,99,"lottare","lottare|arrendersi|fuggire",verbo,"'Lottare' in questo contesto significa persistere nonostante le difficoltà.",B2
+1,100,"Cammino","Cammino|Corro|Volo",verbo,"'Cammino come un fantasma' suggerisce un movimento silenzioso o inosservato.",B2
+2,100,"fantasma","fantasma|re|bambino",sostantivo,"'Fantasma' qui è usato metaforicamente per indicare invisibilità o distacco.",B2
+3,100,"Brillo","Brillo|Scompaio|Cado",verbo,"'Brillo come una stella' suggerisce visibilità o unicità.",B2
+4,100,"stella","stella|luna|cometa",sostantivo,"'Stella nel deserto' enfatizza l'idea di singolarità o isolamento.",B1
+5,100,"Seguo","Seguo|Perdo|Ignoro",verbo,"'Seguo la mia strada' indica determinazione e indipendenza.",B1
+6,100,"Scrivo","Scrivo|Cancello|Dimentico",verbo,"'Scrivo il mio destino' suggerisce il controllo sulla propria vita.",B2
+1,101,"Osservo","Osservo|Ignoro|Cambio",verbo,"'Osservo il mondo che' indica un atteggiamento contemplativo o analitico.",B2
+2,101,"gira","gira|ferma|cade",verbo,"'Gira' si riferisce al movimento o al cambiamento costante del mondo.",B1
+3,101,"cade","cade|vola|cresce",verbo,"'Cade' può indicare declino o trasformazione.",B2
+4,101,"rinasce","rinasce|muore|dorme",verbo,"'Rinasce' suggerisce rinnovamento o speranza dopo le difficoltà.",B2
+5,101,"Guardo","Guardo|Fermo|Accelero",verbo,"'Guardo il tempo che passa' indica consapevolezza del passaggio del tempo.",B1
+6,101,"passa","passa|resta|torna",verbo,"'Passa' enfatizza la natura transitoria del tempo.",B1
+1,102,"Vedo","Vedo|Chiudo|Nascondo",verbo,"'Vedo i tuoi occhi' indica una connessione visiva o emotiva.",B1
+2,102,"stelle","stelle|laghi|fiori",sostantivo,"'Occhi come stelle' è una metafora per bellezza o luminosità.",B2
+3,102,"parole","parole|lacrime|risate",sostantivo,"'Le tue parole' si riferisce alla comunicazione o espressione.",B1
+4,102,"musica","musica|silenzio|rumore",sostantivo,"'Parole come musica' suggerisce armonia o bellezza nel parlare.",B2
+5,102,"Sento","Sento|Ignoro|Fermo",verbo,"'Sento il tuo cuore' indica una connessione emotiva profonda.",B1
+6,102,"batte","batte|tace|muore",verbo,"'Batte forte' suggerisce emozione intensa o vita.",B1
+1,103,"Vedo","Vedo|Ignoro|Perdo",verbo,"'Vedo un nuovo giorno' suggerisce speranza o un nuovo inizio.",B1
+2,103,"giorno","giorno|anno|secolo",sostantivo,"'Giorno' rappresenta un nuovo inizio o una nuova opportunità.",B1
+3,103,"inizio","inizio|fine|problema",sostantivo,"'Inizio' enfatizza l'idea di un nuovo capitolo o fase.",B2
+4,103,"Guardo","Guardo|Evito|Dimentico",verbo,"'Guardo la vita che cambia' indica osservazione del cambiamento.",B1
+5,103,"cambia","cambia|resta|scompare",verbo,"'Cambia' sottolinea la natura mutevole della vita.",B1
+6,103,"corre","corre|rallenta|si ferma",verbo,"'Corre' enfatizza la rapidità del cambiamento o del passaggio del tempo.",B2
+1,104,"Vedo","Vedo|Temo|Evito",verbo,"'Vedo il futuro' suggerisce visione o previsione.",B1
+2,104,"libro","libro|film|quadro",sostantivo,"'Futuro come un libro' è una metafora per qualcosa da scoprire o scrivere.",B2
+3,104,"scrivere","scrivere|leggere|bruciare",verbo,"'Da scrivere' implica che il futuro è aperto e può essere determinato.",B2
+4,104,"storia","storia|canzone|poesia",sostantivo,"'Storia da raccontare' suggerisce l'importanza delle esperienze personali.",B1
+5,104,"raccontare","raccontare|dimenticare|nascondere",verbo,"'Raccontare' enfatizza l'importanza di condividere le proprie esperienze.",B2
+6,104,"Camminiamo","Camminiamo|Corriamo|Voliamo",verbo,"'Camminiamo insieme' suggerisce un percorso condiviso verso il futuro.",B1
+1,105,"Parlo","Parlo|Canto|Scrivo",verbo,"'Parlo di te' è un'espressione comune per discutere di qualcuno.",B1
+2,105,"a","a|di|per",preposizione,"'Penso a noi' indica il focus dei pensieri.",B1
+3,105,"Ricordo","Ricordo|Dimentico|Ignoro",verbo,"'Ricordo quei momenti' si riferisce al richiamare memorie passate.",B1
+4,105,"ci","ci|ti|li",pronome,"'Ci hanno fatto sorridere' usa 'ci' come pronome oggetto plurale.",B2
+5,105,"Come","Come|Dove|Quando",avverbio,"'Come vorrei tornare' esprime un desiderio o un rimpianto.",B1
+6,105,"indietro","indietro|avanti|lontano",avverbio,"'Tornare indietro' significa ritornare al passato.",B1
+1,106,"Chiudo","Chiudo|Apro|Copro",verbo,"'Chiudo gli occhi' è un'azione spesso associata all'immaginazione o al ricordo.",B1
+2,106,"ti","ti|mi|lo",pronome,"'Ti vedo qui' usa 'ti' come pronome oggetto singolare.",B1
+3,106,"Allungo","Allungo|Ritiro|Nascondo",verbo,"'Allungo le mani' suggerisce un gesto di raggiungimento o connessione.",B2
+4,106,"mi","mi|ti|ci",pronome,"'Mi sento accanto a te' usa 'mi' come pronome riflessivo.",B1
+5,106,"Contro","Contro|Con|Per",preposizione,"'Contro il mondo' suggerisce una sfida o opposizione.",B2
+6,106,"con","con|senza|per",preposizione,"'Con noi' indica compagnia o unione.",B1
+1,107,"mi","mi|ti|gli",pronome,"'Non mi importa' è un'espressione comune di indifferenza.",B1
+2,107,"andrai","andrai|verrai|starai",verbo,"'Dove andrai' si riferisce a una destinazione futura.",B1
+3,107,"chi","chi|cui|che",pronome relativo,"'Con chi io sarò' usa 'chi' come pronome relativo.",B2
+4,107,"Ti","Ti|Mi|Lo",pronome,"'Ti seguirò' usa 'ti' come pronome oggetto singolare.",B1
+5,107,"tu","tu|lui|lei",pronome,"'Tu andrai' specifica il soggetto dell'azione.",B1
+6,107,"Non ti","Non ti|Non mi|Non lo",pronome,"'Non ti lascerò' usa la negazione con il pronome oggetto.",B2
+1,108,"Mi","Mi|Ti|Ci",pronome,"'Mi dicono' usa 'mi' come pronome oggetto indiretto.",B1
+2,108,"cura","cura|causa|copre",verbo,"'Cura tutte le ferite' è un detto comune sul potere del tempo.",B2
+3,108,"io so che","io so che|tu sai che|loro sanno che",espressione,"'Io so che' introduce una convinzione personale.",B2
+4,108,"Le","Le|Li|Gli",pronome,"'Le porto ancora' usa 'le' come pronome oggetto femminile plurale.",B2
+5,108,"con","con|in|per",preposizione,"'Con me' indica possesso o compagnia.",B1
+6,108,"con","con|senza|per",preposizione,"'Con te' indica compagnia o relazione.",B1
+1,109,"Ci","Ci|Si|Vi",pronome,"'Ci siamo persi' usa 'ci' come pronome riflessivo plurale.",B2
+2,109,"in","in|su|per",preposizione,"'In questo mare' indica una locazione metaforica.",B1
+3,109,"Ora","Ora|Poi|Mai",avverbio,"'Ora nuotiamo' enfatizza l'azione presente.",B1
+4,109,"per","per|a|in",preposizione,"'Per arrivare' indica lo scopo dell'azione.",B1
+5,109,"a","a|in|su",preposizione,"'A riva' indica la destinazione.",B1
+6,109,"Ce","Ce|Ne|Ci",pronome,"'Ce la faremo' è un'espressione idiomatica di determinazione.",B2
+1,110,"Mi","Mi|Ti|Si",pronome,"'Mi guardo allo specchio' usa 'mi' come pronome riflessivo.",B1
+2,110,"mi","mi|ti|lo",pronome,"'Mi vedo cambiato' usa 'mi' come pronome oggetto.",B1
+3,110,"Gli","Gli|I|Quei",articolo determinativo,"'Gli anni sono passati' usa l'articolo determinativo maschile plurale.",B2
+4,110,"il","il|lo|un",articolo determinativo,"'Il cuore è rimasto' usa l'articolo determinativo maschile singolare.",B1
+5,110,"Li","Li|Le|Gli",pronome,"'Li porto ancora' usa 'li' come pronome oggetto maschile plurale.",B2
+6,110,"con","con|in|per",preposizione,"'Con me' indica possesso o compagnia.",B1
+1,111,"Se","Se|Quando|Perché",congiunzione,"'Se piove' introduce una condizione ipotetica.",B1
+2,111,"ci","ci|si|vi",pronome,"'Ci ripariamo' usa 'ci' come pronome riflessivo plurale.",B2
+3,111,"Mi","Mi|Ti|Gli",pronome,"'Mi stringi' usa 'mi' come pronome oggetto.",B1
+4,111,"mia","mia|tua|sua",aggettivo possessivo,"'La mia mano' usa l'aggettivo possessivo femminile.",B1
+5,111,"E","E|Ma|O",congiunzione,"'E insieme supereremo' collega due concetti positivamente.",B1
+6,111,"Non","Non|Mai|Sempre",avverbio di negazione,"'Non ci arrendiamo' esprime determinazione attraverso la negazione.",B1
+1,112,"Ti","Ti|Mi|Lo",pronome,"'Ti cerco' usa 'ti' come pronome oggetto.",B1
+2,112,"ti","ti|mi|ci",pronome,"'Ti trovo' usa 'ti' come pronome oggetto.",B1
+3,112,"Con","Con|Per|In",preposizione,"'Con mille voci' indica accompagnamento o circostanza.",B1
+4,112,"io","io|tu|lui",pronome,"'Io sento' enfatizza il soggetto dell'azione.",B1
+5,112,"Tu","Tu|Io|Lei",pronome,"'Tu sei' specifica il soggetto della frase.",B1
+6,112,"in","in|su|per",preposizione,"'In questo mondo' indica una locazione generale o contesto.",B1
+1,113,"Mentre","Mentre|Quando|Se",congiunzione,"'Mentre cammino' introduce un'azione simultanea.",B2
+2,113,"mi","mi|ti|si",pronome,"'Mi penso' usa 'mi' come pronome riflessivo.",B2
+3,113,"mi","mi|ti|gli",pronome,"'Mi sei mancata' usa 'mi' come pronome oggetto indiretto.",B1
+4,113,"Ti","Ti|Mi|Lo",pronome,"'Ti vorrei' usa 'ti' come pronome oggetto.",B1
+5,113,"con","con|per|su",preposizione,"'Con me' indica compagnia o presenza.",B1
+6,113,"non ti","non ti|non mi|non gli",pronome con negazione,"'Non ti ho mai detto' usa la negazione con il pronome oggetto.",B2
+1,114,"mi","mi|ti|gli",pronome,"'Non mi importa' è un'espressione di indifferenza.",B1
+2,114,"io","io|tu|lui",pronome,"'Io cadrò' enfatizza il soggetto dell'azione.",B1
+3,114,"mi","mi|ti|si",pronome,"'Mi rialzerò' usa 'mi' come pronome riflessivo.",B1
+4,114,"Da","Da|Per|In",preposizione,"'Da ogni caduta' indica l'origine o la causa.",B2
+5,114,"mi","mi|ti|lo",pronome,"'Mi renderà' usa 'mi' come pronome oggetto indiretto.",B1
+6,114,"Mi","Mi|Ti|Si",pronome,"'Mi arrenderò' usa 'mi' come pronome riflessivo.",B1
 `;

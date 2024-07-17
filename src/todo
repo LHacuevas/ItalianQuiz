@@ -15,6 +15,10 @@ Presentacion
         - Hay que darle el estilo de Card como tiene el otro
         - Hay que ponerle el numero de pregunta por el que vamos
         - Hay que contabilizar los errores y aciertos
+- He hecho el fichero de frases motivantes, habria que enseñarlo en la principal @done
+- No sale el titulo en la de preguntas @done
+- No sale el tiempo total
+- Tambien me gustaria que cambiasen las fotos, tendria que poner unas cuantas y que fuesen cambiando
 Importantes
 - La correcta siempre sale la 1 @done
 -Mirar como grabar los resultados, se puede hacer con github? Creo que no 
@@ -75,4 +79,4 @@ id,paragraphId,correct,options,hint,explanation,difficulty
 2,1,"meravigliosa","meravigliosa|meraviglioso|meravigliosi",aggettivo,"'Giornata' è femminile singolare, quindi l'aggettivo deve concordare.",A2
 3,1,...
 
-Me sigue gustando, ahora cambiamos de tema. Los de la clase fuimos a Bologna, Sara, Jean Marco, David, Dani, Rosa, Ana y Alex. Estuvimos de turismo, puedes decir algunas parrafos de eso? Empieza por el parrafo 61
+Los parrafos quiero que sean de canciones y en la columna generated pon el nombre del grupo que la canta
