@@ -20,7 +20,7 @@ function App() {
   return (       
       <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
       <CardHeader title="Quiz di Italiano v.2.0" className="text-2xl font-bold text-center text-blue-800 p-4" />      
-      <CardContent>
+      <CardContent sx={{ padding: 0 }}>
         <AppIniziale />     
       </CardContent>
       </ResponsiveCard>    
@@ -102,8 +102,8 @@ const AppIniziale = () => {
         <CardContent>
           <img src={`${process.env.PUBLIC_URL}/logo.jpg`} alt="Logo" className="mb-4 w-32 h-32 mx-auto" />
           <div className="text-center text-gray-600 mb-4">
-            <p className="italic mb-2 text-lg">"{quote.text}"</p>
-            <p className="font-bold text-sm text-gray-500">{quote.author}</p>
+            <p className="italic mb-2 text-base">"{quote.text}"</p>
+            <p className="font-bold text-base text-gray-500">{quote.author}</p>
           </div>
           <Input
             type="text"

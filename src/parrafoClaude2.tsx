@@ -341,7 +341,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                     </span>
                 </div>
                 <LinearProgress variant="determinate" value={(score / totalAnsweredQuestions) * 100} className="mt-4 mb-4" />
-                <p className="mb-2 text-blue-800">Punteggio attuale: {score}/{totalAnsweredQuestions}</p>
+                <div className="flex items-center justify-between">
                 <FormControlLabel
                     control={
                         <Checkbox
@@ -350,10 +350,11 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                             color="primary"
                         />
                     }
-                    label="Usa menu a tendina"
-                />
-                <p className="mb-2">{currentParagraph.id} - {currentParagraph.generated}</p>
-                <p className="mb-4">
+                    label={<span className="italic">Usa menu a tendina</span>}
+                /><span className="text-blue-800 ml-auto">Punteggio attuale: {score}/{totalAnsweredQuestions}</span>
+                </div>
+                <p className="text-base">{currentParagraph.id} - {currentParagraph.generated}</p>
+                <p className="text-base">
                     {currentParagraph.text.split(/(\[\d+\])/).map((part, index) => {
                         if (part.match(/\[\d+\]/)) {
                             const questionId = parseInt(part.match(/\d+/)?.[0] || '0');
@@ -368,15 +369,15 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                 )}
                 {showResults && (
                     <div className="mt-4">
-                        <h2 className="text-xl font-bold mb-2">Risultati:</h2>
+                        <h2 className="text-lg sm:text-xl font-bold mb-2">Risultati:</h2>
                         {currentQuestions.map(question => (
                             <div key={question.id} className="mb-2">
-                                <p className={userAnswers[currentParagraph.id]?.[question.id] === question.correct ? "text-green-600" : "text-red-600"}>
+                                <p className={`text-sm sm:text-base ${userAnswers[currentParagraph.id]?.[question.id] === question.correct ? 'text-green-600' : 'text-red-600'}`}>
                                     {question.id}[{question.difficulty}]: {userAnswers[currentParagraph.id]?.[question.id] || 'Nessuna risposta'}
                                     {userAnswers[currentParagraph.id]?.[question.id] !== question.correct && ` (Corretto: ${question.correct})`}
                                 </p>
                                 {userAnswers[currentParagraph.id]?.[question.id] !== question.correct && (
-                                    <p className="text-sm text-gray-600">{question.explanation}</p>
+                                    <p className="text-xs sm:text-sm text-gray-600">{question.explanation}</p>
                                 )}
                             </div>
                         ))}

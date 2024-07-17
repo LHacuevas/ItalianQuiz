@@ -13,14 +13,15 @@ const ResponsiveCard: React.FC<ResponsiveCardProps> = ({
   ...props
 }) => {
   return (
-    <Box sx= {{ display: 'flex', justifyContent: 'center', p: 2 }
+    <Box sx= {{ display: 'flex', justifyContent: 'center', p: 0 }
 }>
   <Card
         sx={
   {
     width: '100%',
       maxWidth: maxWidth,
-        mx: 'auto',
+            mx: 'auto',
+        p:0,
           ...props.sx // Asegúrate de que `sx` sea el tipo correcto
   }
 }
