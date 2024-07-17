@@ -17,6 +17,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Paragraph, ParagraphQuestion, QuizParams } from './MyTypes.js';
 import { paragraphsCSV, paragraphsQuestionsCSV } from './questionParrafo.js';
+import ResponsiveCard from './ResponsiveCard';
 
 const paragraphParseCSV = (csv: string): Paragraph[] => {
     const lines = csv.trim().split('\n');
@@ -91,7 +92,9 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     const [paragraphs, setParagraphs] = useState<Paragraph[]>([]);
     const [questions, setQuestions] = useState<ParagraphQuestion[]>([]);
     const [currentParagraphIndex, setCurrentParagraphIndex] = useState(0);
-    const [userAnswers, setUserAnswers] = useState<{ [key: number]: string }>({});
+    //const [userAnswers, setUserAnswers] = useState<{ [key: number]: string }>({});
+    const [userAnswers, setUserAnswers] = useState<{ [paragraphId: number]: { [key: number]: string } }>({});
+    // ... (resto del código)
     const [showResults, setShowResults] = useState(false);
     const [useDropdown, setUseDropdown] = useState(onlyOptionQuestions);
     const [score, setScore] = useState(0);
@@ -111,7 +114,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
         const selectedParagraphIds = filteredParagraphs.map(p => p.id);
         const filteredQuestions = QUESTIONS_DATA.filter(q => selectedParagraphIds.includes(q.paragraphId));
         setQuestions(filteredQuestions);
-
+        setUserAnswers({}); // Inicializa userAnswers aquí
         setStartTime(Date.now());
     }, []);
 
@@ -121,7 +124,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                 setTimer((prevTimer) => {
                     if (prevTimer === 1) {
                         clearInterval(countdown);
-                        handleNextParagraph();
+                        handleVerify();                        
                         return 30;
                     }
                     return prevTimer - 1;
@@ -134,14 +137,20 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     const currentParagraph = paragraphs[currentParagraphIndex];
     const currentQuestions = questions.filter(q => q.paragraphId === currentParagraph?.id);
 
-    const handleInputChange = (id: number, value: string) => {
-        setUserAnswers(prev => ({ ...prev, [id]: value }));
+    const handleInputChange = (paragraphId: number, questionId: number, value: string) => {
+        setUserAnswers(prev => ({
+            ...prev,
+            [paragraphId]: {
+                ...(prev[paragraphId] || {}),
+                [questionId]: value
+            }
+        }));
     };
-
+    
     const handleVerify = () => {
         let correctAnswers = 0;
         currentQuestions.forEach(question => {
-            if (userAnswers[question.id] === question.correct) {
+            if (userAnswers[currentParagraph.id]?.[question.id] === question.correct) {
                 correctAnswers++;
             }
         });
@@ -164,7 +173,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                 return prev;
             } else {
                 setShowResults(false);
-                setUserAnswers({});
+                //setUserAnswers({});
                 setTimer(30);
                 return nextIndex;
             }
@@ -204,7 +213,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     const renderReviewParagraph = (paragraph: Paragraph, paragraphQuestions: ParagraphQuestion[]) => {
         let text = paragraph.text;
         paragraphQuestions.forEach(question => {
-            const userAnswer = userAnswers[question.id] || '';
+            const userAnswer = userAnswers[paragraph.id]?.[question.id] || '';
             const isCorrect = userAnswer === question.correct;
             const replacement = isCorrect
                 ? `<span class="font-bold text-green-600">${userAnswer}</span>`
@@ -213,19 +222,20 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
         });
         return <p dangerouslySetInnerHTML={{ __html: text }} />;
     };
+    
     const renderQuestion = (question: ParagraphQuestion) => {
         if (!question) return null;
 
-        const isCorrect = showResults && userAnswers[question.id] === question.correct;
-        const isIncorrect = showResults && userAnswers[question.id] && userAnswers[question.id] !== question.correct;
+        const isCorrect = showResults && userAnswers[currentParagraph.id]?.[question.id] === question.correct;
+        const isIncorrect = showResults && userAnswers[currentParagraph.id]?.[question.id] && userAnswers[currentParagraph.id]?.[question.id] !== question.correct;
 
         return (
             <div className={`inline-block mx-1 p-1 border-2 ${isCorrect ? 'border-green-500 bg-green-200' : isIncorrect ? 'border-red-500 bg-red-200' : 'border-gray-300'}`}>
                 {useDropdown ? (
                     <FormControl>
                         <Select
-                            value={userAnswers[question.id] || ''}
-                            onChange={(e) => handleInputChange(question.id, e.target.value as string)}
+                            value={userAnswers[currentParagraph.id]?.[question.id] || ''}
+                            onChange={(e) => handleInputChange(currentParagraph.id, question.id, e.target.value as string)}
                             displayEmpty
                             renderValue={(selected) => (
                                 <span className={selected ? 'font-bold' : ''}>
@@ -242,8 +252,8 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                 ) : (
                     <Input
                         type="text"
-                        value={userAnswers[question.id] || ''}
-                        onChange={(e) => handleInputChange(question.id, e.target.value)}
+                        value={userAnswers[currentParagraph.id]?.[question.id] || ''}
+                        onChange={(e) => handleInputChange(currentParagraph.id, question.id, e.target.value)}
                         placeholder={question.hint}
                         className={`w-32 ${isCorrect ? 'border-green-500' : isIncorrect ? 'border-red-500' : ''}`}
                     />
@@ -255,7 +265,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     if (quizFinished && !reviewMode) {
         const totalTime = endTime! - startTime!;
         return (
-            <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
+            <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
                 <CardHeader title="Quiz Completato" className="text-2xl font-bold text-center text-blue-800" />
                 <CardContent>
                     <p className="text-center text-xl font-semibold">Grazie, {name}!</p>
@@ -277,52 +287,52 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                         Rivedi le risposte
                     </Button>
                 </CardActions>
-            </Card>
+            </ResponsiveCard>
         );
     }
     if (quizFinished && reviewMode) {
-        
-            return (
-                <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-                    <CardHeader title="Revisione delle Risposte" className="text-2xl font-bold text-center text-blue-800" />
-                    <CardContent>
-                        {paragraphs.map((paragraph, index) => {
-                            const paragraphQuestions = questions.filter(q => q.paragraphId === paragraph.id);
-                            return (
-                                <div key={paragraph.id} className="mb-8">
-                                    <h3 className="font-bold text-lg mb-2">Paragrafo {index + 1}</h3>
-                                    {renderReviewParagraph(paragraph, paragraphQuestions)}
-                                    {paragraphQuestions.map(question => {
-                                        const isIncorrect = userAnswers[question.id] !== question.correct;
-                                        return isIncorrect ? (
-                                            <div key={question.id} className="mt-2 ml-4 text-sm">
-                                                <p><span className="font-semibold">Suggerimento:</span> {question.hint}</p>
-                                                <p className="text-gray-600">{question.explanation}</p>
-                                            </div>
-                                        ) : null;
-                                    })}
-                                </div>
-                            );
-                        })}
-                        <Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700 mt-4">
-                            Torna alla Pagina Iniziale
-                        </Button>
-                    </CardContent>
-                </Card>
-            );
-        }    
+        return (
+            <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
+                <CardHeader title="Revisione delle Risposte" className="text-2xl font-bold text-center text-blue-800" />
+                <CardContent>
+                    {paragraphs.map((paragraph, index) => {
+                        const paragraphQuestions = questions.filter(q => q.paragraphId === paragraph.id);
+                        return (
+                            <div key={paragraph.id} className="mb-8">
+                                <h3 className="font-bold text-lg mb-2">Paragrafo {index + 1}</h3>
+                                {renderReviewParagraph(paragraph, paragraphQuestions)}
+                                {paragraphQuestions.map(question => {
+                                    const userAnswer = userAnswers[paragraph.id]?.[question.id];
+                                    const isIncorrect = userAnswer !== question.correct;
+                                    return isIncorrect ? (
+                                        <div key={question.id} className="mt-2 ml-4 text-sm">
+                                            <p><span className="font-semibold">Suggerimento:</span> {question.hint}</p>
+                                            <p className="text-gray-600">{question.explanation}</p>
+                                        </div>
+                                    ) : null;
+                                })}
+                            </div>
+                        );
+                    })}
+                    <Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700 mt-4">
+                        Torna alla Pagina Iniziale
+                    </Button>
+                </CardContent>
+            </ResponsiveCard>
+        );
+    }  
     if (!currentParagraph) {
         return (
-            <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
+            <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
                 <CardContent>
                     <p className="text-center text-blue-800">Caricamento...</p>
                 </CardContent>
-            </Card>
+            </ResponsiveCard>
         );
     }
 
     return (
-        <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">            
+        <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">            
             <CardContent>
                 <div className="flex justify-between items-center mb-4">
                     <span className="font-semibold text-blue-800">Paragrafo {currentParagraphIndex + 1} di {numQuestions}</span>
@@ -361,11 +371,11 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                         <h2 className="text-xl font-bold mb-2">Risultati:</h2>
                         {currentQuestions.map(question => (
                             <div key={question.id} className="mb-2">
-                                <p className={userAnswers[question.id] === question.correct ? "text-green-600" : "text-red-600"}>
-                                    {question.id}[{question.difficulty}]: {userAnswers[question.id] || 'Nessuna risposta'}
-                                    {userAnswers[question.id] !== question.correct && ` (Corretto: ${question.correct})`}
+                                <p className={userAnswers[currentParagraph.id]?.[question.id] === question.correct ? "text-green-600" : "text-red-600"}>
+                                    {question.id}[{question.difficulty}]: {userAnswers[currentParagraph.id]?.[question.id] || 'Nessuna risposta'}
+                                    {userAnswers[currentParagraph.id]?.[question.id] !== question.correct && ` (Corretto: ${question.correct})`}
                                 </p>
-                                {userAnswers[question.id] !== question.correct && (
+                                {userAnswers[currentParagraph.id]?.[question.id] !== question.correct && (
                                     <p className="text-sm text-gray-600">{question.explanation}</p>
                                 )}
                             </div>
@@ -376,7 +386,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                     </div>
                 )}
             </CardContent>
-        </Card>
+        </ResponsiveCard>
     );
 };
 

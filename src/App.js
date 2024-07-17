@@ -6,18 +6,29 @@ import ItalianLearningApp from './parrafoClaude2.tsx';
 import { Card, CardContent, Input, Select, MenuItem, FormControl, InputLabel, FormControlLabel, Checkbox, Button } from '@mui/material';
 import { quoteCSV } from './questionMotiva.js';
 import CardHeader from '@mui/material/CardHeader';
+import ResponsiveCard from './ResponsiveCard';
 function App() {
-  return (   
-    <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
+  const cardStyle = {
+    width: '100%',
+    maxWidth: {
+      xs: '100%',
+      sm: '600px',
+      md: '800px'
+    },
+    mx: 'auto'
+  };
+  return (       
+      <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
       <CardHeader title="Quiz di Italiano v.2.0" className="text-2xl font-bold text-center text-blue-800 p-4" />      
       <CardContent>
         <AppIniziale />     
       </CardContent>
-      </Card>
+      </ResponsiveCard>    
   );
 }
 
-const AppIniziale = () => {
+const AppIniziale = () => {  
+
   const [nome, setNome] = useState(() => {
     return localStorage.getItem('nome') || 'EOI alumne';
   });
@@ -86,8 +97,7 @@ const AppIniziale = () => {
     return <ItalianLearningApp numQuestions={numDomande} name={nome} onlyOptionQuestions={soloOpzioni} difficulty={livello} />;
   }
 
-  return (
-    <div className="container mx-auto p-4">
+  return (    
       <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">        
         <CardContent>
           <img src={`${process.env.PUBLIC_URL}/logo.jpg`} alt="Logo" className="mb-4 w-32 h-32 mx-auto" />
@@ -129,8 +139,8 @@ const AppIniziale = () => {
             }
             label={
               <div className="flex items-center">
-                Usa menu a tendina
-                <span className="ml-2 cursor-pointer" title="Non mostra domande di completamento">ℹ️</span>
+                Usa solo menu a tendina
+                <span className="ml-2 cursor-pointer" title="Non mostra domande di completamento, a la scelta multipla">ℹ️</span>
               </div>
             }
             className="mb-4"
@@ -142,8 +152,7 @@ const AppIniziale = () => {
             Completamento del Testo
           </Button>
         </CardContent>
-      </Card>
-    </div>
+      </Card>   
   );
 };
 

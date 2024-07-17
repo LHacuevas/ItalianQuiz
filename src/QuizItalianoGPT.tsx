@@ -19,7 +19,7 @@ import QuizQuestion from './Question'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 //import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
-
+//import ResponsiveCard from './ResponsiveCard';
 const parseCSV = (csv: string): Question[] => {
     const lines = csv.trim().split('\n');
     const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
@@ -73,7 +73,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
             //const hasRepeatedOptions = (q.correct !== -1) &&
             //    (q.option1 === q.option2 || q.option1 === q.option3 || q.option2 === q.option3);
             //para las escritas
-            return q.correct === -1;
+            //return q.correct === -1;
             return difficultyMatch && typeMatch;  //&& !hasRepeatedOptions;
         }).sort(() => 0.5 - Math.random());
         setQuestions(filteredQuestions.slice(0, numQuestions ?? 3));
