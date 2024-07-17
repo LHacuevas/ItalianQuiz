@@ -12,12 +12,12 @@ Presentacion
 - Queremos añadir los parrafos completables @done
 - Tenemos los dos funcionamientos, los de las preguntas y los completar parrafo.    
     - A los del parrafo 
-        - Hay que darle el estilo de Card como tiene el otro
-        - Hay que ponerle el numero de pregunta por el que vamos
-        - Hay que contabilizar los errores y aciertos
+        - Hay que darle el estilo de Card como tiene el otro @done
+        - Hay que ponerle el numero de pregunta por el que vamos @done
+        - Hay que contabilizar los errores y aciertos @done
 - He hecho el fichero de frases motivantes, habria que enseñarlo en la principal @done
 - No sale el titulo en la de preguntas @done
-- No sale el tiempo total
+- No sale el tiempo total @done
 - Tambien me gustaria que cambiasen las fotos, tendria que poner unas cuantas y que fuesen cambiando
 Importantes
 - La correcta siempre sale la 1 @done
