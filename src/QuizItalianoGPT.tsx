@@ -57,7 +57,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
     const [showExplanation, setShowExplanation] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);        
     const [quizFinished, setQuizFinished] = useState(false);   
-    const [timer, setTimer] = useState(10);
+    const [timer, setTimer] = useState(30);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<(string | number | null)[]>([]);
     const [reviewMode, setReviewMode] = useState(false);
@@ -88,7 +88,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
                     if (prevTimer === 1) {
                         clearInterval(countdown);
                         handleAnswer(null);
-                        return 10;
+                        return 30;
                     }
                     return prevTimer - 1;
                 });
@@ -110,7 +110,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
         }        
         setSelectedAnswer(resposta);
         setShowExplanation(true);
-        setTimer(10);
+        setTimer(30);
         const newUserAnswers = [...userAnswers];
         newUserAnswers[currentQuestion] = resposta;
         setUserAnswers(newUserAnswers);
@@ -167,11 +167,11 @@ const QuizItaliano: React.FC<QuizParams> = ({
         const totalTime = endTime! - startTime!;
         return (
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-                <CardActions className="text-2xl font-bold text-center text-blue-800">Quiz Completato</CardActions>
+                <CardActions className="text-xl sm:text-2xl font-bold text-center text-blue-800">Quiz Completato</CardActions>
                 <CardContent>
-                    <p className="text-center text-xl font-semibold">Grazie, {name}!</p>
-                    <p className="text-center text-lg">Hai completato il quiz.</p>
-                    <p className="text-center text-lg">
+                    <p className="text-center text-lg sm:text-xl font-semibold">Grazie, {name}!</p>
+                    <p className="text-center text-base sm:text-lg">Hai completato il quiz.</p>
+                    <p className="text-center text-base sm:text-lg">
                         Punteggio: {score} su {questions.length}
                     </p>
                     <LinearProgress value={(score / questions.length) * 100} className="mt-4" />
@@ -209,7 +209,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
 
     return (
         <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">                        
-            <CardActions className="text-xl font-bold text-center text-blue-800">
+            <CardActions className="text-lg sm:text-xl font-bold text-center text-blue-800">
                 {reviewMode ? "Revisione" : `Domanda ${currentQuestion + 1} di ${questions.length}`}
             </CardActions>
             <CardContent>

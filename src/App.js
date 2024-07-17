@@ -18,8 +18,8 @@ function App() {
     mx: 'auto'
   };
   return (       
-      <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-      <CardHeader title="Quiz di Italiano v.2.0" className="text-2xl font-bold text-center text-blue-800 p-4" />      
+    <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100 text-sm sm:text-base">
+      <CardHeader title="Quiz di Italiano v.2.0" className="text-xl sm:text-2xl font-bold text-center text-blue-800 p-4" />      
       <CardContent sx={{ padding: 0 }}>
         <AppIniziale />     
       </CardContent>

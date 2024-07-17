@@ -101,7 +101,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     const [totalAnsweredQuestions, setTotalAnsweredQuestions] = useState(0);
     const [startTime, setStartTime] = useState<number | undefined>(undefined);
     const [endTime, setEndTime] = useState<number | undefined>(undefined);
-    const [timer, setTimer] = useState(30);
+    const [timer, setTimer] = useState(60);
     const [quizFinished, setQuizFinished] = useState(false);
     const [reviewMode, setReviewMode] = useState(false);
 
@@ -125,7 +125,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                     if (prevTimer === 1) {
                         clearInterval(countdown);
                         handleVerify();                        
-                        return 30;
+                        return 60;
                     }
                     return prevTimer - 1;
                 });
@@ -174,7 +174,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
             } else {
                 setShowResults(false);
                 //setUserAnswers({});
-                setTimer(30);
+                setTimer(60);
                 return nextIndex;
             }
         });
@@ -232,20 +232,20 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
         return (
             <div className={`inline-block mx-1 p-1 border-2 ${isCorrect ? 'border-green-500 bg-green-200' : isIncorrect ? 'border-red-500 bg-red-200' : 'border-gray-300'}`}>
                 {useDropdown ? (
-                    <FormControl>
+                    <FormControl size="small" className="min-w-0">
                         <Select
                             value={userAnswers[currentParagraph.id]?.[question.id] || ''}
                             onChange={(e) => handleInputChange(currentParagraph.id, question.id, e.target.value as string)}
                             displayEmpty
                             renderValue={(selected) => (
-                                <span className={selected ? 'font-bold' : ''}>
+                                <span className={`text-sm ${selected ? 'font-bold' : ''}`}>
                                     {selected || question.hint}
                                 </span>
                             )}
                         >
-                            <MenuItem value="" disabled>{question.hint}</MenuItem>
+                            <MenuItem value="" disabled className="text-sm">{question.hint}</MenuItem>
                             {question.options.map((option, index) => (
-                                <MenuItem key={index} value={option}>{option}</MenuItem>
+                                <MenuItem key={index} value={option} className="text-sm">{option}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>
@@ -255,7 +255,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                         value={userAnswers[currentParagraph.id]?.[question.id] || ''}
                         onChange={(e) => handleInputChange(currentParagraph.id, question.id, e.target.value)}
                         placeholder={question.hint}
-                        className={`w-32 ${isCorrect ? 'border-green-500' : isIncorrect ? 'border-red-500' : ''}`}
+                        className={`w-24 sm:w-32 text-sm ${isCorrect ? 'border-green-500' : isIncorrect ? 'border-red-500' : ''}`}
                     />
                 )}
             </div>
@@ -266,11 +266,11 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
         const totalTime = endTime! - startTime!;
         return (
             <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-                <CardHeader title="Quiz Completato" className="text-2xl font-bold text-center text-blue-800" />
-                <CardContent>
-                    <p className="text-center text-xl font-semibold">Grazie, {name}!</p>
-                    <p className="text-center text-lg">Hai completato il quiz.</p>
-                    <p className="text-center text-lg">
+                <CardHeader title="Quiz Completato" className="text-xl sm:text-2xl font-bold text-center text-blue-800" />
+                <CardContent className="p-2 sm:p-4">
+                    <p className="text-center text-lg sm:text-xl font-semibold">Grazie, {name}!</p>
+                    <p className="text-center text-base sm:text-lg">Hai completato il quiz.</p>
+                    <p className="text-center text-base sm:text-lg">
                         Punteggio: {score} su {totalAnsweredQuestions}
                     </p>
                     <LinearProgress variant="determinate" value={(score / totalAnsweredQuestions) * 100} className="mt-4" />
@@ -293,13 +293,20 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     if (quizFinished && reviewMode) {
         return (
             <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
-                <CardHeader title="Revisione delle Risposte" className="text-2xl font-bold text-center text-blue-800" />
-                <CardContent>
+                <CardHeader title="Revisione delle Risposte" className="text-xl sm:text-2xl font-bold text-center text-blue-800" />
+                <CardContent className="p-2 sm:p-4">
                     {paragraphs.map((paragraph, index) => {
                         const paragraphQuestions = questions.filter(q => q.paragraphId === paragraph.id);
                         return (
                             <div key={paragraph.id} className="mb-8">
-                                <h3 className="font-bold text-lg mb-2">Paragrafo {index + 1}</h3>
+                                <div className="flex flex-wrap items-baseline mb-2">
+                                    <h3 className="font-bold text-base sm:text-lg mr-2">
+                                        Paragrafo {index + 1}
+                                    </h3>
+                                    <span className="text-gray-600 text-xs sm:text-sm">
+                                        ({paragraph.id}) {paragraph.generated}
+                                    </span>
+                                </div>
                                 {renderReviewParagraph(paragraph, paragraphQuestions)}
                                 {paragraphQuestions.map(question => {
                                     const userAnswer = userAnswers[paragraph.id]?.[question.id];
@@ -333,7 +340,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
 
     return (
         <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">            
-            <CardContent>
+            <CardContent className="p-2 sm:p-4">
                 <div className="flex justify-between items-center mb-4">
                     <span className="font-semibold text-blue-800">Paragrafo {currentParagraphIndex + 1} di {numQuestions}</span>
                     <span className="font-semibold text-blue-800 flex items-center">
