@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/mi-proyecto-quiz/static/css/main.c65c1496.css",
-    "main.js": "/mi-proyecto-quiz/static/js/main.1a0a0942.js",
+    "main.css": "/mi-proyecto-quiz/static/css/main.392b2ddd.css",
+    "main.js": "/mi-proyecto-quiz/static/js/main.ea9b0b54.js",
     "static/js/453.248939de.chunk.js": "/mi-proyecto-quiz/static/js/453.248939de.chunk.js",
-    "static/media/logo.svg": "/mi-proyecto-quiz/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/mi-proyecto-quiz/index.html",
-    "main.c65c1496.css.map": "/mi-proyecto-quiz/static/css/main.c65c1496.css.map",
-    "main.1a0a0942.js.map": "/mi-proyecto-quiz/static/js/main.1a0a0942.js.map",
+    "main.392b2ddd.css.map": "/mi-proyecto-quiz/static/css/main.392b2ddd.css.map",
+    "main.ea9b0b54.js.map": "/mi-proyecto-quiz/static/js/main.ea9b0b54.js.map",
     "453.248939de.chunk.js.map": "/mi-proyecto-quiz/static/js/453.248939de.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c65c1496.css",
-    "static/js/main.1a0a0942.js"
+    "static/css/main.392b2ddd.css",
+    "static/js/main.ea9b0b54.js"
   ]
 }
