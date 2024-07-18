@@ -80,3 +80,7 @@ id,paragraphId,correct,options,hint,explanation,difficulty
 3,1,...
 
 Los parrafos quiero que sean de canciones y en la columna generated pon el nombre del grupo que la canta
+
+Google Firestore
+En cuevasmi he creado un proyecto. Estoy añadiendo las base de datos.
+En cloud Firestore (Firestore Database)

@@ -7,6 +7,7 @@ import { Card, CardContent, Input, Select, MenuItem, FormControl, InputLabel, Fo
 import { quoteCSV } from './questionMotiva.js';
 import CardHeader from '@mui/material/CardHeader';
 import ResponsiveCard from './ResponsiveCard';
+import QuizComponent from './firebaseReact.tsx';
 function App() {
   const cardStyle = {
     width: '100%',
@@ -21,7 +22,8 @@ function App() {
     <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100 text-sm sm:text-base">
       <CardHeader title="Quiz di Italiano v.2.0" className="text-xl sm:text-2xl font-bold text-center text-blue-800 p-4" />      
       <CardContent sx={{ padding: 0 }}>
-        <AppIniziale />     
+        <QuizComponent />
+        {/* <AppIniziale />             */}
       </CardContent>
       </ResponsiveCard>    
   );
