@@ -48,7 +48,7 @@ export const guardarRespuesta = async (respuesta: Respuesta): Promise<void> => {
             fecha: serverTimestamp() // Añade el campo `fecha` con el timestamp del servidor
         };
         await addDoc(collection(db, "respuestas"), respuestaConFecha);
-        console.log("Respuesta guardada");
+        console.log("Respuesta guardada:" + respuestaConFecha);
     } catch (e) {
         console.error("Error al guardar la respuesta: ", e);
         throw e;

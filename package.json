@@ -1,7 +1,7 @@
 {
   "homepage": "https://LHacuevas.github.io/mi-proyecto-quiz",
-  "name": "mi-proyecto-quiz",
-  "version": "0.1.0",
+  "name": "quizitaliano",
+  "version": "1.2",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -19,7 +19,7 @@
     "@testing-library/user-event": "^13.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "firebase": "^10.12.3",
+    "firebase": "^10.12.4",
     "lucide-react": "^0.407.0",
     "papaparse": "^5.4.1",
     "react": "^18.3.1",
@@ -35,7 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "env-cmd -f .env.local npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -59,6 +59,7 @@
   "devDependencies": {
     "@types/papaparse": "^5.3.14",
     "autoprefixer": "^10.4.19",
+    "env-cmd": "^10.1.0",
     "gh-pages": "^6.1.1",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.5"

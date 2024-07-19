@@ -14,6 +14,8 @@ import {
   Checkbox,
   Button,
   CardHeader,
+  Typography,
+  Box
 } from '@mui/material';
 import { quoteCSV } from './questionMotiva.js';
 import ResponsiveCard from './ResponsiveCard';
@@ -21,31 +23,167 @@ import ResponsiveCard from './ResponsiveCard';
 import { guardarUsuario } from './firebaseFunctions';
 import { Usuario } from './firebaseInterfaces';
 
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, User, UserCredential, signOut } from 'firebase/auth';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+
+// Asumimos que tienes una forma de obtener la versión del Git
+// Por ejemplo, podrías tenerla en una variable de entorno
+const VERSION = process.env.REACT_APP_GIT_VERSION || 'v2.1';
+
 const App: React.FC = () => {
-  const cardStyle = {
-    width: '100%',
-    maxWidth: {
-      xs: '100%',
-      sm: '600px',
-      md: '800px'
-    },
-    mx: 'auto',
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [isSignUp, setIsSignUp] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [nome, setNome] = useState<string>('');
+
+  const auth = getAuth();
+  const db = getFirestore();
+ 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        setNome(user.displayName || '');
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      // El estado del usuario se actualizará automáticamente a través del listener onAuthStateChanged
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+  };
+  const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      let userCredential: UserCredential;
+      if (isSignUp) {
+        userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      } else {
+        userCredential = await signInWithEmailAndPassword(auth, email, password);
+      }
+      const user = userCredential.user;
+      await setDoc(doc(db, 'users', user.uid), {
+        email: user.email,
+        nome: nome
+      });
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
-  return (
-    <ResponsiveCard className = "w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100 text-sm sm:text-base" >
-      <CardHeader title="Quiz di Italiano v.2.0" className = "text-xl sm:text-2xl font-bold text-center text-blue-800 p-4" />
-        <CardContent sx={ { padding: 0 } }>
-          <AppIniziale />
-  {/* <QuizComponent /> */ }
-  </CardContent>
+  const handlePhoneAuth = async () => {
+    if (!auth) {
+      console.error('Auth instance not available');
+      return;
+    }
+
+    try {
+      const recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {});
+      const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
+      console.log('SMS enviado', confirmationResult);
+    } catch (error) {
+      console.error('Error during phone authentication:', error);
+    }
+  };
+
+  const renderAuthForm = () => (
+    <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100 text-sm sm:text-base">
+      <CardHeader title="Autenticazione" className="text-xl sm:text-2xl font-bold text-center text-blue-800 p-4" />
+      <CardContent>
+        <form onSubmit={handleAuth}>
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            fullWidth
+            className="mb-4"
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            fullWidth
+            className="mb-4"
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth className="mb-2">
+            {isSignUp ? "Registrati" : "Accedi"}
+          </Button>
+          <Button onClick={() => setIsSignUp(!isSignUp)} variant="outlined" fullWidth>
+            {isSignUp ? "Hai già un account? Accedi" : "Non hai un account? Registrati"}
+          </Button>
+        </form>
+        {/* <div className="mt-4">
+          <Input
+            type="tel"
+            placeholder="Número de teléfono"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            fullWidth
+            className="mb-2"
+          />
+          <Button onClick={handlePhoneAuth} variant="contained" color="secondary" fullWidth>
+            Autenticar con teléfono
+          </Button>
+        </div> */}
+        <div id="recaptcha-container" className="mt-4"></div>
+      </CardContent>
     </ResponsiveCard>
   );
-};
 
-const AppIniziale: React.FC = () => {
+  return (
+    <div>
+      {user ? (
+        <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100 text-sm sm:text-base">
+          <CardHeader
+            title={
+              <Box display="flex" alignItems="center" justifyContent="space-between">
+                <Typography variant="h5" component="div">
+                  Quiz di Italiano {VERSION}
+                </Typography>
+                <Button
+                  onClick={handleLogout}
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                >
+                  Logout
+                </Button>
+              </Box>
+            }
+            className="text-xl sm:text-2xl font-bold text-center text-blue-800 p-4"
+          />
+          <CardContent sx={{ padding: 0 }}>            
+            <AppIniziale email={user?.email??''} />
+          </CardContent>
+        </ResponsiveCard>
+      ) : (
+        renderAuthForm()
+      )}
+    </div>
+  );
+};
+// Modificamos AppIniziale para recibir email como prop
+interface AppInizialeProps {
+  email: string;  
+}
+
+const AppIniziale: React.FC<AppInizialeProps> = ({ email }) => {
   const [nome, setNome] = useState<string>(() => {
-    return localStorage.getItem('nome') || 'EOI alumne';
+    return email;
   });
 
   const [soloOpzioni, setSoloOpzioni] = useState<boolean>(() => {
@@ -145,7 +283,8 @@ const AppIniziale: React.FC = () => {
   placeholder = "Inserisci il tuo nome"
   value = { nome }
   onChange = {(e) => setNome(e.target.value)}
-className = "mb-4 w-full"
+          className="mb-4 w-full"
+          disabled = { email != "" }
   />
   <FormControl className="mb-4 w-full" >
     <InputLabel>Seleziona il livello </InputLabel>
