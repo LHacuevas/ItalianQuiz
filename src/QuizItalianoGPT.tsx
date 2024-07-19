@@ -19,7 +19,7 @@ import QuizQuestion from './Question'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Usuario, Respuesta } from "./firebaseInterfaces";
-import { guardarRespuesta } from './firebaseFunctions';
+import { guardarRespuesta, fetchRespuestas } from './firebaseFunctions';
 //import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
 //import ResponsiveCard from './ResponsiveCard';
 const parseCSV = (csv: string): Question[] => {
@@ -65,8 +65,27 @@ const QuizItaliano: React.FC<QuizParams> = ({
     const [reviewMode, setReviewMode] = useState(false);
     const [startTime, setStartTime] = useState<number | undefined>(undefined);
     const [endTime, setEndTime] = useState<number | undefined>(undefined);     
-  
+    const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
+    const [preguntasQuedan, setPreguntasQuedan] = useState(0);
     useEffect(() => {
+        const loadRespuestas = async () => {
+            try {
+                const respuestasData = await fetchRespuestas(usuario?.id ?? 'sense');
+                setRespuestas(respuestasData);
+            } catch (error) {
+                console.error("Error al cargar respuestas:", error);
+            }
+        };
+        loadRespuestas();
+    }, [usuario]);
+
+    useEffect(() => {
+        let respuestasIds = [0];
+        if (respuestas.length > 0) {
+            // Filtrar las preguntas que ya han sido respondidas
+            respuestasIds = respuestas.map(r => r.idPregunta);            
+        }
+        
         const filteredQuestions = allQuestions.filter(q => {
             const difficultyMatch = q.difficulty === difficulty;
             // Si onlyOptionQuestions es true, excluir preguntas con Correct === -1
@@ -76,12 +95,15 @@ const QuizItaliano: React.FC<QuizParams> = ({
             //    (q.option1 === q.option2 || q.option1 === q.option3 || q.option2 === q.option3);
             //para las escritas
             //return q.correct === -1;
-            return difficultyMatch && typeMatch;  //&& !hasRepeatedOptions;
+            const jaContestada = respuestasIds.includes(q.id)
+            return difficultyMatch && typeMatch && !jaContestada;  //&& !hasRepeatedOptions;
         }).sort(() => 0.5 - Math.random());
+        console.log('Preguntas filtradas:', filteredQuestions.length, 'Preguntas respondidas:', respuestasIds.length)
+        setPreguntasQuedan(filteredQuestions.length)
         setQuestions(filteredQuestions.slice(0, numQuestions ?? 3));
         setStartTime(Date.now());
         setUserAnswers(new Array(filteredQuestions.length).fill(null));
-    }, [difficulty]);
+    }, [numQuestions, difficulty, respuestas]);
 
     useEffect(() => {
         if (!showExplanation && !quizFinished && !reviewMode) {
@@ -234,7 +256,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
     return (
         <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">                        
             <CardActions className="text-lg sm:text-xl font-bold text-center text-blue-800">
-                {reviewMode ? "Revisione" : `Domanda ${currentQuestion + 1} di ${questions.length}`}
+                {reviewMode ? "Revisione" : `Domanda ${currentQuestion + 1} di ${questions.length} [${preguntasQuedan}]`}
             </CardActions>
             <CardContent>
                 {!reviewMode && (

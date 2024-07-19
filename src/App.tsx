@@ -25,6 +25,7 @@ import { Usuario } from './firebaseInterfaces';
 
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, User, UserCredential, signOut } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import EstadisticasRespuestas from './components/estadisticas-respuestas-component';
 
 // Asumimos que tienes una forma de obtener la versión del Git
 // Por ejemplo, podrías tenerla en una variable de entorno
@@ -157,7 +158,7 @@ const App: React.FC = () => {
                 <Button
                   onClick={handleLogout}
                   variant="contained"
-                  color="secondary"
+                  color="warning"
                   size="small"
                 >
                   Logout
@@ -269,7 +270,9 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email }) => {
   if (componenteSelezionato === 'learning') {
     return <ItalianLearningApp numQuestions={ numDomande } name = { nome } onlyOptionQuestions = { soloOpzioni } difficulty = { livello } usuario = { usuario } />;
   }
-
+  if (componenteSelezionato === 'estad') {
+    return <EstadisticasRespuestas idUsuario={usuario?.id??'sense'} />;
+  }
   return (
     <Card className= "w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100" >
     <CardContent>
@@ -325,7 +328,10 @@ className = "mb-4"
       </Button>
       < Button onClick = {() => handleStart('learning')} className = "w-full bg-green-500 hover:bg-green-700 text-white" >
         Completamento del Testo
-          </Button>
+        </Button>
+        < Button onClick={() => handleStart('estad')} className="w-full bg-green-500 hover:bg-green-700 text-white" >
+          Statistiche
+        </Button>
           </CardContent>
           </Card>
   );

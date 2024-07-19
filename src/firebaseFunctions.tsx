@@ -35,7 +35,11 @@ export const guardarUsuario = async (nombreUsuario: string): Promise<Usuario> =>
         }
     } catch (e) {
         console.error("Error al buscar/crear usuario: ", e);
-        throw e;
+        //throw e;
+        return {
+            id: 'sense',
+            nombreUsuario: 'sense'
+         } as Usuario;
     }
 };
 
@@ -51,7 +55,7 @@ export const guardarRespuesta = async (respuesta: Respuesta): Promise<void> => {
         console.log("Respuesta guardada:" + respuestaConFecha);
     } catch (e) {
         console.error("Error al guardar la respuesta: ", e);
-        throw e;
+        //throw e;
     }
 };
 
@@ -61,4 +65,13 @@ const formatDate = (timestamp: Timestamp | null | undefined) => {
         return timestamp.toDate().toLocaleString();
     }
     return 'Fecha no disponible';
+};
+
+export const fetchRespuestas = async (idUsuario: string): Promise<Respuesta[]> => {
+    const respuestasRef = collection(db, 'respuestas');
+    const q = query(respuestasRef, where('idUsuario', '==', idUsuario));
+    const querySnapshot = await getDocs(q);
+    const respuestasData = querySnapshot.docs.map(doc => doc.data() as Respuesta);
+    console.log("respuestas leidas: " + respuestasData.length);
+    return respuestasData;
 };
