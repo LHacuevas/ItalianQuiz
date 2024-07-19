@@ -18,6 +18,8 @@ import { Question, QuizParams } from './MyTypes.js'
 import QuizQuestion from './Question'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { Usuario, Respuesta } from "./firebaseInterfaces";
+import { guardarRespuesta } from './firebaseFunctions';
 //import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
 //import ResponsiveCard from './ResponsiveCard';
 const parseCSV = (csv: string): Question[] => {
@@ -49,9 +51,9 @@ const QuizItaliano: React.FC<QuizParams> = ({
     numQuestions = 3,
     name = 'anonymous',
     onlyOptionQuestions = false,
-    difficulty = 'B1'
-}) => {    
-    
+    difficulty = 'B1',
+    usuario = null
+}) => {        
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [showExplanation, setShowExplanation] = useState(false);
@@ -96,18 +98,40 @@ const QuizItaliano: React.FC<QuizParams> = ({
             return () => clearInterval(countdown);
         }
     }, [showExplanation, quizFinished, reviewMode, currentQuestion, questions]);
-    
+    const getTextOption = (respNum: Number) => {
+        if (respNum === 0) {
+            return questions[currentQuestion].option1;
+        } else if (respNum === 1) {
+            return questions[currentQuestion].option2;
+        } else if (respNum === 2) {
+            return questions[currentQuestion].option3;
+        } else {
+            return "Invalid response number";
+        }
+    };
     const handleAnswer = (resposta: string | number | null) => {             
         //const boAcierto = Number(questions[currentQuestion].correct) !== -1 ? index == Number(questions[currentQuestion].correct) : index === 1
         let boAcierto = false;
+        let textoRespondido = '';        
         if (Number(questions[currentQuestion].correct) === -1) {
             if (typeof resposta === 'string') {
                 boAcierto = (resposta?.toLowerCase() === questions[currentQuestion].option1.toLowerCase())
+                textoRespondido = resposta;
             }
         } else
         {
             boAcierto = (Number(resposta) == Number(questions[currentQuestion].correct)   )              
-        }        
+            textoRespondido = getTextOption(Number(resposta))
+        }            
+            const respuesta: Respuesta = {
+                idUsuario: usuario?.id??'sense',
+                tipoPregunta: 'MC',
+                idPregunta: Number(questions[currentQuestion].id),
+                respuesta: textoRespondido,
+                correcta: boAcierto                 
+            };
+            guardarRespuesta(respuesta);
+        
         setSelectedAnswer(resposta);
         setShowExplanation(true);
         setTimer(30);

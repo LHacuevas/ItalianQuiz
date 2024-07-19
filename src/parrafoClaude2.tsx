@@ -18,7 +18,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { Paragraph, ParagraphQuestion, QuizParams } from './MyTypes.js';
 import { paragraphsCSV, paragraphsQuestionsCSV } from './questionParrafo.js';
 import ResponsiveCard from './ResponsiveCard';
-
+import { Usuario, Respuesta } from "./firebaseInterfaces";
+import { guardarRespuesta } from './firebaseFunctions';
 const paragraphParseCSV = (csv: string): Paragraph[] => {
     const lines = csv.trim().split('\n');
     const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
@@ -87,7 +88,8 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     numQuestions = 3,
     name = 'anonymous',
     onlyOptionQuestions = false,
-    difficulty = 'B1'
+    difficulty = 'B1',
+    usuario = null
 }) => {
     const [paragraphs, setParagraphs] = useState<Paragraph[]>([]);
     const [questions, setQuestions] = useState<ParagraphQuestion[]>([]);
@@ -148,12 +150,26 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     };
     
     const handleVerify = () => {
-        let correctAnswers = 0;
-        currentQuestions.forEach(question => {
-            if (userAnswers[currentParagraph.id]?.[question.id] === question.correct) {
+        let correctAnswers = 0;                
+        const respuesta: Respuesta = {
+            idUsuario: usuario?.id??'sense',
+            tipoPregunta: 'PR',
+            idPregunta: Number(currentParagraph.id),
+            idSubPregunta: 0,
+            respuesta: "",
+            correcta: false
+        };                
+        currentQuestions.forEach(question => {            
+            let resposta = userAnswers[currentParagraph.id]?.[question.id]
+            respuesta.respuesta = resposta;
+            respuesta.idSubPregunta = question.id
+            if (resposta === question.correct) {
                 correctAnswers++;
-            }
-        });
+                respuesta.correcta = true;
+            } else respuesta.correcta = false;                
+            guardarRespuesta(respuesta);
+        });        
+        
         setScore(prevScore => prevScore + correctAnswers);
         setTotalAnsweredQuestions(prev => prev + currentQuestions.length);
         setShowResults(true);

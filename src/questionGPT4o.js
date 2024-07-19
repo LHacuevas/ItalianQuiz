@@ -359,167 +359,167 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 418,Cosa significa "avere le mani in pasta"?,Essere un cuoco,Essere coinvolti in un affare,Essere sporchi,1,"'Avere le mani in pasta' significa essere coinvolti o avere un ruolo attivo in un affare o in una situazione.",B1,Espressioni idiomatiche
 419,Qual è il significato dell'espressione "essere al verde"?,"squattrinato",,,"-1","'Essere al verde' significa essere senza soldi, squattrinato.",A2,Espressioni idiomatiche
 420,Quale sport si pratica su una pista di ghiaccio?,Pattinaggio,Nuoto,Ciclismo,0,"Il pattinaggio si pratica su una pista di ghiaccio. Il ghiaccio è essenziale per questo sport, che richiede una superficie liscia e scivolosa.",B1,sport
-421,Come si chiama l'attrezzo principale usato nel tennis?,-1,racchetta,,,La racchetta è lo strumento fondamentale per colpire la palla nel tennis.,B1,sport
+421,Come si chiama l'attrezzo principale usato nel tennis?,racchetta,,,-1,La racchetta è lo strumento fondamentale per colpire la palla nel tennis.,B1,sport
 422,Quale di questi non è uno sport acquatico?,Nuoto,Vela,Pallavolo,2,"La pallavolo non è uno sport acquatico, ma si gioca generalmente su un campo di sabbia o in palestra.",B1,sport
-423,Qual è il nome del periodo di riposo tra due tempi in una partita di calcio?,-1,intervallo,,,L'intervallo è il periodo di riposo tra i due tempi di una partita di calcio, solitamente della durata di 15 minuti.,B1,sport
+423,Qual è il nome del periodo di riposo tra due tempi in una partita di calcio?,intervallo,,,-1,L'intervallo è il periodo di riposo tra i due tempi di una partita di calcio, solitamente della durata di 15 minuti.,B1,sport
 424,In quale sport si usa il termine "ace"?,Tennis,Calcio,Basket,0,"Nel tennis, un 'ace' è un servizio vincente che l'avversario non riesce a toccare.",B2,sport
-425,Come si chiama la borsa dove si tengono i club nel golf?,-1,sacca,,,La sacca è la borsa speciale utilizzata dai golfisti per trasportare i loro club durante il gioco.,B2,sport
+425,Come si chiama la borsa dove si tengono i club nel golf?,sacca,,,-1,La sacca è la borsa speciale utilizzata dai golfisti per trasportare i loro club durante il gioco.,B2,sport
 426,Quale di questi non è un tipo di alloggio per le vacanze?,Hotel,Campeggio,Autostrada,2,"L'autostrada non è un tipo di alloggio, ma una via di comunicazione per veicoli.",B1,vacaciones
-427,Come si chiama il documento necessario per viaggiare all'estero?,-1,passaporto,,,Il passaporto è il documento ufficiale che permette di viaggiare all'estero e identifica il cittadino.,B1,vacaciones
+427,Come si chiama il documento necessario per viaggiare all'estero?,passaporto,,,-1,Il passaporto è il documento ufficiale che permette di viaggiare all'estero e identifica il cittadino.,B1,vacaciones
 428,Quale di queste non è una tipica attività da spiaggia?,Nuotare,Prendere il sole,Sciare,2,"Sciare non è un'attività da spiaggia, ma si pratica in montagna durante l'inverno.",B1,vacaciones
-429,Qual è il termine italiano per "vacanza"?,-1,ferie,,,In italiano, il termine 'ferie' si usa comunemente per indicare un periodo di vacanza dal lavoro.,B1,vacaciones
+429,Qual è il termine italiano per "vacanza"?,ferie,,,-1,In italiano, il termine 'ferie' si usa comunemente per indicare un periodo di vacanza dal lavoro.,B1,vacaciones
 430,Quale sport olimpico coinvolge l'uso di una stecca?,Biliardo,Scherma,Hockey su ghiaccio,2,"L'hockey su ghiaccio è uno sport olimpico in cui i giocatori usano una stecca per colpire il disco. Il biliardo non è uno sport olimpico, e la scherma usa spade, non stecche.",B2,sport
-431,Come si chiama l'area dove i giocatori di calcio si riscaldano prima di entrare in campo?,-1,panchina,,,La panchina è l'area a bordo campo dove i giocatori di riserva e l'allenatore siedono durante la partita e dove i giocatori si riscaldano.,B1,sport
+431,Come si chiama l'area dove i giocatori di calcio si riscaldano prima di entrare in campo?,panchina,,,-1,La panchina è l'area a bordo campo dove i giocatori di riserva e l'allenatore siedono durante la partita e dove i giocatori si riscaldano.,B1,sport
 432,In quale sport si usa il termine "smash"?,Pallavolo,Nuoto,Ciclismo,0,"Lo 'smash' è un colpo potente usato nella pallavolo per schiacciare la palla nel campo avversario.",B2,sport
-433,Come si chiama il campo da gioco nel tennis?,-1,campo,,,Il campo da tennis è l'area rettangolare dove si svolge il gioco, delimitata da linee e divisa da una rete.,B1,sport
+433,Come si chiama il campo da gioco nel tennis?,campo,,,-1,Il campo da tennis è l'area rettangolare dove si svolge il gioco, delimitata da linee e divisa da una rete.,B1,sport
 434,Quale di questi non è un tipo di vacanza?,Crociera,Campeggio,Laboratorio,2,"Il laboratorio non è un tipo di vacanza, ma un luogo di lavoro o studio.",B1,vacaciones
-435,Come si chiama la valigia rigida usata spesso per i viaggi in aereo?,-1,trolley,,,Il trolley è una valigia rigida con ruote, spesso usata per i viaggi in aereo per la sua praticità e resistenza.,B2,vacaciones
+435,Come si chiama la valigia rigida usata spesso per i viaggi in aereo?,trolley,,,-1,Il trolley è una valigia rigida con ruote, spesso usata per i viaggi in aereo per la sua praticità e resistenza.,B2,vacaciones
 436,Quale sport si pratica in un velodromo?,Ciclismo,Corsa,Nuoto,0,"Il ciclismo su pista si pratica in un velodromo, una pista ovale con curve sopraelevate.",B2,sport
-437,Come si chiama l'azione di colpire la palla con la testa nel calcio?,-1,colpo di testa,,,Il colpo di testa è l'azione di colpire la palla con la fronte nel calcio, spesso usato per segnare o passare.,B1,sport
+437,Come si chiama l'azione di colpire la palla con la testa nel calcio?,colpo di testa,,,-1,Il colpo di testa è l'azione di colpire la palla con la fronte nel calcio, spesso usato per segnare o passare.,B1,sport
 438,Quale di questi non è un tipo di alloggio in campeggio?,Tenda,Camper,Sottomarino,2,"Il sottomarino non è un tipo di alloggio in campeggio, ma un veicolo subacqueo.",B1,vacaciones
-439,Come si chiama il documento che attesta la prenotazione di un volo?,-1,biglietto,,,Il biglietto aereo è il documento che conferma la prenotazione di un posto su un volo.,B1,vacaciones
+439,Come si chiama il documento che attesta la prenotazione di un volo?,biglietto,,,-1,Il biglietto aereo è il documento che conferma la prenotazione di un posto su un volo.,B1,vacaciones
 440,In quale sport si usa il termine "dribbling"?,Calcio,Nuoto,Tennis,0,"Il dribbling è una tecnica usata principalmente nel calcio per superare un avversario mantenendo il controllo della palla.",B1,sport
-441,Come si chiama l'area delimitata dove si effettuano i tiri liberi nel basket?,-1,lunetta,,,La lunetta è l'area semicircolare davanti al canestro da cui si effettuano i tiri liberi nel basket.,B2,sport
+441,Come si chiama l'area delimitata dove si effettuano i tiri liberi nel basket?,lunetta,,,-1,La lunetta è l'area semicircolare davanti al canestro da cui si effettuano i tiri liberi nel basket.,B2,sport
 442,Quale di questi non è un tipo di vacanza attiva?,Sci,Trekking,Sonno,2,"Il sonno non è un tipo di vacanza attiva, ma uno stato di riposo.",B1,vacaciones
-443,Come si chiama il periodo di riposo dal lavoro?,-1,ferie,,,Le ferie sono il periodo di riposo dal lavoro, generalmente retribuito, a cui hanno diritto i lavoratori.,B1,vacaciones
+443,Come si chiama il periodo di riposo dal lavoro?,ferie,,,-1,Le ferie sono il periodo di riposo dal lavoro, generalmente retribuito, a cui hanno diritto i lavoratori.,B1,vacaciones
 444,Quale sport si pratica su una tavola con le ruote?,Surf,Snowboard,Skateboard,2,"Lo skateboard si pratica su una tavola con ruote, a differenza del surf (acqua) e dello snowboard (neve).",B1,sport
-445,Come si chiama l'azione di lanciare la palla nel basket?,-1,tiro,,,Il tiro è l'azione di lanciare la palla verso il canestro nel basket, con l'obiettivo di segnare punti.,B1,sport
+445,Come si chiama l'azione di lanciare la palla nel basket?,tiro,,,-1,Il tiro è l'azione di lanciare la palla verso il canestro nel basket, con l'obiettivo di segnare punti.,B1,sport
 446,Quale di questi non è un tipo di sistemazione in montagna?,Rifugio,Chalet,Igloo,2,"L'igloo non è una tipica sistemazione in montagna, ma una struttura di ghiaccio usata dagli Inuit.",B2,vacaciones
-447,Come si chiama il documento che elenca i beni trasportati su una nave?,-1,manifesto,,,Il manifesto di carico è il documento che elenca tutti i beni trasportati su una nave.,B2,vacaciones
+447,Come si chiama il documento che elenca i beni trasportati su una nave?,manifesto,,,-1,Il manifesto di carico è il documento che elenca tutti i beni trasportati su una nave.,B2,vacaciones
 448,In quale sport si usa il termine "fuorigioco"?,Calcio,Tennis,Nuoto,0,"Il fuorigioco è una regola del calcio che impedisce ai giocatori di ricevere la palla in determinate posizioni.",B1,sport
-449,Come si chiama l'attrezzo usato per colpire la palla nel golf?,-1,mazza,,,La mazza, o club, è l'attrezzo utilizzato nel golf per colpire la palla e farla entrare nelle buche.,B1,sport
+449,Come si chiama l'attrezzo usato per colpire la palla nel golf?,mazza,,,-1,La mazza, o club, è l'attrezzo utilizzato nel golf per colpire la palla e farla entrare nelle buche.,B1,sport
 450,Quale di questi non è un tipo di vacanza al mare?,Crociera,Immersione,Alpinismo,2,"L'alpinismo non è un tipo di vacanza al mare, ma un'attività praticata in montagna.",B1,vacaciones
-451,Come si chiama il periodo di tempo trascorso in un luogo per vacanza?,-1,soggiorno,,,Il soggiorno è il periodo di tempo trascorso in un luogo per vacanza o per altri motivi.,B1,vacaciones
+451,Come si chiama il periodo di tempo trascorso in un luogo per vacanza?,soggiorno,,,-1,Il soggiorno è il periodo di tempo trascorso in un luogo per vacanza o per altri motivi.,B1,vacaciones
 452,In quale sport si usa il termine "rovescio"?,Tennis,Nuoto,Ciclismo,0,"Il rovescio è un colpo fondamentale nel tennis, eseguito colpendo la palla dal lato opposto a quello del braccio dominante.",B2,sport
-453,Come si chiama l'area di partenza in una gara di sci?,-1,cancelletto,,,Il cancelletto è l'area di partenza in una gara di sci, da cui gli atleti iniziano la loro discesa.,B2,sport
+453,Come si chiama l'area di partenza in una gara di sci?,cancelletto,,,-1,Il cancelletto è l'area di partenza in una gara di sci, da cui gli atleti iniziano la loro discesa.,B2,sport
 454,Quale di questi non è un tipo di vacanza culturale?,Visita a musei,Tour archeologico,Discoteca,2,"La discoteca non è tipicamente considerata una vacanza culturale, ma piuttosto un'attività di svago notturno.",B1,vacaciones
-455,Come si chiama il documento che certifica l'idoneità alla guida?,-1,patente,,,La patente di guida è il documento ufficiale che certifica l'idoneità di una persona a guidare veicoli.,B1,vacaciones
+455,Come si chiama il documento che certifica l'idoneità alla guida?,patente,,,-1,La patente di guida è il documento ufficiale che certifica l'idoneità di una persona a guidare veicoli.,B1,vacaciones
 456,Quale sport si pratica in un velodromo?,Ciclismo,Atletica,Nuoto,0,"Il ciclismo su pista si pratica in un velodromo, una struttura con una pista ovale inclinata.",B2,sport
-457,Come si chiama l'azione di passare la palla a un compagno di squadra?,-1,passaggio,,,Il passaggio è l'azione di inviare la palla a un compagno di squadra in molti sport di squadra.,B1,sport
+457,Come si chiama l'azione di passare la palla a un compagno di squadra?,passaggio,,,-1,Il passaggio è l'azione di inviare la palla a un compagno di squadra in molti sport di squadra.,B1,sport
 458,Quale di questi non è un tipo di alloggio per le vacanze?,Bungalow,Villa,Ufficio,2,"L'ufficio non è un tipo di alloggio per le vacanze, ma un luogo di lavoro.",B1,vacaciones
-459,Come si chiama il documento che attesta l'assicurazione di viaggio?,-1,polizza,,,La polizza è il documento che attesta la copertura assicurativa per un viaggio.,B2,vacaciones
+459,Come si chiama il documento che attesta l'assicurazione di viaggio?,polizza,,,-1,La polizza è il documento che attesta la copertura assicurativa per un viaggio.,B2,vacaciones
 460,In quale sport si usa il termine "hole in one"?,Golf,Basket,Calcio,0,"'Hole in one' nel golf indica quando la palla entra in buca con un solo colpo, un evento raro e celebrato.",B2,sport
-461,Come si chiama l'area dove si posiziona il portiere nel calcio?,-1,porta,,,La porta è l'area delimitata da pali e traversa dove il portiere difende nel calcio.,B1,sport
+461,Come si chiama l'area dove si posiziona il portiere nel calcio?,porta,,,-1,La porta è l'area delimitata da pali e traversa dove il portiere difende nel calcio.,B1,sport
 462,Quale di questi non è un tipo di vacanza avventurosa?,Safari,Rafting,Lettura,2,"La lettura non è tipicamente considerata una vacanza avventurosa, ma piuttosto un'attività rilassante.",B1,vacaciones
-463,Come si chiama il periodo di riposo tra le stagioni sportive?,-1,pausa,,,La pausa è il periodo di riposo tra una stagione sportiva e l'altra, spesso chiamata "off-season".,B2,sport
+463,Come si chiama il periodo di riposo tra le stagioni sportive?,pausa,,,-1,La pausa è il periodo di riposo tra una stagione sportiva e l'altra, spesso chiamata "off-season".,B2,sport
 464,In quale sport si usa il termine "strike"?,Bowling,Nuoto,Ciclismo,0,"Nello sport del bowling, uno 'strike' si verifica quando tutti i birilli vengono abbattuti con il primo tiro.",B2,sport
-465,Come si chiama l'attrezzo usato per colpire la palla nel cricket?,-1,mazza,,,La mazza è l'attrezzo principale usato nel cricket per colpire la palla lanciata dall'avversario.,B2,sport
+465,Come si chiama l'attrezzo usato per colpire la palla nel cricket?,mazza,,,-1,La mazza è l'attrezzo principale usato nel cricket per colpire la palla lanciata dall'avversario.,B2,sport
 466,Quale di questi non è un tipo di vacanza benessere?,Spa,Yoga retreat,Parco divertimenti,2,"Il parco divertimenti non è tipicamente considerato una vacanza benessere, ma piuttosto di divertimento.",B1,vacaciones
-467,Come si chiama il documento che permette di entrare in un paese straniero?,-1,visto,,,Il visto è il documento che autorizza l'ingresso e il soggiorno temporaneo in un paese straniero.,B2,vacaciones
+467,Come si chiama il documento che permette di entrare in un paese straniero?,visto,,,-1,Il visto è il documento che autorizza l'ingresso e il soggiorno temporaneo in un paese straniero.,B2,vacaciones
 468,Quale sport si pratica su una tavola con una vela?,Windsurf,Sci nautico,Canottaggio,0,"Il windsurf si pratica su una tavola dotata di vela, combinando elementi della vela e del surf.",B2,sport
-469,Come si chiama l'azione di fermare la palla nel calcio?,-1,stop,,,Lo stop è l'azione di controllare e fermare la palla nel calcio, spesso come primo tocco.,B1,sport
+469,Come si chiama l'azione di fermare la palla nel calcio?,stop,,,-1,Lo stop è l'azione di controllare e fermare la palla nel calcio, spesso come primo tocco.,B1,sport
 470,Quale di questi non è un tipo di vacanza invernale?,Sci,Snowboard,Snorkeling,2,"Lo snorkeling non è una tipica attività invernale, ma si pratica in acque calde e poco profonde.",B1,vacaciones
-471,Come si chiama il periodo di prova gratuito in un hotel?,-1,pernottamento,,,Il pernottamento è il termine usato per indicare il soggiorno di una notte in un hotel o altra struttura.,B2,vacaciones
+471,Come si chiama il periodo di prova gratuito in un hotel?,pernottamento,,,-1,Il pernottamento è il termine usato per indicare il soggiorno di una notte in un hotel o altra struttura.,B2,vacaciones
 472,In quale sport si usa il termine "home run"?,Baseball,Calcio,Tennis,0,"Nel baseball, un 'home run' si verifica quando un battitore colpisce la palla oltre il campo, segnando un punto.",B2,sport
-473,Come si chiama l'area dove i giocatori si preparano prima di una partita?,-1,spogliatoio,,,Lo spogliatoio è l'area dove i giocatori si cambiano e si preparano prima e dopo una partita.,B1,sport
+473,Come si chiama l'area dove i giocatori si preparano prima di una partita?,spogliatoio,,,-1,Lo spogliatoio è l'area dove i giocatori si cambiano e si preparano prima e dopo una partita.,B1,sport
 474,Quale di questi non è un tipo di vacanza gastronomica?,Tour del vino,Corso di cucina,Maratona,2,"La maratona non è un tipo di vacanza gastronomica, ma un evento sportivo di corsa su lunga distanza.",B1,vacaciones
-475,Come si chiama il documento che elenca i servizi inclusi in un pacchetto vacanza?,-1,voucher,,,Il voucher è il documento che elenca e conferma i servizi inclusi in un pacchetto vacanza.,B2,vacaciones
+475,Come si chiama il documento che elenca i servizi inclusi in un pacchetto vacanza?,voucher,,,-1,Il voucher è il documento che elenca e conferma i servizi inclusi in un pacchetto vacanza.,B2,vacaciones
 476,In quale sport si usa il termine "birdie"?,Golf,Tennis,Nuoto,0,"Nel golf, un 'birdie' si verifica quando un giocatore completa una buca con un colpo in meno rispetto al par.",B2,sport
-477,Come si chiama l'attrezzo usato per colpire la palla nel baseball?,-1,mazza,,,La mazza è l'attrezzo principale usato nel baseball per colpire la palla lanciata dal pitcher.,B1,sport
+477,Come si chiama l'attrezzo usato per colpire la palla nel baseball?,mazza,,,-1,La mazza è l'attrezzo principale usato nel baseball per colpire la palla lanciata dal pitcher.,B1,sport
 478,Quale di questi non è un tipo di vacanza ecologica?,Agriturismo,Ecovillaggio,Centro commerciale,2,"Il centro commerciale non è un tipo di vacanza ecologica, ma una struttura per lo shopping.",B1,vacaciones
-479,Come si chiama il periodo di tempo concesso per visitare un paese senza visto?,-1,franchigia,,,La franchigia è il periodo di tempo in cui è permesso visitare un paese senza necessità di visto.,B2,vacaciones
+479,Come si chiama il periodo di tempo concesso per visitare un paese senza visto?,franchigia,,,-1,La franchigia è il periodo di tempo in cui è permesso visitare un paese senza necessità di visto.,B2,vacaciones
 480,Quale sport si pratica con una racchetta e un volano?,Badminton,Ping pong,Squash,0,"Il badminton si gioca con una racchetta leggera e un volano, un proiettile con una base di sughero e piume.",B2,sport
-481,Come si chiama l'azione di lanciare la palla nel baseball?,-1,lancio,,,Il lancio è l'azione di tirare la palla verso il battitore nel baseball, eseguita dal lanciatore o pitcher.,B1,sport
+481,Come si chiama l'azione di lanciare la palla nel baseball?,lancio,,,-1,Il lancio è l'azione di tirare la palla verso il battitore nel baseball, eseguita dal lanciatore o pitcher.,B1,sport
 482,Quale di questi non è un tipo di vacanza educativa?,Scambio linguistico,Campo archeologico,Parco acquatico,2,"Il parco acquatico non è tipicamente considerato una vacanza educativa, ma piuttosto di divertimento.",B1,vacaciones
-483,Come si chiama il documento che certifica la vaccinazione per i viaggi internazionali?,-1,certificato,,,Il certificato di vaccinazione è il documento che attesta le vaccinazioni ricevute, necessario per alcuni viaggi internazionali.,B2,vacaciones
+483,Come si chiama il documento che certifica la vaccinazione per i viaggi internazionali?,certificato,,,-1,Il certificato di vaccinazione è il documento che attesta le vaccinazioni ricevute, necessario per alcuni viaggi internazionali.,B2,vacaciones
 484,In quale sport si usa il termine "doppio fallo"?,Tennis,Calcio,Nuoto,0,"Nel tennis, un 'doppio fallo' si verifica quando un giocatore commette due errori consecutivi durante il servizio.",B2,sport
-485,Come si chiama l'area dove si effettuano i tiri liberi nel basket?,-1,lunetta,,,La lunetta è l'area semicircolare davanti al canestro da cui si effettuano i tiri liberi nel basket.,B2,sport
+485,Come si chiama l'area dove si effettuano i tiri liberi nel basket?,lunetta,,,-1,La lunetta è l'area semicircolare davanti al canestro da cui si effettuano i tiri liberi nel basket.,B2,sport
 486,Quale di questi non è un tipo di vacanza romantica?,Luna di miele,Weekend in spa,Campeggio estremo,2,"Il campeggio estremo non è tipicamente considerato una vacanza romantica, ma piuttosto un'avventura.",B1,vacaciones
-487,Come si chiama il periodo di tempo concesso per cambiare o restituire un prodotto acquistato?,-1,recesso,,,Il diritto di recesso è il periodo di tempo concesso per cambiare idea su un acquisto e restituire il prodotto.,B2,vacaciones
+487,Come si chiama il periodo di tempo concesso per cambiare o restituire un prodotto acquistato?,recesso,,,-1,Il diritto di recesso è il periodo di tempo concesso per cambiare idea su un acquisto e restituire il prodotto.,B2,vacaciones
 488,Quale sport si pratica su una tavola con le onde?,Surf,Sci,Pattinaggio,0,"Il surf si pratica su una tavola, cavalcando le onde del mare.",B1,sport
-489,Come si chiama l'azione di bloccare un tiro nel calcio?,-1,parata,,,La parata è l'azione del portiere di bloccare o deviare un tiro verso la porta nel calcio.,B1,sport
+489,Come si chiama l'azione di bloccare un tiro nel calcio?,parata,,,-1,La parata è l'azione del portiere di bloccare o deviare un tiro verso la porta nel calcio.,B1,sport
 490,Quale di questi non è un tipo di vacanza per single?,Crociera per single,Speed dating vacation,Viaggio di nozze,2,"Il viaggio di nozze non è un tipo di vacanza per single, ma per coppie appena sposate.",B2,vacaciones
-491,Come si chiama il documento che attesta la prenotazione di un hotel?,-1,voucher,,,Il voucher è il documento che conferma la prenotazione e i dettagli del soggiorno in un hotel.,B1,vacaciones
+491,Come si chiama il documento che attesta la prenotazione di un hotel?,voucher,,,-1,Il voucher è il documento che conferma la prenotazione e i dettagli del soggiorno in un hotel.,B1,vacaciones
 492,In quale sport si usa il termine "hat-trick"?,Calcio,Tennis,Nuoto,0,"Nel calcio, un 'hat-trick' si verifica quando un giocatore segna tre gol nella stessa partita.",B2,sport
-493,Come si chiama l'attrezzo usato per colpire la palla nel ping pong?,-1,racchetta,,,La racchetta è l'attrezzo utilizzato nel ping pong (o tennis da tavolo) per colpire la pallina.,B1,sport
+493,Come si chiama l'attrezzo usato per colpire la palla nel ping pong?,racchetta,,,-1,La racchetta è l'attrezzo utilizzato nel ping pong (o tennis da tavolo) per colpire la pallina.,B1,sport
 494,Quale di questi non è un tipo di vacanza avventurosa?,Bungee jumping,Parapendio,Crociera di lusso,2,"La crociera di lusso non è tipicamente considerata una vacanza avventurosa, ma piuttosto di relax e comfort.",B1,vacaciones
-495,Come si chiama il periodo di tempo in cui un prodotto turistico è più economico?,-1,bassa stagione,,,La bassa stagione è il periodo dell'anno in cui i prezzi dei servizi turistici sono più bassi per minore domanda.,B2,vacaciones
+495,Come si chiama il periodo di tempo in cui un prodotto turistico è più economico?,bassa stagione,,,-1,La bassa stagione è il periodo dell'anno in cui i prezzi dei servizi turistici sono più bassi per minore domanda.,B2,vacaciones
 496,In quale sport si usa il termine "ko tecnico"?,Boxe,Scacchi,Golf,0,"Nel pugilato, il 'ko tecnico' (knockout tecnico) si verifica quando l'arbitro ferma l'incontro per proteggere un pugile.",B2,sport
-497,Come si chiama l'area dove si posizionano i giocatori di riserva nel calcio?,-1,panchina,,,La panchina è l'area a bordo campo dove siedono i giocatori di riserva e lo staff tecnico durante una partita di calcio.,B1,sport
+497,Come si chiama l'area dove si posizionano i giocatori di riserva nel calcio?,panchina,,,-1,La panchina è l'area a bordo campo dove siedono i giocatori di riserva e lo staff tecnico durante una partita di calcio.,B1,sport
 498,Quale di questi non è un tipo di vacanza culturale?,Tour dei musei,Visita archeologica,Gara di surf,2,"La gara di surf non è tipicamente considerata una vacanza culturale, ma piuttosto sportiva.",B1,vacaciones
-499,Come si chiama il documento che elenca le regole di comportamento in un hotel?,-1,regolamento,,,Il regolamento è il documento che elenca le norme di comportamento e le regole da seguire durante il soggiorno in un hotel.,B2,vacaciones
+499,Come si chiama il documento che elenca le regole di comportamento in un hotel?,regolamento,,,-1,Il regolamento è il documento che elenca le norme di comportamento e le regole da seguire durante il soggiorno in un hotel.,B2,vacaciones
 500,Quale sport si pratica con una mazza e una palla dura?,Cricket,Nuoto,Pallavolo,0,"Il cricket si gioca con una mazza di legno e una palla dura, tipicamente in paesi del Commonwealth.",B2,sport
-501,Come si chiama l'azione di colpire la palla con la testa nel calcio?,-1,colpo di testa,,,Il colpo di testa è l'azione di colpire la palla con la fronte nel calcio, spesso usato per segnare o passare.,B1,sport
+501,Come si chiama l'azione di colpire la palla con la testa nel calcio?,colpo di testa,,,-1,Il colpo di testa è l'azione di colpire la palla con la fronte nel calcio, spesso usato per segnare o passare.,B1,sport
 502,Quale di questi non è un tipo di vacanza relax?,Spa retreat,Yoga holiday,Maratona cittadina,2,"La maratona cittadina non è un tipo di vacanza relax, ma un evento sportivo impegnativo.",B1,vacaciones
-503,Come si chiama il periodo di tempo in cui un hotel è completamente prenotato?,-1,alta stagione,,,L'alta stagione è il periodo dell'anno in cui c'è maggiore richiesta e le strutture turistiche sono spesso al completo.,B2,vacaciones
+503,Come si chiama il periodo di tempo in cui un hotel è completamente prenotato?,alta stagione,,,-1,L'alta stagione è il periodo dell'anno in cui c'è maggiore richiesta e le strutture turistiche sono spesso al completo.,B2,vacaciones
 504,In quale sport si usa il termine "ace"?,Tennis,Calcio,Nuoto,0,"Nel tennis, un 'ace' è un servizio vincente che l'avversario non riesce a toccare.",B2,sport
 505,Come si chiama l'attrezzo usato per muoversi sull'acqua in piedi?,Stand up paddle,Canoa,Kayak,0,"Lo stand up paddle (SUP) è una tavola su cui ci si muove in piedi sull'acqua utilizzando una pagaia.",B2,sport
 506,Quale di questi non è un tipo di vacanza invernale?,Sci di fondo,Snowboard,Immersione subacquea,2,"L'immersione subacquea non è tipicamente una vacanza invernale, ma si pratica in acque calde.",B1,vacaciones
-507,Come si chiama il documento che attesta l'assicurazione sanitaria per i viaggi?,-1,polizza,,,La polizza di assicurazione sanitaria per i viaggi copre le spese mediche durante un viaggio all'estero.,B2,vacaciones
+507,Come si chiama il documento che attesta l'assicurazione sanitaria per i viaggi?,polizza,,,-1,La polizza di assicurazione sanitaria per i viaggi copre le spese mediche durante un viaggio all'estero.,B2,vacaciones
 508,In quale sport si usa il termine "spare"?,Bowling,Tennis,Calcio,0,"Nel bowling, uno 'spare' si verifica quando tutti i birilli vengono abbattuti con due tiri consecutivi.",B2,sport
-509,Come si chiama l'area dove si disputano le gare di atletica?,-1,pista,,,La pista di atletica è l'area dove si svolgono le gare di corsa e alcune discipline di lancio e salto.,B1,sport
+509,Come si chiama l'area dove si disputano le gare di atletica?,pista,,,-1,La pista di atletica è l'area dove si svolgono le gare di corsa e alcune discipline di lancio e salto.,B1,sport
 510,Quale di questi non è un tipo di vacanza eco-friendly?,Agriturismo,Trekking,Safari fotografico,2,"Il safari fotografico, sebbene possa essere rispettoso dell'ambiente, non è tipicamente considerato eco-friendly come le altre opzioni.",B2,vacaciones
-511,Come si chiama il periodo di tempo in cui un'attrazione turistica è chiusa per manutenzione?,-1,chiusura,,,Il periodo di chiusura è quando un'attrazione turistica non è accessibile al pubblico per lavori di manutenzione o ristrutturazione.,B2,vacaciones
+511,Come si chiama il periodo di tempo in cui un'attrazione turistica è chiusa per manutenzione?,chiusura,,,-1,Il periodo di chiusura è quando un'attrazione turistica non è accessibile al pubblico per lavori di manutenzione o ristrutturazione.,B2,vacaciones
 512,Quale sport si pratica su una pista ovale con curve sopraelevate?,Ciclismo su pista,Corsa,Pattinaggio,0,"Il ciclismo su pista si svolge su un velodromo, una pista ovale con curve sopraelevate.",B2,sport
-513,Come si chiama l'azione di fermare un attaccante nel calcio?,-1,tackle,,,Il tackle è l'azione di fermare un avversario nel calcio, cercando di sottrargli il possesso della palla.,B2,sport
+513,Come si chiama l'azione di fermare un attaccante nel calcio?,tackle,,,-1,Il tackle è l'azione di fermare un avversario nel calcio, cercando di sottrargli il possesso della palla.,B2,sport
 514,Quale di questi non è un tipo di vacanza per famiglie?,Parco divertimenti,Campeggio,Viaggio d'affari,2,"Il viaggio d'affari non è un tipo di vacanza per famiglie, ma un viaggio di lavoro.",B1,vacaciones
-515,Come si chiama il documento che elenca i servizi inclusi in un pacchetto all-inclusive?,-1,brochure,,,La brochure è il documento che descrive in dettaglio i servizi inclusi in un pacchetto vacanza all-inclusive.,B2,vacaciones
+515,Come si chiama il documento che elenca i servizi inclusi in un pacchetto all-inclusive?,brochure,,,-1,La brochure è il documento che descrive in dettaglio i servizi inclusi in un pacchetto vacanza all-inclusive.,B2,vacaciones
 516,In quale sport si usa il termine "scrum"?,Rugby,Pallavolo,Basket,0,"Nel rugby, lo 'scrum' è una formazione ordinata di giocatori che si contendono il possesso della palla.",B2,sport
 517,Come si chiama l'attrezzo usato per spostarsi sulla neve?,Sci,Pattini,Racchette,0,"Gli sci sono l'attrezzo principale per spostarsi sulla neve, sia per sport che per ricreazione.",B1,sport
 518,Quale di questi non è un tipo di vacanza termale?,Fangoterapia,Idromassaggio,Arrampicata,2,"L'arrampicata non è un tipo di vacanza termale, ma un'attività sportiva outdoor.",B1,vacaciones
-519,Come si chiama il periodo di tempo in cui si può cancellare una prenotazione senza penali?,-1,cancellazione gratuita,,,La cancellazione gratuita è il periodo entro il quale si può annullare una prenotazione senza costi aggiuntivi.,B2,vacaciones
+519,Come si chiama il periodo di tempo in cui si può cancellare una prenotazione senza penali?,cancellazione gratuita,,,-1,La cancellazione gratuita è il periodo entro il quale si può annullare una prenotazione senza costi aggiuntivi.,B2,vacaciones
 520,Quale di questi oggetti non si trova tipicamente in una camera da letto?,Letto,Armadio,Lavastoviglie,2,"La lavastoviglie è un elettrodomestico che si trova generalmente in cucina, non in camera da letto.",B1,stanza
-521,Come si chiama il mobile dove si ripongono i vestiti?,-1,armadio,,,L'armadio è il mobile principale utilizzato per riporre e organizzare i vestiti in una stanza.,B1,stanza
+521,Come si chiama il mobile dove si ripongono i vestiti?,armadio,,,-1,L'armadio è il mobile principale utilizzato per riporre e organizzare i vestiti in una stanza.,B1,stanza
 522,Quale di questi è un tipo di illuminazione da tavolo?,Lampadario,Abat-jour,Faretto,1,"L'abat-jour è una lampada da tavolo, spesso usata sui comodini o sulle scrivanie.",B1,stanza
-523,Come si chiama la parte della finestra che si apre?,-1,anta,,,L'anta è la parte mobile della finestra che si può aprire e chiudere.,B2,stanza
+523,Come si chiama la parte della finestra che si apre?,anta,,,-1,L'anta è la parte mobile della finestra che si può aprire e chiudere.,B2,stanza
 524,Quale di questi non è un tipo di pavimento?,Parquet,Moquette,Specchio,2,"Lo specchio non è un tipo di pavimento, ma un oggetto che riflette le immagini.",B1,stanza
-525,Come si chiama il dispositivo che regola la temperatura in una stanza?,-1,termostato,,,Il termostato è il dispositivo che controlla e regola la temperatura in un ambiente.,B2,stanza
+525,Come si chiama il dispositivo che regola la temperatura in una stanza?,termostato,,,-1,Il termostato è il dispositivo che controlla e regola la temperatura in un ambiente.,B2,stanza
 526,Quale di questi oggetti serve per sedersi?,Divano,Frigorifero,Lampadario,0,"Il divano è un mobile progettato per sedersi comodamente, tipicamente in un soggiorno.",B1,stanza
-527,Come si chiama il mobile con cassetti per riporre oggetti?,-1,cassettiera,,,La cassettiera è un mobile con diversi cassetti utilizzato per organizzare e riporre vari oggetti.,B1,stanza
+527,Come si chiama il mobile con cassetti per riporre oggetti?,cassettiera,,,-1,La cassettiera è un mobile con diversi cassetti utilizzato per organizzare e riporre vari oggetti.,B1,stanza
 528,Quale di questi non è un tipo di tenda?,Veneziana,Plissettata,Idrolitica,2,"'Idrolitica' non è un tipo di tenda, ma un termine chimico. Le altre sono tipi di tende comuni.",B2,stanza
-529,Come si chiama la superficie verticale di una stanza?,-1,parete,,,La parete è la superficie verticale che delimita una stanza o un ambiente interno.,B1,stanza
+529,Come si chiama la superficie verticale di una stanza?,parete,,,-1,La parete è la superficie verticale che delimita una stanza o un ambiente interno.,B1,stanza
 530,Quale di questi oggetti serve per dormire?,Scrivania,Letto,Libreria,1,"Il letto è il mobile principale utilizzato per dormire e riposare in una camera da letto.",B1,stanza
-531,Come si chiama il ripiano sopra una porta o una finestra?,-1,architrave,,,L'architrave è l'elemento orizzontale che sovrasta una porta o una finestra, sostenendone il peso superiore.,B2,stanza
+531,Come si chiama il ripiano sopra una porta o una finestra?,architrave,,,-1,L'architrave è l'elemento orizzontale che sovrasta una porta o una finestra, sostenendone il peso superiore.,B2,stanza
 532,Quale di questi non è un tipo di riscaldamento?,Radiatore,Camino,Ventilatore,2,"Il ventilatore non è un sistema di riscaldamento, ma serve per far circolare l'aria e rinfrescare.",B1,stanza
-533,Come si chiama il mobile da parete per riporre libri?,-1,libreria,,,La libreria è un mobile, spesso a muro, con ripiani per organizzare e esporre libri e altri oggetti.,B1,stanza
+533,Come si chiama il mobile da parete per riporre libri?,libreria,,,-1,La libreria è un mobile, spesso a muro, con ripiani per organizzare e esporre libri e altri oggetti.,B1,stanza
 534,Quale di questi è un elemento decorativo da parete?,Frigorifero,Quadro,Lavandino,1,"Il quadro è un elemento decorativo comunemente appeso alle pareti per abbellire un ambiente.",B1,stanza
-535,Come si chiama la parte superiore di una stanza?,-1,soffitto,,,Il soffitto è la superficie orizzontale che costituisce la parte superiore di una stanza.,B1,stanza
+535,Come si chiama la parte superiore di una stanza?,soffitto,,,-1,Il soffitto è la superficie orizzontale che costituisce la parte superiore di una stanza.,B1,stanza
 536,Quale di questi oggetti non si trova tipicamente in un bagno?,Vasca,Bidet,Forno,2,"Il forno è un elettrodomestico che si trova in cucina, non in bagno.",B1,stanza
-537,Come si chiama il mobile per riporre le stoviglie in cucina?,-1,credenza,,,La credenza è un mobile da cucina utilizzato per riporre stoviglie, posate e altri utensili.",B2,stanza
+537,Come si chiama il mobile per riporre le stoviglie in cucina?,credenza,,,-1,La credenza è un mobile da cucina utilizzato per riporre stoviglie, posate e altri utensili.",B2,stanza
 538,Quale di questi è un tipo di illuminazione a soffitto?,Abat-jour,Lampadario,Lampada da terra,1,"Il lampadario è un tipo di illuminazione che viene sospeso al soffitto di una stanza.",B1,stanza
-539,Come si chiama la parte inferiore di una finestra?,-1,davanzale,,,Il davanzale è la parte orizzontale alla base di una finestra, spesso utilizzata per appoggiarvi oggetti.,B2,stanza
+539,Come si chiama la parte inferiore di una finestra?,davanzale,,,-1,Il davanzale è la parte orizzontale alla base di una finestra, spesso utilizzata per appoggiarvi oggetti.,B2,stanza
 540,Quale di questi non è un tipo di materasso?,A molle,In memory foam,In ceramica,2,"Un materasso in ceramica non esiste. La ceramica è utilizzata per piastrelle, non per materassi.",B1,stanza
-541,Come si chiama il mobile con lo specchio in bagno?,-1,specchiera,,,La specchiera è un mobile da bagno che include uno specchio, spesso con funzioni aggiuntive come illuminazione o armadietto.,B2,stanza
+541,Come si chiama il mobile con lo specchio in bagno?,specchiera,,,-1,La specchiera è un mobile da bagno che include uno specchio, spesso con funzioni aggiuntive come illuminazione o armadietto.,B2,stanza
 542,Quale di questi oggetti serve per appendere i vestiti?,Gruccia,Forchetta,Cuscino,0,"La gruccia è un oggetto utilizzato per appendere i vestiti nell'armadio o su un appendiabiti.",B1,stanza
-543,Come si chiama il ripiano di lavoro in cucina?,-1,piano cottura,,,Il piano cottura è la superficie di lavoro in cucina, spesso utilizzata per la preparazione dei cibi.,B1,stanza
+543,Come si chiama il ripiano di lavoro in cucina?,piano cottura,,,-1,Il piano cottura è la superficie di lavoro in cucina, spesso utilizzata per la preparazione dei cibi.,B1,stanza
 544,Quale di questi non è un tipo di illuminazione?,Faretto,Applique,Radiatore,2,"Il radiatore non è un tipo di illuminazione, ma un elemento del sistema di riscaldamento.",B2,stanza
-545,Come si chiama il mobile per riporre le scarpe?,-1,scarpiera,,,La scarpiera è un mobile progettato specificamente per organizzare e riporre le scarpe.,B1,stanza
+545,Come si chiama il mobile per riporre le scarpe?,scarpiera,,,-1,La scarpiera è un mobile progettato specificamente per organizzare e riporre le scarpe.,B1,stanza
 546,Quale di questi oggetti serve per riposare?,Poltrona,Lavagna,Appendiabiti,0,"La poltrona è un mobile comodo progettato per sedersi e rilassarsi.",B1,stanza
-547,Come si chiama la parte della finestra che non si apre?,-1,vetro,,,Il vetro è la parte trasparente e fissa della finestra che permette il passaggio della luce.,B1,stanza
+547,Come si chiama la parte della finestra che non si apre?,vetro,,,-1,Il vetro è la parte trasparente e fissa della finestra che permette il passaggio della luce.,B1,stanza
 548,Quale di questi non è un tipo di porta?,Scorrevole,A battente,Solare,2,"Una porta solare non esiste. Le porte possono essere scorrevoli, a battente, a libro, ecc., ma non solari.",B2,stanza
-549,Come si chiama il mobile per riporre i medicinali in bagno?,-1,armadietto,,,L'armadietto dei medicinali è un piccolo mobile in bagno per conservare in modo sicuro farmaci e prodotti per la salute.,B1,stanza
+549,Come si chiama il mobile per riporre i medicinali in bagno?,armadietto,,,-1,L'armadietto dei medicinali è un piccolo mobile in bagno per conservare in modo sicuro farmaci e prodotti per la salute.,B1,stanza
 550,Quale di questi è un elemento di arredo per il soggiorno?,Lavello,Tavolino,Doccia,1,"Il tavolino è un elemento di arredo comune nei soggiorni, utilizzato per appoggiare oggetti o come superficie decorativa.",B1,stanza
-551,Come si chiama la struttura che sostiene il materasso?,-1,rete,,,La rete è la struttura che sostiene il materasso, fornendo supporto e permettendo la circolazione dell'aria.,B2,stanza
+551,Come si chiama la struttura che sostiene il materasso?,rete,,,-1,La rete è la struttura che sostiene il materasso, fornendo supporto e permettendo la circolazione dell'aria.,B2,stanza
 552,Quale di questi non è un tipo di tappeto?,Persiano,Kilim,Sinfonico,2,"'Sinfonico' non è un tipo di tappeto, ma un termine musicale. Persiano e Kilim sono tipi di tappeti.",B2,stanza
-553,Come si chiama il dispositivo per regolare l'intensità della luce?,-1,dimmer,,,Il dimmer è un dispositivo che permette di regolare l'intensità della luce in una stanza.,B2,stanza
+553,Come si chiama il dispositivo per regolare l'intensità della luce?,dimmer,,,-1,Il dimmer è un dispositivo che permette di regolare l'intensità della luce in una stanza.,B2,stanza
 554,Quale di questi oggetti serve per conservare il cibo?,Armadio,Frigorifero,Libreria,1,"Il frigorifero è l'elettrodomestico principale per la conservazione degli alimenti a bassa temperatura.",B1,stanza
-555,Come si chiama il mobile per riporre i vestiti piegati?,-1,cassettone,,,Il cassettone è un mobile con cassetti utilizzato per riporre vestiti piegati e altri oggetti personali.,B2,stanza
+555,Come si chiama il mobile per riporre i vestiti piegati?,cassettone,,,-1,Il cassettone è un mobile con cassetti utilizzato per riporre vestiti piegati e altri oggetti personali.,B2,stanza
 556,Quale di questi non è un tipo di finestra?,A battente,Scorrevole,Compostabile,2,"Una finestra 'compostabile' non esiste. Le finestre possono essere a battente, scorrevoli, a vasistas, ecc.",B2,stanza
-557,Come si chiama la parte della cucina dove si lavano i piatti?,-1,lavello,,,Il lavello è la parte della cucina dotata di rubinetto e vasca per lavare piatti, verdure e altro.,B1,stanza
+557,Come si chiama la parte della cucina dove si lavano i piatti?,lavello,,,-1,Il lavello è la parte della cucina dotata di rubinetto e vasca per lavare piatti, verdure e altro.,B1,stanza
 558,Quale di questi è un elemento di arredo per la camera da letto?,Lavastoviglie,Comodino,Lavagna,1,"Il comodino è un piccolo mobile tipicamente posto accanto al letto per tenere oggetti a portata di mano.",B1,stanza
 559,Come si chiama il dispositivo per riscaldare rapidamente piccole quantità di cibo?,Forno a microonde,Frullatore,Tostapane,0,"Il forno a microonde è un elettrodomestico che utilizza le microonde per riscaldare rapidamente il cibo.",B1,stanza
 560,Quale di questi non è un tipo di riscaldamento?,Stufa,Termosifone,Frigorifero,2,"Il frigorifero non è un sistema di riscaldamento, ma un elettrodomestico per raffreddare e conservare gli alimenti.",B1,stanza
-561,Come si chiama il mobile per riporre i piatti in cucina?,-1,credenza,,,La credenza è un mobile da cucina utilizzato per riporre piatti, bicchieri e altri utensili da tavola.,B1,stanza
+561,Come si chiama il mobile per riporre i piatti in cucina?,credenza,,,-1,La credenza è un mobile da cucina utilizzato per riporre piatti, bicchieri e altri utensili da tavola.,B1,stanza
 562,Quale di questi oggetti serve per appendere i vestiti?,Gruccia,Lampada,Tappeto,0,"La gruccia è un oggetto utilizzato per appendere i vestiti nell'armadio o su un appendiabiti.",B1,stanza
-563,Come si chiama la superficie orizzontale di una scrivania?,-1,piano,,,Il piano della scrivania è la superficie orizzontale su cui si lavora o si appoggiano oggetti.,B1,stanza
+563,Come si chiama la superficie orizzontale di una scrivania?,piano,,,-1,Il piano della scrivania è la superficie orizzontale su cui si lavora o si appoggiano oggetti.,B1,stanza
 564,Quale di questi non è un tipo di letto?,Singolo,Matrimoniale,Lunare,2,"Un letto 'lunare' non esiste. I tipi comuni di letto includono singolo, matrimoniale, a castello, ecc.",B1,stanza
-565,Come si chiama il dispositivo per regolare la temperatura dell'acqua nella doccia?,-1,miscelatore,,,Il miscelatore è il dispositivo che permette di regolare la temperatura dell'acqua mescolando acqua calda e fredda.,B2,stanza
+565,Come si chiama il dispositivo per regolare la temperatura dell'acqua nella doccia?,miscelatore,,,-1,Il miscelatore è il dispositivo che permette di regolare la temperatura dell'acqua mescolando acqua calda e fredda.,B2,stanza
 566,Quale di questi è un elemento di arredo per il bagno?,Frigorifero,Specchio,Libreria,1,"Lo specchio è un elemento essenziale nell'arredo del bagno, utilizzato per la cura personale.",B1,stanza
-567,Come si chiama il mobile per riporre i vestiti appesi?,-1,guardaroba,,,Il guardaroba è un mobile, spesso a muro, utilizzato per appendere e riporre i vestiti.,B1,stanza
+567,Come si chiama il mobile per riporre i vestiti appesi?,guardaroba,,,-1,Il guardaroba è un mobile, spesso a muro, utilizzato per appendere e riporre i vestiti.,B1,stanza
 568,Quale di questi non è un tipo di illuminazione per esterni?,Faretto,Lampione,Abat-jour,2,"L'abat-jour è tipicamente un'illuminazione da interni, non da esterni come faretti o lampioni.",B2,stanza
-569,Come si chiama la parte della cucina dove si cucinano i cibi?,-1,fornelli,,,I fornelli sono la parte della cucina dotata di bruciatori a gas o piastre elettriche per cucinare i cibi.,B1,stanza
+569,Come si chiama la parte della cucina dove si cucinano i cibi?,fornelli,,,-1,I fornelli sono la parte della cucina dotata di bruciatori a gas o piastre elettriche per cucinare i cibi.,B1,stanza
 570,Quale di questi oggetti serve per dormire?,Cuscino,Tavolo,Sedia,0,"Il cuscino è un oggetto morbido utilizzato per supportare la testa durante il sonno o per comfort.",B1,stanza
-571,Come si chiama il dispositivo per aspirare la polvere?,-1,aspirapolvere,,,L'aspirapolvere è un elettrodomestico utilizzato per rimuovere la polvere e lo sporco dai pavimenti e altre superfici.,B1,stanza
+571,Come si chiama il dispositivo per aspirare la polvere?,aspirapolvere,,,-1,L'aspirapolvere è un elettrodomestico utilizzato per rimuovere la polvere e lo sporco dai pavimenti e altre superfici.,B1,stanza
 572,Quale di questi non è un tipo di tenda?,Veneziana,A pacchetto,Orchestrale,2,"Una tenda 'orchestrale' non esiste. Le tende possono essere veneziane, a pacchetto, a pannello, ecc.",B2,stanza
-573,Come si chiama il mobile per riporre gli oggetti in bagno?,-1,mobiletto,,,Il mobiletto del bagno è un armadietto utilizzato per riporre prodotti per l'igiene e altri oggetti da bagno.,B1,stanza
+573,Come si chiama il mobile per riporre gli oggetti in bagno?,mobiletto,,,-1,Il mobiletto del bagno è un armadietto utilizzato per riporre prodotti per l'igiene e altri oggetti da bagno.,B1,stanza
 574,Quale di questi è un elemento di arredo per la cucina?,Divano,Piano cottura,Scrivania,1,"Il piano cottura è un elemento essenziale della cucina, utilizzato per cucinare i cibi.",B1,stanza
-575,Come si chiama la parte della finestra che protegge dalla luce?,-1,persiana,,,La persiana è un elemento esterno della finestra che può essere regolato per controllare la luce e la privacy.,B2,stanza
+575,Come si chiama la parte della finestra che protegge dalla luce?,persiana,,,-1,La persiana è un elemento esterno della finestra che può essere regolato per controllare la luce e la privacy.,B2,stanza
 576,Quale di questi non è un tipo di pavimento per il bagno?,Piastrelle,Parquet,Moquette,2,"La moquette non è generalmente utilizzata nei bagni a causa dell'umidità. Piastrelle e parquet sono più comuni.",B1,stanza
-577,Come si chiama il mobile per riporre i libri?,-1,libreria,,,La libreria è un mobile con ripiani utilizzato per organizzare e esporre libri e altri oggetti.,B1,stanza
+577,Come si chiama il mobile per riporre i libri?,libreria,,,-1,La libreria è un mobile con ripiani utilizzato per organizzare e esporre libri e altri oggetti.,B1,stanza
 578,Quale di questi oggetti serve per cucinare?,Forno,Lampada,Specchio,0,"Il forno è un elettrodomestico essenziale per cucinare, utilizzato per cuocere e arrostire cibi.",B1,stanza
-579,Come si chiama la parte del letto che sostiene la testa?,-1,testiera,,,La testiera è la parte del letto, spesso decorativa, che si trova alla testa del letto e può fornire supporto.,B2,stanza
+579,Come si chiama la parte del letto che sostiene la testa?,testiera,,,-1,La testiera è la parte del letto, spesso decorativa, che si trova alla testa del letto e può fornire supporto.,B2,stanza
 580,Quale di questi non è un tipo di sedia?,Poltrona,Sgabello,Lampada,2,"Una lampada non è un tipo di sedia. Poltrone e sgabelli sono tipi di sedie o sedute.",B1,stanza
-581,Come si chiama il dispositivo per riscaldare l'acqua per la doccia?,-1,scaldabagno,,,Lo scaldabagno è un dispositivo che riscalda l'acqua per l'uso domestico, compresa la doccia.,B2,stanza
+581,Come si chiama il dispositivo per riscaldare l'acqua per la doccia?,scaldabagno,,,-1,Lo scaldabagno è un dispositivo che riscalda l'acqua per l'uso domestico, compresa la doccia.,B2,stanza
 582,Quale di questi è un elemento di arredo per l'ingresso?,Appendiabiti,Lavastoviglie,Vasca da bagno,0,"L'appendiabiti è un elemento comune nell'arredo dell'ingresso, utilizzato per appendere cappotti e giacche.",B1,stanza
 1001,"Quale forma è corretta?","Mi piace di più","Mi piace più","Mi piace molto più",0,"La forma corretta è 'Mi piace di più'. In italiano, con il verbo 'piacere' si usa 'di più' per fare comparazioni.",A2,GPT4
 1002,"Come si dice 'I am learning Italian' in italiano?","Sto imparando l'italiano","Imparo l'italiano","Sono imparando l'italiano",0,"La traduzione corretta di 'I am learning Italian' è 'Sto imparando l'italiano'.",A2,GPT4

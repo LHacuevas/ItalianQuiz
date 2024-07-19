@@ -1,3 +1,5 @@
+import { Usuario } from "./firebaseInterfaces";
+
 export interface Question {
     id: number;
     question: string;
@@ -38,4 +40,5 @@ export interface QuizParams {
     name?: string;
     onlyOptionQuestions?: boolean;
     difficulty?: string;
+    usuario: Usuario | null;
 }

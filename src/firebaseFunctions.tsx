@@ -40,11 +40,25 @@ export const guardarUsuario = async (nombreUsuario: string): Promise<Usuario> =>
 };
 
 export const guardarRespuesta = async (respuesta: Respuesta): Promise<void> => {
-    try {
-        await addDoc(collection(db, "respuestas"), respuesta);
+    try
+    {
+        // Crea el objeto de respuesta con el campo `fecha` incluido
+        const respuestaConFecha = {
+            ...respuesta,
+            fecha: serverTimestamp() // Añade el campo `fecha` con el timestamp del servidor
+        };
+        await addDoc(collection(db, "respuestas"), respuestaConFecha);
         console.log("Respuesta guardada");
     } catch (e) {
         console.error("Error al guardar la respuesta: ", e);
         throw e;
     }
+};
+
+
+const formatDate = (timestamp: Timestamp | null | undefined) => {
+    if (timestamp instanceof Timestamp) {
+        return timestamp.toDate().toLocaleString();
+    }
+    return 'Fecha no disponible';
 };

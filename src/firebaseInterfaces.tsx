@@ -11,6 +11,11 @@ export interface Usuario {
 export interface Respuesta {
     idUsuario: string;
     tipoPregunta: string;
-    idPregunta: string;
-    sRespuestas: string[];
+    idPregunta: number;
+    idSubPregunta?: number
+    respuesta: string;
+    correcta: boolean;
+    fecha?: Timestamp;
 }
+
+export default Usuario;
