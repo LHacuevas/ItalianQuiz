@@ -11,8 +11,8 @@ export interface Usuario {
 export interface Respuesta {
     idUsuario: string;
     tipoPregunta: string;
-    idPregunta: number;
-    idSubPregunta?: number
+    idPregunta: string;
+    idSubPregunta?: string;
     respuesta: string;
     correcta: boolean;
     fecha?: Timestamp;

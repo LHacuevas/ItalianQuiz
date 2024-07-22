@@ -1,5 +1,6 @@
 export const questionsCSV = `
 id,question,option1,option2,option3,correct,explanation,difficulty,generated
+0,Come si chiama l'attrezzo principale usato nel tennis?,racchetta,,,-1,La racchetta è lo strumento fondamentale per colpire la palla nel tennis.,B1,sport
 1,"Quale forma è corretta?","Mi piace di più","Mi piace più","Mi piace molto più",0,"La forma corretta è 'Mi piace di più'. In italiano, con il verbo 'piacere' si usa 'di più' per fare comparazioni.",A2
 2,"Come si dice correttamente?","Sono interessato in storia","Sono interessato a storia","Sono interessato della storia",1,"Si dice 'Sono interessato a storia'. Il verbo 'interessarsi' richiede la preposizione 'a'.",B1
 3,"Qual è il plurale corretto di 'uomo'?","Uomini","Uomi","Uome",0,"Il plurale corretto di 'uomo' è 'uomini'. È un plurale irregolare in italiano.",A2

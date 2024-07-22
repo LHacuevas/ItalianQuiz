@@ -13,38 +13,16 @@ import MenuItem from '@mui/material/MenuItem'; // Cambié SelectContent, SelectI
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { CardActions } from '@mui/material';
-import { questionsCSV } from './questionGPT4o.js'
+//import { questionsCSV } from './questionGPT4o.js'
 import { Question, QuizParams } from './MyTypes.js'
-import QuizQuestion from './Question'
+import QuizQuestion from './components/Question'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { Usuario, Respuesta } from "./firebaseInterfaces";
-import { guardarRespuesta, fetchRespuestas } from './firebaseFunctions';
+import { Usuario, Respuesta } from './firebase/firebaseInterfaces';
+import { guardarRespuesta, fetchRespuestas, fetchMultiRespuesta } from './firebase/firebaseFunctions';
 //import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
-//import ResponsiveCard from './ResponsiveCard';
-const parseCSV = (csv: string): Question[] => {
-    const lines = csv.trim().split('\n');
-    const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
 
-    return lines.slice(1).map(line => {
-        const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(value =>
-            value.trim().replace(/^"|"$/g, '')
-        );
-
-        return headers.reduce((obj, header, index) => {
-            let value = values[index] || '';
-
-            if (header === 'id' || header === 'correct') {
-                obj[header] = parseInt(value, 10);
-            } else {
-                obj[header] = value;
-            }
-
-            return obj;
-        }, {} as Question);
-    });
-};
-const allQuestions: Question[] = parseCSV(questionsCSV);
+let allQuestions: Question[] = [];// parseCSV(questionsCSV);
 
 
 const QuizItaliano: React.FC<QuizParams> = ({
@@ -67,6 +45,25 @@ const QuizItaliano: React.FC<QuizParams> = ({
     const [endTime, setEndTime] = useState<number | undefined>(undefined);     
     const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
     const [preguntasQuedan, setPreguntasQuedan] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    useEffect(() => {
+        const loadWords = async () => {
+            try {
+                setLoading(true);
+                const fetchedWords = await fetchMultiRespuesta();
+                allQuestions = fetchedWords;
+                setError(null);
+            } catch (err) {
+                setError('Error al cargar las palabras. Por favor, intenta de nuevo.');
+                console.error('Error fetching words:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadWords();
+    }, []);
     useEffect(() => {
         const loadRespuestas = async () => {
             try {
@@ -80,7 +77,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
     }, [usuario]);
 
     useEffect(() => {
-        let respuestasIds = [0];
+        let respuestasIds = [""];
         if (respuestas.length > 0) {
             // Filtrar las preguntas que ya han sido respondidas
             respuestasIds = respuestas.map(r => r.idPregunta);            
@@ -89,13 +86,13 @@ const QuizItaliano: React.FC<QuizParams> = ({
         const filteredQuestions = allQuestions.filter(q => {
             const difficultyMatch = q.difficulty === difficulty;
             // Si onlyOptionQuestions es true, excluir preguntas con Correct === -1
-            const typeMatch = !onlyOptionQuestions || q.correct !== -1;
+            const typeMatch = !onlyOptionQuestions || Number(q.correct) !== -1;
             // Verificar si hay opciones repetidas cuando Correct no es -1
             //const hasRepeatedOptions = (q.correct !== -1) &&
             //    (q.option1 === q.option2 || q.option1 === q.option3 || q.option2 === q.option3);
             //para las escritas
             //return q.correct === -1;
-            const jaContestada = respuestasIds.includes(q.id)
+            const jaContestada = respuestasIds.includes(q.id.toString())
             return difficultyMatch && typeMatch && !jaContestada;  //&& !hasRepeatedOptions;
         }).sort(() => 0.5 - Math.random());
         console.log('Preguntas filtradas:', filteredQuestions.length, 'Preguntas respondidas:', respuestasIds.length)
@@ -148,12 +145,12 @@ const QuizItaliano: React.FC<QuizParams> = ({
             const respuesta: Respuesta = {
                 idUsuario: usuario?.id??'sense',
                 tipoPregunta: 'MC',
-                idPregunta: Number(questions[currentQuestion].id),
+                idPregunta: questions[currentQuestion].id,
                 respuesta: textoRespondido,
                 correcta: boAcierto                 
             };
             guardarRespuesta(respuesta);
-        
+        respuestas.push(respuesta);
         setSelectedAnswer(resposta);
         setShowExplanation(true);
         setTimer(30);

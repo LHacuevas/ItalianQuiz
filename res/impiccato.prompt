@@ -1,0 +1,57 @@
+
+"Crea un juego del ahorcado en italiano usando React y los componentes de @/components/ui. El juego debe tener las siguientes características:
+
+1. Interfaz:
+   - Usa una Card de @/components/ui para contener todo el juego.
+   - En la parte superior, muestra la dificultad, el nivel y el tiempo restante en la misma fila.
+   - El tiempo debe mostrarse como un número grande.
+
+2. Configuración:
+   - Permite seleccionar la dificultad (facile, medio, difficile) y el nivel (A2, B1, B2).
+   - La dificultad determina cuántas letras se muestran al inicio:
+     * Facile: mitad de las letras
+     * Medio: un tercio de las letras
+     * Difficile: ninguna letra
+   - El nivel determina la complejidad de las palabras a adivinar.
+
+3. Mecánica del juego:
+   - Muestra la pregunta relacionada con la palabra a adivinar.
+   - Presenta la palabra con guiones bajos para las letras no adivinadas.
+   - Al inicio, revela algunas letras aleatorias basadas en la dificultad. Si una letra se repite, muestra todas sus ocurrencias.
+   - El jugador tiene un campo de entrada para introducir una letra a la vez.
+   - Procesa la letra automáticamente al introducirla, sin necesidad de un botón de envío.
+   - Actualiza el mensaje después de cada intento, indicando si la letra es correcta, incorrecta o ya ha sido intentada.
+   - Muestra el número de intentos restantes.
+   - Incluye un temporizador de 30 segundos que se reinicia con cada nueva palabra.
+
+4. Pistas y finalización:
+   - Muestra una pista (suggerimento) después de dos fallos consecutivos.
+   - El juego termina cuando se adivina la palabra, se agotan los intentos o se acaba el tiempo.
+   - Después de terminar, muestra un mensaje apropiado y pasa automáticamente a la siguiente palabra tras 2 segundos.
+
+5. Datos:
+   - Usa un array mockWords con objetos que contengan: question, word, level, y tip.
+
+6. Estilo y diseño:
+   - Utiliza los componentes de @/components/ui para mantener un diseño coherente.
+   - Asegúrate de que la interfaz sea responsiva y fácil de usar.
+
+Implementa este juego como un componente de React, gestionando el estado con useState y los efectos secundarios con useEffect. Asegúrate de que el código sea limpio, bien organizado y comentado donde sea necesario."
+
+
+Me gustaria retocarlo para que saliese la lista de letras que hemos ido entrando de esa palabra. Y que cuando acabemos la palabra correctamente salte a la siguiente. El numero de tentativi reducelo, asi como las letras mostradas segun la dificolta.
+
+Me gusta!!! Pequeños cambios, la palabra se acaba cuando llegamos a 0 tentativas, y cambia los componentes a @mui\material
+--
+Estoy haciendo el juego del ahorcado, pero en italiano, palabras y descripciones en italiano.
+Me puedes dar una lista de 1000 palabras en este formato para el juego ahorcado en italiano
+pero solo la lista de las palabras para hacer un, piensa que sean diferentes   
+const wordsCSV = "question,word,level,tip,category, Come si presenta?,ciao.... 
+export interface Word {
+    question: string; //descripcion de la palabra a adivinar
+    word: string; //palabra a adivinar de mas de 6 letras preferentemente
+    level: 'A2' | 'B1' | 'B2'; //nivel de dificutad segun el conocimiento de la lengua
+    tip: string; //Pequeña ayuda que nos tendria que ayudar a solucionar la palabra
+    category: string; //Categoria en la que se puede emarcar la palabra, no ha de ser muy especifica tipo viajes, musica, cuerpo humano, fruta...    
+}
+

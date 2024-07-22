@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,11 +16,12 @@ import { CardActions } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Paragraph, ParagraphQuestion, QuizParams } from './MyTypes.js';
-import { paragraphsCSV, paragraphsQuestionsCSV } from './questionParrafo.js';
-import ResponsiveCard from './ResponsiveCard';
-import { Usuario, Respuesta } from "./firebaseInterfaces";
-import { guardarRespuesta, fetchRespuestas } from './firebaseFunctions';
-const paragraphParseCSV = (csv: string): Paragraph[] => {
+//import { paragraphsCSV, paragraphsQuestionsCSV } from './questionParrafo.js';
+import ResponsiveCard from './components/ResponsiveCard';
+import { Usuario, Respuesta } from "./firebase/firebaseInterfaces";
+import { guardarRespuesta, fetchRespuestas, fetchMultiRespuesta, fetchParrafo, fetchParrafoSub } from './firebase/firebaseFunctions';
+import QuestionComponent from './components/ParagraphQuestion';
+/* const paragraphParseCSV = (csv: string): Paragraph[] => {
     const lines = csv.trim().split('\n');
     const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
 
@@ -79,10 +80,10 @@ const questionParseCSV = (csv: string): ParagraphQuestion[] => {
         return obj;
     });
 };
+ */
 
-
-const PARAGRAPHS_DATA: Paragraph[] = paragraphParseCSV(paragraphsCSV);
-const QUESTIONS_DATA: ParagraphQuestion[] = questionParseCSV(paragraphsQuestionsCSV);
+let PARAGRAPHS_DATA: Paragraph[] = [] // paragraphParseCSV(paragraphsCSV);
+let QUESTIONS_DATA: ParagraphQuestion[] = [] // questionParseCSV(paragraphsQuestionsCSV);
 
 const ItalianLearningApp: React.FC<QuizParams> = ({
     numQuestions = 3,
@@ -91,8 +92,12 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     difficulty = 'B1',
     usuario = null
 }) => {
-    const [paragraphs, setParagraphs] = useState<Paragraph[]>([]);
+    
     const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
+    const [todosParagraphs, setTodosParagraphs] = useState<Paragraph[]>([]);
+    const [todosQuestions, setTodosQuestions] = useState<ParagraphQuestion[]>([]);
+
+    const [paragraphs, setParagraphs] = useState<Paragraph[]>([]);
     const [questions, setQuestions] = useState<ParagraphQuestion[]>([]);
     const [currentParagraphIndex, setCurrentParagraphIndex] = useState(0);
     //const [userAnswers, setUserAnswers] = useState<{ [key: number]: string }>({});
@@ -108,40 +113,69 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     const [quizFinished, setQuizFinished] = useState(false);
     const [reviewMode, setReviewMode] = useState(false);
     const [preguntasQuedan, setPreguntasQuedan] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    
     useEffect(() => {      
         const loadRespuestas = async () => {
             try {
                 const respuestasData = await fetchRespuestas(usuario?.id??'sense');
                 setRespuestas(respuestasData);
             } catch (error) {
-                console.error("Error al cargar respuestas:", error);
+                console.error('Errore nel recupero delle parole:', error);
             }
         };
         loadRespuestas();
     }, [usuario]);
 
+    // Carica paragrafi e domande
     useEffect(() => {
-        let availableParagraphs = [...PARAGRAPHS_DATA];
-        if (respuestas.length > 0) {
-            // Filtrar las preguntas que ya han sido respondidas
-            const respuestasIds = respuestas.map(r => r.idPregunta);
-            availableParagraphs = PARAGRAPHS_DATA.filter(p => !respuestasIds.includes(p.id));
-            setPreguntasQuedan(availableParagraphs.length);
-            console.log('Párrafos disponibles después de filtrar:', availableParagraphs.length, ' respondidas: ', respuestas.length);
-        } 
-
-        // Seleccionar aleatoriamente las preguntas no respondidas
-        const filteredParagraphs = availableParagraphs
-            .sort(() => 0.5 - Math.random())
-            .slice(0, numQuestions);
-        setParagraphs(filteredParagraphs);
-
-        const selectedParagraphIds = filteredParagraphs.map(p => p.id);
-        const filteredQuestions = QUESTIONS_DATA.filter(q => selectedParagraphIds.includes(q.paragraphId));
-        setQuestions(filteredQuestions);
-        setUserAnswers({}); // Inicializa userAnswers aquí
-        setStartTime(Date.now());
+        const loadData = async () => {
+            setLoading(true);
+            try {
+                const [fetchedParagraphs, fetchedQuestions] = await Promise.all([
+                    fetchParrafo(),
+                    fetchParrafoSub()
+                ]);
+                setTodosParagraphs(fetchedParagraphs);
+                setTodosQuestions(fetchedQuestions);
+                setError(null);
+            } catch (err) {
+                setError('Errore nel caricamento dei dati. Per favore, riprova.');
+                console.error('Errore nel recupero dei dati:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadData();
     }, []);
+    // Filtra e seleziona paragrafi e domande
+    useEffect(() => {
+        if (todosParagraphs.length > 0) {
+            let availableParagraphs = [...todosParagraphs];
+            if (respuestas.length > 0) {
+                // Filtra i paragrafi non ancora risposti
+                const respuestasIds = respuestas.map(r => r.idPregunta);
+                availableParagraphs = availableParagraphs.filter(p => !respuestasIds.includes(p.id));
+            }
+            setPreguntasQuedan(availableParagraphs.length);
+            console.log("Quedan preguntas: ", availableParagraphs.length);
+            // Seleziona casualmente i paragrafi non risposti
+            const filteredParagraphs = availableParagraphs
+                .sort(() => 0.5 - Math.random())
+                .slice(0, numQuestions);
+            setParagraphs(filteredParagraphs);
+
+            // Filtra le domande corrispondenti ai paragrafi selezionati
+            const selectedParagraphIds = filteredParagraphs.map(p => p.id);
+            const filteredQuestions = todosQuestions.filter(q => selectedParagraphIds.includes(q.paragraphId));
+            setQuestions(filteredQuestions);
+
+            setUserAnswers({});
+            setStartTime(Date.now());
+            setCurrentParagraphIndex(0);
+        }
+    }, [todosParagraphs, todosQuestions, respuestas]);
 
     const currentParagraph = paragraphs[currentParagraphIndex];
     const currentQuestions = questions.filter(q => q.paragraphId === currentParagraph?.id);
@@ -182,19 +216,19 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
         const respuesta: Respuesta = {
             idUsuario: usuario?.id??'sense',
             tipoPregunta: 'PR',
-            idPregunta: Number(currentParagraph.id),
-            idSubPregunta: 0,
+            idPregunta: currentParagraph.id,
+            idSubPregunta: "0",
             respuesta: "",
             correcta: false
         };                
         currentQuestions.forEach(question => {            
-            let resposta = userAnswers[currentParagraph.id]?.[question.id]
+            let resposta = userAnswers[Number(currentParagraph.id)]?.[Number(question.paragraphSubId)]
             if (!resposta) {
-                console.log('resposta è indefinito', question.id);
+                console.log('resposta è indefinito', Number(question.paragraphSubId));
                 return;   
             } 
             respuesta.respuesta = resposta;
-            respuesta.idSubPregunta = question.id
+            respuesta.idSubPregunta = question.paragraphSubId
             if (resposta === question.correct) {
                 correctAnswers++;
                 respuesta.correcta = true;
@@ -261,54 +295,30 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     const renderReviewParagraph = (paragraph: Paragraph, paragraphQuestions: ParagraphQuestion[]) => {
         let text = paragraph.text;
         paragraphQuestions.forEach(question => {
-            const userAnswer = userAnswers[paragraph.id]?.[question.id] || '';
+            const userAnswer = userAnswers[Number(paragraph.id)]?.[Number(question.paragraphSubId)] || '';
             const isCorrect = userAnswer === question.correct;
             const replacement = isCorrect
                 ? `<span class="font-bold text-green-600">${userAnswer}</span>`
                 : `<span class="font-bold text-red-600">${userAnswer}</span><span class="font-bold text-yellow-600"> (${question.correct})</span>`;
-            text = text.replace(`[${question.id}]`, replacement);
+            text = text.replace(`[${question.paragraphSubId}]`, replacement);
         });
         return <p dangerouslySetInnerHTML={{ __html: text }} />;
     };
     
     const renderQuestion = (question: ParagraphQuestion) => {
-        if (!question) return null;
-
-        const isCorrect = showResults && userAnswers[currentParagraph.id]?.[question.id] === question.correct;
-        const isIncorrect = showResults && userAnswers[currentParagraph.id]?.[question.id] && userAnswers[currentParagraph.id]?.[question.id] !== question.correct;
-
         return (
-            <div className={`inline-block mx-1 p-1 border-2 ${isCorrect ? 'border-green-500 bg-green-200' : isIncorrect ? 'border-red-500 bg-red-200' : 'border-gray-300'}`}>
-                {useDropdown ? (
-                    <FormControl size="small" className="min-w-0">
-                        <Select
-                            value={userAnswers[currentParagraph.id]?.[question.id] || ''}
-                            onChange={(e) => handleInputChange(currentParagraph.id, question.id, e.target.value as string)}
-                            displayEmpty
-                            renderValue={(selected) => (
-                                <span className={`text-xs ${selected ? 'font-bold' : ''}`}>
-                                    {selected || question.hint}
-                                </span>
-                            )}
-                        >
-                            <MenuItem value="" disabled className="text-xs">{question.hint}</MenuItem>
-                            {question.options.map((option, index) => (
-                                <MenuItem key={index} value={option} className="text-xs">{option}</MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                ) : (
-                    <Input
-                        type="text"
-                        value={userAnswers[currentParagraph.id]?.[question.id] || ''}
-                        onChange={(e) => handleInputChange(currentParagraph.id, question.id, e.target.value)}
-                        placeholder={question.hint}
-                        className={`w-24 sm:w-32 text-xs ${isCorrect ? 'border-green-500' : isIncorrect ? 'border-red-500' : ''}`}
-                    />
-                )}
-            </div>
+            <QuestionComponent
+                key={question.paragraphSubId}
+                question={question}
+                currentParagraphId={Number(currentParagraph.id)}
+                userAnswers={userAnswers}
+                handleInputChange={handleInputChange}
+                showResults={showResults}
+                useDropdown={useDropdown}
+            />
         );
     };
+
 
     if (quizFinished && !reviewMode) {
         const totalTime = endTime! - startTime!;
@@ -357,10 +367,10 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                                 </div>
                                 {renderReviewParagraph(paragraph, paragraphQuestions)}
                                 {paragraphQuestions.map(question => {
-                                    const userAnswer = userAnswers[paragraph.id]?.[question.id];
+                                    const userAnswer = userAnswers[Number(paragraph.id)]?.[Number(question.paragraphSubId)];
                                     const isIncorrect = userAnswer !== question.correct;
                                     return isIncorrect ? (
-                                        <div key={question.id} className="mt-2 ml-4 text-sm">
+                                        <div key={Number(question.paragraphSubId)} className="mt-2 ml-4 text-sm">
                                             <p><span className="font-semibold">Suggerimento:</span> {question.hint}</p>
                                             <p className="text-gray-600">{question.explanation}</p>
                                         </div>
@@ -413,7 +423,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                     {currentParagraph.text.split(/(\[\d+\])/).map((part, index) => {
                         if (part.match(/\[\d+\]/)) {
                             const questionId = parseInt(part.match(/\d+/)?.[0] || '0');
-                            const question = currentQuestions.find(q => q.id === questionId);
+                            const question = currentQuestions.find(q => Number(q.paragraphSubId) === questionId);
                             return question ? renderQuestion(question) : part;
                         }
                         return part;
@@ -427,13 +437,15 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                 {showResults && (
                     <div className="mt-4">
                         <h2 className="text-lg sm:text-xl font-bold mb-2">Risultati:</h2>
-                        {currentQuestions.map(question => (
-                            <div key={question.id} className="mb-2">
-                                <p className={`text-sm sm:text-base ${userAnswers[currentParagraph.id]?.[question.id] === question.correct ? 'text-green-600' : 'text-red-600'}`}>
-                                    {question.id}[{question.difficulty}]: {userAnswers[currentParagraph.id]?.[question.id] || 'Nessuna risposta'}
-                                    {userAnswers[currentParagraph.id]?.[question.id] !== question.correct && ` (Corretto: ${question.correct})`}
+                        {[...currentQuestions] // Crea una copia dell'array per non modificare l'originale
+                            .sort((a, b) => Number(a.paragraphSubId) - Number(b.paragraphSubId)) // Ordina per paragraphSubId
+                            .map(question => (
+                            <div key={Number(question.paragraphSubId)} className="mb-2">
+                                <p className={`text-sm sm:text-base ${userAnswers[Number(currentParagraph.id)]?.[Number(question.paragraphSubId)] === question.correct ? 'text-green-600' : 'text-red-600'}`}>
+                                    {Number(question.paragraphSubId)}[{question.difficulty}]: {userAnswers[Number(currentParagraph.id)]?.[Number(question.paragraphSubId)] || 'Nessuna risposta'}
+                                    {userAnswers[Number(currentParagraph.id)]?.[Number(question.paragraphSubId)] !== question.correct && ` (Corretto: ${question.correct})`}
                                 </p>
-                                {userAnswers[currentParagraph.id]?.[question.id] !== question.correct && (
+                                {userAnswers[Number(currentParagraph.id)]?.[Number(question.paragraphSubId)] !== question.correct && (
                                     <p className="text-xs sm:text-sm text-gray-600">{question.explanation}</p>
                                 )}
                             </div>

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, LabelList } from 'recharts';
 import { Button, Card, CardContent, CardHeader, Select, MenuItem, FormControl, InputLabel, CardActions } from '@mui/material';
 import { collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
-import { db } from '../firebase.js'; // Asegúrate de tener configurado Firebase correctamente
-import { Respuesta } from '@/firebaseInterfaces.jsx';
+import { db } from '../firebase/firebase.js'; // Asegúrate de tener configurado Firebase correctamente
+import { Respuesta } from '@/firebase/firebaseInterfaces.jsx';
 
 interface EstadisticasRespuestasProps {
   idUsuario: string;

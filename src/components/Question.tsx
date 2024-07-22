@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { CheckCircle, XCircle } from 'lucide-react';
-import { Question } from './MyTypes.js'
+import { Question } from '../MyTypes.jsx'
 
 interface QuizQuestionProps {
     currentQuestionData: Question;
@@ -139,14 +139,14 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             { text: currentQuestionData.option2, originalIndex: 1 },
             { text: currentQuestionData.option3, originalIndex: 2 },
         ];
-        const shuffled = [...options].sort(() => Math.random() - 0.5);        
-        const posibleTextQuestion =  (currentQuestionData.correct == -1)
+        //const shuffled = [...options].sort(() => Math.random() - 0.5);        
+        const posibleTextQuestion =  (Number(currentQuestionData.correct) === -1)
         setTextQuestion(posibleTextQuestion && !onlyOptionQuestions);
-        if (currentQuestionData.correct == -1) {
+        if (Number(currentQuestionData.correct) === -1) {
             setAnswerCorrect(currentQuestionData.option1)
-        } else if (currentQuestionData.correct == 0) {
+        } else if (currentQuestionData.correct === "0") {
             setAnswerCorrect(currentQuestionData.option1);
-        } else if (currentQuestionData.correct == 1) {
+        } else if (currentQuestionData.correct === "1") {
             setAnswerCorrect(currentQuestionData.option2);
         } else {
             setAnswerCorrect(currentQuestionData.option3);
@@ -212,7 +212,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                         reviewMode,
                         showExplanation,
                         Number(userAnswers[currentQuestion]),
-                        currentQuestionData.correct
+                        Number(currentQuestionData.correct)
                     )}
                     variant={
                         reviewMode || showExplanation

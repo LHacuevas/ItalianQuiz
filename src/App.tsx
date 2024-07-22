@@ -17,19 +17,21 @@ import {
   Typography,
   Box
 } from '@mui/material';
-import { quoteCSV } from './questionMotiva.js';
-import ResponsiveCard from './ResponsiveCard';
+//import { quoteCSV } from './questionMotiva.js';
+import ResponsiveCard from './components/ResponsiveCard';
 //import QuizComponent from './firebaseReact';
-import { guardarUsuario } from './firebaseFunctions';
-import { Usuario } from './firebaseInterfaces';
+import { fetchQuotes, guardarUsuario } from './firebase/firebaseFunctions';
+import { Usuario } from './firebase/firebaseInterfaces';
 
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, User, UserCredential, signOut } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import EstadisticasRespuestas from './components/estadisticas-respuestas-component';
-
+import HangmanGame from './impiccato';
+import DataLoadButton from './components/uploadCSVToFirestone';
+import { RegQuote } from './MyTypes';
 // Asumimos que tienes una forma de obtener la versión del Git
 // Por ejemplo, podrías tenerla en una variable de entorno
-const VERSION = process.env.REACT_APP_GIT_VERSION || 'v2.1';
+const VERSION = process.env.REACT_APP_GIT_VERSION || 'v2.2';
 
 const App: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -41,7 +43,19 @@ const App: React.FC = () => {
 
   const auth = getAuth();
   const db = getFirestore();
- 
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        setNome(user.displayName || '');
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -147,7 +161,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      {user ? (
+      {user? (
         <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100 text-sm sm:text-base">
           <CardHeader
             title={
@@ -155,14 +169,7 @@ const App: React.FC = () => {
                 <Typography variant="h5" component="div">
                   Quiz di Italiano {VERSION}
                 </Typography>
-                <Button
-                  onClick={handleLogout}
-                  variant="contained"
-                  color="warning"
-                  size="small"
-                >
-                  Logout
-                </Button>
+                <Button onClick={handleLogout} variant="contained" color="warning" size="small">Logout</Button>
               </Box>
             }
             className="text-xl sm:text-2xl font-bold text-center text-blue-800 p-4"
@@ -173,7 +180,7 @@ const App: React.FC = () => {
         </ResponsiveCard>
       ) : (
         renderAuthForm()
-      )}
+      )}      
     </div>
   );
 };
@@ -221,6 +228,11 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email }) => {
 
   const [componenteSelezionato, setComponenteSelezionato] = useState<string | null>(null);
 
+
+  const [quote, setQuote] = useState<RegQuote | null>(null);
+  const [loading, setLoading] = useState(true);
+
+/* 
   const getRandomQuote = () => {
     const rows = quoteCSV.trim().split('\n').slice(1);
     const randomIndex = Math.floor(Math.random() * rows.length);
@@ -244,8 +256,29 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email }) => {
 
   useEffect(() => {
     setQuote(getRandomQuote());
-  }, []);
+  }, []); */
+  const getRandomQuote = async () => {
+    setLoading(true);
+    try {
+      const quotes = await fetchQuotes();
+      if (quotes.length > 0) {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        setQuote(quotes[randomIndex]);
+      } else {
+        setQuote({ id: '0', text: 'No hay citas disponibles', author: 'Sistema' });
+      }
+    } catch (error) {
+      console.error('Error al obtener la cita:', error);
+      setQuote({ id:'0', text: 'Error al cargar la cita', author: 'Desconocido' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
+    getRandomQuote();
+  }, []);
+  
   const handleStart = async (componente: string) => {
     //Guardamos el usuario
     try {
@@ -273,13 +306,16 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email }) => {
   if (componenteSelezionato === 'estad') {
     return <EstadisticasRespuestas idUsuario={usuario?.id??'sense'} />;
   }
+  if (componenteSelezionato === 'impiccato') {
+     return <HangmanGame usuario={usuario} />; // idUsuario={usuario?.id ?? 'sense'} />;
+  }
   return (
     <Card className= "w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100" >
     <CardContent>
     <img src={ `${process.env.PUBLIC_URL}/logo.jpg` } alt = "Logo" className = "mb-4 w-32 h-32 mx-auto" />
       <div className="text-center text-gray-600 mb-4" >
-        <p className="italic mb-2 text-base" > "{quote.text}" </p>
-          < p className = "font-bold text-base text-gray-500" > { quote.author } </p>
+        <p className="italic mb-2 text-base" > "{quote?.text}" </p>
+          < p className = "font-bold text-base text-gray-500" > { quote?.author } </p>
             </div>
             < Input
   type = "text"
@@ -329,9 +365,13 @@ className = "mb-4"
       < Button onClick = {() => handleStart('learning')} className = "w-full bg-green-500 hover:bg-green-700 text-white" >
         Completamento del Testo
         </Button>
+        < Button onClick={() => handleStart('impiccato')} className="w-full bg-green-500 hover:bg-green-700 text-white" >
+          Gioco dell'Impiccato
+        </Button>
         < Button onClick={() => handleStart('estad')} className="w-full bg-green-500 hover:bg-green-700 text-white" >
           Statistiche
         </Button>
+        <DataLoadButton usuario={nome} />
           </CardContent>
           </Card>
   );

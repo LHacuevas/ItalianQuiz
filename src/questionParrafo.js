@@ -102,7 +102,7 @@ Entiendo, disculpa la omisión. Continuaré con más párrafos, incluyendo el in
 114,"Non [1] importa quante volte [2] cadrò, [3] rialzerò sempre. [4] ogni caduta [5] renderà più forte. [6] arrenderò mai, questo è certo.",Ultimo (22 settembre)
 `;
 export const paragraphsQuestionsCSV = `
-id,paragraphId,correct,options,hint,explanation,difficulty
+paragraphSubId,paragraphId,correct,options,hint,explanation,difficulty
 1,1,"ho avuto","ho avuto|avevo|ebbi",avere,"Si usa 'ho avuto' per esprimere un'azione compiuta nel passato recente.",A2
 2,1,"meravigliosa","meravigliosa|meraviglioso|meravigliosi",aggettivo,"'Giornata' è femminile singolare, quindi l'aggettivo deve concordare.",A2
 3,1,"Mi sono svegliato","Mi sono svegliato|Mi ho svegliato|Mi svegliavo",svegliarsi,"'Svegliarsi' è un verbo riflessivo che usa 'essere' come ausiliare nel passato prossimo.",B1
