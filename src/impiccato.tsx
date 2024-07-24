@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { TextField, Select, MenuItem, Card, CardContent, Typography, Alert, Chip, SelectChangeEvent, Box, Button } from '@mui/material';
+import { Select, MenuItem, Card, CardContent, Typography, Alert, Chip, SelectChangeEvent, Box, Button } from '@mui/material';
 import { QuizParams, RegImpiccato} from './MyTypes';
 import { fetchImpiccato, fetchRespuestas, guardarRespuesta } from './firebase/firebaseFunctions';
 import GlobalKeyCaptureTextField from './components/global-key-capture-text-field';
 import { Respuesta } from './firebase/firebaseInterfaces';
-import { impiccatoCSV } from './question.Impiccato';
+//import { impiccatoCSV } from './question.Impiccato';
 type Difficulty = 'facile' | 'medio' | 'difficile';
 
 const Imppicato: React.FC<QuizParams> = ({
@@ -16,14 +16,14 @@ const Imppicato: React.FC<QuizParams> = ({
     const [currentWord, setCurrentWord] = useState<RegImpiccato | null>(null);
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
     const [remainingAttempts, setRemainingAttempts] = useState<number>(0);
-    const [input, setInput] = useState<string>('');
+    //const [input, setInput] = useState<string>('');
     const [difficulty, setDifficulty] = useState<Difficulty>('medio');
     const [level, setLevel] = useState<RegImpiccato['level']>('A2');
     const [message, setMessage] = useState<string>('');
     const [timer, setTimer] = useState<number>(30);
     const [gameOver, setGameOver] = useState<boolean>(false);
     const [showTip, setShowTip] = useState<boolean>(false);
-    const [consecutiveFailures, setConsecutiveFailures] = useState<number>(0);
+    //const [consecutiveFailures, setConsecutiveFailures] = useState<number>(0);
     const [category, setCategory] = useState<string>('Tutte');
     const [showCategory, setShowCategory] = useState<boolean>(false);
     const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
@@ -94,8 +94,7 @@ const Imppicato: React.FC<QuizParams> = ({
         setTimer(30);
         setGameOver(false);
         setShowTip(false);
-        setShowCategory(false);
-        setConsecutiveFailures(0);
+        setShowCategory(false);        
         setGuessedLetters([]);
         let initialLetters: string[] = [];
         if (difficulty !== 'difficile') {
@@ -189,18 +188,9 @@ const Imppicato: React.FC<QuizParams> = ({
                 }
                 return newAttempts;
             });
-            setConsecutiveFailures(prev => {
-                const newFailures = prev + 1;
-                if (newFailures === 1) {
-                    setShowCategory(true);
-                } else if (newFailures === 2) {
-                    setShowTip(true);
-                }
-                return newFailures;
-            });
+            
             setMessage('Lettera non presente nella parola.');
-        } else {
-            setConsecutiveFailures(0);
+        } else {            
             setMessage('Lettera corretta!');
         }
         checkGameStatus(newGuessedLetters);
@@ -209,8 +199,7 @@ const Imppicato: React.FC<QuizParams> = ({
     const handleInputChange = (letter: string): void => {
         //const letter = e.target.value.toLowerCase();
         if (letter && !gameOver) {
-            handleGuess(letter);
-            setInput('');
+            handleGuess(letter);            
         }
     };
 

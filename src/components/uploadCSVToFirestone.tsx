@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Usuario } from '../firebase/firebaseInterfaces';
+//import { Usuario } from '../firebase/firebaseInterfaces';
 import { uploadCSVToFirestore } from '../firebase/firebaseFunctions'; // Importa la función de migración
 
 // Asume que tienes estos CSVs definidos en algún lugar

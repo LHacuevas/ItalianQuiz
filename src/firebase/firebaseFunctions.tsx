@@ -1,7 +1,7 @@
 // firebaseFunctions.ts
 import { collection, query, where, getDocs, addDoc, updateDoc, doc, serverTimestamp, Timestamp, setDoc, DocumentData, WhereFilterOp, Query } from 'firebase/firestore';
 import { db } from './firebase';
-import { Usuario, Respuesta } from './firebaseInterfaces';
+import { Usuario, Respuesta, RegCorrige } from './firebaseInterfaces';
 import Papa from 'papaparse'; // Necesitarás instalar papaparse: npm install papaparse
 import { Paragraph, ParagraphQuestion, Question, RegImpiccato, RegQuote } from '../MyTypes';
 import { questionsCSV } from '../questionGPT4o';
@@ -9,12 +9,14 @@ import { quoteCSV } from '../questionMotiva';
 import { paragraphsCSV } from '../questionParrafo';
 import { paragraphsQuestionsCSV } from '../questionParrafo';
 import { impiccatoCSV } from '../question.Impiccato';
+import { corrigeCSV } from '../questionCorrige';
 
 const colImpiccato = ["questionImpiccato",impiccatoCSV]
 const colMultiRespuesta = ["questionMultiRespuesta",questionsCSV]
 const colParrafo = ["questionParagraphs", paragraphsCSV]
 const colParrafoSub = ["questionParagraphsSub", paragraphsQuestionsCSV]
 const colQuotes = ["quotes", quoteCSV]
+const colCorrige = ["questionCorrige", corrigeCSV]
 const colUsuarios = "usuarios"
 
 type ValidationFunction<T> = (data: any) => data is T;
@@ -76,6 +78,7 @@ export const fetchImpiccato = () => fetchFromFirestore<RegImpiccato>({
     defaultValues: { level: 'A2' }
 });
 
+
 // Example of how to use the generic function
 export const fetchQuotes = () => fetchFromFirestore<RegQuote>({
     collectionName: colQuotes
@@ -91,6 +94,11 @@ export const fetchParrafo = () => fetchFromFirestore<Paragraph>({
 // Example of how to use the generic function
 export const fetchParrafoSub = () => fetchFromFirestore<ParagraphQuestion>({
     collectionName: colParrafoSub
+});
+
+// Example of how to use the generic function
+export const fetchCorrige = () => fetchFromFirestore<RegCorrige>({
+    collectionName: colCorrige
 });
 export const guardarUsuario = async (nombreUsuario: string): Promise<Usuario> => {
     if (process.env.REACT_APP_USE_DATABASE === 'true') {
@@ -155,14 +163,6 @@ export const guardarRespuesta = async (respuesta: Respuesta): Promise<void> => {
     }
 };
 
-
-const formatDate = (timestamp: Timestamp | null | undefined) => {
-    if (timestamp instanceof Timestamp) {
-        return timestamp.toDate().toLocaleString();
-    }
-    return 'Fecha no disponible';
-};
-
 export const fetchRespuestas = async (idUsuario: string): Promise<Respuesta[]> => {    
     if (process.env.REACT_APP_USE_DATABASE === 'false') return [];
     const respuestasRef = collection(db, 'respuestas');
@@ -192,7 +192,6 @@ function removeEmptyFieldsAndCleanKeys(obj: Record<string, any>): Record<string,
     }, {} as Record<string, any>);
 }
 
-type CSVRow = Record<string, string | number | boolean>;
 function parseCSV(csvString: string): Record<string, string>[] {
     const result = Papa.parse(csvString, {
         header: true,

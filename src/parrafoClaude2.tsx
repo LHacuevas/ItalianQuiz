@@ -1,89 +1,26 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import Card from '@mui/material/Card';
+import React, { useState, useEffect } from 'react';
+//import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+//import Input from '@mui/material/Input';
+//import Alert from '@mui/material/Alert';
+//import AlertTitle from '@mui/material/AlertTitle';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Clock } from 'lucide-react';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
+//import Select from '@mui/material/Select';
+//import MenuItem from '@mui/material/MenuItem';
+//import FormControl from '@mui/material/FormControl';
+//import InputLabel from '@mui/material/InputLabel';
 import { CardActions } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Paragraph, ParagraphQuestion, QuizParams } from './MyTypes.js';
 //import { paragraphsCSV, paragraphsQuestionsCSV } from './questionParrafo.js';
 import ResponsiveCard from './components/ResponsiveCard';
-import { Usuario, Respuesta } from "./firebase/firebaseInterfaces";
-import { guardarRespuesta, fetchRespuestas, fetchMultiRespuesta, fetchParrafo, fetchParrafoSub } from './firebase/firebaseFunctions';
+import { Respuesta } from "./firebase/firebaseInterfaces";
+import { guardarRespuesta, fetchRespuestas, fetchParrafo, fetchParrafoSub } from './firebase/firebaseFunctions';
 import QuestionComponent from './components/ParagraphQuestion';
-/* const paragraphParseCSV = (csv: string): Paragraph[] => {
-    const lines = csv.trim().split('\n');
-    const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
-
-    return lines.slice(1).map(line => {
-        const values = line.match(/(?:^|,)("(?:[^"]*(?:""[^"]*)*)"|[^,]*)/g) || [];
-
-        const obj: Paragraph = {
-            id: 0,
-            text: '',
-            generated: '',
-        };
-
-        headers.forEach((header, index) => {
-            let value = values[index] ? values[index].replace(/^,?"?|"?$/g, '').trim() : '';
-
-            if (header === 'id') {
-                obj[header] = Number(value);
-            } else {
-                obj[header] = value;
-            }
-        });
-
-        return obj;
-    });
-};
-
-const questionParseCSV = (csv: string): ParagraphQuestion[] => {
-    const lines = csv.trim().split('\n');
-    const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
-
-    return lines.slice(1).map(line => {
-        const values = line.match(/(?:^|,)("(?:[^"]*(?:""[^"]*)*)"|[^,]*)/g) || [];
-
-        const obj: ParagraphQuestion = {
-            id: 0,
-            paragraphId: 0,
-            correct: '',
-            options: [],
-            hint: '',
-            explanation: '',
-            difficulty: '',
-        };
-
-        headers.forEach((header, index) => {
-            let value = values[index] ? values[index].replace(/^,?"?|"?$/g, '').trim() : '';
-
-            if (header === 'id' || header === 'paragraphId') {
-                obj[header] = Number(value);
-            } else if (header === 'options') {
-                obj[header] = value.split('|');
-            } else {
-                obj[header] = value;
-            }
-        });
-
-        return obj;
-    });
-};
- */
-
-let PARAGRAPHS_DATA: Paragraph[] = [] // paragraphParseCSV(paragraphsCSV);
-let QUESTIONS_DATA: ParagraphQuestion[] = [] // questionParseCSV(paragraphsQuestionsCSV);
 
 const ItalianLearningApp: React.FC<QuizParams> = ({
     numQuestions = 3,

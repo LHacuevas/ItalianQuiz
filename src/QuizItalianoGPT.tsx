@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
+//import CardHeader from '@mui/material/CardHeader';
 import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
+//import Input from '@mui/material/Input';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle'; // Cambié AlertDescription a AlertTitle
 import LinearProgress from '@mui/material/LinearProgress';
-import { CheckCircle, XCircle, Clock } from 'lucide-react';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem'; // Cambié SelectContent, SelectItem, SelectTrigger y SelectValue
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
+import { Clock } from 'lucide-react';
+//import Select, { SelectChangeEvent } from '@mui/material/Select';
+//import MenuItem from '@mui/material/MenuItem'; // Cambié SelectContent, SelectItem, SelectTrigger y SelectValue
+//import FormControl from '@mui/material/FormControl';
+//import InputLabel from '@mui/material/InputLabel';
 import { CardActions } from '@mui/material';
 //import { questionsCSV } from './questionGPT4o.js'
 import { Question, QuizParams } from './MyTypes.js'
 import QuizQuestion from './components/Question'
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { Usuario, Respuesta } from './firebase/firebaseInterfaces';
+//import FormControlLabel from '@mui/material/FormControlLabel';
+//import Checkbox from '@mui/material/Checkbox';
+import { Respuesta } from './firebase/firebaseInterfaces';
 import { guardarRespuesta, fetchRespuestas, fetchMultiRespuesta } from './firebase/firebaseFunctions';
 //import logo from './logo.jpg'; // Ajusta la ruta según la ubicación de tu imagen
 
