@@ -23,7 +23,7 @@ import ResponsiveCard from './components/ResponsiveCard';
 import { fetchQuotes, guardarUsuario } from './firebase/firebaseFunctions';
 import { Usuario } from './firebase/firebaseInterfaces';
 
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, User, UserCredential, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, User, UserCredential, signOut } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import EstadisticasRespuestas from './components/estadisticas-respuestas-component';
 import HangmanGame from './impiccato';
@@ -33,11 +33,11 @@ import ItalianErrorDetectionGame from './corrigeClaude';
 // Asumimos que tienes una forma de obtener la versión del Git
 // Por ejemplo, podrías tenerla en una variable de entorno
 const VERSION = process.env.REACT_APP_GIT_VERSION || 'v2.2';
-
+const usaUserFirebase = process.env.REACT_APP_USE_USUARIO_FIREBASE === 'true';
 const App: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  //const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
   const [nome, setNome] = useState<string>('');
@@ -56,7 +56,7 @@ const App: React.FC = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [auth]);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -68,7 +68,7 @@ const App: React.FC = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [auth]);
 
   const handleLogout = async () => {
     try {
@@ -97,7 +97,7 @@ const App: React.FC = () => {
     }
   };
 
-  const handlePhoneAuth = async () => {
+ /* const handlePhoneAuth = async () => {
     if (!auth) {
       console.error('Auth instance not available');
       return;
@@ -111,7 +111,7 @@ const App: React.FC = () => {
       console.error('Error during phone authentication:', error);
     }
   };
-
+*/
   const renderAuthForm = () => (
     <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100 text-sm sm:text-base">
       <CardHeader title="Autenticazione" className="text-xl sm:text-2xl font-bold text-center text-blue-800 p-4" />
@@ -162,7 +162,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      {user? (
+      {user || !usaUserFirebase? (
         <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100 text-sm sm:text-base">
           <CardHeader
             title={
@@ -328,7 +328,7 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email }) => {
   value = { nome }
   onChange = {(e) => setNome(e.target.value)}
           className="mb-4 w-full"
-          disabled = { email != "" }
+          disabled = { email !== "" }
   />
   <FormControl className="mb-4 w-full" >
     <InputLabel>Seleziona il livello </InputLabel>

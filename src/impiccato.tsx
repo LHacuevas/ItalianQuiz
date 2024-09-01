@@ -83,7 +83,8 @@ const Imppicato: React.FC<QuizParams> = ({
             setError('Non ci sono parole disponibili per la combinazione di livello e categoria selezionata.');
             return;
         };
-        const randomWord = availableWords[Math.floor(Math.random() * filteredWords.length)];
+        const randomWord = availableWords[Math.floor(Math.random() * availableWords.length)];
+        //console.log('Palabra seleccionada:', randomWord.word);
         //Lo paso a minusculas por si aca
         setCurrentWord({
             ...randomWord,
@@ -110,13 +111,20 @@ const Imppicato: React.FC<QuizParams> = ({
 
         const allInitialLetters = randomWord.word.split('').filter(letter => initialLetters.includes(letter));
         setGuessedLetters(allInitialLetters);
-    }, [words, level, category, difficulty]);
+    }, [words, level, category, difficulty, respuestas]);
 
     useEffect(() => {
         if (!loading && words.length > 0) {
             selectNewWord();
         }
     }, [loading, words, difficulty, level, category, selectNewWord]);
+
+    const handleTimeUp =  useCallback((): void => {
+        if (currentWord) {
+            setMessage(`Tempo scaduto! La parola era "${currentWord.word}".`);
+            endGame('Tempo scaduto');
+        }
+    }, [currentWord]);
 
     useEffect(() => {
         if (currentWord && !gameOver) {
@@ -132,7 +140,7 @@ const Imppicato: React.FC<QuizParams> = ({
             }, 1000);
             return () => clearInterval(interval);
         }
-    }, [currentWord, gameOver]);
+    }, [currentWord, gameOver, handleTimeUp]);
 
     if (loading) {
         return <div>Cargando...</div>;
@@ -182,7 +190,7 @@ const Imppicato: React.FC<QuizParams> = ({
             setRemainingAttempts(prev => {
                 const penaltyAmount = isVowel(letter) ? 3 : 1;
                 const newAttempts = prev - penaltyAmount;
-                if (newAttempts === 0) {
+                if (newAttempts <= 0) {
                     setMessage(`Gioco finito. La parola era "${currentWord.word}".`);
                     endGame('Tentativi esauriti');
                 }
@@ -213,13 +221,7 @@ const Imppicato: React.FC<QuizParams> = ({
         }
     };
 
-    const handleTimeUp = (): void => {
-        if (currentWord) {
-            setMessage(`Tempo scaduto! La parola era "${currentWord.word}".`);
-            endGame('Tempo scaduto');
-        }
-    };
-
+   
     const displayWord = (guessedLetters: string[]): string => {
         return currentWord ? currentWord.word.split('').map(letter =>
             guessedLetters.includes(letter) ? letter : '_'
