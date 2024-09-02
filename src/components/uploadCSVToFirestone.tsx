@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 //import { Usuario } from '../firebase/firebaseInterfaces';
 import { uploadCSVToFirestore } from '../firebase/firebaseFunctions'; // Importa la función de migración
 
+
 // Asume que tienes estos CSVs definidos en algún lugar
-import { impiccatoCSV } from '../question.Impiccato.js';
+//import { impiccatoCSV } from '../question.Impiccato.js';
 //import { questionsCSV } from '../questionGPT4o.js'
 //import { quoteCSV } from '../questionMotiva.js';
 //import { paragraphsCSV, paragraphsQuestionsCSV } from '../questionParrafo';
+import { typingCSV } from '../questionTyping';
+
 interface DataLoadButtonProps {
     usuario: string | null;
 }
@@ -19,9 +22,10 @@ const DataLoadButton: React.FC<DataLoadButtonProps> = ({ usuario }) => {
         try {
            // await uploadCSVToFirestore(paragraphsCSV, 'questionParagraphs', 'id');
             //await uploadCSVToFirestore(paragraphsQuestionsCSV, 'questionParagraphsSub');
-            await uploadCSVToFirestore(impiccatoCSV, 'questionImpiccato');
+            //await uploadCSVToFirestore(impiccatoCSV, 'questionImpiccato');
             //await uploadCSVToFirestore(questionsCSV, 'questionMultiRespuesta', 'id');
             //await uploadCSVToFirestore(quoteCSV, 'quotes', 'id');
+            await uploadCSVToFirestore(typingCSV, 'questionTyping');
             alert('Datos cargados exitosamente');
         } catch (error) {
             console.error('Error al cargar datos:', error);

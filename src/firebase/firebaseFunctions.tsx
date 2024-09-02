@@ -3,13 +3,14 @@ import { collection, query, where, getDocs, addDoc, updateDoc, doc, serverTimest
 import { db } from './firebase';
 import { Usuario, Respuesta, RegCorrige } from './firebaseInterfaces';
 import Papa from 'papaparse'; // Necesitarás instalar papaparse: npm install papaparse
-import { Paragraph, ParagraphQuestion, Question, RegImpiccato, RegQuote } from '../MyTypes';
+import { Paragraph, ParagraphQuestion, Question, RegImpiccato, RegQuote, RegTyping } from '../MyTypes';
 import { questionsCSV } from '../questionGPT4o';
 import { quoteCSV } from '../questionMotiva';
 import { paragraphsCSV } from '../questionParrafo';
 import { paragraphsQuestionsCSV } from '../questionParrafo';
 import { impiccatoCSV } from '../question.Impiccato';
 import { corrigeCSV } from '../questionCorrige';
+import { typingCSV } from '../questionTyping';
 
 const colImpiccato = ["questionImpiccato",impiccatoCSV]
 const colMultiRespuesta = ["questionMultiRespuesta",questionsCSV]
@@ -17,6 +18,7 @@ const colParrafo = ["questionParagraphs", paragraphsCSV]
 const colParrafoSub = ["questionParagraphsSub", paragraphsQuestionsCSV]
 const colQuotes = ["quotes", quoteCSV]
 const colCorrige = ["questionCorrige", corrigeCSV]
+const colTyping = ["questionTyping", typingCSV]
 const colUsuarios = "usuarios"
 
 type ValidationFunction<T> = (data: any) => data is T;
@@ -99,6 +101,9 @@ export const fetchParrafoSub = () => fetchFromFirestore<ParagraphQuestion>({
 // Example of how to use the generic function
 export const fetchCorrige = () => fetchFromFirestore<RegCorrige>({
     collectionName: colCorrige
+});
+export const fetchTyping = () => fetchFromFirestore<RegTyping>({
+    collectionName: colTyping
 });
 export const guardarUsuario = async (nombreUsuario: string): Promise<Usuario> => {
     if (process.env.REACT_APP_USE_DATABASE === 'true') {

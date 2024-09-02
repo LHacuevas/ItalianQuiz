@@ -42,6 +42,12 @@ export interface ParagraphQuestion {
     [key: string]: string;
 }
 
+export interface RegTyping {
+    theme: string;
+    text: string;
+    level: string;
+    [key: string]: string;
+}
 export interface QuizParams {
     numQuestions?: number;
     name?: string;

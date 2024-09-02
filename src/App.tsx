@@ -30,6 +30,7 @@ import HangmanGame from './impiccato';
 import DataLoadButton from './components/uploadCSVToFirestone';
 import { RegQuote } from './MyTypes';
 import ItalianErrorDetectionGame from './corrigeClaude';
+import ItalianTypingTutor from './ItalianTypingTutor';
 // Asumimos que tienes una forma de obtener la versión del Git
 // Por ejemplo, podrías tenerla en una variable de entorno
 const VERSION = process.env.REACT_APP_GIT_VERSION || 'v2.2';
@@ -313,7 +314,9 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email }) => {
   if (componenteSelezionato === 'error') {
     return <ItalianErrorDetectionGame level="B1" />
   }
-  
+  if (componenteSelezionato === 'typing') {
+    return <ItalianTypingTutor />
+  }
   return (
     <Card className= "w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100" >
     <CardContent>
@@ -375,6 +378,9 @@ className = "mb-4"
         </Button>
         < Button onClick={() => handleStart('error')} className="w-full bg-green-500 hover:bg-green-700 text-white" >
           Error detection
+        </Button>
+        < Button onClick={() => handleStart('typing')} className="w-full bg-green-500 hover:bg-green-700 text-white" >
+          Dattilografia
         </Button>
         < Button onClick={() => handleStart('estad')} className="w-full bg-green-500 hover:bg-green-700 text-white" >
           Statistiche
