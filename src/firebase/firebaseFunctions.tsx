@@ -105,9 +105,36 @@ export const fetchCorrige = () => fetchFromFirestore<RegCorrige>({
 export const fetchTyping = () => fetchFromFirestore<RegTyping>({
     collectionName: colTyping
 });
-export const guardarUsuario = async (nombreUsuario: string): Promise<Usuario> => {
+
+export const guardarUsuario = async (nombreUsuario: string, email?: string, uid?: string): Promise<Usuario> => {
     if (process.env.REACT_APP_USE_DATABASE === 'true') {
         try {
+            // Try to find user by UID first if provided, as it's the primary key
+            if (uid) {
+                const userRefByUid = doc(db, colUsuarios, uid);
+                const userSnapByUid = await getDocs(query(collection(db, colUsuarios), where("__name__", "==", uid))); // Firestore getDoc doesn't work like this, need query
+                
+                if (!userSnapByUid.empty) {
+                    const usuarioExistente = userSnapByUid.docs[0];
+                    await updateDoc(userRefByUid, {
+                        fechaUltimaEntrada: serverTimestamp(),
+                        email: email || usuarioExistente.data().email, // Update email if provided
+                        nombreUsuario: nombreUsuario || usuarioExistente.data().nombreUsuario // Update nombreUsuario if provided
+                    });
+                    console.log("Usuario encontrado por UID y actualizado: ", uid);
+                    return {
+                        id: uid,
+                        ...usuarioExistente.data(),
+                        // Ensure new fields are included, defaulting if not present
+                        livelloGlobal: usuarioExistente.data().livelloGlobal || null,
+                        puntiTotali: usuarioExistente.data().puntiTotali || 0,
+                        storicoLivelli: usuarioExistente.data().storicoLivelli || [],
+                        dataUltimoTestDiLivellamento: usuarioExistente.data().dataUltimoTestDiLivellamento || null,
+                    } as Usuario;
+                }
+            }
+
+            // Fallback or primary search by nombreUsuario (e.g., email or displayName)
             const q = query(collection(db, colUsuarios), where("nombreUsuario", "==", nombreUsuario));
             const querySnapshot = await getDocs(q);
 
@@ -115,41 +142,94 @@ export const guardarUsuario = async (nombreUsuario: string): Promise<Usuario> =>
                 const usuarioExistente = querySnapshot.docs[0];
                 const usuarioRef = doc(db, colUsuarios, usuarioExistente.id);
                 await updateDoc(usuarioRef, {
-                    fechaUltimaEntrada: serverTimestamp()
+                    fechaUltimaEntrada: serverTimestamp(),
+                    ...(email && { email: email }), // Update email if different or not set
                 });
-                console.log("Usuario encontrado y actualizado con ID: ", usuarioExistente.id);
+                console.log("Usuario encontrado por nombreUsuario y actualizado con ID: ", usuarioExistente.id);
                 return {
                     id: usuarioExistente.id,
-                    ...usuarioExistente.data()
+                    ...usuarioExistente.data(),
+                    livelloGlobal: usuarioExistente.data().livelloGlobal || null,
+                    puntiTotali: usuarioExistente.data().puntiTotali || 0,
+                    storicoLivelli: usuarioExistente.data().storicoLivelli || [],
+                    dataUltimoTestDiLivellamento: usuarioExistente.data().dataUltimoTestDiLivellamento || null,
                 } as Usuario;
             } else {
-                const nuevoUsuario = {
+                // Create new user
+                const nuevoUsuarioData: Partial<Usuario> = { // Use Partial for initial object
                     nombreUsuario: nombreUsuario,
+                    email: email || '', // Ensure email is stored
                     fechaAlta: serverTimestamp(),
-                    fechaUltimaEntrada: serverTimestamp()
+                    fechaUltimaEntrada: serverTimestamp(),
+                    livelloGlobal: null, // Initialize new fields
+                    puntiTotali: 0,
+                    storicoLivelli: [],
+                    dataUltimoTestDiLivellamento: null,
                 };
-
-                const docRef = await addDoc(collection(db, colUsuarios), nuevoUsuario);
-                console.log("Nuevo usuario creado con ID: ", docRef.id);
+                
+                let docRefId = uid; // Use UID for doc ID if creating new user from Firebase Auth
+                if (docRefId) {
+                    await setDoc(doc(db, colUsuarios, docRefId), nuevoUsuarioData);
+                    console.log("Nuevo usuario creado con UID especificado: ", docRefId);
+                } else {
+                    const docRef = await addDoc(collection(db, colUsuarios), nuevoUsuarioData);
+                    docRefId = docRef.id;
+                    console.log("Nuevo usuario creado con ID generado: ", docRefId);
+                }
+                
                 return {
-                    id: docRef.id,
-                    ...nuevoUsuario
+                    id: docRefId,
+                    ...nuevoUsuarioData
                 } as Usuario;
             }
         } catch (e) {
             console.error("Error al buscar/crear usuario: ", e);
-            //throw e;
             return {
-                id: 'sense',
-                nombreUsuario: 'sense'
+                id: uid || 'error_no_uid',
+                nombreUsuario: nombreUsuario || 'error_user',
+                email: email || '',
+                livelloGlobal: null,
+                puntiTotali: 0,
+                storicoLivelli: [],
+                dataUltimoTestDiLivellamento: null,
             } as Usuario;
         }
-    }else{
+    } else {
+        // Local/non-DB mode
         return {
-            id: 'senseBD',
-            nombreUsuario: 'senseBD'
-        } as Usuario;}
+            id: 'local_user',
+            nombreUsuario: nombreUsuario,
+            email: email || '',
+            livelloGlobal: localStorage.getItem('userGlobalLevel') || null, // Try to get from localStorage
+            puntiTotali: 0,
+            storicoLivelli: [],
+            dataUltimoTestDiLivellamento: null,
+        } as Usuario;
+    }
 };
+
+export const actualizarNivelGlobalUsuario = async (userId: string, nivel: string): Promise<void> => {
+    if (process.env.REACT_APP_USE_DATABASE === 'true') {
+        try {
+            const userRef = doc(db, colUsuarios, userId);
+            const nuevoHistoricoEntry = { livello: nivel, data: serverTimestamp() };
+            
+            await updateDoc(userRef, {
+                livelloGlobal: nivel,
+                dataUltimoTestDiLivellamento: serverTimestamp(),
+                storicoLivelli: arrayUnion(nuevoHistoricoEntry) // Atomically adds to array
+            });
+            console.log(`Nivel global actualizado para usuario ${userId} a ${nivel}`);
+        } catch (e) {
+            console.error(`Error al actualizar nivel global para usuario ${userId}: `, e);
+            // Consider re-throwing or specific error handling if needed by UI
+        }
+    } else {
+        console.log("Modo offline: Nivel global no actualizado en Firestore.");
+        // Optionally, could update localStorage here if desired, but App.tsx already does for 'userGlobalLevel'
+    }
+};
+
 
 export const guardarRespuesta = async (respuesta: Respuesta): Promise<void> => {
     if (process.env.REACT_APP_USE_DATABASE === 'false') return;
@@ -245,11 +325,14 @@ export async function uploadCSVToFirestore(
 
         try {
             //console.log('Documento a subir:', docData);
-            if (idField && idField in row) {
-                const id = String(row[idField]);
-                delete docData[idField]; // Eliminar el campo ID de los datos
-                if (Object.keys(docData).length > 0) {
-                    await setDoc(doc(db, collectionName, id), docData);
+            if (idField && idField in row && row[idField] !== null && String(row[idField]).trim() !== '') {
+                const id = String(row[idField]).trim();
+                 // Create a new object for docData to avoid modifying the original row object directly
+                const docDataForFirestore = { ...docData };
+                delete docDataForFirestore[idField]; // Eliminar el campo ID de los datos
+                
+                if (Object.keys(docDataForFirestore).length > 0) {
+                    await setDoc(doc(db, collectionName, id), docDataForFirestore);
                     //console.log(`Documento con ID ${id} añadido a ${collectionName}`);
                 } else {
                     console.warn(`Documento con ID ${id} no añadido porque no contiene datos válidos`);
