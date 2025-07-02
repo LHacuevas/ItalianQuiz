@@ -6,6 +6,7 @@ export interface Usuario {
     nombreUsuario: string;
     fechaAlta: Timestamp;
     fechaUltimaEntrada: Timestamp;
+    livelloGlobal?: string | null;
 }
 
 export interface Respuesta {
