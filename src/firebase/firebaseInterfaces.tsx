@@ -1,12 +1,16 @@
 // interfaces.ts
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp, FieldValue } from 'firebase/firestore';
 
 export interface Usuario {
     id: string;
     nombreUsuario: string;
-    fechaAlta: Timestamp;
-    fechaUltimaEntrada: Timestamp;
+    fechaAlta: Timestamp | null | FieldValue;
+    fechaUltimaEntrada: Timestamp | null | FieldValue;
     livelloGlobal?: string | null;
+    email?: string | null;
+    puntiTotali?: number;
+    storicoLivelli?: Array<{ livello: string; data: Timestamp | FieldValue }>;
+    dataUltimoTestDiLivellamento?: Timestamp | null | FieldValue;
 }
 
 export interface Respuesta {
