@@ -13,7 +13,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 10,"Quale verbo richiede il congiuntivo?","Credo che","So che","Dico che",0,"'Credo che' richiede il congiuntivo. Esprime un'opinione o una credenza, non una certezza.",B2
 11,"Qual è il participio passato di 'fare'?","Fatto","Fato","Facciuto",0,"Il participio passato di 'fare' è 'fatto'. È un participio irregolare.",B1
 12,"Come si traduce 'Let's go!' in italiano?","Andiamo!","Andate!","Vado!",0,"'Let's go!' si traduce come 'Andiamo!' in italiano. È la prima persona plurale dell'imperativo.",A2
-13,"Quale articolo si usa prima di 'zaino'?","Il","Lo","La",0,"Si usa 'il' prima di 'zaino'. 'Lo' si usa prima di parole che iniziano con z + vocale, s + consonante, gn, ps, x, y.",B1
+13,"Quale articolo si usa prima di 'zaino'?","Il","Lo","La",1,"Si usa 'lo' prima di 'zaino' perché inizia con 'z'. 'Lo' si usa prima di parole maschili che iniziano con z, s+consonante, gn, ps, x, y.",B1
 14,"Quale di questi è un verbo riflessivo?","Mangiare","Correre","Lavarsi",2,"'Lavarsi' è un verbo riflessivo. L'azione del verbo si riflette sul soggetto.",B1
 15,"Come si forma il futuro di 'essere'?","Sarò","Essarò","Siarò",0,"Il futuro di 'essere' è 'sarò'. È un futuro irregolare in italiano.",B1
 16,"Qual è il contrario di 'sempre'?","Mai","Spesso","Talvolta",0,"Il contrario di 'sempre' è 'mai'. 'Mai' significa 'never' in inglese.",A2
@@ -74,7 +74,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 112,"Qual è il participio passato del verbo 'rompere'?","Romputo","Rotto","Rompito",1,"Il participio passato irregolare di 'rompere' è 'rotto'.",B1,Claude
 113,"Quale di queste frasi usa correttamente il gerundio?","Sto mangiando","Sono mangiando","Ho mangiando",0,"Il gerundio si forma con 'stare' + gerundio del verbo principale.",B1,Claude
 114,"Come si dice 'Te echo de menos' in italiano?","Ti manco","Mi manchi","Ti manchi",1,"In italiano si dice 'mi manchi' per esprimere 'te echo de menos'.",B1,Claude
-115,"Quale di questi aggettivi non cambia al plurale?","Rosso","Blu","Verde",1,"Gli aggettivi che terminano in -i o -e atona non cambiano al plurale.",B1,Claude
+115,"Quale di questi aggettivi non cambia al plurale?","Rosso","Blu","Verde",1,"L'aggettivo 'blu' è invariabile al plurale. Altri esempi includono 'rosa' e 'viola'.",B1,Claude
 116,"Quale di queste forme è il trapassato prossimo?","Avevo mangiato","Ho mangiato","Ebbi mangiato",0,"Il trapassato prossimo si forma con l'imperfetto di avere/essere + participio passato.",B2,Claude
 117,"Qual è il significato dell'espressione 'prendere in giro'?","Fare un giro","Burlare","Prendere qualcosa",1,"'Prendere in giro' significa 'burlarse' in spagnolo.",B2,Claude
 118,"Quale di questi è un verbo difettivo?","Andare","Piovere","Mangiare",1,"'Piovere' è un verbo difettivo, usato solo alla terza persona singolare.",B2,Claude
@@ -88,7 +88,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 126,"Quale di questi è un esempio di futuro anteriore?","Avrò finito","Finirò","Ho finito",0,"Il futuro anteriore si forma con il futuro di avere/essere + participio passato.",B2,Claude
 127,"Cosa significa l'espressione 'non c'è due senza tre'?","Le cose belle finiscono","Le cose brutte si ripetono","Le cose tendono a ripetersi",2,"Equivale a 'No hay dos sin tres' in spagnolo.",B2,Claude
 128,"Quale di queste parole è un falso amico tra italiano e spagnolo?","Salire","Scendere","Esito",2,"'Esito' in italiano significa 'risultato', non 'éxito' (successo).",B1,Claude
-129,"Come si forma il superlativo assoluto di 'buono'?","Buonissimo","Ottimo","Più buono",1,"Il superlativo assoluto irregolare di 'buono' è 'ottimo'.",B1,Claude
+129,"Qual è il superlativo assoluto irregolare di 'buono'?","Buonissimo","Ottimo","Più buono",1,"Il superlativo assoluto irregolare di 'buono' è 'ottimo'. 'Buonissimo' è la forma regolare.",B1,Claude
 130,"Quale di queste frasi usa correttamente il 'si' passivante?","Si mangia bene qui","Si mangiamo bene qui","Si mangiano bene qui",0,"Il 'si' passivante si usa con il verbo alla terza persona singolare.",B2,Claude
 131,"Come si dice 'tener razón' in italiano?","Avere ragione","Tenere ragione","Essere ragione",0,"In italiano si dice 'avere ragione'.",B1,Claude
 132,"Quale di questi verbi richiede l'ausiliare 'essere' nel passato prossimo?","Mangiare","Dormire","Andare",2,"I verbi di movimento come 'andare' richiedono l'ausiliare 'essere'.",B1,Claude
@@ -112,32 +112,32 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 150,"Come si traduce 'aunque' in italiano?","Anche se","Se","Però",0,"'Aunque' si traduce come 'anche se' in italiano.",B1,Claude
 151,"Quale di questi è un esempio di forma impersonale?","Si dice che pioverà","Io dico che pioverà","Tu dici che pioverà",0,"La forma impersonale si costruisce con 'si' + verbo alla terza persona singolare.",B2,Claude
 152,"Come si forma il superlativo relativo?","Il/la più + aggettivo","Aggettivo + issimo/a","Molto + aggettivo",0,"Il superlativo relativo si forma con 'il/la più + aggettivo'.",B1,Claude
-153,"Quale di queste parole è un falso amico tra italiano e spagnolo?","Carta","Firma","Aceto",1,"'Firma' in italiano significa 'signatura', non 'firma' (azienda).",B1,Claude
+153,"Quale di queste parole è un falso amico tra italiano e spagnolo?","Carta","Firma","Aceto",1,"'Firma' in italiano significa 'signature'. In spagnolo, 'firma' può significare 'signature' ma anche 'company/business firm', mentre in italiano per 'company' si usa 'azienda' o 'ditta'.",B1,Claude
 154,"Cosa significa l'espressione 'fare orecchie da mercante'?","Ascoltare attentamente","Fingere di non sentire","Parlare ad alta voce",1,"'Fare orecchie da mercante' significa fingere di non sentire.",B2,Claude
 155,"Quale di queste frasi usa correttamente il congiuntivo presente?","Spero che vieni","Spero che venga","Spero che verrai",1,"Dopo 'spero che' si usa il congiuntivo presente.",B1,Claude
 156,"Come si dice 'echar de menos' in italiano?","Buttare fuori","Mancare","Perdere",1,"'Echar de menos' si traduce come 'mancare' in italiano.",B1,Claude
 157,"Quale di questi è un esempio di futuro nel passato?","Disse che sarebbe venuto","Disse che verrà","Disse che veniva",0,"Il futuro nel passato si esprime con il condizionale passato in frasi subordinate.",B2,Claude
 158,"Cosa significa l'espressione 'prendere due piccioni con una fava'?","Essere fortunati","Ottenere due risultati con una sola azione","Essere golosi",1,"Equivale a 'matar dos pájaros de un tiro' in spagnolo.",B2,Claude
 159,"Quale di queste è la forma corretta dell'imperativo formale di 'dire'?","Di'","Dica","Dici",1,"L'imperativo formale di 'dire' alla terza persona singolare è 'dica'.",B2,Claude
-181,"Qual è il participio passato del verbo 'aprire'?","aperto",,,-1,"Il participio passato di 'aprire' è 'aperto'.",B1,Claude
+181,"Qual è il participio passato del verbo 'aprire'?","aperto","aprito","apruto",0,"Il participio passato di 'aprire' è 'aperto'.",B1,Claude
 182,"Quale di queste parole è un falso amico tra italiano e spagnolo?","Settimana","Oficina","Largo",1,"'Oficina' in italiano significa 'ufficio', non 'officina' (taller).",B1,Claude
-183,"Come si dice 'ayer' in italiano?","ieri",,,-1,"'Ayer' si traduce come 'ieri' in italiano.",B1,Claude
+183,"Come si dice 'ayer' in italiano?","ieri","oggi","domani",0,"'Ayer' (spagnolo) si traduce come 'ieri' in italiano.",B1,Claude
 184,"Qual è il significato dell'espressione 'avere la coda di paglia'?","Essere innocente","Sentirsi in colpa","Essere fortunato",1,"'Avere la coda di paglia' significa sentirsi in colpa o sulla difensiva.",B2,Claude
-185,"Scrivi l'articolo indeterminativo femminile singolare.","una",,,-1,"L'articolo indeterminativo femminile singolare è 'una'.",B1,Claude
+185,"Scrivi l'articolo indeterminativo femminile singolare.","una","un'","la",0,"L'articolo indeterminativo femminile singolare è 'una'. 'Un'' si usa davanti a vocale.",B1,Claude
 186,"Quale di questi verbi è regolare al passato remoto?","Fare","Dire","Parlare",2,"'Parlare' è regolare al passato remoto: parlai, parlasti, parlò, ecc.",B2,Claude
-187,"Come si traduce 'aunque' in italiano?","benché",,,-1,"'Aunque' si traduce come 'benché' o 'anche se' in italiano.",B2,Claude
+187,"Come si traduce 'aunque' in italiano?","benché","perché","quando",0,"'Aunque' (spagnolo) si traduce come 'benché' o 'anche se' in italiano.",B2,Claude
 188,"Qual è il modo corretto per formare il plurale di 'uomo'?","Uomini","Uomi","Uome",0,"Il plurale irregolare di 'uomo' è 'uomini'.",B1,Claude
-189,"Scrivi il pronome diretto di prima persona singolare.","mi",,,-1,"Il pronome diretto di prima persona singolare è 'mi'.",B1,Claude
+189,"Scrivi il pronome diretto di prima persona singolare.","mi","me","mio",0,"Il pronome diretto di prima persona singolare è 'mi'.",B1,Claude
 190,"Quale di queste frasi usa correttamente il congiuntivo?","Penso che lui viene","Penso che lui venga","Penso che lui venirà",1,"Dopo 'penso che' si usa il congiuntivo presente.",B2,Claude
-191,"Qual è l'imperativo informale negativo di 'parlare' alla seconda persona singolare?","non parlare",,,-1,"L'imperativo negativo di 'parlare' è 'non parlare'.",B2,Claude
+191,"Qual è l'imperativo informale negativo di 'parlare' alla seconda persona singolare?","non parlare","non parli","non parla",0,"L'imperativo negativo informale (tu) di 'parlare' è 'non parlare'.",B2,Claude
 192,"Come si traduce 'tener razón' in italiano?","Avere ragione","Tenere ragione","Essere ragione",0,"'Tener razón' si traduce come 'avere ragione' in italiano.",B1,Claude
-193,"Scrivi il comparativo di maggioranza dell'aggettivo 'buono'.","migliore",,,-1,"Il comparativo di maggioranza irregolare di 'buono' è 'migliore'.",B2,Claude
+193,"Scrivi il comparativo di maggioranza dell'aggettivo 'buono'.","migliore","più buono","buonissimo",0,"Il comparativo di maggioranza irregolare di 'buono' è 'migliore'. 'Più buono' è anche usato.",B2,Claude
 194,"Quale di questi è un avverbio di tempo?","Velocemente","Ieri","Attentamente",1,"'Ieri' è un avverbio di tempo.",B1,Claude
-195,"Come si dice 'gracias' in italiano?","grazie",,,-1,"'Gracias' si traduce come 'grazie' in italiano.",B1,Claude
+195,"Come si dice 'gracias' in italiano?","grazie","prego","scusa",0,"'Gracias' (spagnolo) si traduce come 'grazie' in italiano.",B1,Claude
 196,"Qual è il significato dell'espressione 'essere in gamba'?","Essere malato","Essere bravo","Essere stanco",1,"'Essere in gamba' significa essere bravo, capace o in forma.",B2,Claude
-197,"Scrivi la forma corretta del verbo 'andare' al futuro semplice, prima persona singolare.","andrò",,,-1,"La forma corretta è 'andrò'.",B1,Claude
+197,"Scrivi la forma corretta del verbo 'andare' al futuro semplice, prima persona singolare.","andrò","andrei","andai",0,"La forma corretta del futuro semplice di 'andare' (io) è 'andrò'.",B1,Claude
 198,"Quale di questi verbi richiede l'ausiliare 'essere' nel passato prossimo?","Mangiare","Dormire","Partire",2,"'Partire' richiede l'ausiliare 'essere': sono partito/a.",B1,Claude
-199,"Come si traduce 'todavía' in italiano?","ancora",,,-1,"'Todavía' si traduce come 'ancora' in italiano.",B1,Claude
+199,"Come si traduce 'todavía' in italiano?","ancora","già","mai",0,"'Todavía' (spagnolo) si traduce come 'ancora' in italiano.",B1,Claude
 160,"Come si traduce 'mientras' in italiano?","Mentre","Durante","Intanto",0,"'Mientras' si traduce come 'mentre' in italiano.",B1,Claude
 200,Quale di queste non è un'emozione primaria?,Gioia,Disgusto,Nostalgia,2,"Le emozioni primarie sono generalmente considerate: gioia, tristezza, paura, rabbia, disgusto e sorpresa. La nostalgia è un'emozione più complessa.",B1,Siamo così
 201,Come si chiama la paura irrazionale degli spazi aperti?,"agorafobia",,,"-1","L'agorafobia è la paura irrazionale degli spazi aperti o delle situazioni in cui potrebbe essere difficile fuggire o ricevere aiuto.",B2,Siamo così
@@ -182,7 +182,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 240,Quale stile architettonico è caratterizzato da linee pulite e minimalismo?,Barocco,Moderno,Gotico,1,"Lo stile moderno in architettura è noto per le sue linee pulite, forme semplici e approccio minimalista al design.",B1,Case di stile
 241,Come si chiama lo stile architettonico caratterizzato da archi a sesto acuto e alte guglie?,"gotico",,,"-1","Lo stile gotico è famoso per i suoi archi a sesto acuto, alte guglie e grandi finestre con vetrate colorate.",B2,Case di stile
 242,Quale di questi non è un elemento tipico dell'architettura barocca?,Ornamenti elaborati,Simmetria,Minimalismo,2,"L'architettura barocca è nota per i suoi ornamenti elaborati e la simmetria, ma non per il minimalismo, che è l'opposto del suo stile ricco e decorativo.",B1,Case di stile
-243,Qual è il nome dell'architetto italiano famoso per il suo stile organico e l'uso di forme curve?,Renzo Piano,Frank Lloyd Wright,Antonio Gaudí,1,"Renzo Piano, architetto italiano, è noto per il suo stile che integra elementi organici e curve, come nel Centro Georges Pompidou a Parigi.",B2,Case di stile
+243,"Qual è il nome dell'architetto italiano famoso per il suo stile organico e l'uso di forme curve?","Renzo Piano","Frank Lloyd Wright","Antonio Gaudí",0,"Renzo Piano, architetto italiano, è noto per il suo stile che integra elementi organici e forme curve in alcune delle sue opere.",B2,Case di stile
 244,Come si chiama lo stile architettonico che enfatizza la funzionalità e l'assenza di decorazioni?,"funzionalismo",,,"-1","Il funzionalismo è uno stile architettonico che privilegia la funzione sulla forma, enfatizzando la praticità e l'assenza di decorazioni superflue.",B2,Case di stile
 245,Quale di questi materiali non è tipicamente associato all'architettura moderna?,Vetro,Acciaio,Pietra grezza,2,"L'architettura moderna è spesso caratterizzata dall'uso di materiali come vetro e acciaio, mentre la pietra grezza è più comune in stili tradizionali o rustici.",B1,Case di stile
 246,Come si chiama lo stile architettonico caratterizzato da colonne, frontoni e proporzioni classiche?,"neoclassico",,,"-1","Lo stile neoclassico si ispira all'architettura dell'antica Grecia e Roma, caratterizzato da colonne, frontoni e proporzioni classiche.",B2,Case di stile
@@ -530,11 +530,11 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 1006,"Qual è il significato di 'andare' al futuro?","Andrò","Andavo","Andai",0,"La forma futura del verbo 'andare' è 'andrò'.",B1,GPT4
 1007,"Quale frase è corretta?","Lui ha mangiato","Lui ha mangiò","Lui ha mangiare",0,"La forma corretta è 'Lui ha mangiato'.",B1,GPT4
 1008,"Quale preposizione si usa con 'Italia'?","in","a","da",0,"Si usa 'in' con i nomi di nazioni: 'in Italia'.",A2,GPT4
-1009,"Quale forma è corretta del congiuntivo presente del verbo 'avere' per 'noi'?","abbiamo","abbiamo","abbiamo",0,"La forma corretta è 'abbiamo'.",B2,GPT4
+1009,"Quale forma è corretta del congiuntivo presente del verbo 'avere' per 'noi'?","abbiamo","abbiate","abbia",0,"La forma corretta del congiuntivo presente di 'avere' per 'noi' è 'abbiamo'. 'Abbiate' è per 'voi', 'abbia' è per 'io/tu/lui/lei'.",B2,GPT4
 1010,"Qual è il significato di 'dovere' al condizionale presente?","dovrei","devo","dovevo",0,"La forma corretta è 'dovrei'.",B1,GPT4
 1011,"Qual è il participio passato del verbo 'scrivere'?","scritto","scrivuto","scritto",0,"La forma corretta è 'scritto'.",B1,GPT4
 1012,"Qual è la forma corretta del verbo 'essere' al congiuntivo imperfetto per 'loro'?","fossero","foste","fui",0,"La forma corretta è 'fossero'.",B2,GPT4
-1013,"Qual è il sinonimo di 'affamato'?","Fame","Affamato","Affamato",0,"La forma corretta è 'affamato'.",A2,GPT4
+1013,"Quale parola descrive qualcuno che ha molta voglia di mangiare?","Fame","Affamato","Sete",1,"'Affamato' descrive qualcuno che ha molta voglia di mangiare. 'Fame' è il sostantivo, 'Sete' è la voglia di bere.",A2,GPT4
 1014,"Qual è il sinonimo di 'arrabbiato'?","Calmo","Irritato","Felice",1,"La forma corretta è 'irritato'.",A2,GPT4
 1015,"Quale forma è corretta per il verbo 'fare' al futuro per 'io'?","farò","farò","farai",0,"La forma corretta è 'farò'.",B1,GPT4
 1016,"Quale preposizione si usa con 'Parigi'?","a","in","da",0,"Si usa 'a' con i nomi di città: 'a Parigi'.",A2,GPT4
@@ -563,7 +563,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 1039,"Quale preposizione si usa con 'matrimonio'?","a","di","con",1,"Si usa 'di' con il termine 'matrimonio': 'matrimonio di...'.",B1,GPT4
 1040,"Qual è il significato di 'affermare'?","Negare","Afferrare","Dichiarare",2,"'Affermare' significa 'dichiarare' o 'sostenere'.",B2,GPT4
 1041,"Qual è il participio passato del verbo 'rispondere'?","risposto","risponuto","risponsato",0,"La forma corretta è 'risposto'.",B1,GPT4
-1042,"Qual è la forma corretta del congiuntivo presente del verbo 'andare' per 'noi'?","andiamo","andiate","andiamo",1,"La forma corretta è 'andiamo'.",B2,GPT4
+1042,"Qual è la forma corretta del congiuntivo presente del verbo 'andare' per 'noi'?","andiamo","andiate","vada",0,"La forma corretta del congiuntivo presente di 'andare' per 'noi' è 'andiamo'. 'Andiate' è per 'voi', 'vada' è per 'io/tu/lui/lei'.",B2,GPT4
 1043,"Qual è il sinonimo di 'grande'?","Piccolo","Enorme","Minimo",1,"'Enorme' è un sinonimo di 'grande'.",A2,GPT4
 1044,"Qual è il significato di 'raggiungere'?","Arrivare","Partire","Perdere",0,"'Raggiungere' significa 'arrivare a un luogo o obiettivo'.",B2,GPT4
 1045,"Quale preposizione si usa con 'casa'?","in","a","da",2,"Si usa 'da' con il termine 'casa': 'da casa'.",B1,GPT4
@@ -651,7 +651,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 1127,"Qual è la forma corretta del congiuntivo presente del verbo 'fare' per 'io'?","faccia","faccio","facci",0,"La forma corretta è 'faccia'.",B2,GPT4
 1128,"Qual è il participio passato del verbo 'perdere'?","perso","perduto","perdiuto",0,"La forma corretta è 'perso'.",B1,GPT4
 1129,"Qual è il significato di 'traslocare'?","Rimanere","Partire","Cambiare casa",2,"'Traslocare' significa 'cambiare casa'.",B2,GPT4
-1130,"Qual è il sinonimo di 'liscio'?","Ruvido","Scivoloso","Piatto",2,"'Scivoloso' è un sinonimo di 'liscio'.",A2,GPT4
+1130,"Qual è il sinonimo di 'liscio'?","Ruvido","Levigato","Scivoloso",1,"'Levigato' (smooth) è un buon sinonimo di 'liscio'. 'Ruvido' è un antonimo, 'Scivoloso' significa slippery.",A2,GPT4
 1131,"Qual è la forma corretta del congiuntivo presente del verbo 'venire' per 'loro'?","vengano","vengono","veniate",0,"La forma corretta è 'vengano'.",B2,GPT4
 1132,"Qual è il participio passato del verbo 'scoprire'?","scoperto","scoprito","scoperto",0,"La forma corretta è 'scoperto'.",B1,GPT4
 1133,"Qual è il significato di 'rimediare'?","Ignorare","Riparare","Rovinare",1,"'Rimediare' significa 'riparare un errore o un danno'.",B2,GPT4
@@ -695,7 +695,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 1171,"Qual è la forma corretta del congiuntivo presente del verbo 'preferire' per 'loro'?","preferiscano","preferiscono","preferiate",0,"La forma corretta è 'preferiscano'.",B2,GPT4
 1172,"Qual è il participio passato del verbo 'rompere'?","rotto","romputo","rompato",0,"La forma corretta è 'rotto'.",B1,GPT4
 1173,"Qual è il significato di 'spiegare'?","Confondere","Chiarire","Nascondere",1,"'Spiegare' significa 'chiarire qualcosa a qualcuno'.",B2,GPT4
-1174,"Qual è il sinonimo di 'pesante'?","Leggero","Sottile","Grave",0,"'Leggero' è un sinonimo di 'pesante'.",A2,GPT4
+1174,"Qual è il sinonimo di 'pesante' (in senso figurato, es. una situazione)?","Leggero","Sottile","Grave",2,"In senso figurato, 'grave' può essere sinonimo di 'pesante', come in 'una situazione pesante/grave'. 'Leggero' è un antonimo.",A2,GPT4
 1175,"Qual è la forma corretta del congiuntivo presente del verbo 'trovare' per 'loro'?","trovino","trovano","troviate",0,"La forma corretta è 'trovino'.",B2,GPT4
 1176,"Qual è il participio passato del verbo 'scendere'?","sceso","scenduto","scendato",0,"La forma corretta è 'sceso'.",B1,GPT4
 1177,"Qual è il significato di 'indagare'?","Ignorare","Esplorare","Investigare",2,"'Indagare' significa 'investigare o esplorare un argomento'.",B2,GPT4
@@ -708,7 +708,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 1184,"Qual è il participio passato del verbo 'aprire'?","aperto","aprito","apriuto",0,"La forma corretta è 'aperto'.",B1,GPT4
 1185,"Qual è il significato di 'preferire'?","Detestare","Gradire","Evitare",1,"'Preferire' significa 'gradire di più'.",B2,GPT4
 1186,"Qual è il sinonimo di 'veloce'?","Lento","Rapido","Pigro",1,"'Rapido' è un sinonimo di 'veloce'.",A2,GPT4
-1187,"Qual è la forma corretta del congiuntivo presente del verbo 'dormire' per 'loro'?","dormano","dormino","dormiate",1,"La forma corretta è 'dormino'.",B2,GPT4
+1187,"Qual è la forma corretta del congiuntivo presente del verbo 'dormire' per 'loro'?","dormano","dorma","dormiate",0,"La forma corretta del congiuntivo presente di 'dormire' per 'loro' è 'dormano'. 'Dorma' è per 'io/tu/lui/lei', 'dormiate' è per 'voi'.",B2,GPT4
 1188,"Qual è il participio passato del verbo 'scrivere'?","scritto","scrivuto","scriviuto",0,"La forma corretta è 'scritto'.",B1,GPT4
 1189,"Qual è il significato di 'dubitare'?","Credere","Sospettare","Accettare",1,"'Dubitare' significa 'sospettare' o 'non essere sicuri di qualcosa'.",B2,GPT4
 1190,"Qual è il sinonimo di 'freddo'?","Gelido","Caldo","Bollente",0,"'Gelido' è un sinonimo di 'freddo'.",A2,GPT4
@@ -753,7 +753,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 1229,"Qual è il significato di 'decidere'?","Indecidere","Scartare","Stabilire",2,"'Decidere' significa 'stabilire o determinare qualcosa'.",B2,GPT4
 1230,"Qual è il sinonimo di 'nuovo'?","Vecchio","Recento","Antico",1,"'Recento' è un sinonimo di 'nuovo'.",A2,GPT4
 1231,"Qual è la forma corretta del congiuntivo presente del verbo 'sperare' per 'loro'?","sperino","sperano","speriate",0,"La forma corretta è 'sperino'.",B2,GPT4
-1232,"Qual è il participio passato del verbo 'correre'?","corso","corrito","corrito",0,"La forma corretta è 'corso'.",B1,GPT4
+1232,"Qual è il participio passato del verbo 'correre'?","corso","correndo","corremmo",0,"Il participio passato di 'correre' è 'corso'. 'Correndo' è il gerundio, 'corremmo' è il passato remoto.",B1,GPT4
 1233,"Qual è il significato di 'scoprire'?","Nascondere","Rivelare","Ignorare",1,"'Scoprire' significa 'rivelare o trovare qualcosa di nascosto'.",B2,GPT4
 1234,"Qual è il sinonimo di 'intelligente'?","Stupido","Saggio","Inetto",1,"'Saggio' è un sinonimo di 'intelligente'.",A2,GPT4
 1235,"Qual è la forma corretta del congiuntivo presente del verbo 'chiudere' per 'loro'?","chiudano","chiudono","chiudiate",0,"La forma corretta è 'chiudano'.",B2,GPT4
@@ -811,7 +811,7 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 1287,"Qual è la forma corretta del congiuntivo presente del verbo 'descrivere' per 'loro'?","descrivano","descrivono","descriviate",0,"La forma corretta è 'descrivano'.",B2,GPT4
 1288,"Qual è il participio passato del verbo 'intendere'?","inteso","intenduto","intesiuto",0,"La forma corretta è 'inteso'.",B2,GPT4
 1289,"Qual è il significato di 'interrompere'?","Continuare","Sospendere","Permettere",1,"'Interrompere' significa 'sospendere temporaneamente un'attività'.",B2,GPT4
-1290,"Qual è il sinonimo di 'cautelare'?","Prudente","Sconsiderato","Avventato",0,"'Prudente' è un sinonimo di 'cautelare'.",B2,GPT4
+1290,"Qual è il sinonimo di 'cauto'?","Prudente","Sconsiderato","Avventato",0,"'Prudente' è un sinonimo di 'cauto' (cautious).",B2,GPT4
 1291,"Qual è la forma corretta del congiuntivo presente del verbo 'sostenere' per 'loro'?","sostengano","sostengono","sosteniate",0,"La forma corretta è 'sostengano'.",B2,GPT4
 1292,"Qual è il participio passato del verbo 'insistere'?","insistito","insistuto","insistuto",0,"La forma corretta è 'insistito'.",B2,GPT4
 1293,"Qual è il significato di 'definire'?","Indefinire","Descrivere","Ignorare",1,"'Definire' significa 'descrivere o stabilire con precisione'.",B2,GPT4

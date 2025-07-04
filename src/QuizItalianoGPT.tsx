@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 //import CardHeader from '@mui/material/CardHeader';
@@ -35,7 +35,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [showExplanation, setShowExplanation] = useState(false);
-    // const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);
+    const [selectedAnswer, setSelectedAnswer] = useState<string | number | null>(null);
     const [quizFinished, setQuizFinished] = useState(false);   
     const [timer, setTimer] = useState(30);
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -45,26 +45,20 @@ const QuizItaliano: React.FC<QuizParams> = ({
     const [endTime, setEndTime] = useState<number | undefined>(undefined);     
     const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
     const [preguntasQuedan, setPreguntasQuedan] = useState(0);
-    // const [loading, setLoading] = useState(false); // Unused: setLoading is used but loading is not
-    // const [error, setError] = useState<string | null>(null); // Unused: setError is used but error is not
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     useEffect(() => {
         const loadWords = async () => {
-            // let localLoading = true; // Temporary state within the effect - unused
-            let localError = null;   // Temporary state within the effect
             try {
-                // setLoading(true); // Original line if loading state was used elsewhere
+                setLoading(true);
                 const fetchedWords = await fetchMultiRespuesta();
                 allQuestions = fetchedWords;
-                // setError(null); // Original line if error state was used elsewhere
-                localError = null;
+                setError(null);
             } catch (err) {
-                // setError('Error al cargar las palabras. Por favor, intenta de nuevo.'); // Original line
-                localError = 'Error al cargar las palabras. Por favor, intenta de nuevo.';
+                setError('Error al cargar las palabras. Por favor, intenta de nuevo.');
                 console.error('Error fetching words:', err);
             } finally {
-                // setLoading(false); // Original line
-                // localLoading = false; // Unused
-                if (localError) console.error(localError); // Or handle error display differently
+                setLoading(false);
             }
         };
 
@@ -106,10 +100,24 @@ const QuizItaliano: React.FC<QuizParams> = ({
         setQuestions(filteredQuestions.slice(0, numQuestions ?? 3));
         setStartTime(Date.now());
         setUserAnswers(new Array(filteredQuestions.length).fill(null));
-    }, [numQuestions, difficulty, respuestas, onlyOptionQuestions]);
+    }, [numQuestions, difficulty, respuestas]);
 
-    const getTextOption = useCallback((respNum: Number): string => {
-        if (!questions[currentQuestion]) return "Error: No question data";
+    useEffect(() => {
+        if (!showExplanation && !quizFinished && !reviewMode) {
+            const countdown = setInterval(() => {
+                setTimer((prevTimer) => {
+                    if (prevTimer === 1) {
+                        clearInterval(countdown);
+                        handleAnswer(null);
+                        return 30;
+                    }
+                    return prevTimer - 1;
+                });
+            }, 1000);
+            return () => clearInterval(countdown);
+        }
+    }, [showExplanation, quizFinished, reviewMode, currentQuestion, questions]);
+    const getTextOption = (respNum: Number) => {
         if (respNum === 0) {
             return questions[currentQuestion].option1;
         } else if (respNum === 1) {
@@ -119,68 +127,46 @@ const QuizItaliano: React.FC<QuizParams> = ({
         } else {
             return "Invalid response number";
         }
-    }, [questions, currentQuestion]);
-
-    const handleAnswer = useCallback((resposta: string | number | null) => {
-        if (!questions[currentQuestion]) return; // Guard clause
-
+    };
+    const handleAnswer = (resposta: string | number | null) => {
+        //const boAcierto = Number(questions[currentQuestion].correct) !== -1 ? index == Number(questions[currentQuestion].correct) : index === 1
         let boAcierto = false;
         let textoRespondido = '';
         if (Number(questions[currentQuestion].correct) === -1) {
             if (typeof resposta === 'string') {
-                boAcierto = (resposta?.toLowerCase() === questions[currentQuestion].option1.toLowerCase());
+                boAcierto = (resposta?.toLowerCase() === questions[currentQuestion].option1.toLowerCase())
                 textoRespondido = resposta;
             }
-        } else {
-            boAcierto = (Number(resposta) === Number(questions[currentQuestion].correct));
-            textoRespondido = getTextOption(Number(resposta));
+        } else
+        {
+            boAcierto = (Number(resposta) == Number(questions[currentQuestion].correct)   )
+            textoRespondido = getTextOption(Number(resposta))
         }
-        const respuestaData: Respuesta = {
-            idUsuario: usuario?.id ?? 'sense',
-            tipoPregunta: 'MC',
-            idPregunta: questions[currentQuestion].id,
-            respuesta: textoRespondido,
-            correcta: boAcierto
-        };
-        guardarRespuesta(respuestaData);
-        // Avoid directly mutating state like `respuestas.push(respuestaData);`
-        // If `respuestas` state needs to be updated, use `setRespuestas`.
-        // For now, assuming `guardarRespuesta` handles persistence and local state is for filtering.
-
+            const respuesta: Respuesta = {
+                idUsuario: usuario?.id??'sense',
+                tipoPregunta: 'MC',
+                idPregunta: questions[currentQuestion].id,
+                respuesta: textoRespondido,
+                correcta: boAcierto
+            };
+            guardarRespuesta(respuesta);
+        respuestas.push(respuesta);
+        setSelectedAnswer(resposta);
         setShowExplanation(true);
-        setTimer(30); // Reset timer
+        setTimer(30);
         const newUserAnswers = [...userAnswers];
         newUserAnswers[currentQuestion] = resposta;
         setUserAnswers(newUserAnswers);
         if (boAcierto) {
-            setScore(prevScore => prevScore + 1); // Use functional update for score
+            setScore(score + 1);
         }
-    }, [questions, currentQuestion, usuario, getTextOption, setShowExplanation, setTimer, userAnswers, setUserAnswers, setScore]); // Removed score and respuestas from deps
-
-    useEffect(() => {
-        if (!showExplanation && !quizFinished && !reviewMode && questions.length > 0 && questions[currentQuestion]) { // Added checks for questions
-            const countdown = setInterval(() => {
-                setTimer((prevTimer) => {
-                    if (prevTimer === 1) {
-                        clearInterval(countdown);
-                        if (questions[currentQuestion]) { // Ensure question still exists
-                           handleAnswer(null); // Auto-submit null answer on time up
-                        }
-                        return 30; // Reset timer duration
-                    }
-                    return prevTimer - 1;
-                });
-            }, 1000);
-            return () => clearInterval(countdown);
-        }
-    }, [showExplanation, quizFinished, reviewMode, currentQuestion, questions, handleAnswer]);
-
+    };
 
     const nextQuestion = () => {
         if (currentQuestion < questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
             setShowExplanation(false);
-            // setSelectedAnswer(null); // Unused state
+            setSelectedAnswer(null);
         } else {
             setQuizFinished(true);
             setEndTime(Date.now());

@@ -68,7 +68,6 @@
     "@types/papaparse": "^5.3.14",
     "@types/react": "^18.3.5",
     "autoprefixer": "^10.4.19",
-    "caniuse-lite": "^1.0.30001721",
     "env-cmd": "^10.1.0",
     "gh-pages": "^6.1.1",
     "postcss": "^8.4.39",

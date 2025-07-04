@@ -22,7 +22,6 @@ question,word,level,tip,category
 "Un animale che vive nelle foreste e costruisce nidi sugli alberi.","scoiattolo","B2","Animale delle foreste","Animali"
 "Un animale che vive nelle foreste e ha il pelo rosso.","volpe","B2","Animale selvatico","Animali"
 "Un animale con corna ramificate che vive nelle foreste.","cervo","B2","Animale selvatico","Animali"
-"Un animale con il guscio che vive sulla terra e nell'acqua.","tartaruga","B2","Animale anfibio","Animali"
 "Un animale con le corna che vive nelle montagne.","stambecco","B2","Animale montano","Animali"
 "Un animale con lunghe zampe che salta e vive nei prati.","cavalletta","B2","Insetto saltatore","Animali"
 "Un animale con piume colorate che sa imitare i suoni umani.","pappagallo","B2","Uccello parlante","Animali"
@@ -42,7 +41,6 @@ question,word,level,tip,category
 "Un dispositivo usato per cuocere il cibo.","forno","A2","Strumento di cottura","Cucina"
 "Un dispositivo usato per fare caffè.","caffettiera","A2","Strumento di cucina","Cucina"
 "Un dispositivo usato per fare chiamate video.","webcam","A2","Strumento di comunicazione","Tecnologia"
-"Un dispositivo usato per fare il caffè.","caffettiera","A2","Strumento di cucina","Cucina"
 "Un dispositivo usato per leggere libri digitali.","ebook reader","B2","Strumento di lettura","Tecnologia"
 "Un dispositivo usato per misurare il peso.","bilancia","A2","Strumento di misurazione","Cura personale"
 "Un dispositivo usato per misurare il tempo.","cronometro","B2","Strumento di misurazione","Tecnologia"
@@ -50,8 +48,8 @@ question,word,level,tip,category
 "Un dispositivo usato per misurare la pressione atmosferica.","barometro","B2","Strumento meteorologico","Scienza"
 "Un dispositivo usato per misurare la temperatura.","termometro","A2","Strumento di misurazione","Salute"
 "Un dispositivo usato per registrare suoni e musica.","microfono","A2","Strumento di registrazione","Tecnologia"
-"Un dispositivo usato per vedere oggetti lontani.","binocolo","B2","Strumento di osservazione","Tecnologia"
-"Un dispositivo usato per vedere oggetti lontani.","telescopio","B2","Strumento di osservazione","Astronomia"
+"Strumento portatile con due lenti per vedere oggetti distanti.","binocolo","B2","Strumento di osservazione","Tecnologia"
+"Strumento ottico potente per osservare corpi celesti.","telescopio","B2","Strumento di osservazione","Astronomia"
 "Un dispositivo utilizzato per fare fotografie.","fotocamera","A2","Strumento di registrazione","Tecnologia"
 "Un dispositivo utilizzato per riscaldare gli ambienti.","termosifone","B2","Strumento di riscaldamento","Casa"
 "Un edificio con stanze per gli studenti universitari.","dormitorio","B2","Alloggio per studenti","Istruzione"
@@ -59,7 +57,6 @@ question,word,level,tip,category
 "Un edificio dove si producono e si vendono prodotti da forno.","panetteria","A2","Negozio di alimentari","Città"
 "Un edificio dove si tengono celebrazioni religiose.","chiesa","A2","Luogo di culto","Cultura"
 "Un edificio dove si tengono concerti e spettacoli musicali.","auditorium","B2","Luogo di spettacolo","Cultura"
-"Un edificio dove si tengono gare di nuoto.","piscina","A2","Luogo sportivo","Sport"
 "Un edificio dove si tengono partite di calcio.","stadio","B2","Luogo sportivo","Sport"
 "Un edificio in cui si tengono spettacoli teatrali.","teatro","B1","Luogo di spettacolo","Cultura"
 "Un edificio per la conservazione e l'esposizione di opere d'arte.","museo","B1","Luogo culturale","Cultura"
@@ -85,7 +82,6 @@ question,word,level,tip,category
 "Un giorno speciale che si celebra ogni anno.","compleanno","B1","Festa personale","Eventi"
 "Un grande animale africano con una lunga proboscide.","elefante","B1","Animale selvaggio","Animali"
 "Un grande mammifero marino con denti affilati.","squalo","B2","Predatore oceanico","Animali"
-"Un grande rettile con squame e denti affilati.","coccodrillo","B2","Predatore acquatico","Animali"
 "Un grande uccello rapace notturno con occhi grandi.","gufo","B2","Uccello notturno","Animali"
 "Un insetto che produce miele.","ape","A2","Insetto produttore di miele","Animali"
 "Un insieme di stelle che forma un disegno nel cielo notturno.","costellazione","B2","Gruppo di stelle","Astronomia"
@@ -96,7 +92,6 @@ question,word,level,tip,category
 "Un luogo dove si insegnano e si imparano nuove cose.","scuola","A2","Istituzione educativa","Istruzione"
 "Un luogo dove si praticano sport e attività fisiche.","palestra","A2","Luogo di allenamento","Sport"
 "Un luogo dove si proiettano film.","cinema","A2","Luogo di intrattenimento","Cultura"
-"Un luogo dove si tengono gare di nuoto.","piscina","A2","Luogo sportivo","Sport"
 "Un luogo dove si tengono spettacoli di animali marini.","acquario","A2","Luogo di intrattenimento","Animali"
 "Un luogo dove si vendono fiori e piante.","fioraio","A2","Negozio di piante","Città"
 "Un luogo dove si vendono libri.","libreria","A2","Negozio di libri","Città"
@@ -117,7 +112,6 @@ question,word,level,tip,category
 "Un periodo di riposo notturno.","sonno","A2","Stato di riposo","Corpo umano"
 "Un periodo di tempo con una durata di cento anni.","secolo","B1","Unità di tempo","Tempo"
 "Un pesce con squame colorate che vive nell'acqua dolce.","carpa","B1","Pesce d'acqua dolce","Animali"
-"Un piccolo animale che si arrampica sugli alberi e mangia noci.","scoiattolo","B2","Animale delle foreste","Animali"
 "Un piccolo animale con le ali che vola.","farfalla","A2","Insetto","Animali"
 "Un piccolo animale domestico che ama arrampicarsi sugli alberi.","criceto","A2","Animale da compagnia","Animali"
 "Un piccolo animale domestico con lunghe orecchie che ama saltare.","coniglio","A2","Animale da compagnia","Animali"
@@ -142,7 +136,6 @@ question,word,level,tip,category
 "Un tipo di pane dolce con uvetta e frutta candita tipico delle festività natalizie.","panettone","B2","Dolce natalizio","Cibo"
 "Un tipo di pane italiano cotto in forno a legna.","focaccia","A2","Pane tradizionale","Cibo"
 "Un tipo di pane piatto con ripieno, tipico della cucina messicana.","tortilla","A2","Pane messicano","Cibo"
-"Un tipo di pane piatto tipico della cucina messicana.","tortilla","A2","Pane messicano","Cibo"
 "Un tipo di pane rotondo con un buco nel mezzo, tipico della cucina ebraica.","bagel","B2","Pane ebraico","Cibo"
 "Un tipo di pane sottile tipico della cucina araba.","pita","B2","Pane arabo","Cibo"
 "Un tipo di pasta lunga e sottile.","spaghetti","A2","Pasta italiana","Cibo"
@@ -185,7 +178,6 @@ question,word,level,tip,category
 "Una persona che realizza statue e sculture.","scultore","B1","Professione artistica","Professioni"
 "Una persona che scrive articoli per i giornali.","giornalista","B1","Professione informativa","Professioni"
 "Una persona che scrive libri.","scrittore","B1","Professione artistica","Professioni"
-"Una persona che scrive per un giornale.","giornalista","B1","Professione informativa","Professioni"
 "Una persona che si esibisce in spettacoli teatrali.","attore","B1","Professione artistica","Professioni"
 "Una persona che si occupa di curare malattie mentali.","psichiatra","B2","Professione medica","Professioni"
 "Una persona che si occupa di studiare i vulcani e le eruzioni vulcaniche.","vulcanologo","B2","Professione scientifica","Professioni"
@@ -193,24 +185,20 @@ question,word,level,tip,category
 "Una persona che si occupa di vendere case e appartamenti.","agente immobiliare","B2","Professione di vendita","Professioni"
 "Una persona che studia il comportamento degli animali.","etologo","B2","Professione scientifica","Professioni"
 "Una persona che studia il comportamento umano.","psicologo","B2","Professione di aiuto","Professioni"
-"Una persona che studia le malattie e le cure.","medico","A2","Professione medica","Professioni"
 "Una persona che studia le stelle e i pianeti.","astronomo","B2","Professione scientifica","Professioni"
 "Una persona che suona uno strumento musicale.","musicista","B1","Professione artistica","Professioni"
 "Una pianta aromatica usata in cucina.","basilico","A2","Erba aromatica","Cucina"
 "Una pianta con fiori colorati usata per fare bouquet e decorazioni.","rosa","A2","Fiore","Piante"
-"Una pianta con foglie a forma di cuore usata in cucina.","basilico","A2","Erba aromatica","Cucina"
 "Una pianta con foglie aromatiche usata per fare tisane.","menta","A2","Erba aromatica","Cucina"
 "Una pianta con foglie verdi e fiori gialli usata per fare tisane.","camomilla","A2","Erba aromatica","Cucina"
 "Una pianta con foglie verdi usata per fare insalate.","rucola","A2","Verdura","Cibo"
 "Una pianta con spine che produce un frutto dolce.","fico d'india","B2","Pianta spinosa","Frutta"
 "Una pianta erbacea con foglie verdi e profumate.","menta","A2","Erba aromatica","Cucina"
 "Una pianta rampicante con fiori profumati e colorati.","glicine","B2","Pianta ornamentale","Piante"
-"Una pianta rampicante con fiori profumati usata per decorare i giardini.","glicine","B2","Pianta ornamentale","Piante"
 "Una struttura alta e stretta usata per l'osservazione.","torre","B2","Struttura di osservazione","Architettura"
 "Una struttura con molte camere per soggiornare temporaneamente.","hotel","B2","Alloggio temporaneo","Viaggi"
 "Una struttura in legno o metallo usata per salire e scendere.","scala","A2","Strumento di accesso","Casa"
 "Una struttura utilizzata per il trasporto delle persone tra piani diversi di un edificio.","ascensore","B2","Strumento di accesso","Architettura"
-"Una struttura utilizzata per salire e scendere da un piano all'altro.","ascensore","B2","Strumento di accesso","Architettura"
 "Uno strumento musicale a corde.","chitarra","B1","Strumento musicale","Musica"
 "È un frutto giallo e curvo.","banana","A2","Frutto tropicale","Frutta"
 Animale marino bioluminescente,medusa,B1,Trasparente,Fauna marina
@@ -221,44 +209,33 @@ Arte di piegare la carta,origami,B2,Giapponese,Hobby
 Arte marziale giapponese,judo,B1,Sport olimpico,Arti marziali
 Blocco di ghiaccio galleggiante,iceberg,B1,Titanic,Geografia
 Come si chiama il processo di trasformazione dell'uva in vino?,fermentazione,B1,Processo chimico,Gastronomia
-Come si chiama l'arte di arranggiare i fiori?,ikebana,B2,Arte giapponese,Arte
 Come si chiama l'arte di coltivare alberi in miniatura?,bonsai,B1,Arte giapponese,Giardinaggio
 Come si chiama l'arte di coltivare piante ornamentali?,giardinaggio,B1,Hobby all'aperto,Natura
-Come si chiama l'arte di creare bonsai?,bonsai,B1,Giardinaggio in miniatura,Arte
-Come si chiama l'arte di creare composizioni floreali?,ikebana,B2,Arte giapponese,Arte
 Come si chiama l'arte di creare e decorare libri?,legatoria,B2,Artigianato letterario,Arte
 Come si chiama l'arte di creare e manipolare burattini?,burattineria,B2,Teatro di figura,Arte
 Come si chiama l'arte di creare e manipolare illusioni visive?,illusionismo,B2,Spettacolo dal vivo,Intrattenimento
 Come si chiama l'arte di creare e manipolare marionette?,marionettistica,B2,Teatro di figura,Arte
-Come si chiama l'arte di creare e manipolare marionette?,pupazzeria,B2,Teatro di figura,Arte
 Come si chiama l'arte di creare film?,cinematografia,B1,Arte visiva,Intrattenimento
 Come si chiama l'arte di creare giardini giapponesi?,niwaki,B2,Arte del paesaggio,Giardinaggio
 Come si chiama l'arte di creare giardini zen?,karesansui,B2,Giardinaggio giapponese,Arte
-Come si chiama l'arte di creare giardini?,giardinaggio,B1,Arte verde,Natura
 Come si chiama l'arte di creare giardini?,paesaggistica,B2,Design esterno,Arte
 Come si chiama l'arte di creare gioielli?,oreficeria,B2,Artigianato prezioso,Arte
 Come si chiama l'arte di creare mosaici?,mosaicismo,B2,Arte decorativa,Arte
 Come si chiama l'arte di creare oggetti in ceramica?,ceramica,B1,Artigianato artistico,Arte
-Come si chiama l'arte di creare origami?,origami,B1,Arte giapponese,Arte
 Come si chiama l'arte di creare profumi?,profumeria,B1,Arte olfattiva,Cosmetica
 Come si chiama l'arte di creare sculture di ghiaccio?,crioarte,B2,Arte effimera,Arte
-Come si chiama l'arte di creare sculture di ghiaccio?,criocristallizzazione,B2,Arte effimera,Arte
 Come si chiama l'arte di creare sculture di sabbia?,arenaria,B2,Arte effimera,Arte
 Come si chiama l'arte di creare sculture in legno?,intaglio,B1,Artigianato tradizionale,Arte
 Come si chiama l'arte di creare vetrate colorate?,vetrofania,B2,Arte decorativa,Arte
-Come si chiama l'arte di piegare la carta?,origami,B1,Arte giapponese,Hobby
 Come si chiama l'arte di scrivere in bella grafia?,calligrafia,B1,Scrittura artistica,Arte
 Come si chiama la paura di luoghi chiusi?,claustrofobia,B2,Fobia comune,Psicologia
 Come si chiama la paura irrazionale degli spazi aperti?,agorafobia,B2,Disturbo d'ansia,Psicologia
-Come si chiama la paura irrazionale degli spazi aperti?,agorafobia,B2,Fobia spaziale,Psicologia
-Come si chiama la paura irrazionale degli spazi chiusi?,claustrofobia,B2,Fobia comune,Psicologia
 Come si chiama la paura irrazionale degli stranieri?,xenofobia,B2,Fobia sociale,Psicologia
 Come si chiama la paura irrazionale dei cani?,cinofobia,B2,Fobia animale,Psicologia
 Come si chiama la paura irrazionale dei clown?,coulrofobia,B2,Fobia insolita,Psicologia
 Come si chiama la paura irrazionale dei fulmini?,astrapofobia,B2,Fobia meteorologica,Psicologia
 Come si chiama la paura irrazionale dei numeri?,numerofobia,B2,Fobia matematica,Psicologia
 Come si chiama la paura irrazionale dei ragni?,aracnofobia,B2,Fobia animale,Psicologia
-Come si chiama la paura irrazionale dei ragni?,aracnofobia,B2,Fobia comune,Psicologia
 Come si chiama la paura irrazionale dei serpenti?,ofidiofobia,B2,Fobia animale,Psicologia
 Come si chiama la paura irrazionale del buio?,nictofobia,B2,Fobia comune,Psicologia
 Come si chiama la paura irrazionale del tempo che passa?,cronofobia,B2,Fobia esistenziale,Psicologia
@@ -267,12 +244,10 @@ Come si chiama la paura irrazionale delle altezze?,acrofobia,B2,Fobia comune,Psi
 Come si chiama la paura irrazionale di parlare in pubblico?,glossofobia,B2,Fobia sociale,Psicologia
 Come si chiama la paura irrazionale di volare?,aerofobia,B2,Fobia dei viaggi,Psicologia
 Come si chiama la scienza che studia gli insetti?,entomologia,B2,Branca della zoologia,Scienza
-Come si chiama la scienza che studia gli insetti?,entomologia,B2,Zoologia specializzata,Scienza
 Come si chiama la scienza che studia gli oceani?,oceanografia,B2,Studio dei mari,Scienza
 Come si chiama la scienza che studia i fossili?,paleontologia,B2,Studio del passato,Scienza
 Come si chiama la scienza che studia i funghi?,micologia,B2,Botanica specializzata,Scienza
 Come si chiama la scienza che studia i ghiacciai?,glaciologia,B2,Geologia del freddo,Scienza
-Come si chiama la scienza che studia i ghiacciai?,glaciologia,B2,Geologia specializzata,Scienza
 Come si chiama la scienza che studia i microrganismi?,microbiologia,B2,Biologia cellulare,Scienza
 Come si chiama la scienza che studia i suoni?,acustica,B2,Fisica applicata,Scienza
 Come si chiama la scienza che studia i terremoti?,sismologia,B2,Geofisica,Scienza
@@ -284,17 +259,11 @@ Come si chiama la scienza che studia le montagne?,orografia,B2,Geografia fisica,
 Come si chiama la scienza che studia le particelle subatomiche?,fisica quantistica,B2,Fisica avanzata,Scienza
 Come si chiama la scienza che studia le popolazioni umane?,demografia,B2,Statistica sociale,Sociologia
 Come si chiama la scienza che studia le rocce?,geologia,B1,Studio della Terra,Scienza
-Come si chiama lo studio dei funghi?,micologia,B2,Botanica specializzata,Scienza
-Come si chiama lo studio dei funghi?,micologia,B2,Branca della biologia,Scienza
 Come si chiama lo studio dei suoni del linguaggio?,fonetica,B2,Linguistica,Lingua
-Come si chiama lo studio dei terremoti?,sismologia,B2,Branca della geologia,Scienza
-Come si chiama lo studio dei terremoti?,sismologia,B2,Geofisica,Scienza
 Come si chiama lo studio dei vini?,enologia,B2,Scienza del vino,Gastronomia
-Come si chiama lo studio dei vulcani?,vulcanologia,B2,Geologia specializzata,Scienza
 Come si chiama lo studio delle alghe?,ficologia,B2,Botanica acquatica,Scienza
 Come si chiama lo studio delle api?,apicoltura,B1,Allevamento di insetti,Agricoltura
 Come si chiama lo studio delle cellule?,citologia,B2,Biologia cellulare,Scienza
-Come si chiama lo studio delle cellule?,citologia,B2,Branca della biologia,Scienza
 Come si chiama lo studio delle civiltà antiche?,archeologia,B1,Scavi storici,Storia
 Come si chiama lo studio delle farfalle?,lepidotterologia,B2,Entomologia specifica,Scienza
 Come si chiama lo studio delle malattie della pelle?,dermatologia,B2,Specialità medica,Medicina
@@ -304,10 +273,6 @@ Come si chiama lo studio delle piante?,botanica,B1,Scienza naturale,Scienza
 Come si chiama lo studio delle razze umane?,antropologia,B2,Scienza sociale,Sociologia
 Come si chiama lo studio delle religioni?,teologia,B2,Studi umanistici,Religione
 Come si chiama lo studio delle stelle e dei pianeti?,astronomia,B1,Scienza dello spazio,Scienza
-Come si chiama lo studio delle stelle?,astronomia,B1,Scienza celeste,Scienza
-Come si chiama lo studio delle stelle?,astronomia,B1,Scienza del cielo,Scienza
-Disciplina che studia i suoni del linguaggio,fonetica,B2,Pronuncia,Linguistica
-Disciplina che studia le civiltà antiche,archeologia,B1,Scavi,Storia
 Disciplina che studia le tecniche di conservazione dei cibi,enologia,B2,Vino,Gastronomia
 Dispositivo per misurare il tempo,clessidra,B1,Sabbia,Strumenti
 Fenomeno atmosferico luminoso,arcobaleno,B1,Dopo la pioggia,Natura
@@ -323,7 +288,6 @@ Qual è il nome del famoso compositore austriaco di "Le nozze di Figaro"?,Mozart
 Qual è il nome del famoso compositore austriaco di valzer?,Strauss,B2,Musica classica,Arte
 Qual è il nome del famoso compositore italiano delle "Quattro stagioni"?,Vivaldi,B1,Musica barocca,Arte
 Qual è il nome del famoso compositore italiano di "Il barbiere di Siviglia"?,Rossini,B2,Opera comica,Arte
-Qual è il nome del famoso compositore italiano di "Le quattro stagioni"?,Vivaldi,B1,Musica barocca,Arte
 Qual è il nome del famoso compositore italiano di "Nabucco"?,Verdi,B1,Opera lirica,Arte
 Qual è il nome del famoso compositore russo del balletto "Il lago dei cigni"?,Tchaikovsky,B2,Musica romantica,Arte
 Qual è il nome del famoso compositore russo del balletto "Lo Schiaccianoci"?,Tchaikovsky,B2,Musica romantica,Arte
@@ -345,8 +309,6 @@ Qual è il nome del famoso fisico inglese della teoria della gravità?,Newton,B1
 Qual è il nome del famoso fisico italiano scopritore della radioattività artificiale?,Fermi,B2,Fisica nucleare,Storia
 Qual è il nome del famoso fisico tedesco della teoria della relatività?,Einstein,B1,Fisica moderna,Storia
 Qual è il nome del famoso matematico greco del teorema di Pitagora?,Pitagora,B1,Matematica antica,Storia
-Qual è il nome del famoso matematico greco del teorema sui triangoli rettangoli?,Pitagora,B1,Filosofo e matematico,Storia
-Qual è il nome del famoso matematico greco del teorema sui triangoli rettangoli?,Pitagora,B1,Geometria antica,Storia
 Qual è il nome del famoso matematico greco della geometria euclidea?,Euclide,B2,Matematica antica,Storia
 Qual è il nome del famoso pittore belga del surrealismo?,Magritte,B2,Arte del XX secolo,Arte
 Qual è il nome del famoso pittore belga di "Il tradimento delle immagini"?,Magritte,B2,Surrealismo,Arte
@@ -391,7 +353,6 @@ Qual è il nome del più grande animale terrestre?,elefante,B1,Mammifero african
 Qual è il nome del più grande arcipelago d'Europa?,Svezia,B2,Nel Mar Baltico,Geografia
 Qual è il nome del più grande arcipelago del Mediterraneo?,Baleari,B2,Isole spagnole,Geografia
 Qual è il nome del più grande arcipelago del mondo?,Indonesia,B2,In Asia,Geografia
-Qual è il nome del più grande arcipelago del mondo?,Indonesia,B2,Isole asiatiche,Geografia
 Qual è il nome del più grande cetaceo del mondo?,balenottera,B2,Mammifero marino,Zoologia
 Qual è il nome del più grande cetaceo dentato?,capodoglio,B2,Mammifero marino,Zoologia
 Qual è il nome del più grande deserto caldo del mondo?,Sahara,B1,In Africa,Geografia
@@ -404,8 +365,6 @@ Qual è il nome del più grande felino africano?,leone,B1,Re della savana,Zoolog
 Qual è il nome del più grande felino americano?,giaguaro,B1,Predatore della giungla,Zoologia
 Qual è il nome del più grande felino asiatico?,tigre,B1,Predatore a strisce,Zoologia
 Qual è il nome del più grande felino del mondo?,tigre,B1,Predatore asiatico,Zoologia
-Qual è il nome del più grande felino delle Americhe?,giaguaro,B1,Predatore della giungla,Zoologia
-Qual è il nome del più grande felino delle Americhe?,giaguaro,B1,Predatore maculato,Zoologia
 Qual è il nome del più grande lago d'Africa?,Victoria,B1,Lago africano,Geografia
 Qual è il nome del più grande lago d'Europa?,Ladoga,B2,In Russia,Geografia
 Qual è il nome del più grande lago d'Italia?,Garda,B1,Lago alpino,Geografia
@@ -420,13 +379,10 @@ Qual è il nome del più grande pesce d'acqua dolce dell'Amazzonia?,arapaima,B2,
 Qual è il nome del più grande pesce d'acqua dolce?,arapaima,B2,Pesce amazzonico,Zoologia
 Qual è il nome del più grande primate africano?,gorilla,B1,Scimmia gigante,Zoologia
 Qual è il nome del più grande primate del Sud America?,scimmia ragno,B2,Primate arboricolo,Zoologia
-Qual è il nome del più grande primate del mondo?,gorilla,B1,Scimmia africana,Zoologia
 Qual è il nome del più grande rapace del mondo?,condor,B1,Uccello andino,Zoologia
-Qual è il nome del più grande rapace diurno?,condor,B1,Uccello andino,Zoologia
 Qual è il nome del più grande rapace notturno?,gufo reale,B2,Uccello predatore,Zoologia
 Qual è il nome del più grande rettile del mondo?,coccodrillo marino,B2,Predatore acquatico,Zoologia
 Qual è il nome del più grande rettile del mondo?,coccodrillo,B1,Predatore acquatico,Zoologia
-Qual è il nome del più grande roditore del Sud America?,capibara,B2,Mammifero acquatico,Zoologia
 Qual è il nome del più grande roditore del mondo?,capibara,B2,Animale sudamericano,Zoologia
 Qual è il nome del più grande satellite naturale della Terra?,Luna,B1,Nel cielo notturno,Astronomia
 Qual è il nome del più grande stato degli USA?,Alaska,B1,Stato americano,Geografia

@@ -166,8 +166,8 @@ export const guardarUsuario = async (nombreUsuario: string, email?: string, uid?
                 const nuevoUsuarioData: Partial<Usuario> = { // Use Partial for initial object
                     nombreUsuario: nombreUsuario,
                     email: email || '', // Ensure email is stored
-                    fechaAlta: serverTimestamp() as unknown as Timestamp, // Cast to satisfy TS, Firestore handles conversion
-                    fechaUltimaEntrada: serverTimestamp() as unknown as Timestamp, // Cast to satisfy TS
+                    fechaAlta: serverTimestamp(),
+                    fechaUltimaEntrada: serverTimestamp(),
                     livelloGlobal: null, // Initialize new fields
                     puntiTotali: 0,
                     storicoLivelli: [],
@@ -356,8 +356,7 @@ export async function uploadCSVToFirestore(
                     console.warn(`Documento con ID ${id} no añadido porque no contiene datos válidos`);
                 }
             } else {
-                // const docRef = await addDoc(collectionRef, docData); // Unused docRef
-                await addDoc(collectionRef, docData);
+                const docRef = await addDoc(collectionRef, docData);
                 //console.log(`Documento añadido a ${collectionName} con ID generado: ${docRef.id}`);
             }
             // Actualizar la fila anterior
