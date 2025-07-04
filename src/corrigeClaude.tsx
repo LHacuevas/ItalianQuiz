@@ -36,7 +36,7 @@ interface Sentence {
 }
 
 interface ItalianErrorDetectionGameProps {
-    level: 'A2' | 'B1' | 'B2';
+    level: string;
 }
 
 const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ level }) => {

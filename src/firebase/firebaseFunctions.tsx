@@ -122,14 +122,17 @@ export const guardarUsuario = async (nombreUsuario: string, email?: string, uid?
                         nombreUsuario: nombreUsuario || usuarioExistente.data().nombreUsuario // Update nombreUsuario if provided
                     });
                     console.log("Usuario encontrado por UID y actualizado: ", uid);
+                    const data = usuarioExistente.data() as Partial<Usuario>; // Cast to Partial<Usuario> for type safety
                     return {
                         id: uid,
-                        ...usuarioExistente.data(),
-                        // Ensure new fields are included, defaulting if not present
-                        livelloGlobal: usuarioExistente.data().livelloGlobal || null,
-                        puntiTotali: usuarioExistente.data().puntiTotali || 0,
-                        storicoLivelli: usuarioExistente.data().storicoLivelli || [],
-                        dataUltimoTestDiLivellamento: usuarioExistente.data().dataUltimoTestDiLivellamento || null,
+                        nombreUsuario: data.nombreUsuario || nombreUsuario, // Fallback to input if not in DB
+                        fechaAlta: data.fechaAlta || null, // Fallback to null
+                        fechaUltimaEntrada: serverTimestamp(), // Always update on access
+                        email: data.email || email || null, // Fallback hierarchy
+                        livelloGlobal: data.livelloGlobal || null,
+                        puntiTotali: data.puntiTotali || 0,
+                        storicoLivelli: data.storicoLivelli || [],
+                        dataUltimoTestDiLivellamento: data.dataUltimoTestDiLivellamento || null,
                     } as Usuario;
                 }
             }
@@ -146,13 +149,17 @@ export const guardarUsuario = async (nombreUsuario: string, email?: string, uid?
                     ...(email && { email: email }), // Update email if different or not set
                 });
                 console.log("Usuario encontrado por nombreUsuario y actualizado con ID: ", usuarioExistente.id);
+                const data = usuarioExistente.data() as Partial<Usuario>; // Cast to Partial<Usuario>
                 return {
                     id: usuarioExistente.id,
-                    ...usuarioExistente.data(),
-                    livelloGlobal: usuarioExistente.data().livelloGlobal || null,
-                    puntiTotali: usuarioExistente.data().puntiTotali || 0,
-                    storicoLivelli: usuarioExistente.data().storicoLivelli || [],
-                    dataUltimoTestDiLivellamento: usuarioExistente.data().dataUltimoTestDiLivellamento || null,
+                    nombreUsuario: data.nombreUsuario || nombreUsuario,
+                    fechaAlta: data.fechaAlta || null,
+                    fechaUltimaEntrada: serverTimestamp(), // Always update on access
+                    email: data.email || email || null,
+                    livelloGlobal: data.livelloGlobal || null,
+                    puntiTotali: data.puntiTotali || 0,
+                    storicoLivelli: data.storicoLivelli || [],
+                    dataUltimoTestDiLivellamento: data.dataUltimoTestDiLivellamento || null,
                 } as Usuario;
             } else {
                 // Create new user
@@ -179,7 +186,14 @@ export const guardarUsuario = async (nombreUsuario: string, email?: string, uid?
                 
                 return {
                     id: docRefId,
-                    ...nuevoUsuarioData
+                    nombreUsuario: nuevoUsuarioData.nombreUsuario!,
+                    fechaAlta: nuevoUsuarioData.fechaAlta as Timestamp | null,
+                    fechaUltimaEntrada: nuevoUsuarioData.fechaUltimaEntrada as Timestamp | null,
+                    email: nuevoUsuarioData.email || null,
+                    livelloGlobal: nuevoUsuarioData.livelloGlobal || null,
+                    puntiTotali: nuevoUsuarioData.puntiTotali || 0,
+                    storicoLivelli: nuevoUsuarioData.storicoLivelli || [],
+                    dataUltimoTestDiLivellamento: nuevoUsuarioData.dataUltimoTestDiLivellamento || null,
                 } as Usuario;
             }
         } catch (e) {
@@ -187,11 +201,13 @@ export const guardarUsuario = async (nombreUsuario: string, email?: string, uid?
             return {
                 id: uid || 'error_no_uid',
                 nombreUsuario: nombreUsuario || 'error_user',
+                fechaAlta: null,
+                fechaUltimaEntrada: null,
                 email: email || '',
                 livelloGlobal: null,
-                puntiTotali: 0,
-                storicoLivelli: [],
-                dataUltimoTestDiLivellamento: null,
+                puntiTotali: 0, // Ensure all new fields are present
+                storicoLivelli: [], // Ensure all new fields are present
+                dataUltimoTestDiLivellamento: null, // Ensure all new fields are present
             } as Usuario;
         }
     } else {
@@ -199,11 +215,13 @@ export const guardarUsuario = async (nombreUsuario: string, email?: string, uid?
         return {
             id: 'local_user',
             nombreUsuario: nombreUsuario,
+            fechaAlta: null,
+            fechaUltimaEntrada: null,
             email: email || '',
-            livelloGlobal: localStorage.getItem('userGlobalLevel') || null, // Try to get from localStorage
-            puntiTotali: 0,
-            storicoLivelli: [],
-            dataUltimoTestDiLivellamento: null,
+            livelloGlobal: localStorage.getItem('userGlobalLevel') || null,
+            puntiTotali: 0, // Ensure all new fields are present
+            storicoLivelli: [], // Ensure all new fields are present
+            dataUltimoTestDiLivellamento: null, // Ensure all new fields are present
         } as Usuario;
     }
 };

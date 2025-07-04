@@ -100,7 +100,12 @@ const App: React.FC = () => {
             id: currentAuthUser.uid, 
             nombreUsuario: userDisplayName || userEmail, 
             email: userEmail, 
-            livelloGlobal: localLevel 
+            livelloGlobal: localLevel,
+            fechaAlta: null,
+            fechaUltimaEntrada: null,
+            puntiTotali: 0,
+            storicoLivelli: [],
+            dataUltimoTestDiLivellamento: null
           } as Usuario);
         }
         setNomeSignUp(''); // Clear signup name after use
@@ -144,7 +149,7 @@ const App: React.FC = () => {
         // storicoLivelli: arrayUnion({ livello: 'RetakeInitiated', data: serverTimestamp() }) 
       }, { merge: true });
        // Refresh appUsuario state
-      const updatedUsuario = await guardarUsuario(appUsuario.nombreUsuario, appUsuario.email, appUsuario.id);
+      const updatedUsuario = await guardarUsuario(appUsuario.nombreUsuario, appUsuario.email ?? undefined, appUsuario.id);
       setAppUsuario(updatedUsuario);
     }
   };
@@ -299,8 +304,8 @@ interface AppInizialeProps {
   email: string;
   userGlobalLevel: string | null;
   onRetakePlacementTest: () => void;
-  currentAppUsuario: Usuario | null;
-  firebaseUser: User | null; // Added firebaseUser prop
+  currentAppUsuario: Usuario | null; 
+  firebaseUser: User | null;
 }
 
 const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRetakePlacementTest, currentAppUsuario, firebaseUser }) => {
@@ -418,7 +423,17 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRet
       console.warn("Tentativo di avviare attività senza currentAppUsuario. Provo a recuperare/creare basandomi su 'nome'.");
       userForActivity = await guardarUsuario(nome, nome.includes('@') ? nome : firebaseUser?.email || undefined, firebaseUser?.uid);
     } else if (!userForActivity && process.env.REACT_APP_USE_DATABASE !== 'true') {
-      userForActivity = { id: 'local_user_' + Date.now(), nombreUsuario: nome, email: (nome.includes('@') ? nome : ''), livelloGlobal: livello } as Usuario;
+      userForActivity = {
+        id: 'local_user_' + Date.now(),
+        nombreUsuario: nome,
+        email: (nome.includes('@') ? nome : ''),
+        livelloGlobal: livello,
+        fechaAlta: null,
+        fechaUltimaEntrada: null,
+        puntiTotali: 0,
+        storicoLivelli: [],
+        dataUltimoTestDiLivellamento: null
+      } as Usuario;
     }
     
     if (!userForActivity && process.env.REACT_APP_USE_DATABASE === 'true') {
