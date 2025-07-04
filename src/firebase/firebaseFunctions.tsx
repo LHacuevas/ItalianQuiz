@@ -1,5 +1,5 @@
 // firebaseFunctions.ts
-import { collection, query, where, getDocs, addDoc, updateDoc, doc, serverTimestamp, Timestamp, setDoc, DocumentData, WhereFilterOp, Query } from 'firebase/firestore';
+import { collection, query, where, getDocs, addDoc, updateDoc, doc, serverTimestamp, Timestamp, setDoc, DocumentData, WhereFilterOp, Query, arrayUnion } from 'firebase/firestore';
 import { db } from './firebase';
 import { Usuario, Respuesta, RegCorrige } from './firebaseInterfaces';
 import Papa from 'papaparse'; // Necesitarás instalar papaparse: npm install papaparse
@@ -159,8 +159,8 @@ export const guardarUsuario = async (nombreUsuario: string, email?: string, uid?
                 const nuevoUsuarioData: Partial<Usuario> = { // Use Partial for initial object
                     nombreUsuario: nombreUsuario,
                     email: email || '', // Ensure email is stored
-                    fechaAlta: serverTimestamp(),
-                    fechaUltimaEntrada: serverTimestamp(),
+                    fechaAlta: serverTimestamp() as unknown as Timestamp, // Cast to satisfy TS, Firestore handles conversion
+                    fechaUltimaEntrada: serverTimestamp() as unknown as Timestamp, // Cast to satisfy TS
                     livelloGlobal: null, // Initialize new fields
                     puntiTotali: 0,
                     storicoLivelli: [],
@@ -338,7 +338,8 @@ export async function uploadCSVToFirestore(
                     console.warn(`Documento con ID ${id} no añadido porque no contiene datos válidos`);
                 }
             } else {
-                const docRef = await addDoc(collectionRef, docData);
+                // const docRef = await addDoc(collectionRef, docData); // Unused docRef
+                await addDoc(collectionRef, docData);
                 //console.log(`Documento añadido a ${collectionName} con ID generado: ${docRef.id}`);
             }
             // Actualizar la fila anterior
