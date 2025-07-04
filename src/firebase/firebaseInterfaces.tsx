@@ -4,8 +4,13 @@ import { Timestamp } from 'firebase/firestore';
 export interface Usuario {
     id: string;
     nombreUsuario: string;
-    fechaAlta: Timestamp;
-    fechaUltimaEntrada: Timestamp;
+    email: string; // Added email
+    fechaAlta?: Timestamp; // Made optional as it might not be present for local_user
+    fechaUltimaEntrada?: Timestamp; // Made optional
+    livelloGlobal: string | null;
+    puntiTotali?: number; // Optional as it's initialized to 0
+    storicoLivelli?: Array<{ livello: string; data: Timestamp }>; // Optional
+    dataUltimoTestDiLivellamento?: Timestamp | null; // Optional
 }
 
 export interface Respuesta {

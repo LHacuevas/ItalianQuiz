@@ -25,7 +25,7 @@ import ResponsiveCard from './components/ResponsiveCard';
 import { fetchQuotes, guardarUsuario, actualizarNivelGlobalUsuario } from './firebase/firebaseFunctions'; // Import actualizarNivelGlobalUsuario
 import { Usuario } from './firebase/firebaseInterfaces';
 
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, User, UserCredential, signOut, updateProfile } from 'firebase/auth'; // Added updateProfile
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, User, signOut, updateProfile } from 'firebase/auth'; // Added updateProfile
 import { getFirestore, doc, setDoc, serverTimestamp } from 'firebase/firestore'; // Added serverTimestamp
 import EstadisticasRespuestas from './components/estadisticas-respuestas-component';
 import HangmanGame from './impiccato';
@@ -116,7 +116,7 @@ const App: React.FC = () => {
       setCheckingLevel(false);
     });
     return () => unsubscribe();
-  }, [auth]); // Removed nomeSignUp from dependency array as it's cleared
+  }, [auth, nomeSignUp]);
 
   const handlePlacementTestComplete = async (level: string) => {
     setUserGlobalLevel(level);
@@ -283,6 +283,7 @@ const App: React.FC = () => {
                 userGlobalLevel={userGlobalLevel}
                 onRetakePlacementTest={handleRetakePlacementTest}
                 currentAppUsuario={appUsuario}
+                 firebaseUser={firebaseUser} // Pass firebaseUser prop
               />
             </CardContent>
           </ResponsiveCard>
@@ -295,13 +296,14 @@ const App: React.FC = () => {
 };
 
 interface AppInizialeProps {
-  email: string; 
+  email: string;
   userGlobalLevel: string | null;
   onRetakePlacementTest: () => void;
-  currentAppUsuario: Usuario | null; 
+  currentAppUsuario: Usuario | null;
+  firebaseUser: User | null; // Added firebaseUser prop
 }
 
-const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRetakePlacementTest, currentAppUsuario }) => {
+const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRetakePlacementTest, currentAppUsuario, firebaseUser }) => {
   const [nome, setNome] = useState<string>(() => {
     return currentAppUsuario?.nombreUsuario || currentAppUsuario?.email || email || '';
   });
@@ -360,7 +362,7 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRet
 
 
   const [quote, setQuote] = useState<RegQuote | null>(null);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true); // Removed as 'loading' is not used
 
 /* 
   const getRandomQuote = () => {
@@ -388,7 +390,7 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRet
     setQuote(getRandomQuote());
   }, []); */
   const getRandomQuote = async () => {
-    setLoading(true);
+    // setLoading(true); // Removed as 'loading' state is removed
     try {
       const quotes = await fetchQuotes();
       if (quotes.length > 0) {
@@ -401,7 +403,7 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRet
       console.error('Error al obtener la cita:', error);
       setQuote({ id:'0', text: 'Error al cargar la cita', author: 'Desconocido' });
     } finally {
-      setLoading(false);
+      // setLoading(false); // Removed as 'loading' state is removed
     }
   };
 
@@ -441,7 +443,8 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRet
      return <HangmanGame usuario={usuarioActividad} />; 
   }
   if (componenteSelezionato === 'error') {
-    return <ItalianErrorDetectionGame level={livello} />;
+    const gameLevel = ['A2', 'B1', 'B2'].includes(livello) ? livello as 'A2' | 'B1' | 'B2' : 'B1';
+    return <ItalianErrorDetectionGame level={gameLevel} />;
   }
   if (componenteSelezionato === 'typing') {
     return <ItalianTypingTutor />

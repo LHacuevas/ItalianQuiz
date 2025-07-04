@@ -27,7 +27,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({ onTestComplete, usuario }
   const [currentLevel, setCurrentLevel] = useState<string>("A2"); // A2, B1, B2
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]); // Stores answers for the current level's 7 questions
-  const [scoresByLevel, setScoresByLevel] = useState<Record<string, number>>({});
+  // const [scoresByLevel, setScoresByLevel] = useState<Record<string, number>>({}); // This state is assigned but its value is never read.
   const [determinedLevel, setDeterminedLevel] = useState<string>("");
   const [testStage, setTestStage] = useState<string>("loading"); // loading, testing_A2, testing_B1, testing_B2, calculating, finished
   const [loadingError, setLoadingError] = useState<string | null>(null);
@@ -106,7 +106,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({ onTestComplete, usuario }
 
   const determineNextStage = () => {
     const score = calculateScore();
-    setScoresByLevel(prevScores => ({ ...prevScores, [currentLevel]: score }));
+    // setScoresByLevel(prevScores => ({ ...prevScores, [currentLevel]: score })); // This state is assigned but its value is never read.
 
     if (currentLevel === "A2") {
       if (score >= PASS_THRESHOLD) {
