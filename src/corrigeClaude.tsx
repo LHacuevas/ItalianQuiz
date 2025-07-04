@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     Alert,
     AlertTitle,
@@ -90,6 +90,30 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
 
     const currentSentence = sentences[currentSentenceIndex];
 
+    const checkAnswer = useCallback(() => {
+        if (!currentSentence) return;
+
+        let newScore = score;
+        let allErrorsFound = true;
+        let noFalsePositives = true;
+
+        currentSentence.words.forEach(word => {
+            if (!word.isCorrect && selectedWords.includes(word.id)) {
+                newScore += 2;
+            } else if (word.isCorrect && selectedWords.includes(word.id)) {
+                newScore -= 1;
+                noFalsePositives = false;
+            } else if (!word.isCorrect && !selectedWords.includes(word.id)) {
+                newScore -= 1;
+                allErrorsFound = false;
+            }
+        });
+
+        setScore(newScore); // Consider functional update if newScore depends on previous score in rapid succession
+        setShowResult(true);
+        console.log(`ID frase: ${currentSentence.id}, Risposta completamente corretta: ${allErrorsFound && noFalsePositives ? 'Sì' : 'No'}`);
+    }, [currentSentence, selectedWords, score, setScore, setShowResult]);
+
     useEffect(() => {
         let timer: NodeJS.Timeout;
         if (timeLeft > 0 && !isGameOver && currentSentence && !showResult) {
@@ -98,7 +122,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
             checkAnswer();
         }
         return () => clearTimeout(timer);
-    }, [timeLeft, isGameOver, currentSentence, showResult]);
+    }, [timeLeft, isGameOver, currentSentence, showResult, checkAnswer]);
 
     useEffect(() => {
         if (showResult && currentSentence) {
@@ -119,29 +143,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         );
     };
 
-    const checkAnswer = () => {
-        if (!currentSentence) return;
-
-        let newScore = score;
-        let allErrorsFound = true;
-        let noFalsePositives = true;
-
-        currentSentence.words.forEach(word => {
-            if (!word.isCorrect && selectedWords.includes(word.id)) {
-                newScore += 2;
-            } else if (word.isCorrect && selectedWords.includes(word.id)) {
-                newScore -= 1;
-                noFalsePositives = false;
-            } else if (!word.isCorrect && !selectedWords.includes(word.id)) {
-                newScore -= 1;
-                allErrorsFound = false;
-            }
-        });
-
-        setScore(newScore);
-        setShowResult(true);
-        console.log(`ID frase: ${currentSentence.id}, Risposta completamente corretta: ${allErrorsFound && noFalsePositives ? 'Sì' : 'No'}`);
-    };
+    // }; // End of the original checkAnswer block, now removed.
 
     const nextSentence = () => {
         if (currentSentence) {

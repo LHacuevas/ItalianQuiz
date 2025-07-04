@@ -7,5 +7,7 @@
 			"path": "../RAG"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"svn.ignoreMissingSvnWarning": true
+	}
 }
