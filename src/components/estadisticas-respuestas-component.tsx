@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, LabelList } from 'recharts';
 import { Button, Card, CardContent, CardHeader, Select, MenuItem, FormControl, InputLabel, CardActions } from '@mui/material';
-import { collection, query, where, getDocs } from 'firebase/firestore'; // Removed Timestamp
+import { collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase/firebase.js'; // Asegúrate de tener configurado Firebase correctamente
 import { Respuesta } from '@/firebase/firebaseInterfaces.jsx';
 
@@ -13,7 +13,7 @@ const EstadisticasRespuestas: React.FC<EstadisticasRespuestasProps> = ({ idUsuar
   const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
   const [periodo, setPeriodo] = useState('giorno');
   const [tipoPregunta, setTipoPregunta] = useState('tutte');
-  // const [totalRegistros, setTotalRegistros] = useState(0); // Unused state
+  const [totalRegistros, setTotalRegistros] = useState(0);
   
   useEffect(() => {
     const fetchRespuestas = async () => {

@@ -81,7 +81,7 @@ export default function ItalianTypingTutor() {
         }]);
       }
     }
-  }, [input, startTime, currentLessonIndex, keystrokes, lessons, accuracy, realAccuracy, wpm]);
+  }, [input, startTime, currentLessonIndex, keystrokes, lessons]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
