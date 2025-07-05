@@ -6,10 +6,7 @@
 // This variable must be present somewhere in your service worker file,
 // even if you decide not to use precaching. See https://cra.link/PWA
 // eslint-disable-next-line no-restricted-globals
-self.__WB_MANIFEST;
-
-// eslint-disable-next-line no-restricted-globals
-const ignored = self.__WB_MANIFEST;
+const ignored = self.__WB_MANIFEST; // This line references __WB_MANIFEST
 
 // You can add custom caching strategies for other routes or assets here.
 // For example, to cache API calls:
