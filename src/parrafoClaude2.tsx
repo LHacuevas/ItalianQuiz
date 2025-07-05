@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 //import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
@@ -50,8 +50,8 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     const [quizFinished, setQuizFinished] = useState(false);
     const [reviewMode, setReviewMode] = useState(false);
     const [preguntasQuedan, setPreguntasQuedan] = useState(0);
-    // const [loading, setLoading] = useState(true); // Removed as 'loading' is not used
-    // const [error, setError] = useState<string | null>(null); // Removed as 'error' is not used
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     
     useEffect(() => {      
         const loadRespuestas = async () => {
@@ -68,7 +68,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     // Carica paragrafi e domande
     useEffect(() => {
         const loadData = async () => {
-            // setLoading(true); // Removed as 'loading' state is removed
+            setLoading(true);
             try {
                 const [fetchedParagraphs, fetchedQuestions] = await Promise.all([
                     fetchParrafo(),
@@ -76,12 +76,12 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                 ]);
                 setTodosParagraphs(fetchedParagraphs);
                 setTodosQuestions(fetchedQuestions);
-                // setError(null); // Removed as 'error' state is removed
+                setError(null);
             } catch (err) {
-                // setError('Errore nel caricamento dei dati. Per favore, riprova.'); // Removed
+                setError('Errore nel caricamento dei dati. Per favore, riprova.');
                 console.error('Errore nel recupero dei dati:', err);
             } finally {
-                // setLoading(false); // Removed
+                setLoading(false);
             }
         };
         loadData();
@@ -112,45 +112,10 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
             setStartTime(Date.now());
             setCurrentParagraphIndex(0);
         }
-    }, [todosParagraphs, todosQuestions, respuestas, numQuestions]);
+    }, [todosParagraphs, todosQuestions, respuestas]);
 
     const currentParagraph = paragraphs[currentParagraphIndex];
     const currentQuestions = questions.filter(q => q.paragraphId === currentParagraph?.id);
-
-    const handleVerify = useCallback(() => {
-        if (!currentParagraph) {
-           console.error('currentParagraph è indefinito');
-           return;
-        }
-        let correctAnswers = 0;
-        const baseRespuesta: Omit<Respuesta, 'idSubPregunta' | 'respuesta' | 'correcta'> = { // Omit fields that change per question
-            idUsuario: usuario?.id??'sense',
-            tipoPregunta: 'PR',
-            idPregunta: currentParagraph.id,
-        };
-        currentQuestions.forEach(question => {
-            let userAnswerText = userAnswers[Number(currentParagraph.id)]?.[Number(question.paragraphSubId)];
-            if (userAnswerText === undefined) { // Check for undefined specifically
-                console.log('Risposta non fornita per la domanda ID (sub):', question.paragraphSubId);
-                userAnswerText = ""; // Treat as empty string if no answer
-            }
-            const isCorrect = userAnswerText === question.correct;
-            if (isCorrect) {
-                correctAnswers++;
-            }
-            const respuestaCompleta: Respuesta = {
-                ...baseRespuesta,
-                idSubPregunta: question.paragraphSubId,
-                respuesta: userAnswerText,
-                correcta: isCorrect
-            };
-            guardarRespuesta(respuestaCompleta);
-        });
-
-        setScore(prevScore => prevScore + correctAnswers);
-        setTotalAnsweredQuestions(prev => prev + currentQuestions.length);
-        setShowResults(true);
-    }, [currentParagraph, currentQuestions, userAnswers, usuario, setScore, setTotalAnsweredQuestions, setShowResults]);
 
     useEffect(() => {
         if (!showResults && !quizFinished) {
@@ -166,7 +131,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
             }, 1000);
             return () => clearInterval(countdown);
         }
-    }, [showResults, quizFinished, currentParagraphIndex, currentParagraph, userAnswers, handleVerify]);
+    }, [showResults, quizFinished, currentParagraphIndex, currentParagraph, userAnswers]);
 
     
     const handleInputChange = (paragraphId: number, questionId: number, value: string) => {
@@ -179,6 +144,39 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
         }));
     };
     
+    const handleVerify = () => {
+        if (!currentParagraph) {
+           console.error('currentParagraph è indefinito');
+           return;
+        }
+        let correctAnswers = 0;
+        const respuesta: Respuesta = {
+            idUsuario: usuario?.id??'sense',
+            tipoPregunta: 'PR',
+            idPregunta: currentParagraph.id,
+            idSubPregunta: "0",
+            respuesta: "",
+            correcta: false
+        };
+        currentQuestions.forEach(question => {
+            let resposta = userAnswers[Number(currentParagraph.id)]?.[Number(question.paragraphSubId)]
+            if (!resposta) {
+                console.log('resposta è indefinito', Number(question.paragraphSubId));
+                return;
+            }
+            respuesta.respuesta = resposta;
+            respuesta.idSubPregunta = question.paragraphSubId
+            if (resposta === question.correct) {
+                correctAnswers++;
+                respuesta.correcta = true;
+            } else respuesta.correcta = false;
+            guardarRespuesta(respuesta);
+        });
+
+        setScore(prevScore => prevScore + correctAnswers);
+        setTotalAnsweredQuestions(prev => prev + currentQuestions.length);
+        setShowResults(true);
+    }
 
     const handleNextParagraph = () => {
         if (reviewMode) return;

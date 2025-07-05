@@ -119,36 +119,12 @@ const Imppicato: React.FC<QuizParams> = ({
         }
     }, [loading, words, difficulty, level, category, selectNewWord]);
 
-    const logGameResult = useCallback((reason: string): void => {
-        if (currentWord) {
-            const isCorrect = 'Parola indovinata' === reason;
-            console.log(`Parola originale: ${currentWord.word} Indovinata: ${isCorrect ? 'Sì' : 'No'}
-        Livello: ${currentWord.level} Difficoltà: ${difficulty} Motivo fine gioco: ${reason}`);
-            const respuesta: Respuesta = {
-                idUsuario: usuario?.id ?? 'sense',
-                tipoPregunta: 'AH',
-                idPregunta: currentWord.word,
-                idSubPregunta: "0",
-                respuesta: reason,
-                correcta: isCorrect
-            };
-            guardarRespuesta(respuesta);
-            respuestas.push(respuesta);
-        }
-    }, [currentWord, difficulty, usuario, respuestas]);
-
-    const endGame = useCallback((reason: string): void => {
-        setGameOver(true);
-        logGameResult(reason);
-        setTimeout(selectNewWord, 2000);
-    }, [logGameResult, selectNewWord]);
-
     const handleTimeUp =  useCallback((): void => {
         if (currentWord) {
             setMessage(`Tempo scaduto! La parola era "${currentWord.word}".`);
             endGame('Tempo scaduto');
         }
-    }, [currentWord, endGame]);
+    }, [currentWord]);
 
     useEffect(() => {
         if (currentWord && !gameOver) {
@@ -173,29 +149,29 @@ const Imppicato: React.FC<QuizParams> = ({
     if (error) {
         return <div>Error: {error}</div>;
     }
-    // const logGameResult = (reason: string): void => { // Original definition, moved and wrapped in useCallback above
-    //     if (currentWord) {
-    //         const isCorrect = 'Parola indovinata' === reason;  //currentWord.word === guessedLetters.join('');
-    //         console.log(`Parola originale: ${currentWord.word} Indovinata: ${isCorrect ? 'Sì' : 'No'}
-    //     Livello: ${currentWord.level} Difficoltà: ${difficulty} Motivo fine gioco: ${reason}`);
-    //         const respuesta: Respuesta = {
-    //             idUsuario: usuario?.id ?? 'sense',
-    //             tipoPregunta: 'AH',
-    //             idPregunta: currentWord.word,
-    //             idSubPregunta: "0",
-    //             respuesta: reason,
-    //             correcta: isCorrect
-    //         };
-    //         guardarRespuesta(respuesta)
-    //         respuestas.push(respuesta);
-    //     }
-    // }
+    const logGameResult = (reason: string): void => {
+        if (currentWord) {
+            const isCorrect = 'Parola indovinata' === reason;  //currentWord.word === guessedLetters.join('');
+            console.log(`Parola originale: ${currentWord.word} Indovinata: ${isCorrect ? 'Sì' : 'No'}
+        Livello: ${currentWord.level} Difficoltà: ${difficulty} Motivo fine gioco: ${reason}`);
+            const respuesta: Respuesta = {
+                idUsuario: usuario?.id ?? 'sense',
+                tipoPregunta: 'AH',
+                idPregunta: currentWord.word,
+                idSubPregunta: "0",
+                respuesta: reason,
+                correcta: isCorrect
+            };
+            guardarRespuesta(respuesta)
+            respuestas.push(respuesta);
+        }
+    }
 
-    // const endGame = (reason: string): void => { // Original definition, moved and wrapped in useCallback above
-    //     setGameOver(true);
-    //     logGameResult(reason);
-    //     setTimeout(selectNewWord, 2000);
-    // }
+    const endGame = (reason: string): void => {
+        setGameOver(true);
+        logGameResult(reason);
+        setTimeout(selectNewWord, 2000);
+    }
     // Función para verificar si una letra es vocal
     const isVowel = (letter: string): boolean => {
         return ['a', 'e', 'i', 'o', 'u'].includes(letter.toLowerCase());

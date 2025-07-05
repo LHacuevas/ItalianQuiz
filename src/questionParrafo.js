@@ -19,7 +19,6 @@ id,text,generated
 18,"Il sistema politico italiano [1] una repubblica parlamentare. Il Parlamento [2] di due camere: la Camera dei Deputati e il Senato. Le elezioni [3] generalmente ogni cinque anni. Il Presidente della Repubblica [4] un ruolo principalmente cerimoniale. Il Primo Ministro, invece, [5] il capo del governo. Nonostante alcune instabilità, la democrazia italiana [6] forte dal dopoguerra.",Claude
 19,"La musica italiana [1] famosa in tutto il mondo. Cantanti come Luciano Pavarotti [2] portato l'opera a un pubblico internazionale. Negli anni '80, la musica pop italiana [3] molto popolare anche all'estero. Oggi, nuovi artisti [4] emergendo e mescolando stili diversi. Il Festival di Sanremo [5] ancora un evento importante per la musica italiana. Molti giovani [6] di diventare cantanti famosi.",Claude
 20,"Il caffè espresso [1] un simbolo della cultura italiana. La preparazione [2] quasi un rituale. Molti italiani [3] il giorno con un caffè al bar. L'espresso [4] essere servito in una tazzina piccola e calda. Alcuni [5] che il caffè italiano sia troppo forte, ma per gli italiani [6] perfetto così. Bere un caffè [7] anche un momento di socializzazione.",Claude
-Entiendo, disculpa la omisión. Continuaré con más párrafos, incluyendo el intro después de cada fila y añadiendo más elementos de nivel B1 y B2 como subjuntivos, futuros, preposiciones, adjetivos y expresiones idiomáticas. Aquí tienes los siguientes párrafos:
 21,"Se [1] che l'Italia [2] il paese con il maggior numero di siti UNESCO al mondo. Questo [3] che il patrimonio culturale e naturale italiano [4] di straordinaria importanza. Tuttavia, [5] necessario che le autorità [6] maggiori sforzi per preservare questi tesori. Se non [7] nulla, alcune di queste meraviglie [8] essere perse per sempre.",Claude
 22,"Molti turisti [1] in Italia sperando di [2] un'autentica esperienza culturale. Tuttavia, [3] che [4] consapevoli dei possibili inconvenienti. Ad esempio, in alta stagione i prezzi [5] alle stelle e le città [6] affollate. Nonostante ciò, se [7] con mente aperta, [8] sicuramente un viaggio indimenticabile.",Claude
 23,"La cucina italiana [1] famosa per la sua semplicità e qualità degli ingredienti. Tuttavia, [2] che molti piatti tradizionali [3] in pericolo a causa della globalizzazione. [4] importante che le nuove generazioni [5] a cucinare questi piatti. Se [6], la tradizione culinaria italiana [7] preservata per il futuro.",Claude
@@ -432,7 +431,7 @@ id,paragraphId,correct,options,hint,explanation,difficulty
 5,59,"consentirà","consentirà|consente|consentirebbe",consentire,"'Consentire' al futuro semplice indica una possibilità futura.",B2
 6,59,"praticare","praticare|praticando|praticato",praticare,"Dopo 'di' si usa l'infinito del verbo.",B1
 1,60,"organizzerà","organizzerà|organizza|organizzerebbe",organizzare,"'Organizzare' al futuro semplice indica un'azione pianificata per il futuro.",B2
-2,60,"indosseranno","indosseranno|indossano|indosserebbero",indossare,"'Indossare' al futuro semplice indica un'azione che gli studenti faranno durante l'evento.",
+2,60,indosseranno,"indosseranno|indossano|indosserebbero",indossare,"'Indossare' al futuro semplice indica un'azione che gli studenti faranno durante l'evento.",B1
 1,61,è arrivato,"è arrivato|ha arrivato|arrivava",arrivare,"Si usa 'è arrivato' con il verbo 'arrivare' perché è un verbo di movimento.",B1
 2,61,viaggio,"viaggio|giro|vacanza",sostantivo,"'Viaggio culturale' è l'espressione corretta per indicare un'esperienza di apprendimento culturale durante un viaggio.",B1
 3,61,erano,"erano|stavano|fossero",essere,"Si usa l'imperfetto 'erano' per descrivere lo stato d'animo continuativo nel passato.",B1
@@ -447,7 +446,7 @@ id,paragraphId,correct,options,hint,explanation,difficulty
 3,63,abbiamo ordinato,"abbiamo ordinato|ordinavamo|avevamo ordinato",ordinare,"Il passato prossimo 'abbiamo ordinato' è adatto per un'azione specifica e conclusa nel passato.",B1
 4,63,dessert,"dessert|dolce|primo",sostantivo,"'Dessert' è il termine corretto per indicare il piatto finale di un pasto, spesso dolce.",B2
 5,63,eravamo,"eravamo|siamo stati|fummo",essere,"L'imperfetto 'eravamo' si usa per esprimere uno stato o un'opinione condivisa nel passato.",B2
-6,63,deliziosa,"deliziosa|delizioso|delizioso",aggettivo,"'Deliziosa' è l'aggettivo corretto al femminile singolare per concordare con 'cucina'.",B1
+6,63,deliziosa,"deliziosa|delizioso|deliziose",aggettivo,"'Deliziosa' è l'aggettivo corretto al femminile singolare per concordare con 'cucina'. 'Delizioso' è maschile singolare, 'deliziose' è femminile plurale.",B1
 1,64,abbiamo deciso,"abbiamo deciso|avevamo deciso|decidemmo",decidere,"Il passato prossimo 'abbiamo deciso' è adatto per un'azione specifica presa nel passato recente.",B1
 2,64,Abbiamo salito,"Abbiamo salito|Siamo saliti|Salivamo",salire,"Si usa 'Abbiamo salito' con l'oggetto diretto (i gradini), mentre 'Siamo saliti' si userebbe senza oggetto diretto.",B2
 3,64,arrivare,"arrivare|giungere|raggiungere",verbo,"'Arrivare' è il verbo più comune e appropriato in questo contesto.",B1

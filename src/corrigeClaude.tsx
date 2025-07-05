@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Alert,
     AlertTitle,
@@ -33,6 +33,7 @@ interface Sentence {
     text: string;
     words: Word[];
     theme: string;
+    isNaturallyCorrect?: boolean;
 }
 
 interface ItalianErrorDetectionGameProps {
@@ -56,23 +57,27 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                 const corrige = await fetchCorrige();
                 return corrige
                     .filter((q: RegCorrige) => q.nivel === level)
-                    .map(q => ({
-                        id: q.id,
-                        level: q.nivel,
-                        text: q.fraseCompleta,
-                        theme: q.tema,
-                        words: q.fraseCompleta.split(' ').map((word, index) => {
-                            const isError = q.idsPalabrasErroneas.split('|').map(Number).includes(index + 1);
-                            const errorIndex = q.idsPalabrasErroneas.split('|').map(Number).indexOf(index + 1);
-                            return {
-                                id: index + 1,
-                                text: word,
-                                isCorrect: !isError,
-                                correction: isError ? q.correcciones.split('|')[errorIndex] : null,
-                                explanation: isError ? q.explicacion.split('|')[errorIndex] : null
-                            };
-                        })
-                    }));
+                    .map(q => {
+                        const isSentenceNaturallyCorrect = !q.idsPalabrasErroneas || q.idsPalabrasErroneas.trim() === "";
+                        return {
+                            id: q.id,
+                            level: q.nivel,
+                            text: q.fraseCompleta,
+                            theme: q.tema,
+                            isNaturallyCorrect: isSentenceNaturallyCorrect,
+                            words: q.fraseCompleta.split(' ').map((word, index) => {
+                                const isError = !isSentenceNaturallyCorrect && q.idsPalabrasErroneas.split('|').map(Number).includes(index + 1);
+                                const errorIndex = !isSentenceNaturallyCorrect ? q.idsPalabrasErroneas.split('|').map(Number).indexOf(index + 1) : -1;
+                                return {
+                                    id: index + 1,
+                                    text: word,
+                                    isCorrect: isSentenceNaturallyCorrect ? true : !isError,
+                                    correction: isError && q.correcciones ? q.correcciones.split('|')[errorIndex] : null,
+                                    explanation: isError && q.explicacion ? q.explicacion.split('|')[errorIndex] : null
+                                };
+                            })
+                        };
+                    });
             } catch (error) {
                 console.error('Errore nel caricamento delle frasi:', error);
                 return [];
@@ -90,39 +95,22 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
 
     const currentSentence = sentences[currentSentenceIndex];
 
-    const checkAnswer = useCallback(() => {
-        if (!currentSentence) return;
-
-        let newScore = score;
-        let allErrorsFound = true;
-        let noFalsePositives = true;
-
-        currentSentence.words.forEach(word => {
-            if (!word.isCorrect && selectedWords.includes(word.id)) {
-                newScore += 2;
-            } else if (word.isCorrect && selectedWords.includes(word.id)) {
-                newScore -= 1;
-                noFalsePositives = false;
-            } else if (!word.isCorrect && !selectedWords.includes(word.id)) {
-                newScore -= 1;
-                allErrorsFound = false;
-            }
-        });
-
-        setScore(newScore); // Consider functional update if newScore depends on previous score in rapid succession
-        setShowResult(true);
-        console.log(`ID frase: ${currentSentence.id}, Risposta completamente corretta: ${allErrorsFound && noFalsePositives ? 'Sì' : 'No'}`);
-    }, [currentSentence, selectedWords, score, setScore, setShowResult]);
-
     useEffect(() => {
         let timer: NodeJS.Timeout;
-        if (timeLeft > 0 && !isGameOver && currentSentence && !showResult) {
+        if (timeLeft > 0 && !isGameOver && currentSentence && !showResult && !currentSentence.isNaturallyCorrect) {
             timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-        } else if (timeLeft === 0 && !isGameOver && !showResult) {
-            checkAnswer();
+        } else if (timeLeft === 0 && !isGameOver && !showResult && !currentSentence.isNaturallyCorrect) {
+            checkAnswer(); // Only call checkAnswer if it's not a naturally correct sentence
         }
         return () => clearTimeout(timer);
-    }, [timeLeft, isGameOver, currentSentence, showResult, checkAnswer]);
+    }, [timeLeft, isGameOver, currentSentence, showResult]); // isCurrentSentenceNaturallyCorrect is implicitly handled by currentSentence check
+
+    // New useEffect to handle naturally correct sentences immediately
+    useEffect(() => {
+        if (currentSentence && currentSentence.isNaturallyCorrect) {
+            setShowResult(true);
+        }
+    }, [currentSentence]);
 
     useEffect(() => {
         if (showResult && currentSentence) {
@@ -143,7 +131,29 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         );
     };
 
-    // }; // End of the original checkAnswer block, now removed.
+    const checkAnswer = () => {
+        if (!currentSentence) return;
+
+        let newScore = score;
+        let allErrorsFound = true;
+        let noFalsePositives = true;
+
+        currentSentence.words.forEach(word => {
+            if (!word.isCorrect && selectedWords.includes(word.id)) {
+                newScore += 2;
+            } else if (word.isCorrect && selectedWords.includes(word.id)) {
+                newScore -= 1;
+                noFalsePositives = false;
+            } else if (!word.isCorrect && !selectedWords.includes(word.id)) {
+                newScore -= 1;
+                allErrorsFound = false;
+            }
+        });
+
+        setScore(newScore);
+        setShowResult(true);
+        console.log(`ID frase: ${currentSentence.id}, Risposta completamente corretta: ${allErrorsFound && noFalsePositives ? 'Sì' : 'No'}`);
+    };
 
     const nextSentence = () => {
         if (currentSentence) {
@@ -196,6 +206,8 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         (!word.isCorrect && selectedWords.includes(word.id))
     );
 
+    const isCurrentSentenceNaturallyCorrect = currentSentence?.isNaturallyCorrect === true;
+
     return (
         <Container maxWidth="md">
             <Box my={4}>
@@ -215,12 +227,13 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                         {currentSentence?.words.map(word => (
                             <Chip
                                 key={word.id}
-                                label={flipWords.includes(word.id) ? word.correction : word.text}
-                                onClick={() => !showResult && handleWordClick(word.id)}
-                                color={selectedWords.includes(word.id) ? "primary" : "default"}
+                                label={flipWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? word.correction : word.text}
+                                onClick={() => !showResult && !isCurrentSentenceNaturallyCorrect && handleWordClick(word.id)}
+                                clickable={!isCurrentSentenceNaturallyCorrect && !showResult}
+                                color={selectedWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? "primary" : "default"}
                                 style={{
                                     margin: '4px',
-                                    backgroundColor: showResult
+                                    backgroundColor: showResult && !isCurrentSentenceNaturallyCorrect
                                         ? word.isCorrect
                                             ? selectedWords.includes(word.id)
                                                 ? '#ff6b6b' // rosso più intenso per le parole corrette erroneamente selezionate
@@ -229,27 +242,32 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                                                 ? '#66bb6a' // verde per gli errori correttamente identificati
                                                 : '#ffcccb' // rosso chiaro per gli errori non identificati
                                         : undefined,                                    
-                                    animation: flipWords.includes(word.id) ? `${flipAnimation} 2s infinite` : 'none'
+                                    animation: flipWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? `${flipAnimation} 2s infinite` : 'none'
                                 }}
                             />
                         ))}
                     </Box>
                 </Paper>
-                {!showResult && (
+                {isCurrentSentenceNaturallyCorrect && !showResult && (
+                    <Alert severity="info" style={{ marginTop: '20px' }}>Questa frase è già corretta!</Alert>
+                )}
+                {!showResult && !isCurrentSentenceNaturallyCorrect && (
                     <Button variant="contained" color="primary" onClick={checkAnswer} style={{ marginTop: '20px' }}>
                         Verifica risposta
                     </Button>
                 )}
-                {showResult && (
+                 {(showResult || isCurrentSentenceNaturallyCorrect) && (
                     <Box mt={2}>
-                        <Alert severity={isAnswerCorrect ? "success" : "error"}>
-                            <AlertTitle>
-                                {isAnswerCorrect
-                                    ? "Ottimo lavoro! Hai identificato correttamente tutti gli errori."
-                                    : "Attenzione! Non hai identificato correttamente tutti gli errori."}
-                            </AlertTitle>
-                        </Alert>
-                        {currentSentence?.words.filter(word => !word.isCorrect).map(word => (
+                        {!isCurrentSentenceNaturallyCorrect && (
+                            <Alert severity={isAnswerCorrect ? "success" : "error"}>
+                                <AlertTitle>
+                                    {isAnswerCorrect
+                                        ? "Ottimo lavoro! Hai identificato correttamente tutti gli errori."
+                                        : "Attenzione! Non hai identificato correttamente tutti gli errori."}
+                                </AlertTitle>
+                            </Alert>
+                        )}
+                        {!isCurrentSentenceNaturallyCorrect && currentSentence?.words.filter(word => !word.isCorrect).map(word => (
                             <Alert key={word.id} severity={selectedWords.includes(word.id) ? "success":"error" } style={{ marginTop: '10px' }}>
                                 <AlertTitle>Spiegazione per "{word.text}"</AlertTitle>
                                 {word.explanation}

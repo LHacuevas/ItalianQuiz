@@ -156,7 +156,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             setRandomizedOptions(shuffled);
         }
 
-    }, [currentQuestionData, onlyOptionQuestions]);
+    }, [currentQuestionData]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUserInput(event.target.value);
