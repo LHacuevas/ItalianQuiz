@@ -25,7 +25,7 @@ import ResponsiveCard from './components/ResponsiveCard';
 import { fetchQuotes, guardarUsuario, actualizarNivelGlobalUsuario } from './firebase/firebaseFunctions'; // Import actualizarNivelGlobalUsuario
 import { Usuario } from './firebase/firebaseInterfaces';
 
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, User, UserCredential, signOut, updateProfile } from 'firebase/auth'; // Added updateProfile
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, User,  signOut, updateProfile } from 'firebase/auth'; // Added updateProfile
 import { getFirestore, doc, setDoc, serverTimestamp } from 'firebase/firestore'; // Added serverTimestamp
 import EstadisticasRespuestas from './components/estadisticas-respuestas-component';
 import HangmanGame from './impiccato';
@@ -301,7 +301,7 @@ const App: React.FC = () => {
 };
 
 interface AppInizialeProps {
-  email: string;
+  email: string; 
   userGlobalLevel: string | null;
   onRetakePlacementTest: () => void;
   currentAppUsuario: Usuario | null; 
