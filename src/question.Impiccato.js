@@ -1,206 +1,206 @@
 export const impiccatoCSV = `
 question,word,level,tip,category
-"Il capo del governo in molti paesi.","presidente","B2","Carica politica","Politica"
-"Serve per fare il caffè espresso.","macchina da caffè","B2","Strumento da cucina","Cucina"
-"Serve per scrivere sulla carta.","matita","A2","Strumento da scrittura","Scuola"
-"Si usa per ascoltare la musica.","auricolari","B1","Strumento elettronico","Tecnologia"
-"Si usa per pagare gli acquisti.","banconota","A2","Forma di denaro","Economia"
-"Si usa per tagliare il cibo.","coltello","A2","Strumento da cucina","Cucina"
-"Un abbigliamento indossato per proteggere il corpo durante il lavoro.","divisa","B1","Abbigliamento professionale","Professioni"
-"Un abito elegante indossato da un uomo per eventi formali.","smoking","B2","Abbigliamento formale","Moda"
-"Un accessorio da portare al polso per misurare il tempo.","orologio","A2","Strumento di misurazione","Moda"
-"Un alimento fatto di grano usato per fare il pane.","farina","A2","Ingrediente culinario","Cucina"
-"Un alimento fatto di latte cagliato.","formaggio","A2","Prodotto caseario","Cibo"
-"Un animale che produce latte e muggisce.","mucca","A2","Animale da fattoria","Animali"
-"Un animale che vive in acqua e ha pinne.","pesce","A2","Animale acquatico","Animali"
-"Un animale che vive nei boschi e costruisce tane sotto terra.","tasso","B2","Animale selvatico","Animali"
-"Un animale che vive nei deserti e può saltare molto in alto.","canguro","B2","Animale del deserto","Animali"
-"Un animale che vive nei fiumi e costruisce dighe.","castoro","B2","Animale acquatico","Animali"
-"Un animale che vive nei fiumi e ha una lunga coda.","coccodrillo","B2","Animale acquatico","Animali"
-"Un animale che vive nel deserto e può sopravvivere senza acqua per lungo tempo.","cammello","B2","Animale del deserto","Animali"
-"Un animale che vive nel mare e ha un guscio duro.","tartaruga","B2","Animale marino","Animali"
-"Un animale che vive nelle foreste e costruisce nidi sugli alberi.","scoiattolo","B2","Animale delle foreste","Animali"
-"Un animale che vive nelle foreste e ha il pelo rosso.","volpe","B2","Animale selvatico","Animali"
-"Un animale con corna ramificate che vive nelle foreste.","cervo","B2","Animale selvatico","Animali"
-"Un animale con le corna che vive nelle montagne.","stambecco","B2","Animale montano","Animali"
-"Un animale con lunghe zampe che salta e vive nei prati.","cavalletta","B2","Insetto saltatore","Animali"
-"Un animale con piume colorate che sa imitare i suoni umani.","pappagallo","B2","Uccello parlante","Animali"
-"Un animale con un lungo collo che vive in Africa.","giraffa","A2","Animale selvatico","Animali"
-"Un animale da compagnia che fa le fusa.","gatto","A2","Animale domestico","Animali"
-"Un animale domestico che abbaia.","cane","A2","Animale da compagnia","Animali"
-"Un animale marino con otto braccia.","polpo","B2","Animale marino","Animali"
-"Un animale marino con una conchiglia a spirale.","chiocciola","B2","Animale marino","Animali"
-"Un animale marino con una conchiglia dura e una coda lunga.","aragosta","B2","Animale marino","Animali"
-"Un apparecchio elettronico usato per telefonare.","telefono","A2","Strumento di comunicazione","Tecnologia"
-"Un contenitore di vetro usato per conservare liquidi.","bottiglia","A2","Contenitore","Casa"
-"Un dispositivo elettronico usato per navigare in internet.","computer","A2","Strumento tecnologico","Tecnologia"
-"Un dispositivo elettronico usato per vedere film e programmi.","televisione","A2","Strumento di intrattenimento","Tecnologia"
-"Un dispositivo per guardare programmi televisivi.","televisore","A2","Apparecchio elettronico","Tecnologia"
-"Un dispositivo usato per ascoltare musica in cuffia.","lettore mp3","A2","Strumento musicale","Tecnologia"
-"Un dispositivo usato per ascoltare musica senza fili.","auricolari wireless","A2","Strumento musicale","Tecnologia"
-"Un dispositivo usato per cuocere il cibo.","forno","A2","Strumento di cottura","Cucina"
-"Un dispositivo usato per fare caffè.","caffettiera","A2","Strumento di cucina","Cucina"
-"Un dispositivo usato per fare chiamate video.","webcam","A2","Strumento di comunicazione","Tecnologia"
-"Un dispositivo usato per leggere libri digitali.","ebook reader","B2","Strumento di lettura","Tecnologia"
-"Un dispositivo usato per misurare il peso.","bilancia","A2","Strumento di misurazione","Cura personale"
-"Un dispositivo usato per misurare il tempo.","cronometro","B2","Strumento di misurazione","Tecnologia"
-"Un dispositivo usato per misurare la pressione arteriosa.","sfigmomanometro","B2","Strumento medico","Salute"
-"Un dispositivo usato per misurare la pressione atmosferica.","barometro","B2","Strumento meteorologico","Scienza"
-"Un dispositivo usato per misurare la temperatura.","termometro","A2","Strumento di misurazione","Salute"
-"Un dispositivo usato per registrare suoni e musica.","microfono","A2","Strumento di registrazione","Tecnologia"
-"Strumento portatile con due lenti per vedere oggetti distanti.","binocolo","B2","Strumento di osservazione","Tecnologia"
-"Strumento ottico potente per osservare corpi celesti.","telescopio","B2","Strumento di osservazione","Astronomia"
-"Un dispositivo utilizzato per fare fotografie.","fotocamera","A2","Strumento di registrazione","Tecnologia"
-"Un dispositivo utilizzato per riscaldare gli ambienti.","termosifone","B2","Strumento di riscaldamento","Casa"
-"Un edificio con stanze per gli studenti universitari.","dormitorio","B2","Alloggio per studenti","Istruzione"
-"Un edificio dove si allestiscono mostre d'arte.","galleria","B2","Luogo culturale","Cultura"
-"Un edificio dove si producono e si vendono prodotti da forno.","panetteria","A2","Negozio di alimentari","Città"
-"Un edificio dove si tengono celebrazioni religiose.","chiesa","A2","Luogo di culto","Cultura"
-"Un edificio dove si tengono concerti e spettacoli musicali.","auditorium","B2","Luogo di spettacolo","Cultura"
-"Un edificio dove si tengono partite di calcio.","stadio","B2","Luogo sportivo","Sport"
-"Un edificio in cui si tengono spettacoli teatrali.","teatro","B1","Luogo di spettacolo","Cultura"
-"Un edificio per la conservazione e l'esposizione di opere d'arte.","museo","B1","Luogo culturale","Cultura"
-"Un edificio sacro per la preghiera.","cattedrale","B2","Luogo di culto","Architettura"
-"Un elemento chimico usato per creare oggetti metallici.","ferro","A2","Metallo comune","Materiali"
-"Un evento in cui si esibiscono artisti musicali.","concerto","A2","Evento musicale","Eventi"
-"Un evento sportivo in cui si corre per una lunga distanza.","maratona","B2","Competizione sportiva","Sport"
-"Un evento sportivo mondiale che si svolge ogni quattro anni.","olimpiadi","B2","Competizione sportiva","Sport"
-"Un fenomeno naturale con fulmini e tuoni.","temporale","B2","Fenomeno atmosferico","Meteo"
-"Un frutto arancione con polpa dolce e succosa.","albicocca","A2","Frutto estivo","Frutta"
-"Un frutto arancione ricco di vitamina C.","arancia","A2","Frutto agrumato","Frutta"
-"Un frutto esotico giallo con polpa dolce e succosa.","mango","A2","Frutto tropicale","Frutta"
-"Un frutto giallo e aspro usato per fare limonata.","limone","A2","Frutto agrumato","Frutta"
-"Un frutto rosso con polpa dolce e succosa e molti semi neri.","fragola","A2","Frutto di bosco","Frutta"
-"Un frutto rosso e succoso con molti semi.","melograno","B1","Frutto esotico","Frutta"
-"Un frutto tropicale con polpa dolce e succosa e buccia dura.","ananas","A2","Frutto tropicale","Frutta"
-"Un frutto tropicale verde fuori e rosa dentro con molti semi neri.","kiwi","A2","Frutto tropicale","Frutta"
-"Un frutto verde con un nocciolo grande all'interno.","avocado","A2","Frutto tropicale","Frutta"
-"Un gioco con carte e fiches in cui si scommette denaro.","poker","B2","Gioco di carte","Giochi"
-"Un gioco con palline e racchette su un campo rettangolare.","tennis","B1","Sport con racchetta","Sport"
-"Un gioco da tavolo con re, regina e pedoni.","scacchi","B1","Gioco di strategia","Giochi"
-"Un giorno festivo in cui si celebra la nascita di Gesù.","Natale","A2","Festa religiosa","Eventi"
-"Un giorno speciale che si celebra ogni anno.","compleanno","B1","Festa personale","Eventi"
-"Un grande animale africano con una lunga proboscide.","elefante","B1","Animale selvaggio","Animali"
-"Un grande mammifero marino con denti affilati.","squalo","B2","Predatore oceanico","Animali"
-"Un grande uccello rapace notturno con occhi grandi.","gufo","B2","Uccello notturno","Animali"
-"Un insetto che produce miele.","ape","A2","Insetto produttore di miele","Animali"
-"Un insieme di stelle che forma un disegno nel cielo notturno.","costellazione","B2","Gruppo di stelle","Astronomia"
-"Un liquido combustibile usato per riscaldare e cucinare.","gas","A2","Combustibile","Energia"
-"Un liquido usato per lubrificare i motori.","olio","A2","Lubrificante","Materiali"
-"Un luogo dove si allevano animali per la carne e i prodotti lattiero-caseari.","fattoria","A2","Luogo di allevamento","Animali"
-"Un luogo dove si allevano pesci per scopi commerciali.","peschiera","B2","Luogo di allevamento","Animali"
-"Un luogo dove si insegnano e si imparano nuove cose.","scuola","A2","Istituzione educativa","Istruzione"
-"Un luogo dove si praticano sport e attività fisiche.","palestra","A2","Luogo di allenamento","Sport"
-"Un luogo dove si proiettano film.","cinema","A2","Luogo di intrattenimento","Cultura"
-"Un luogo dove si tengono spettacoli di animali marini.","acquario","A2","Luogo di intrattenimento","Animali"
-"Un luogo dove si vendono fiori e piante.","fioraio","A2","Negozio di piante","Città"
-"Un luogo dove si vendono libri.","libreria","A2","Negozio di libri","Città"
-"Un luogo dove si vendono medicinali.","farmacia","B1","Negozio di medicinali","Salute"
-"Un luogo dove si vendono pesci e frutti di mare.","pescheria","A2","Negozio di alimentari","Città"
-"Un luogo dove si vendono prodotti alimentari freschi e locali.","mercato","A2","Luogo di vendita","Città"
-"Un metallo prezioso usato per fare gioielli.","oro","A2","Metallo prezioso","Materiali"
-"Un mezzo di trasporto a due ruote.","bicicletta","A2","Veicolo ecologico","Trasporti"
-"Un mezzo di trasporto pubblico su rotaia.","treno","A2","Mezzo di trasporto","Trasporti"
-"Un oggetto luminoso utilizzato per leggere al buio.","lampada","A2","Fonte di luce","Casa"
-"Un oggetto usato per tagliare i capelli.","forbici","A2","Strumento di taglio","Cura personale"
-"Un oggetto utilizzato per ripararsi dalla pioggia.","ombrello","A2","Strumento di protezione","Moda"
-"Un periodo dell'anno caratterizzato da temperature calde.","estate","A2","Stagione calda","Tempo"
-"Un periodo dell'anno caratterizzato da temperature fredde.","inverno","A2","Stagione fredda","Tempo"
-"Un periodo dell'anno in cui gli alberi perdono le foglie.","autunno","A2","Stagione di transizione","Tempo"
-"Un periodo di dieci anni.","decennio","B1","Unità di tempo","Tempo"
-"Un periodo di riposo dopo un anno di lavoro.","vacanza","A2","Periodo di riposo","Viaggi"
-"Un periodo di riposo notturno.","sonno","A2","Stato di riposo","Corpo umano"
-"Un periodo di tempo con una durata di cento anni.","secolo","B1","Unità di tempo","Tempo"
-"Un pesce con squame colorate che vive nell'acqua dolce.","carpa","B1","Pesce d'acqua dolce","Animali"
-"Un piccolo animale con le ali che vola.","farfalla","A2","Insetto","Animali"
-"Un piccolo animale domestico che ama arrampicarsi sugli alberi.","criceto","A2","Animale da compagnia","Animali"
-"Un piccolo animale domestico con lunghe orecchie che ama saltare.","coniglio","A2","Animale da compagnia","Animali"
-"Un piccolo animale notturno che vola e si nutre di insetti.","pipistrello","B2","Mammifero volante","Animali"
-"Un piccolo dispositivo elettronico usato per ascoltare musica.","mp3","A2","Strumento musicale","Tecnologia"
-"Un piccolo dispositivo elettronico usato per giocare.","console","A2","Strumento di intrattenimento","Tecnologia"
-"Un piccolo dispositivo usato per accendere il fuoco.","accendino","A2","Strumento di accensione","Casa"
-"Un piccolo frutto blu o viola che cresce in grappoli.","mirtillo","B1","Frutto di bosco","Frutta"
-"Un piccolo oggetto con ruote usato dai bambini per giocare.","macchinina","A2","Giocattolo","Giochi"
-"Un piccolo roditore con lunghe orecchie che vive nei campi.","coniglio","A2","Animale selvatico","Animali"
-"Un piccolo strumento musicale a fiato.","flauto","A2","Strumento musicale","Musica"
-"Un tessuto fatto di fili intrecciati.","tessuto","A2","Materiale per abbigliamento","Moda"
-"Un tessuto spesso usato per fare tende e abiti eleganti.","velluto","B2","Materiale per tessuti","Moda"
-"Un tipo di ballo latinoamericano caratterizzato da movimenti sensuali.","salsa","B2","Danza latinoamericana","Cultura"
-"Un tipo di ballo tradizionale argentino.","tango","B1","Danza argentina","Cultura"
-"Un tipo di ballo tradizionale brasiliano.","samba","B2","Danza brasiliana","Cultura"
-"Un tipo di ballo tradizionale irlandese.","riverdance","B2","Danza irlandese","Cultura"
-"Un tipo di carne molto apprezzata, spesso usata nelle grigliate.","costata","B2","Taglio di carne","Cibo"
-"Un tipo di danza tradizionale spagnola.","flamenco","B2","Danza spagnola","Cultura"
-"Un tipo di dolce con crema e frutta.","crostata","A2","Dolce da forno","Cibo"
-"Un tipo di dolce freddo fatto con latte e zucchero.","gelato","A2","Dolce freddo","Cibo"
-"Un tipo di pane dolce con uvetta e frutta candita tipico delle festività natalizie.","panettone","B2","Dolce natalizio","Cibo"
-"Un tipo di pane italiano cotto in forno a legna.","focaccia","A2","Pane tradizionale","Cibo"
-"Un tipo di pane piatto con ripieno, tipico della cucina messicana.","tortilla","A2","Pane messicano","Cibo"
-"Un tipo di pane rotondo con un buco nel mezzo, tipico della cucina ebraica.","bagel","B2","Pane ebraico","Cibo"
-"Un tipo di pane sottile tipico della cucina araba.","pita","B2","Pane arabo","Cibo"
-"Un tipo di pasta lunga e sottile.","spaghetti","A2","Pasta italiana","Cibo"
-"Un tipo di pesce molto apprezzato per la sua carne rosa.","salmone","B1","Pesce pregiato","Cibo"
-"Un tipo di scarpa aperta indossata in estate.","sandalo","A2","Calzatura estiva","Moda"
-"Un tipo di vino frizzante tipico della regione francese della Champagne.","champagne","B2","Vino francese","Bevande"
-"Un uccello che depone uova e vive in fattoria.","gallina","A2","Animale da fattoria","Animali"
-"Un uccello che può parlare e imitare i suoni.","pappagallo","B2","Uccello parlante","Animali"
-"Un uccello notturno con occhi grandi e piume morbide.","civetta","B2","Uccello notturno","Animali"
-"Un utensile da cucina per mescolare gli ingredienti.","frusta","A2","Utensile da cucina","Cucina"
-"Un vegetale rosso usato per fare salse e insalate.","pomodoro","A2","Verdura","Cibo"
-"Un vegetale verde con foglie croccanti usato per fare insalate.","lattuga","A2","Verdura","Cibo"
-"Un veicolo a due ruote motorizzato.","motocicletta","A2","Veicolo motorizzato","Trasporti"
-"Un veicolo con due ali usato per volare.","aereo","A2","Mezzo di trasporto","Trasporti"
-"Un veicolo spaziale usato per esplorare lo spazio.","navicella","B2","Veicolo spaziale","Astronomia"
-"Un veicolo usato per esplorare lo spazio.","razzo","B2","Veicolo spaziale","Astronomia"
-"Un veicolo usato per trasportare merci pesanti.","camion","A2","Veicolo di trasporto","Trasporti"
-"Un'attività di gioco che coinvolge il lancio di dadi e il movimento di pedine.","gioco da tavolo","B2","Attività ricreativa","Giochi"
-"Un'infrastruttura che collega due punti separati da un ostacolo.","ponte","B2","Struttura di collegamento","Architettura"
-"Un'unità di misura per la temperatura.","gradi","A2","Misurazione termica","Scienza"
-"Una bevanda calda e rilassante.","camomilla","B1","Tisana","Bevande"
-"Una bevanda gassata dolce con caffeina.","cola","A2","Bevanda analcolica","Bevande"
-"Una bevanda ottenuta dalla fermentazione dell'uva.","vino","A2","Bevanda alcolica","Bevande"
-"Una condizione atmosferica con precipitazioni congelate.","neve","B2","Fenomeno meteorologico","Meteo"
-"Una forma di energia prodotta dal movimento dell'aria.","vento","A2","Fenomeno naturale","Meteo"
-"Una giornata speciale dedicata alla celebrazione dell'amore.","San Valentino","B2","Festa degli innamorati","Eventi"
-"Una macchina utilizzata per pulire i pavimenti.","aspirapolvere","B2","Strumento di pulizia","Casa"
-"Una persona che canta canzoni.","cantante","A2","Professione musicale","Professioni"
-"Una persona che compone poesie e racconti.","poeta","B1","Professione letteraria","Professioni"
-"Una persona che cucina per professione.","chef","B2","Professione culinaria","Professioni"
-"Una persona che cura i denti.","dentista","B1","Professione medica","Professioni"
-"Una persona che cura le malattie degli animali.","veterinario","B1","Professione medica","Professioni"
-"Una persona che guida un aereo.","pilota","B1","Professione di trasporto","Professioni"
-"Una persona che guida un taxi.","tassista","B1","Professione di trasporto","Professioni"
-"Una persona che insegna in una scuola.","insegnante","A2","Professione educativa","Professioni"
-"Una persona che pratica sport a livello professionale.","atleta","B1","Professione sportiva","Sport"
-"Una persona che prepara pasti in un ristorante.","cuoco","B1","Professione culinaria","Professioni"
-"Una persona che progetta edifici e strutture.","architetto","B2","Professione tecnica","Professioni"
-"Una persona che realizza dipinti.","pittore","B1","Professione artistica","Professioni"
-"Una persona che realizza statue e sculture.","scultore","B1","Professione artistica","Professioni"
-"Una persona che scrive articoli per i giornali.","giornalista","B1","Professione informativa","Professioni"
-"Una persona che scrive libri.","scrittore","B1","Professione artistica","Professioni"
-"Una persona che si esibisce in spettacoli teatrali.","attore","B1","Professione artistica","Professioni"
-"Una persona che si occupa di curare malattie mentali.","psichiatra","B2","Professione medica","Professioni"
-"Una persona che si occupa di studiare i vulcani e le eruzioni vulcaniche.","vulcanologo","B2","Professione scientifica","Professioni"
-"Una persona che si occupa di studiare le malattie e le cure.","medico","A2","Professione medica","Professioni"
-"Una persona che si occupa di vendere case e appartamenti.","agente immobiliare","B2","Professione di vendita","Professioni"
-"Una persona che studia il comportamento degli animali.","etologo","B2","Professione scientifica","Professioni"
-"Una persona che studia il comportamento umano.","psicologo","B2","Professione di aiuto","Professioni"
-"Una persona che studia le stelle e i pianeti.","astronomo","B2","Professione scientifica","Professioni"
-"Una persona che suona uno strumento musicale.","musicista","B1","Professione artistica","Professioni"
-"Una pianta aromatica usata in cucina.","basilico","A2","Erba aromatica","Cucina"
-"Una pianta con fiori colorati usata per fare bouquet e decorazioni.","rosa","A2","Fiore","Piante"
-"Una pianta con foglie aromatiche usata per fare tisane.","menta","A2","Erba aromatica","Cucina"
-"Una pianta con foglie verdi e fiori gialli usata per fare tisane.","camomilla","A2","Erba aromatica","Cucina"
-"Una pianta con foglie verdi usata per fare insalate.","rucola","A2","Verdura","Cibo"
-"Una pianta con spine che produce un frutto dolce.","fico d'india","B2","Pianta spinosa","Frutta"
-"Una pianta erbacea con foglie verdi e profumate.","menta","A2","Erba aromatica","Cucina"
-"Una pianta rampicante con fiori profumati e colorati.","glicine","B2","Pianta ornamentale","Piante"
-"Una struttura alta e stretta usata per l'osservazione.","torre","B2","Struttura di osservazione","Architettura"
-"Una struttura con molte camere per soggiornare temporaneamente.","hotel","B2","Alloggio temporaneo","Viaggi"
-"Una struttura in legno o metallo usata per salire e scendere.","scala","A2","Strumento di accesso","Casa"
-"Una struttura utilizzata per il trasporto delle persone tra piani diversi di un edificio.","ascensore","B2","Strumento di accesso","Architettura"
-"Uno strumento musicale a corde.","chitarra","B1","Strumento musicale","Musica"
-"È un frutto giallo e curvo.","banana","A2","Frutto tropicale","Frutta"
+Il capo del governo in molti paesi.,presidente,B2,Carica politica,Politica
+Serve per fare il caffè espresso.,macchina da caffè,B2,Strumento da cucina,Cucina
+Serve per scrivere sulla carta.,matita,A2,Strumento da scrittura,Scuola
+Si usa per ascoltare la musica.,auricolari,B1,Strumento elettronico,Tecnologia
+Si usa per pagare gli acquisti.,banconota,A2,Forma di denaro,Economia
+Si usa per tagliare il cibo.,coltello,A2,Strumento da cucina,Cucina
+Un abbigliamento indossato per proteggere il corpo durante il lavoro.,divisa,B1,Abbigliamento professionale,Professioni
+Un abito elegante indossato da un uomo per eventi formali.,smoking,B2,Abbigliamento formale,Moda
+Un accessorio da portare al polso per misurare il tempo.,orologio,A2,Strumento di misurazione,Moda
+Un alimento fatto di grano usato per fare il pane.,farina,A2,Ingrediente culinario,Cucina
+Un alimento fatto di latte cagliato.,formaggio,A2,Prodotto caseario,Cibo
+Un animale che produce latte e muggisce.,mucca,A2,Animale da fattoria,Animali
+Un animale che vive in acqua e ha pinne.,pesce,A2,Animale acquatico,Animali
+Un animale che vive nei boschi e costruisce tane sotto terra.,tasso,B2,Animale selvatico,Animali
+Un animale che vive nei deserti e può saltare molto in alto.,canguro,B2,Animale del deserto,Animali
+Un animale che vive nei fiumi e costruisce dighe.,castoro,B2,Animale acquatico,Animali
+Un animale che vive nei fiumi e ha una lunga coda.,coccodrillo,B2,Animale acquatico,Animali
+Un animale che vive nel deserto e può sopravvivere senza acqua per lungo tempo.,cammello,B2,Animale del deserto,Animali
+Un animale che vive nel mare e ha un guscio duro.,tartaruga,B2,Animale marino,Animali
+Un animale che vive nelle foreste e costruisce nidi sugli alberi.,scoiattolo,B2,Animale delle foreste,Animali
+Un animale che vive nelle foreste e ha il pelo rosso.,volpe,B2,Animale selvatico,Animali
+Un animale con corna ramificate che vive nelle foreste.,cervo,B2,Animale selvatico,Animali
+Un animale con le corna che vive nelle montagne.,stambecco,B2,Animale montano,Animali
+Un animale con lunghe zampe che salta e vive nei prati.,cavalletta,B2,Insetto saltatore,Animali
+Un animale con piume colorate che sa imitare i suoni umani.,pappagallo,B2,Uccello parlante,Animali
+Un animale con un lungo collo che vive in Africa.,giraffa,A2,Animale selvatico,Animali
+Un animale da compagnia che fa le fusa.,gatto,A2,Animale domestico,Animali
+Un animale domestico che abbaia.,cane,A2,Animale da compagnia,Animali
+Un animale marino con otto braccia.,polpo,B2,Animale marino,Animali
+Un animale marino con una conchiglia a spirale.,chiocciola,B2,Animale marino,Animali
+Un animale marino con una conchiglia dura e una coda lunga.,aragosta,B2,Animale marino,Animali
+Un apparecchio elettronico usato per telefonare.,telefono,A2,Strumento di comunicazione,Tecnologia
+Un contenitore di vetro usato per conservare liquidi.,bottiglia,A2,Contenitore,Casa
+Un dispositivo elettronico usato per navigare in internet.,computer,A2,Strumento tecnologico,Tecnologia
+Un dispositivo elettronico usato per vedere film e programmi.,televisione,A2,Strumento di intrattenimento,Tecnologia
+Un dispositivo per guardare programmi televisivi.,televisore,A2,Apparecchio elettronico,Tecnologia
+Un dispositivo usato per ascoltare musica in cuffia.,lettore mp3,A2,Strumento musicale,Tecnologia
+Un dispositivo usato per ascoltare musica senza fili.,auricolari wireless,A2,Strumento musicale,Tecnologia
+Un dispositivo usato per cuocere il cibo.,forno,A2,Strumento di cottura,Cucina
+Un dispositivo usato per fare caffè.,caffettiera,A2,Strumento di cucina,Cucina
+Un dispositivo usato per fare chiamate video.,webcam,A2,Strumento di comunicazione,Tecnologia
+Un dispositivo usato per leggere libri digitali.,ebook reader,B2,Strumento di lettura,Tecnologia
+Un dispositivo usato per misurare il peso.,bilancia,A2,Strumento di misurazione,Cura personale
+Un dispositivo usato per misurare il tempo.,cronometro,B2,Strumento di misurazione,Tecnologia
+Un dispositivo usato per misurare la pressione arteriosa.,sfigmomanometro,B2,Strumento medico,Salute
+Un dispositivo usato per misurare la pressione atmosferica.,barometro,B2,Strumento meteorologico,Scienza
+Un dispositivo usato per misurare la temperatura.,termometro,A2,Strumento di misurazione,Salute
+Un dispositivo usato per registrare suoni e musica.,microfono,A2,Strumento di registrazione,Tecnologia
+Strumento portatile con due lenti per vedere oggetti distanti.,binocolo,B2,Strumento di osservazione,Tecnologia
+Strumento ottico potente per osservare corpi celesti.,telescopio,B2,Strumento di osservazione,Astronomia
+Un dispositivo utilizzato per fare fotografie.,fotocamera,A2,Strumento di registrazione,Tecnologia
+Un dispositivo utilizzato per riscaldare gli ambienti.,termosifone,B2,Strumento di riscaldamento,Casa
+Un edificio con stanze per gli studenti universitari.,dormitorio,B2,Alloggio per studenti,Istruzione
+Un edificio dove si allestiscono mostre d'arte.,galleria,B2,Luogo culturale,Cultura
+Un edificio dove si producono e si vendono prodotti da forno.,panetteria,A2,Negozio di alimentari,Città
+Un edificio dove si tengono celebrazioni religiose.,chiesa,A2,Luogo di culto,Cultura
+Un edificio dove si tengono concerti e spettacoli musicali.,auditorium,B2,Luogo di spettacolo,Cultura
+Un edificio dove si tengono partite di calcio.,stadio,B2,Luogo sportivo,Sport
+Un edificio in cui si tengono spettacoli teatrali.,teatro,B1,Luogo di spettacolo,Cultura
+Un edificio per la conservazione e l'esposizione di opere d'arte.,museo,B1,Luogo culturale,Cultura
+Un edificio sacro per la preghiera.,cattedrale,B2,Luogo di culto,Architettura
+Un elemento chimico usato per creare oggetti metallici.,ferro,A2,Metallo comune,Materiali
+Un evento in cui si esibiscono artisti musicali.,concerto,A2,Evento musicale,Eventi
+Un evento sportivo in cui si corre per una lunga distanza.,maratona,B2,Competizione sportiva,Sport
+Un evento sportivo mondiale che si svolge ogni quattro anni.,olimpiadi,B2,Competizione sportiva,Sport
+Un fenomeno naturale con fulmini e tuoni.,temporale,B2,Fenomeno atmosferico,Meteo
+Un frutto arancione con polpa dolce e succosa.,albicocca,A2,Frutto estivo,Frutta
+Un frutto arancione ricco di vitamina C.,arancia,A2,Frutto agrumato,Frutta
+Un frutto esotico giallo con polpa dolce e succosa.,mango,A2,Frutto tropicale,Frutta
+Un frutto giallo e aspro usato per fare limonata.,limone,A2,Frutto agrumato,Frutta
+Un frutto rosso con polpa dolce e succosa e molti semi neri.,fragola,A2,Frutto di bosco,Frutta
+Un frutto rosso e succoso con molti semi.,melograno,B1,Frutto esotico,Frutta
+Un frutto tropicale con polpa dolce e succosa e buccia dura.,ananas,A2,Frutto tropicale,Frutta
+Un frutto tropicale verde fuori e rosa dentro con molti semi neri.,kiwi,A2,Frutto tropicale,Frutta
+Un frutto verde con un nocciolo grande all'interno.,avocado,A2,Frutto tropicale,Frutta
+Un gioco con carte e fiches in cui si scommette denaro.,poker,B2,Gioco di carte,Giochi
+Un gioco con palline e racchette su un campo rettangolare.,tennis,B1,Sport con racchetta,Sport
+Un gioco da tavolo con re, regina e pedoni.,scacchi,B1,Gioco di strategia,Giochi
+Un giorno festivo in cui si celebra la nascita di Gesù.,Natale,A2,Festa religiosa,Eventi
+Un giorno speciale che si celebra ogni anno.,compleanno,B1,Festa personale,Eventi
+Un grande animale africano con una lunga proboscide.,elefante,B1,Animale selvaggio,Animali
+Un grande mammifero marino con denti affilati.,squalo,B2,Predatore oceanico,Animali
+Un grande uccello rapace notturno con occhi grandi.,gufo,B2,Uccello notturno,Animali
+Un insetto che produce miele.,ape,A2,Insetto produttore di miele,Animali
+Un insieme di stelle che forma un disegno nel cielo notturno.,costellazione,B2,Gruppo di stelle,Astronomia
+Un liquido combustibile usato per riscaldare e cucinare.,gas,A2,Combustibile,Energia
+Un liquido usato per lubrificare i motori.,olio,A2,Lubrificante,Materiali
+Un luogo dove si allevano animali per la carne e i prodotti lattiero-caseari.,fattoria,A2,Luogo di allevamento,Animali
+Un luogo dove si allevano pesci per scopi commerciali.,peschiera,B2,Luogo di allevamento,Animali
+Un luogo dove si insegnano e si imparano nuove cose.,scuola,A2,Istituzione educativa,Istruzione
+Un luogo dove si praticano sport e attività fisiche.,palestra,A2,Luogo di allenamento,Sport
+Un luogo dove si proiettano film.,cinema,A2,Luogo di intrattenimento,Cultura
+Un luogo dove si tengono spettacoli di animali marini.,acquario,A2,Luogo di intrattenimento,Animali
+Un luogo dove si vendono fiori e piante.,fioraio,A2,Negozio di piante,Città
+Un luogo dove si vendono libri.,libreria,A2,Negozio di libri,Città
+Un luogo dove si vendono medicinali.,farmacia,B1,Negozio di medicinali,Salute
+Un luogo dove si vendono pesci e frutti di mare.,pescheria,A2,Negozio di alimentari,Città
+Un luogo dove si vendono prodotti alimentari freschi e locali.,mercato,A2,Luogo di vendita,Città
+Un metallo prezioso usato per fare gioielli.,oro,A2,Metallo prezioso,Materiali
+Un mezzo di trasporto a due ruote.,bicicletta,A2,Veicolo ecologico,Trasporti
+Un mezzo di trasporto pubblico su rotaia.,treno,A2,Mezzo di trasporto,Trasporti
+Un oggetto luminoso utilizzato per leggere al buio.,lampada,A2,Fonte di luce,Casa
+Un oggetto usato per tagliare i capelli.,forbici,A2,Strumento di taglio,Cura personale
+Un oggetto utilizzato per ripararsi dalla pioggia.,ombrello,A2,Strumento di protezione,Moda
+Un periodo dell'anno caratterizzato da temperature calde.,estate,A2,Stagione calda,Tempo
+Un periodo dell'anno caratterizzato da temperature fredde.,inverno,A2,Stagione fredda,Tempo
+Un periodo dell'anno in cui gli alberi perdono le foglie.,autunno,A2,Stagione di transizione,Tempo
+Un periodo di dieci anni.,decennio,B1,Unità di tempo,Tempo
+Un periodo di riposo dopo un anno di lavoro.,vacanza,A2,Periodo di riposo,Viaggi
+Un periodo di riposo notturno.,sonno,A2,Stato di riposo,Corpo umano
+Un periodo di tempo con una durata di cento anni.,secolo,B1,Unità di tempo,Tempo
+Un pesce con squame colorate che vive nell'acqua dolce.,carpa,B1,Pesce d'acqua dolce,Animali
+Un piccolo animale con le ali che vola.,farfalla,A2,Insetto,Animali
+Un piccolo animale domestico che ama arrampicarsi sugli alberi.,criceto,A2,Animale da compagnia,Animali
+Un piccolo animale domestico con lunghe orecchie che ama saltare.,coniglio,A2,Animale da compagnia,Animali
+Un piccolo animale notturno che vola e si nutre di insetti.,pipistrello,B2,Mammifero volante,Animali
+Un piccolo dispositivo elettronico usato per ascoltare musica.,mp3,A2,Strumento musicale,Tecnologia
+Un piccolo dispositivo elettronico usato per giocare.,console,A2,Strumento di intrattenimento,Tecnologia
+Un piccolo dispositivo usato per accendere il fuoco.,accendino,A2,Strumento di accensione,Casa
+Un piccolo frutto blu o viola che cresce in grappoli.,mirtillo,B1,Frutto di bosco,Frutta
+Un piccolo oggetto con ruote usato dai bambini per giocare.,macchinina,A2,Giocattolo,Giochi
+Un piccolo roditore con lunghe orecchie che vive nei campi.,coniglio,A2,Animale selvatico,Animali
+Un piccolo strumento musicale a fiato.,flauto,A2,Strumento musicale,Musica
+Un tessuto fatto di fili intrecciati.,tessuto,A2,Materiale per abbigliamento,Moda
+Un tessuto spesso usato per fare tende e abiti eleganti.,velluto,B2,Materiale per tessuti,Moda
+Un tipo di ballo latinoamericano caratterizzato da movimenti sensuali.,salsa,B2,Danza latinoamericana,Cultura
+Un tipo di ballo tradizionale argentino.,tango,B1,Danza argentina,Cultura
+Un tipo di ballo tradizionale brasiliano.,samba,B2,Danza brasiliana,Cultura
+Un tipo di ballo tradizionale irlandese.,riverdance,B2,Danza irlandese,Cultura
+Un tipo di carne molto apprezzata, spesso usata nelle grigliate.,costata,B2,Taglio di carne,Cibo
+Un tipo di danza tradizionale spagnola.,flamenco,B2,Danza spagnola,Cultura
+Un tipo di dolce con crema e frutta.,crostata,A2,Dolce da forno,Cibo
+Un tipo di dolce freddo fatto con latte e zucchero.,gelato,A2,Dolce freddo,Cibo
+Un tipo di pane dolce con uvetta e frutta candita tipico delle festività natalizie.,panettone,B2,Dolce natalizio,Cibo
+Un tipo di pane italiano cotto in forno a legna.,focaccia,A2,Pane tradizionale,Cibo
+Un tipo di pane piatto con ripieno, tipico della cucina messicana.,tortilla,A2,Pane messicano,Cibo
+Un tipo di pane rotondo con un buco nel mezzo, tipico della cucina ebraica.,bagel,B2,Pane ebraico,Cibo
+Un tipo di pane sottile tipico della cucina araba.,pita,B2,Pane arabo,Cibo
+Un tipo di pasta lunga e sottile.,spaghetti,A2,Pasta italiana,Cibo
+Un tipo di pesce molto apprezzato per la sua carne rosa.,salmone,B1,Pesce pregiato,Cibo
+Un tipo di scarpa aperta indossata in estate.,sandalo,A2,Calzatura estiva,Moda
+Un tipo di vino frizzante tipico della regione francese della Champagne.,champagne,B2,Vino francese,Bevande
+Un uccello che depone uova e vive in fattoria.,gallina,A2,Animale da fattoria,Animali
+Un uccello che può parlare e imitare i suoni.,pappagallo,B2,Uccello parlante,Animali
+Un uccello notturno con occhi grandi e piume morbide.,civetta,B2,Uccello notturno,Animali
+Un utensile da cucina per mescolare gli ingredienti.,frusta,A2,Utensile da cucina,Cucina
+Un vegetale rosso usato per fare salse e insalate.,pomodoro,A2,Verdura,Cibo
+Un vegetale verde con foglie croccanti usato per fare insalate.,lattuga,A2,Verdura,Cibo
+Un veicolo a due ruote motorizzato.,motocicletta,A2,Veicolo motorizzato,Trasporti
+Un veicolo con due ali usato per volare.,aereo,A2,Mezzo di trasporto,Trasporti
+Un veicolo spaziale usato per esplorare lo spazio.,navicella,B2,Veicolo spaziale,Astronomia
+Un veicolo usato per esplorare lo spazio.,razzo,B2,Veicolo spaziale,Astronomia
+Un veicolo usato per trasportare merci pesanti.,camion,A2,Veicolo di trasporto,Trasporti
+Un'attività di gioco che coinvolge il lancio di dadi e il movimento di pedine.,gioco da tavolo,B2,Attività ricreativa,Giochi
+Un'infrastruttura che collega due punti separati da un ostacolo.,ponte,B2,Struttura di collegamento,Architettura
+Un'unità di misura per la temperatura.,gradi,A2,Misurazione termica,Scienza
+Una bevanda calda e rilassante.,camomilla,B1,Tisana,Bevande
+Una bevanda gassata dolce con caffeina.,cola,A2,Bevanda analcolica,Bevande
+Una bevanda ottenuta dalla fermentazione dell'uva.,vino,A2,Bevanda alcolica,Bevande
+Una condizione atmosferica con precipitazioni congelate.,neve,B2,Fenomeno meteorologico,Meteo
+Una forma di energia prodotta dal movimento dell'aria.,vento,A2,Fenomeno naturale,Meteo
+Una giornata speciale dedicata alla celebrazione dell'amore.,San Valentino,B2,Festa degli innamorati,Eventi
+Una macchina utilizzata per pulire i pavimenti.,aspirapolvere,B2,Strumento di pulizia,Casa
+Una persona che canta canzoni.,cantante,A2,Professione musicale,Professioni
+Una persona che compone poesie e racconti.,poeta,B1,Professione letteraria,Professioni
+Una persona che cucina per professione.,chef,B2,Professione culinaria,Professioni
+Una persona che cura i denti.,dentista,B1,Professione medica,Professioni
+Una persona che cura le malattie degli animali.,veterinario,B1,Professione medica,Professioni
+Una persona che guida un aereo.,pilota,B1,Professione di trasporto,Professioni
+Una persona che guida un taxi.,tassista,B1,Professione di trasporto,Professioni
+Una persona che insegna in una scuola.,insegnante,A2,Professione educativa,Professioni
+Una persona che pratica sport a livello professionale.,atleta,B1,Professione sportiva,Sport
+Una persona che prepara pasti in un ristorante.,cuoco,B1,Professione culinaria,Professioni
+Una persona che progetta edifici e strutture.,architetto,B2,Professione tecnica,Professioni
+Una persona che realizza dipinti.,pittore,B1,Professione artistica,Professioni
+Una persona che realizza statue e sculture.,scultore,B1,Professione artistica,Professioni
+Una persona che scrive articoli per i giornali.,giornalista,B1,Professione informativa,Professioni
+Una persona che scrive libri.,scrittore,B1,Professione artistica,Professioni
+Una persona che si esibisce in spettacoli teatrali.,attore,B1,Professione artistica,Professioni
+Una persona che si occupa di curare malattie mentali.,psichiatra,B2,Professione medica,Professioni
+Una persona che si occupa di studiare i vulcani e le eruzioni vulcaniche.,vulcanologo,B2,Professione scientifica,Professioni
+Una persona che si occupa di studiare le malattie e le cure.,medico,A2,Professione medica,Professioni
+Una persona che si occupa di vendere case e appartamenti.,agente immobiliare,B2,Professione di vendita,Professioni
+Una persona che studia il comportamento degli animali.,etologo,B2,Professione scientifica,Professioni
+Una persona che studia il comportamento umano.,psicologo,B2,Professione di aiuto,Professioni
+Una persona che studia le stelle e i pianeti.,astronomo,B2,Professione scientifica,Professioni
+Una persona che suona uno strumento musicale.,musicista,B1,Professione artistica,Professioni
+Una pianta aromatica usata in cucina.,basilico,A2,Erba aromatica,Cucina
+Una pianta con fiori colorati usata per fare bouquet e decorazioni.,rosa,A2,Fiore,Piante
+Una pianta con foglie aromatiche usata per fare tisane.,menta,A2,Erba aromatica,Cucina
+Una pianta con foglie verdi e fiori gialli usata per fare tisane.,camomilla,A2,Erba aromatica,Cucina
+Una pianta con foglie verdi usata per fare insalate.,rucola,A2,Verdura,Cibo
+Una pianta con spine che produce un frutto dolce.,fico d'india,B2,Pianta spinosa,Frutta
+Una pianta erbacea con foglie verdi e profumate.,menta,A2,Erba aromatica,Cucina
+Una pianta rampicante con fiori profumati e colorati.,glicine,B2,Pianta ornamentale,Piante
+Una struttura alta e stretta usata per l'osservazione.,torre,B2,Struttura di osservazione,Architettura
+Una struttura con molte camere per soggiornare temporaneamente.,hotel,B2,Alloggio temporaneo,Viaggi
+Una struttura in legno o metallo usata per salire e scendere.,scala,A2,Strumento di accesso,Casa
+Una struttura utilizzata per il trasporto delle persone tra piani diversi di un edificio.,ascensore,B2,Strumento di accesso,Architettura
+Uno strumento musicale a corde.,chitarra,B1,Strumento musicale,Musica
+È un frutto giallo e curvo.,banana,A2,Frutto tropicale,Frutta
 Animale marino bioluminescente,medusa,B1,Trasparente,Fauna marina
 Animale preistorico estinto,mammut,B1,Lanoso,Paleontologia
 Arte della scrittura elegante,calligrafia,B1,Pennino,Arte
@@ -280,30 +280,30 @@ Fenomeno di emissione di luce da organismi viventi,bioluminescenza,B2,Abissi mar
 Fenomeno ottico di rifrazione della luce,miraggio,B2,Deserto,Fisica
 Figura retorica che attribuisce caratteristiche umane a oggetti o animali,personificazione,B2,Letteratura,Linguaggio
 Pianta rampicante con fiori profumati,gelsomino,B1,Bianco,Botanica
-Qual è il contrario di "ottimista"?,pessimista,B1,Atteggiamento negativo,Personalità
+Qual è il contrario di ottimista?,pessimista,B1,Atteggiamento negativo,Personalità
 Qual è il nome del famoso astronomo italiano perseguitato dalla Chiesa?,Galileo,B1,Scienziato rinascimentale,Storia
-Qual è il nome del famoso compositore austriaco della "Sinfonia del Nuovo Mondo"?,Dvorak,B2,Musica classica,Arte
-Qual è il nome del famoso compositore austriaco di "Eine kleine Nachtmusik"?,Mozart,B1,Musica classica,Arte
-Qual è il nome del famoso compositore austriaco di "Le nozze di Figaro"?,Mozart,B1,Opera classica,Arte
+Qual è il nome del famoso compositore austriaco della Sinfonia del Nuovo Mondo?,Dvorak,B2,Musica classica,Arte
+Qual è il nome del famoso compositore austriaco di Eine kleine Nachtmusik?,Mozart,B1,Musica classica,Arte
+Qual è il nome del famoso compositore austriaco di Le nozze di Figaro?,Mozart,B1,Opera classica,Arte
 Qual è il nome del famoso compositore austriaco di valzer?,Strauss,B2,Musica classica,Arte
-Qual è il nome del famoso compositore italiano delle "Quattro stagioni"?,Vivaldi,B1,Musica barocca,Arte
-Qual è il nome del famoso compositore italiano di "Il barbiere di Siviglia"?,Rossini,B2,Opera comica,Arte
-Qual è il nome del famoso compositore italiano di "Nabucco"?,Verdi,B1,Opera lirica,Arte
-Qual è il nome del famoso compositore russo del balletto "Il lago dei cigni"?,Tchaikovsky,B2,Musica romantica,Arte
-Qual è il nome del famoso compositore russo del balletto "Lo Schiaccianoci"?,Tchaikovsky,B2,Musica romantica,Arte
-Qual è il nome del famoso compositore russo di "La bella addormentata"?,Tchaikovsky,B2,Balletto classico,Arte
-Qual è il nome del famoso compositore tedesco della "Nona Sinfonia"?,Beethoven,B1,Musica classica,Arte
-Qual è il nome del famoso compositore tedesco di "Il flauto magico"?,Mozart,B1,Opera classica,Arte
-Qual è il nome del famoso compositore tedesco di "La cavalcata delle Valchirie"?,Wagner,B2,Opera lirica,Arte
+Qual è il nome del famoso compositore italiano delle Quattro stagioni?,Vivaldi,B1,Musica barocca,Arte
+Qual è il nome del famoso compositore italiano di Il barbiere di Siviglia?,Rossini,B2,Opera comica,Arte
+Qual è il nome del famoso compositore italiano di Nabucco?,Verdi,B1,Opera lirica,Arte
+Qual è il nome del famoso compositore russo del balletto Il lago dei cigni?,Tchaikovsky,B2,Musica romantica,Arte
+Qual è il nome del famoso compositore russo del balletto Lo Schiaccianoci?,Tchaikovsky,B2,Musica romantica,Arte
+Qual è il nome del famoso compositore russo di La bella addormentata?,Tchaikovsky,B2,Balletto classico,Arte
+Qual è il nome del famoso compositore tedesco della Nona Sinfonia?,Beethoven,B1,Musica classica,Arte
+Qual è il nome del famoso compositore tedesco di Il flauto magico?,Mozart,B1,Opera classica,Arte
+Qual è il nome del famoso compositore tedesco di La cavalcata delle Valchirie?,Wagner,B2,Opera lirica,Arte
 Qual è il nome del famoso compositore tedesco sordo?,Beethoven,B1,Musica classica,Arte
 Qual è il nome del famoso dipinto di Leonardo da Vinci?,Gioconda,B1,Opera d'arte famosa,Arte
 Qual è il nome del famoso esploratore italiano che scoprì l'America?,Colombo,B1,Navigatore genovese,Storia
-Qual è il nome del famoso filosofo greco della "Metafisica"?,Aristotele,B1,Filosofia antica,Storia
-Qual è il nome del famoso filosofo greco della "Repubblica"?,Platone,B1,Filosofia antica,Storia
+Qual è il nome del famoso filosofo greco della Metafisica?,Aristotele,B1,Filosofia antica,Storia
+Qual è il nome del famoso filosofo greco della Repubblica?,Platone,B1,Filosofia antica,Storia
 Qual è il nome del famoso filosofo greco fondatore dell'Accademia?,Platone,B1,Filosofia antica,Storia
 Qual è il nome del famoso filosofo greco maestro di Alessandro Magno?,Aristotele,B1,Filosofia antica,Storia
-Qual è il nome del famoso filosofo tedesco autore di "Così parlò Zarathustra"?,Nietzsche,B2,Filosofia moderna,Storia
-Qual è il nome del famoso filosofo tedesco autore di "Il capitale"?,Marx,B2,Filosofia politica,Storia
+Qual è il nome del famoso filosofo tedesco autore di Così parlò Zarathustra?,Nietzsche,B2,Filosofia moderna,Storia
+Qual è il nome del famoso filosofo tedesco autore di Il capitale?,Marx,B2,Filosofia politica,Storia
 Qual è il nome del famoso fisico che scoprì la radioattività?,Curie,B2,Scienziata polacca,Scienza
 Qual è il nome del famoso fisico inglese della teoria della gravità?,Newton,B1,Scienza moderna,Storia
 Qual è il nome del famoso fisico italiano scopritore della radioattività artificiale?,Fermi,B2,Fisica nucleare,Storia
@@ -311,32 +311,32 @@ Qual è il nome del famoso fisico tedesco della teoria della relatività?,Einste
 Qual è il nome del famoso matematico greco del teorema di Pitagora?,Pitagora,B1,Matematica antica,Storia
 Qual è il nome del famoso matematico greco della geometria euclidea?,Euclide,B2,Matematica antica,Storia
 Qual è il nome del famoso pittore belga del surrealismo?,Magritte,B2,Arte del XX secolo,Arte
-Qual è il nome del famoso pittore belga di "Il tradimento delle immagini"?,Magritte,B2,Surrealismo,Arte
-Qual è il nome del famoso pittore fiammingo di "Il giardino delle delizie"?,Bosch,B2,Pittura medievale,Arte
-Qual è il nome del famoso pittore francese di "Gli ombrelli"?,Renoir,B2,Impressionismo,Arte
-Qual è il nome del famoso pittore francese di "La colazione sull'erba"?,Manet,B2,Impressionismo,Arte
-Qual è il nome del famoso pittore francese di "La libertà che guida il popolo"?,Delacroix,B2,Romanticismo,Arte
-Qual è il nome del famoso pittore francese di "Ninfee"?,Monet,B1,Impressionismo,Arte
-Qual è il nome del famoso pittore italiano del "Cenacolo"?,Leonardo,B1,Rinascimento,Arte
-Qual è il nome del famoso pittore italiano del "Giudizio Universale"?,Michelangelo,B1,Rinascimento,Arte
-Qual è il nome del famoso pittore italiano del "L'ultima cena"?,Leonardo,B1,Rinascimento,Arte
-Qual è il nome del famoso pittore italiano della "Nascita di Venere"?,Botticelli,B2,Rinascimento,Arte
-Qual è il nome del famoso pittore italiano della "Primavera"?,Botticelli,B2,Rinascimento,Arte
-Qual è il nome del famoso pittore norvegese dell'"Urlo"?,Munch,B2,Espressionismo,Arte
-Qual è il nome del famoso pittore norvegese di "L'urlo"?,Munch,B2,Espressionismo,Arte
+Qual è il nome del famoso pittore belga di Il tradimento delle immagini?,Magritte,B2,Surrealismo,Arte
+Qual è il nome del famoso pittore fiammingo di Il giardino delle delizie?,Bosch,B2,Pittura medievale,Arte
+Qual è il nome del famoso pittore francese di Gli ombrelli?,Renoir,B2,Impressionismo,Arte
+Qual è il nome del famoso pittore francese di La colazione sull'erba?,Manet,B2,Impressionismo,Arte
+Qual è il nome del famoso pittore francese di La libertà che guida il popolo?,Delacroix,B2,Romanticismo,Arte
+Qual è il nome del famoso pittore francese di Ninfee?,Monet,B1,Impressionismo,Arte
+Qual è il nome del famoso pittore italiano del Cenacolo?,Leonardo,B1,Rinascimento,Arte
+Qual è il nome del famoso pittore italiano del Giudizio Universale?,Michelangelo,B1,Rinascimento,Arte
+Qual è il nome del famoso pittore italiano del L'ultima cena?,Leonardo,B1,Rinascimento,Arte
+Qual è il nome del famoso pittore italiano della Nascita di Venere?,Botticelli,B2,Rinascimento,Arte
+Qual è il nome del famoso pittore italiano della Primavera?,Botticelli,B2,Rinascimento,Arte
+Qual è il nome del famoso pittore norvegese dell'Urlo?,Munch,B2,Espressionismo,Arte
+Qual è il nome del famoso pittore norvegese di L'urlo?,Munch,B2,Espressionismo,Arte
 Qual è il nome del famoso pittore olandese che si tagliò l'orecchio?,Van Gogh,B1,Impressionista,Arte
-Qual è il nome del famoso pittore olandese di "I mangiatori di patate"?,Van Gogh,B1,Post-impressionismo,Arte
-Qual è il nome del famoso pittore olandese di "La lattaia"?,Vermeer,B2,Barocco olandese,Arte
-Qual è il nome del famoso pittore olandese di "La ragazza con l'orecchino di perla"?,Vermeer,B2,Barocco olandese,Arte
-Qual è il nome del famoso pittore olandese di "La ronda di notte"?,Rembrandt,B2,Barocco olandese,Arte
-Qual è il nome del famoso pittore olandese di "Notte stellata"?,Van Gogh,B1,Post-impressionismo,Arte
-Qual è il nome del famoso pittore olandese di "Ragazza con l'orecchino di perla"?,Vermeer,B2,Barocco olandese,Arte
+Qual è il nome del famoso pittore olandese di I mangiatori di patate?,Van Gogh,B1,Post-impressionismo,Arte
+Qual è il nome del famoso pittore olandese di La lattaia?,Vermeer,B2,Barocco olandese,Arte
+Qual è il nome del famoso pittore olandese di La ragazza con l'orecchino di perla?,Vermeer,B2,Barocco olandese,Arte
+Qual è il nome del famoso pittore olandese di La ronda di notte?,Rembrandt,B2,Barocco olandese,Arte
+Qual è il nome del famoso pittore olandese di Notte stellata?,Van Gogh,B1,Post-impressionismo,Arte
+Qual è il nome del famoso pittore olandese di Ragazza con l'orecchino di perla?,Vermeer,B2,Barocco olandese,Arte
 Qual è il nome del famoso pittore russo del quadrato nero?,Malevich,B2,Avanguardia russa,Arte
 Qual è il nome del famoso pittore russo dell'astrattismo?,Kandinsky,B2,Arte moderna,Arte
-Qual è il nome del famoso pittore spagnolo delle "Majas"?,Goya,B2,Romanticismo,Arte
-Qual è il nome del famoso pittore spagnolo di "Guernica"?,Picasso,B1,Arte moderna,Arte
-Qual è il nome del famoso pittore spagnolo di "La persistenza della memoria"?,Dalí,B1,Surrealismo,Arte
-Qual è il nome del famoso pittore spagnolo di "Las Meninas"?,Velázquez,B2,Barocco spagnolo,Arte
+Qual è il nome del famoso pittore spagnolo delle Majas?,Goya,B2,Romanticismo,Arte
+Qual è il nome del famoso pittore spagnolo di Guernica?,Picasso,B1,Arte moderna,Arte
+Qual è il nome del famoso pittore spagnolo di La persistenza della memoria?,Dalí,B1,Surrealismo,Arte
+Qual è il nome del famoso pittore spagnolo di Las Meninas?,Velázquez,B2,Barocco spagnolo,Arte
 Qual è il nome del famoso pittore spagnolo noto per il cubismo?,Picasso,B1,Artista del XX secolo,Arte
 Qual è il nome del famoso pittore surrealista spagnolo?,Dalí,B1,Arte del XX secolo,Arte
 Qual è il nome del famoso scienziato che formulò la teoria della relatività?,Einstein,B1,Fisico tedesco,Scienza
@@ -404,7 +404,7 @@ Qual è il nome della più grande foresta pluviale del mondo?,Amazzonia,B1,In Su
 Qual è il nome della più grande isola del mondo?,Groenlandia,B2,Nell'Atlantico,Geografia
 Qual è il nome della più grande penisola europea?,Scandinavia,B2,Nord Europa,Geografia
 Qual è il nome della più lunga catena montuosa del mondo?,Ande,B1,In Sudamerica,Geografia
-Qual è il sinonimo di "veloce"?,rapido,B1,Aggettivo di movimento,Vocabolario
+Qual è il sinonimo di veloce?,rapido,B1,Aggettivo di movimento,Vocabolario
 Qual è la capitale dell'Australia?,Canberra,B1,Città importante,Geografia
 Quale parola descrive un forte desiderio di viaggiare?,wanderlust,B2,Prestito linguistico,Viaggi
 Scienza che studia gli insetti,entomologia,B2,Farfalle,Zoologia
@@ -426,4 +426,207 @@ Tecnica di lavorazione del vetro,soffiatura,B2,Murano,Artigianato
 Tecnica di pittura con cera fusa,encausto,B2,Antica Grecia,Arte
 Tecnica di pittura su intonaco fresco,affresco,B2,Rinascimento,Arte
 Tecnica di stampa a rilievo,xilografia,B2,Legno,Arte
+Un tipo di calzatura sportiva.,scarpa da ginnastica,A2,Calzatura,Moda
+L'organo che pompa il sangue nel corpo.,cuore,A2,Organo del corpo,Corpo Umano
+Un mezzo di trasporto su rotaia.,treno,A2,Mezzo di trasporto,Viaggi
+L'attrezzo usato per spazzare il pavimento.,scopa,A2,Attrezzo per la pulizia,Casa
+Il liquido che beviamo per dissetarci.,acqua,A2,Liquido,Cibo
+La parte dell'albero su cui crescono le foglie.,ramo,A2,Parte di una pianta,Natura
+Il luogo dove si comprano i libri.,libreria,A2,Negozio,Cultura
+Un mestiere che implica la cura dei malati.,infermiere,B1,Professione sanitaria,Professioni
+L'azione di muoversi velocemente sulle gambe.,correre,A2,Verbo di movimento,Sport
+Il documento che certifica la tua identità.,carta d'identità,B1,Documento personale,Società
+Uno strumento musicale a tastiera.,pianoforte,B1,Strumento musicale,Musica
+Il contenitore per riporre i soldi.,portafoglio,A2,Accessorio personale,Moda
+Il periodo dell'anno più freddo.,inverno,A2,Stagione,Natura
+Un tipo di frutta gialla e curva.,banana,A2,Frutta,Cibo
+L'arte di dipingere quadri.,pittura,B1,Forma d'arte,Arte
+Si usa per asciugarsi dopo la doccia.,asciugamano,A2,Articolo da bagno,Casa
+Il veicolo che atterra e decolla dagli aeroporti.,aereo,A2,Mezzo di trasporto,Viaggi
+La sensazione di non avere più fame.,sazietà,B2,Sensazione fisica,Benessere
+Una disciplina che studia il passato dell'uomo.,storia,B1,Materia di studio,Educazione
+Il professionista che cura i denti.,dentista,A2,Professione medica,Professioni
+Un oggetto che si accende per illuminare.,lampadina,A2,Dispositivo elettrico,Casa
+La parte dell'occhio che percepisce la luce.,pupilla,B2,Parte dell'occhio,Corpo Umano
+Il processo in cui l'acqua si trasforma in vapore.,evaporazione,C1,Fenomeno fisico,Scienze
+La paura irrazionale di qualcosa.,fobia,B2,Disturbo psicologico,Psicologia
+Un genere cinematografico che provoca risate.,commedia,B1,Genere artistico,Arte
+L'abilità di parlare più lingue.,bilinguismo,C1,Competenza linguistica,Lingue
+Il mezzo di comunicazione più antico per la corrispondenza.,lettera,A2,Comunicazione scritta,Comunicazione
+Il luogo dove i treni fermano e partono.,stazione,A2,Luogo pubblico,Viaggi
+L'attrezzo usato per aprire le serrature.,chiave,A2,Strumento,Casa
+La persona che scrive libri.,scrittore,B1,Professione creativa,Letteratura
+Un tipo di pasta italiana a forma di tubi corti.,maccheroni,B1,Tipo di pasta,Cucina
+Il sentimento di felicità e allegria.,gioia,A2,Emozione positiva,Emozioni
+Si usa per misurare la temperatura corporea.,termometro,B1,Strumento di misurazione,Salute
+La scienza che studia gli animali.,zoologia,B2,Branca della scienza,Scienze
+Il principio morale che distingue il bene dal male.,etica,C1,Concetto filosofico,Filosofia
+La parte dell'auto dove si siede il conducente.,abitacolo,B2,Parte di veicolo,Trasporti
+Un documento che attesta la proprietà di un'abitazione.,rogito,C1,Atto legale,Legge
+Il metallo prezioso di colore giallo.,oro,A2,Metallo prezioso,Materiali
+Un contenitore per bere liquidi.,bicchiere,A2,Utensile da cucina,Cucina
+L'azione di dare consigli.,consigliare,B1,Verbo di comunicazione,Comunicazione
+Il frutto da cui si ricava l'olio d'oliva.,oliva,A2,Frutto,Cibo
+Un luogo dove si espongono opere d'arte.,museo,A2,Luogo culturale,Arte
+Il veicolo usato dai pompieri.,autopompa,B1,Mezzo di soccorso,Veicoli
+La professione di chi crea edifici.,architetto,B1,Professione creativa,Professioni
+Un tipo di scarpa aperta, tipica dell'estate.,sandalo,B1,Calzatura,Moda
+Il gruppo di persone che vive insieme nella stessa casa.,famiglia,A2,Gruppo sociale,Società
+L'emozione di voler qualcosa che un altro possiede.,invidia,B1,Emozione negativa,Emozioni
+Un animale domestico che abbaia.,cane,A2,Animale domestico,Animali
+La disciplina che studia i numeri e le forme.,matematica,B1,Materia di studio,Educazione
+L'azione di dare le dimissioni da un lavoro.,licenziamento,B2,Terminazione di contratto,Lavoro
+Un sistema per proiettare immagini in movimento.,cinema,A2,Forma d'arte,Arte
+Il contenitore dove si buttano i rifiuti.,cestino,A2,Contenitore,Casa
+Un fenomeno atmosferico con lampi e tuoni.,temporale,A2,Fenomeno meteorologico,Natura
+La bevanda fermentata prodotta dall'uva.,vino,A2,Bevanda alcolica,Cucina
+Un sinonimo di 'faticoso'.,arduo,C1,Aggettivo,Linguistica
+Il principio secondo cui tutti sono uguali davanti alla legge.,uguaglianza,B2,Concetto sociale,Società
+L'organo che usiamo per respirare.,polmone,B1,Organo del corpo,Corpo Umano
+Un tipo di trasporto pubblico sotterraneo.,metropolitana,A2,Mezzo di trasporto,Viaggi
+Il processo di apprendimento di nuove conoscenze.,istruzione,B1,Processo educativo,Educazione
+L'attrezzo usato per vangare la terra.,vanga,B1,Strumento agricolo,Giardinaggio
+Il mestiere di chi serve ai tavoli in un ristorante.,cameriere,A2,Professione nel servizio,Professioni
+Un capo d'abbigliamento per coprire le gambe.,pantaloni,A2,Capo d'abbigliamento,Moda
+La sensazione di benessere fisico e mentale.,salute,A2,Condizione fisica,Benessere
+La disciplina che studia la Terra e i suoi fenomeni.,geologia,B2,Branca della scienza,Scienze
+Una piccola imbarcazione a remi.,barca,A2,Mezzo di trasporto,Trasporti
+Il giorno della settimana tra martedì e giovedì.,mercoledì,A2,Giorno della settimana,Tempo
+Il dispositivo usato per riprodurre musica dai dischi.,giradischi,B1,Dispositivo audio,Tecnologia
+Il mestiere di chi vende prodotti in un negozio.,commesso,A2,Professione commerciale,Professioni
+Un tipo di pane lungo e croccante.,baguette,B1,Tipo di pane,Cucina
+La sensazione di tristezza profonda.,malinconia,B2,Emozione negativa,Emozioni
+L'ambiente naturale dove vivono i pesci.,mare,A2,Habitat naturale,Natura
+Il sistema di regole che governa una società.,legge,B1,Normativa,Diritto
+Un sinonimo di 'magnifico'.,splendido,B1,Aggettivo,Linguistica
+La persona che dirige un'orchestra.,direttore,B1,Professione musicale,Musica
+Il periodo storico successivo all'antichità.,medioevo,B2,Periodo storico,Storia
+Il prodotto che si usa per lavare i capelli.,shampoo,A2,Prodotto per l'igiene,Igiene
+Una struttura sportiva dove si gioca a calcio.,stadio,A2,Luogo per lo sport,Sport
+Il tessuto naturale prodotto da un insetto.,seta,B1,Tessuto,Materiali
+L'azione di preparare i pasti.,cucinare,A2,Verbo di azione,Cucina
+La materia che studia gli organismi viventi.,biologia,B1,Branca della scienza,Scienze
+Il dispositivo usato per navigare in mare.,bussola,B1,Strumento di navigazione,Tecnologia
+L'arte di scolpire opere in tre dimensioni.,scultura,B2,Forma d'arte,Arte
+La persona che progetta software.,programmatore,B2,Professione informatica,Tecnologia
+Un tipo di fiore profumato, spesso rosso o bianco.,rosa,A2,Fiore,Natura
+Il sistema di comunicazione senza fili che usa onde radio.,radio,A2,Mezzo di comunicazione,Tecnologia
+Il documento che si riceve dopo aver comprato qualcosa.,scontrino,A2,Documento commerciale,Economia
+Un veicolo a due ruote con motore.,motocicletta,B1,Mezzo di trasporto,Trasporti
+Il sentimento di fiducia verso qualcuno.,fiducia,A2,Emozione positiva,Emozioni
+L'azione di leggere con attenzione e per piacere.,leggere,A2,Verbo di attività,Educazione
+Un sinonimo di 'difficile'.,arduo,C1,Aggettivo,Linguistica
+Il ramo della matematica che studia i cambiamenti.,calcolo,B2,Branca della matematica,Scienze
+Un tipo di formaggio italiano a pasta dura e grattugiabile.,parmigiano,B1,Formaggio italiano,Cucina
+Il luogo dove si coltivano piante e fiori.,giardino,A2,Spazio esterno,Casa
+La sensazione di non volere fare nulla.,pigrizia,B1,Sentimento negativo,Emozioni
+Il professionista che cura gli animali.,veterinario,B1,Professione medica,Professioni
+Un capo di abbigliamento per coprire il tronco.,maglietta,A2,Capo d'abbigliamento,Moda
+Il processo attraverso il quale l'acqua cade dal cielo.,pioggia,A2,Fenomeno meteorologico,Natura
+Lo strumento usato per proiettare video su una superficie.,videoproiettore,B2,Dispositivo elettronico,Tecnologia
+Il luogo dove si impara a nuotare.,piscina,A2,Struttura sportiva,Sport
+Il sinonimo di 'improvviso'.,repentino,C1,Aggettivo,Linguistica
+Un accessorio per coprirsi la testa, spesso per il freddo,cappello,A2,Accessorio d'abbigliamento,Moda
+Un animale domestico che fa le fusa,gatto,A2,Animale domestico,Animali
+Il luogo dove si impara e si studia,scuola,A2,Edificio,Educazione
+Lo strumento per ascoltare la radio,radio,A2,Apparecchio elettronico,Tecnologia
+Il contenitore per l'acqua o altri liquidi,bottiglia,A2,Contenitore,Casa
+Il colore del cielo limpido di giorno,azzurro,A2,Colore,Natura
+Il veicolo che trasporta molte persone in città,autobus,A2,Mezzo di trasporto pubblico,Viaggi
+L'azione di chiudere gli occhi per riposare,dormire,A2,Verbo di stato,Benessere
+La stanza dove si preparano i pasti,cucina,A2,Stanza della casa,Casa
+La parte del corpo che usiamo per camminare,gamba,A2,Parte del corpo,Corpo Umano
+Un tipo di verdura verde e fogliosa,insalata,A2,Verdura,Cibo
+Il giorno della settimana dopo sabato,domenica,A2,Giorno della settimana,Tempo
+L'albero che produce le mele,melo,B1,Albero da frutto,Natura
+Lo strumento per misurare la lunghezza,metro,A2,Strumento di misurazione,Casa
+La professione di chi taglia i capelli,parrucchiere,B1,Professione di servizio,Professioni
+Un tipo di frutta piccola, rotonda e dolce,ciliegia,A2,Frutta,Cibo
+L'emozione di voler bene a qualcuno,amore,A2,Emozione,Emozioni
+Il luogo dove si dorme in un hotel,stanza,A2,Luogo di alloggio,Viaggi
+L'azione di rispondere a una domanda,rispondere,A2,Verbo di comunicazione,Comunicazione
+Il documento che ti permette di guidare,patente,B1,Documento di guida,Società
+Il dispositivo per fare fotografie,macchina fotografica,B1,Dispositivo elettronico,Tecnologia
+Il luogo dove si mettono i libri sugli scaffali,scaffale,A2,Mobile,Casa
+La scienza che studia le stelle e i pianeti,astronomia,B1,Branca della scienza,Scienze
+Il luogo dove si conservano i farmaci,farmacia,A2,Negozio,Salute
+Un tipo di calzatura per fare sport,scarpa da corsa,B1,Calzatura sportiva,Sport
+Il sentimento di paura per un pericolo imminente,ansia,B2,Emozione negativa,Psicologia
+Il processo di trasformazione del cibo in energia,metabolismo,C1,Processo biologico,Scienze
+Un sinonimo di 'interessante',accattivante,B2,Aggettivo,Linguistica
+Il professionista che cura le malattie della mente,psichiatra,B2,Professione medica,Professioni
+La parte dell'albero che contiene i frutti,frutto,A2,Parte di una pianta,Natura
+Il luogo dove si gioca a tennis,campo da tennis,A2,Struttura sportiva,Sport
+Un tipo di pasta italiana a forma di spirale,fusilli,B1,Tipo di pasta,Cucina
+L'azione di creare qualcosa di nuovo,inventare,B1,Verbo di creazione,Creatività
+Il colore del cielo nuvoloso,grigio,A2,Colore,Natura
+Il mezzo di trasporto più comune su strada,automobile,A2,Mezzo di trasporto,Trasporti
+Il mestiere di chi serve in un negozio,commesso,A2,Professione commerciale,Professioni
+La parte del corpo dove si trovano i capelli,testa,A2,Parte del corpo,Corpo Umano
+Il sentimento di attesa e speranza,attesa,B1,Emozione,Emozioni
+Il luogo dove si celebrano le messe,chiesa,A2,Edificio religioso,Religione
+Lo strumento per tagliare la carta o i tessuti,forbici,A2,Strumento da taglio,Casa
+Il concetto opposto alla pace,guerra,B1,Conflitto,Politica
+Un tipo di animale che vola e ha le piume,uccello,A2,Animale,Animali
+Il luogo dove si va a ballare,discoteca,B1,Luogo di svago,Svago
+Il contenitore per trasportare le cose in viaggio,valigia,A2,Accessorio da viaggio,Viaggi
+L'azione di migliorare o progredire,migliorare,B1,Verbo di trasformazione,Sviluppo
+Il cibo che si ricava dai cereali e si usa per fare il pane,farina,A2,Ingrediente culinario,Cucina
+La parte dell'occhio che ci permette di vedere i colori,retina,B2,Parte dell'occhio,Corpo Umano
+Un sistema di scrittura per ciechi,braille,C1,Sistema di scrittura,Educazione
+Il mestiere di chi costruisce case,muratore,B1,Professione edile,Professioni
+Un tipo di pesce di mare, spesso mangiato fritto,merluzzo,B1,Pesce,Cibo
+Il luogo dove si mettono le macchine per parcheggiare,parcheggio,A2,Area di sosta,Trasporti
+Lo strumento per cucire tessuti,ago,A2,Strumento,Casa
+La scienza che studia l'uomo e la società,sociologia,B2,Branca della scienza,Scienze
+Il fenomeno naturale dell'acqua che si congela,gelo,B1,Fenomeno meteorologico,Natura
+Il processo di adattamento di un organismo all'ambiente,adattamento,C1,Processo biologico,Scienze
+Un sinonimo di 'comprendere',afferrare,B2,Verbo di comprensione,Linguistica
+La persona che traduce da una lingua all'altra,traduttore,B1,Professione linguistica,Lingue
+Un capo di abbigliamento per coprire le mani,guanto,A2,Accessorio d'abbigliamento,Moda
+Il luogo dove si può fare la spesa al supermercato,cassa,A2,Punto vendita,Economia
+Un'opera teatrale cantata,opera,B1,Forma d'arte,Musica
+Il dispositivo per accendere il fuoco,accendino,A2,Strumento,Casa
+La sensazione di non essere sicuri di qualcosa,dubbio,B1,Sentimento,Emozioni
+La parte dell'auto che fa illuminare la strada,faro,A2,Parte di veicolo,Trasporti
+Il mestiere di chi cura i capelli,barbiere,A2,Professione di servizio,Professioni
+Un tipo di verdura arancione e croccante,carota,A2,Verdura,Cibo
+L'azione di parlare ad alta voce,gridare,A2,Verbo di comunicazione,Comunicazione
+Il contenitore per conservare il cibo in frigo,contenitore,A2,Utensile da cucina,Cucina
+La persona che comanda una nave,capitano,B1,Professione di comando,Trasporti
+Un tipo di frutta gialla e acida,limone,A2,Frutta,Cibo
+La parte del corpo tra il braccio e la mano,gomito,B1,Parte del corpo,Corpo Umano
+Il fenomeno atmosferico in cui l'aria si muove velocemente,vento,A2,Fenomeno meteorologico,Natura
+Il sistema che gestisce le informazioni sui computer,software,B1,Componente informatico,Tecnologia
+Il luogo dove si trova l'università,università,A2,Edificio,Educazione
+Un sinonimo di 'improvviso',inaspettato,B1,Aggettivo,Linguistica
+Lo strumento per misurare il tempo,cronometro,B1,Strumento di misurazione,Sport
+Il luogo dove si recitano le opere teatrali,teatro,A2,Luogo culturale,Arte
+La scienza che studia i numeri,aritmetica,B1,Branca della matematica,Scienze
+La paura degli spazi chiusi,claustrofobia,C1,Disturbo psicologico,Psicologia
+Il processo di crescita di una pianta,germogliazione,C1,Processo biologico,Scienze
+Un mestiere che comporta la gestione del denaro,ragioniere,B2,Professione contabile,Economia
+Il liquido trasparente che esce dal rubinetto,acqua,A2,Liquido,Cibo
+L'oggetto che si usa per spingere l'acqua via dal pavimento,mocio,A2,Attrezzo per la pulizia,Casa
+La disciplina sportiva che si pratica su ghiaccio con i pattini,pattinaggio,B1,Sport invernale,Sport
+Un'emozione di grande sconforto,disperazione,B2,Emozione negativa,Emozioni
+Il luogo dove si curano gli animali malati,clinica veterinaria,B1,Struttura sanitaria,Professioni
+La parte del corpo che sta sotto il naso,bocca,A2,Parte del corpo,Corpo Umano
+Il veicolo usato per il trasporto merci su strada,camion,A2,Mezzo di trasporto,Trasporti
+La persona che guida l'aereo,pilota,A2,Professione,Professioni
+Un tipo di verdura a foglia verde scura,spinaci,B1,Verdura,Cibo
+Il luogo dove i marinai ormeggiano le navi,porto,A2,Struttura portuale,Viaggi
+L'azione di muoversi nell'acqua,nuotare,A2,Verbo di movimento,Sport
+La materia che studia gli avvenimenti passati,storia,B1,Materia di studio,Educazione
+Un sinonimo di 'cambiare',modificare,B1,Verbo,Linguistica
+La disciplina che studia la mente umana,psicologia,B2,Branca della scienza,Scienze
+Il dispositivo che permette di comunicare a distanza,telefono,A2,Dispositivo di comunicazione,Tecnologia
+Un animale selvatico che vive nella foresta e ha le corna,cervo,B1,Animale selvatico,Animali
+Il luogo dove si mettono i vestiti sporchi,lavatrice,A2,Elettrodomestico,Casa
+Un abito elegante da donna per eventi serali,abito da sera,B2,Abbigliamento formale,Moda
+Il fenomeno per cui l'acqua di mare diventa salata,salinizzazione,C1,Fenomeno chimico,Scienze
+La parte del corpo che sta sopra il piede,caviglia,B1,Parte del corpo,Corpo Umano
+Il luogo dove si conservano i cibi surgelati,freezer,A2,Elettrodomestico,Casa
+Il processo di trasformazione della materia organica in humus,compostaggio,B2,Processo ecologico,Scienze
+Il professionista che insegna in una scuola,insegnante,A2,Professione educativa,Educazione
 `

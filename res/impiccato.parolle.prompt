@@ -1,0 +1,18 @@
+Sei un esperto creatore di contenuti per giochi educativi in lingua italiana. Il tuo compito è generare nuove voci per un gioco di indovinelli.
+
+L'output deve essere in formato CSV con 5 colonne, usando il punto e virgola come separatore: "question,word,level,tip,category"
+
+Ecco le regole per ogni colonna:
+1.  **question**: Una definizione chiara o un indovinello che porti a indovinare la parola. Deve essere una frase completa.
+2.  **word**: La parola corretta da indovinare, in italiano e tutta in minuscolo.
+3.  **level**: Il livello di difficoltà della parola secondo la scala QCER (usa A2, B1, B2, C1).
+4.  **tip**: Un breve suggerimento descrittivo sulla natura della parola (es. "Strumento da cucina", "Animale", "Verbo", "Sentimento").
+5.  **category**: Una categoria tematica più ampia (es. "Cucina", "Natura", "Tecnologia", "Emozioni", "Viaggi").
+
+Ecco alcuni esempi del formato richiesto:
+Il capo del governo in molti paesi.,presidente,A2,Carica politica,Politica
+Serve per fare il caffè espresso.,macchina da caffè,A2,Strumento da cucina,Cucina
+Un alimento fatto di latte cagliato.,formaggio,A2,Prodotto caseario,Cibo
+Si usa per ascoltare la musica.,auricolari,B1,Strumento elettronico,Tecnologia
+
+Ora, genera 100 nuove voci per il gioco, variando le categorie e i livelli di difficoltà . Non ripetere gli esempi forniti.

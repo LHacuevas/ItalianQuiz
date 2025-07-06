@@ -27,6 +27,7 @@ const Imppicato: React.FC<QuizParams> = ({
     const [wordLevel, setWordLevel] = useState<WordLevel>(initialDifficulty as WordLevel); // Livello delle parole (A2,B1,B2) basato sulla prop difficulty
 
     const [message, setMessage] = useState<string>('');
+    const [gameOverMessage, setGameOverMessage] = useState<string | null>(null); // Messaggio specifico per fine gioco
     const [timer, setTimer] = useState<number>(30);
     const [gameOver, setGameOver] = useState<boolean>(false);
     const [showTip, setShowTip] = useState<boolean>(false);
@@ -55,8 +56,14 @@ const Imppicato: React.FC<QuizParams> = ({
 
                 // Carica ID delle parole già risposte
                 if (usuario?.id && process.env.REACT_APP_USE_DATABASE === 'true') {
+                    console.log(`[Impiccato] Loading answered IDs for user: ${usuario.id}, USE_DATABASE: ${process.env.REACT_APP_USE_DATABASE}`);
                     const answeredMap = await fetchAnsweredQuestionIdsGroupedByType(usuario.id);
-                    setAnsweredWordIds(answeredMap['AH'] || new Set<string>()); // 'AH' per Ahorcado/Impiccato
+                    console.log("[Impiccato] Answered Map from DB:", answeredMap);
+                    const hangmanAnsweredIds = answeredMap['AH'] || new Set<string>();
+                    setAnsweredWordIds(hangmanAnsweredIds); 
+                    console.log("[Impiccato] Set answeredWordIds for 'AH':", hangmanAnsweredIds);
+                } else {
+                    console.log(`[Impiccato] Skipping fetch of answered IDs. User ID: ${usuario?.id}, USE_DATABASE: ${process.env.REACT_APP_USE_DATABASE}`);
                 }
             } catch (err) {
                 setError('Errore nel caricamento dati iniziali. Riprova.');
@@ -81,19 +88,25 @@ const Imppicato: React.FC<QuizParams> = ({
             return levelMatch && categoryMatch;
         });
         setPossibleWordsForCriteria(wordsMatchingCriteria.length);
+        // console.log('[Impiccato] Words matching criteria (level, category):', wordsMatchingCriteria.length, wordsMatchingCriteria.map(w => w.word));
 
         // 2. Calcola quante di queste sono già state risposte
-        const answeredInCriteria = wordsMatchingCriteria.filter(p => answeredWordIds.has(p.word.toLowerCase())); // Assumendo che idPregunta sia la parola stessa
+        const answeredInCriteria = wordsMatchingCriteria.filter(p => answeredWordIds.has(p.word.toLowerCase()));
         setAnsweredWordsForCriteriaCount(answeredInCriteria.length);
+        // console.log('[Impiccato] Answered words in criteria:', answeredInCriteria.length, answeredInCriteria.map(w => w.word));
+        // console.log('[Impiccato] All answeredWordIds:', Array.from(answeredWordIds));
 
         // 3. Determina il pool di parole da cui scegliere
         let poolForWordSelection: RegImpiccato[];
         if (includePreviouslyAnswered) {
             poolForWordSelection = [...wordsMatchingCriteria];
+            // console.log('[Impiccato] Including previously answered. Pool size:', poolForWordSelection.length);
         } else {
             poolForWordSelection = wordsMatchingCriteria.filter(p => !answeredWordIds.has(p.word.toLowerCase()));
+            // console.log('[Impiccato] EXCLUDING previously answered. Pool size:', poolForWordSelection.length);
         }
         setWordsAvailableToPlay(poolForWordSelection.length);
+        // console.log('[Impiccato] Final pool for selection:', poolForWordSelection.map(w => w.word));
 
         if (poolForWordSelection.length === 0) {
             setError('Nessuna parola disponibile per i criteri selezionati. Prova a cambiare livello, categoria o includi parole già giocate.');
@@ -101,6 +114,7 @@ const Imppicato: React.FC<QuizParams> = ({
             return;
         }
         setError(null); // Pulisce errori precedenti se ora ci sono parole
+        setGameOverMessage(null); // Pulisce il messaggio di fine gioco precedente
 
         const randomWord = poolForWordSelection[Math.floor(Math.random() * poolForWordSelection.length)];
         setCurrentWord({ ...randomWord, word: randomWord.word.toLowerCase() });
@@ -125,20 +139,22 @@ const Imppicato: React.FC<QuizParams> = ({
 
     // Effetto per selezionare una nuova parola quando cambiano i filtri o allWordsFromDB/answeredWordIds
     useEffect(() => {
-        if (!loading && allWordsFromDB.length > 0) { // Assicurati che i dati base siano caricati
+        // NON selezionare una nuova parola se il gioco è appena terminato e stiamo mostrando il messaggio finale.
+        // L'utente userà il pulsante "Prossima Parola".
+        // Questo useEffect serve principalmente per il caricamento iniziale e per quando i filtri (livello, categoria, etc.) cambiano
+        // o quando si includono/escludono parole già giocate.
+        if (!gameOver && !loading && allWordsFromDB.length > 0) { 
             selectNewWord();
         }
-    }, [loading, allWordsFromDB, selectNewWord]); // Rimosso gameDifficulty, wordLevel, category, includePreviouslyAnswered, answeredWordIds perché sono già dipendenze di selectNewWord
-                                                 // e selectNewWord è in useCallback, quindi non cambia a meno che le sue dipendenze non cambino.
-                                                 // Questo evita chiamate multiple non necessarie.
-                                                 // Mantenere selectNewWord qui assicura che venga chiamata dopo il caricamento iniziale.
+    }, [loading, allWordsFromDB, selectNewWord, gameOver]); // Aggiunto gameOver. Le altre dipendenze di selectNewWord (wordLevel, category, etc.)
+                                                            // sono già coperte dal fatto che selectNewWord stessa cambia e triggera questo effetto.
 
     const handleTimeUp = useCallback((): void => {
-        if (currentWord) {
-            setMessage(`Tempo scaduto! La parola era "${currentWord.word}".`);
+        if (currentWord && !gameOver) { // Aggiunto !gameOver per evitare doppie chiamate se endGame è già stato triggerato
+            // Non impostare più setMessage qui, sarà gestito da endGame
             endGame('Tempo scaduto');
         }
-    }, [currentWord]);
+    }, [currentWord, gameOver]); // Aggiunto gameOver alle dipendenze
 
     useEffect(() => {
         if (currentWord && !gameOver) {
@@ -188,10 +204,25 @@ const Imppicato: React.FC<QuizParams> = ({
     }
 
     const endGame = (reason: string): void => {
+        if (gameOver) return; // Evita di eseguire endGame più volte se già terminato
+
         setGameOver(true);
         logGameResult(reason);
-        setTimeout(selectNewWord, 2000);
+
+        if (currentWord) {
+            if (reason === 'Parola indovinata') {
+                setGameOverMessage(`Congratulazioni! Hai indovinato: "${currentWord.word}".`);
+            } else if (reason === 'Tempo scaduto') {
+                setGameOverMessage(`Tempo scaduto! La parola era: "${currentWord.word}".`);
+            } else if (reason === 'Tentativi esauriti') {
+                setGameOverMessage(`Tentativi esauriti! La parola era: "${currentWord.word}".`);
+            } else {
+                setGameOverMessage(`Gioco terminato. La parola era: "${currentWord.word}".`);
+            }
+        }
+        // Rimosso setTimeout(selectNewWord, 2000);
     }
+
     // Función para verificar si una letra es vocal
     const isVowel = (letter: string): boolean => {
         return ['a', 'e', 'i', 'o', 'u'].includes(letter.toLowerCase());
@@ -207,21 +238,24 @@ const Imppicato: React.FC<QuizParams> = ({
         setGuessedLetters(newGuessedLetters);
 
         if (!currentWord.word.includes(letter)) {
+            setMessage('Lettera non presente nella parola.'); // Messaggio immediato
             setRemainingAttempts(prev => {
                 const penaltyAmount = isVowel(letter) ? 3 : 1;
                 const newAttempts = prev - penaltyAmount;
                 if (newAttempts <= 0) {
-                    setMessage(`Gioco finito. La parola era "${currentWord.word}".`);
+                    // Non impostare più setMessage qui per la parola finale, sarà gestito da endGame
                     endGame('Tentativi esauriti');
+                    return 0; // Assicura che non vada sotto zero e triggeri l'effetto
                 }
                 return newAttempts;
             });
-            
-            setMessage('Lettera non presente nella parola.');
-        } else {            
+        } else {
             setMessage('Lettera corretta!');
         }
-        checkGameStatus(newGuessedLetters);
+        // checkGameStatus è chiamato solo se il gioco non è già finito per tentativi
+        if (remainingAttempts > (isVowel(letter) && !currentWord.word.includes(letter) ? 3 : 1) || currentWord.word.includes(letter)) {
+            checkGameStatus(newGuessedLetters);
+        }
     };
 
     const handleInputChange = (letter: string): void => {
@@ -232,12 +266,9 @@ const Imppicato: React.FC<QuizParams> = ({
     };
 
     const checkGameStatus = (guessedLetters: string[]): void => {
-        if (currentWord && currentWord.word === displayWord(guessedLetters).replace(/\s+/g, '')) {
-            setMessage('Congratulazioni! Hai indovinato la parola.');
+        if (currentWord && !gameOver && currentWord.word === displayWord(guessedLetters).replace(/\s+/g, '')) {
+            // Non impostare più setMessage qui, sarà gestito da endGame
             endGame('Parola indovinata');
-            // setTimeout(() => {
-            //     selectNewWord();
-            // }, 1500);
         }
     };
 
@@ -339,26 +370,46 @@ const Imppicato: React.FC<QuizParams> = ({
                             ))}
                         </div>
 
-                        {message && (
-                            <Alert severity={message.includes('Congratulazioni') ? 'success' : 'info'} sx={{ marginTop: 2 }}>
+                        {/* Messaggio di gioco normale */}
+                        {message && !gameOver && (
+                            <Alert severity={message.includes('Lettera corretta') ? 'success' : 'info'} sx={{ marginTop: 2 }}>
                                 {message}
                             </Alert>
                         )}
-                    </div>
-                )}
-                {currentWord && (
-                    <div style={{ marginTop: '16px' }}>
-                        {onExit ? (
-                            <Button onClick={onExit} variant="contained" color="secondary" fullWidth>
-                                Torna al Menu Principale
-                            </Button>
-                        ) : (
-                            <Button onClick={() => window.location.reload()} variant="contained" color="error" fullWidth>
-                                Esci (Ricarica)
-                            </Button>
+
+                        {/* Messaggio di fine gioco e pulsante Prossima Parola */}
+                        {gameOver && gameOverMessage && (
+                            <Box sx={{ marginTop: 2, textAlign: 'center' }}>
+                                <Alert 
+                                    severity={gameOverMessage.includes('Congratulazioni') ? 'success' : 
+                                              gameOverMessage.includes('Tempo scaduto') || gameOverMessage.includes('Tentativi esauriti') ? 'error' : 'info'}
+                                >
+                                    {gameOverMessage}
+                                </Alert>
+                                <Button 
+                                    onClick={selectNewWord} 
+                                    variant="contained" 
+                                    color="primary" 
+                                    sx={{ marginTop: 2 }}
+                                >
+                                    Prossima Parola
+                                </Button>
+                            </Box>
                         )}
                     </div>
                 )}
+                {/* Pulsante Esci/Torna al Menu */}
+                <Box sx={{ marginTop: '16px' }}>
+                    {onExit ? (
+                        <Button onClick={onExit} variant="contained" color="secondary" fullWidth>
+                            Torna al Menu Principale
+                        </Button>
+                    ) : (
+                        <Button onClick={() => window.location.reload()} variant="contained" color="error" fullWidth>
+                            Esci (Ricarica)
+                        </Button>
+                    )}
+                </Box>
             </CardContent>
         </Card>
     );
