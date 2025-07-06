@@ -309,7 +309,7 @@ const Imppicato: React.FC<QuizParams> = ({
                         sx={{ marginBottom: 2 }}
                     >
                         <MenuItem value="Tutte">Tutte le categorie</MenuItem>
-                        {Array.from(new Set(words.filter(w => w.level === level).map(w => w.category))).map((cat) => (
+                        {Array.from(new Set(allWordsFromDB.filter(w => w.level === wordLevel).map(w => w.category))).map((cat) => (
                             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
                         ))}
                     </Select>

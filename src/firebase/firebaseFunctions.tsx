@@ -388,7 +388,7 @@ export async function uploadCSVToFirestore(
                 }
             } else {
                 const docRef = await addDoc(collectionRef, docData);
-                //console.log(`Documento añadido a ${collectionName} con ID generado: ${docRef.id}`);
+                console.log(`Documento añadido a ${collectionName} con ID generado: ${docRef.id}`);
             }
             // Actualizar la fila anterior
             previousRow = docData;

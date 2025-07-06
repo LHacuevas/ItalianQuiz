@@ -51,7 +51,9 @@ const App: React.FC = () => {
 
   const auth = getAuth();
   const db = getFirestore();
-
+useEffect(() => {
+    document.title = `Quiz di Italiano ${process.env.REACT_APP_GIT_VERSION}`;
+  }, []);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentAuthUser) => {
       setCheckingLevel(true);

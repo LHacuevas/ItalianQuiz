@@ -403,7 +403,7 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
         <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">            
             <CardContent className="p-2 sm:p-4">
                 <div className="flex justify-between items-center mb-4">
-                    <span className="font-semibold text-blue-800">Paragrafo {currentParagraphIndex + 1} di {numQuestions} [{preguntasQuedan}]</span>
+                    <span className="font-semibold text-blue-800">Paragrafo {currentParagraphIndex + 1} di {numQuestions} [{paragraphsAvailableToPlay}]</span>
                     <span className="font-semibold text-blue-800 flex items-center">
                         <Clock className="mr-1" /> {timer}s
                     </span>

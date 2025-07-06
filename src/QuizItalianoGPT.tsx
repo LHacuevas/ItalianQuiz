@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -131,8 +132,8 @@ const QuizItaliano: React.FC<QuizParams> = ({
     }, [numQuestions, difficulty, onlyOptionQuestions, includePreviouslyAnswered, usuario?.id]); // Ricarica se questi parametri cambiano
 
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [showExplanation, quizFinished, reviewMode, currentQuestion, questionsForSession]);
+    /* // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [showExplanation, quizFinished, reviewMode, currentQuestion, questionsForSession]); */
 
     const getTextOption = (respNum: Number) => {
         if (!questionsForSession[currentQuestion]) return "Opzione non disponibile";
@@ -242,7 +243,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
     };
 
     const nextReviewQuestion = () => {
-        if (currentQuestion < questions.length - 1) {
+        if (currentQuestion < questionsForSession.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
         } else {
             setReviewMode(false);
@@ -259,9 +260,9 @@ const QuizItaliano: React.FC<QuizParams> = ({
                     <p className="text-center text-lg sm:text-xl font-semibold">Grazie, {name}!</p>
                     <p className="text-center text-base sm:text-lg">Hai completato il quiz.</p>
                     <p className="text-center text-base sm:text-lg">
-                        Punteggio: {score} su {questions.length}
+                        Punteggio: {score} su {questionsForSession.length}
                     </p>
-                    <LinearProgress value={(score / questions.length) * 100} className="mt-4" />
+                    <LinearProgress value={(score / questionsForSession.length) * 100} className="mt-4" />
                     <div className="flex items-center justify-center mt-4 text-blue-800">
                         <Clock className="mr-2" />
                         <p>Tempo totale: {formatTime(totalTime)}</p>
@@ -284,7 +285,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
         );
     }
 
-    if (questions.length === 0) {
+    if (questionsForSession.length === 0) {
         return (
             <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
                 <CardContent>
@@ -302,12 +303,12 @@ const QuizItaliano: React.FC<QuizParams> = ({
         );
     }
 
-    const currentQuestionData = questions[currentQuestion];
+    const currentQuestionData = questionsForSession[currentQuestion];
 
     return (
         <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">                        
             <CardActions className="text-lg sm:text-xl font-bold text-center text-blue-800">
-                {reviewMode ? "Revisione" : `Domanda ${currentQuestion + 1} di ${questions.length} [${preguntasQuedan}]`}
+                {reviewMode ? "Revisione" : `Domanda ${currentQuestion + 1} di ${questionsForSession.length} [${questionsAvailableToPlay}]`}
             </CardActions>
             <CardContent>
                 {!reviewMode && (
@@ -320,7 +321,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
                         </span>
                     </div>
                 )}
-                <LinearProgress variant="determinate" value={(score / questions.length) * 100} className="mt-4" />
+                <LinearProgress variant="determinate" value={(score / questionsForSession.length) * 100} className="mt-4" />
                 <QuizQuestion
                     currentQuestionData={currentQuestionData}
                     reviewMode={reviewMode}
@@ -342,12 +343,12 @@ const QuizItaliano: React.FC<QuizParams> = ({
                 <p className="font-semibold text-blue-800">Punteggio: {score}/{currentQuestion + 1}</p>
                 {reviewMode ? (
                     <Button onClick={nextReviewQuestion} className="bg-green-500 hover:bg-green-700">
-                        {currentQuestion === questions.length - 1 ? "Termina revisione" : "Prossima domanda"}
+                        {currentQuestion === questionsForSession.length - 1 ? "Termina revisione" : "Prossima domanda"}
                     </Button>
                 ) : (
                     showExplanation && (
                         <Button onClick={nextQuestion} className="bg-green-500 hover:bg-green-700">
-                            {currentQuestion === questions.length - 1 ? "Termina il quiz" : "Prossima domanda"}
+                            {currentQuestion === questionsForSession.length - 1 ? "Termina il quiz" : "Prossima domanda"}
                             </Button>
                             
                     )

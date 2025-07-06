@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     Alert,
     AlertTitle,
@@ -10,8 +10,8 @@ import {
     Container,
     Paper
 } from '@mui/material';
-import { fetchCorrige, saveGameSessionResult } from './firebase/firebaseFunctions'; // Aggiunto saveGameSessionResult
-import { RegCorrige, Usuario, GameSessionResult } from './firebase/firebaseInterfaces'; // Aggiunto Usuario, GameSessionResult
+import { fetchCorrige, saveGameSessionResult, fetchAnsweredQuestionIdsGroupedByType } from './firebase/firebaseFunctions'; // Aggiunto fetchAnsweredQuestionIdsGroupedByType
+import { Usuario, GameSessionResult } from './firebase/firebaseInterfaces'; // Rimosso RegCorrige, Aggiunto Usuario, GameSessionResult
 import { keyframes } from '@emotion/react';
 
 const flipAnimation = keyframes`
@@ -56,7 +56,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
     const [flipWords, setFlipWords] = useState<number[]>([]);
     const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
     const [itemsPlayedInSession, setItemsPlayedInSession] = useState(0);
-    const [gameEndedByExit, setGameEndedByExit] = useState(false);
+    const [gameEndedByExit, setGameEndedByExit] = useState(false); 
     // const [initialSentenceLoaded, setInitialSentenceLoaded] = useState(false); // Non più necessario con la nuova logica di caricamento
 
     // Tutte le frasi dal DB/CSV
@@ -86,7 +86,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
             setFlipWords([]);
             setSelectedWords([]);
             setShowResult(false);
-
+            
             try {
                 // 1. Carica tutte le frasi se non già fatto
                 let currentAllSentences = allSentencesFromDB;
@@ -113,7 +113,6 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                     setAllSentencesFromDB(currentAllSentences);
                 }
 
-
                 // 2. Recupera ID delle frasi già risposte
                 let currentAnsweredIds = answeredSentenceIds;
                 if (usuario?.id && process.env.REACT_APP_USE_DATABASE === 'true') {
@@ -123,7 +122,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                     currentAnsweredIds = answeredMap['CO'] || new Set<string>(); // 'CO' per Corrige
                     setAnsweredSentenceIds(currentAnsweredIds);
                 }
-
+                
                 // 3. Filtra per livello
                 const sentencesForLevel = currentAllSentences.filter(s => s.level === level);
                 setPossibleSentencesForCriteria(sentencesForLevel.length);
@@ -140,7 +139,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                     poolForSelection = sentencesForLevel.filter(s => !currentAnsweredIds.has(s.id));
                 }
                 setSentencesAvailableToPlay(poolForSelection.length);
-
+                
                 setUsedSentenceIds(new Set()); // Resetta le frasi usate per la nuova sessione
 
                 if (poolForSelection.length > 0) {
@@ -165,61 +164,8 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
     }, [level, includePreviouslyAnswered, usuario?.id]); // Ricarica se livello o opzione di inclusione cambiano
 
     const currentSentence = sentences[currentSentenceIndex]; // Questa ora si basa sulle frasi filtrate per la sessione
-
-    useEffect(() => {
-        let timer: NodeJS.Timeout;
-        if (timeLeft > 0 && !isGameOver && currentSentence && !showResult && !currentSentence.isNaturallyCorrect) {
-            timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-        } else if (timeLeft === 0 && !isGameOver && !showResult && currentSentence && !currentSentence.isNaturallyCorrect) { // Aggiunto check currentSentence
-            checkAnswer();
-        }
-        return () => clearTimeout(timer);
-    }, [timeLeft, isGameOver, currentSentence, showResult]);
-
-    // New useEffect to handle naturally correct sentences immediately
-
-    useEffect(() => {
-        if (currentSentence && currentSentence.isNaturallyCorrect && !showResult) { // Esegui solo se showResult è false
-            setShowResult(true);
-            // Considera di incrementare itemsPlayedInSession anche per frasi naturalmente corrette
-            // se vuoi che contino nel totale delle frasi "viste" o "giocate".
-            // Per ora, itemsPlayedInSession viene incrementato in nextSentence.
-        }
-    }, [currentSentence, showResult]);
-
-    useEffect(() => {
-        if (showResult && currentSentence) {
-            const errorWords = currentSentence.words.filter(word => !word.isCorrect).map(word => word.id);
-            setFlipWords(errorWords);
-            const flipInterval = setInterval(() => {
-                setFlipWords(prev => prev.length > 0 ? [] : errorWords);
-            }, 2000);
-            return () => clearInterval(flipInterval);
-        }
-    }, [showResult, currentSentence]);
-
-    useEffect(() => {
-        // Quando l'indice della frase cambia (e non siamo al primo render con sentences vuoto), 
-        // resetta lo stato per la nuova domanda.
-        // Verifica che sentences esista e abbia elementi per evitare reset al montaggio iniziale prima del caricamento.
-        if (sentences.length > 0) {
-            setShowResult(false);
-            setSelectedWords([]);
-            setFlipWords([]);
-            setTimeLeft(30);
-        }
-    }, [currentSentenceIndex, sentences]); // Aggiunto sentences alle dipendenze per il controllo iniziale
-
-    const handleWordClick = (wordId: number) => {
-        setSelectedWords(prev =>
-            prev.includes(wordId)
-                ? prev.filter(id => id !== wordId)
-                : [...prev, wordId]
-        );
-    };
-
-    const checkAnswer = () => {
-        if (!currentSentence) return;
+    const checkAnswer = useCallback(() => {
+        if (!currentSentence || showResult) return; // Non fare nulla se la frase non c'è o il risultato è già mostrato
 
         let newScore = score;
         let allErrorsFound = true;
@@ -240,52 +186,94 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         setScore(newScore);
         setShowResult(true);
         console.log(`ID frase: ${currentSentence.id}, Risposta completamente corretta: ${allErrorsFound && noFalsePositives ? 'Sì' : 'No'}`);
+    }, [currentSentence, showResult, score, selectedWords]);
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        if (timeLeft > 0 && !isGameOver && currentSentence && !showResult && !currentSentence.isNaturallyCorrect) {
+            timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+        } else if (timeLeft === 0 && !isGameOver && !showResult && currentSentence && !currentSentence.isNaturallyCorrect) { // Aggiunto check currentSentence
+            checkAnswer(); 
+        }
+        return () => clearTimeout(timer);
+    }, [timeLeft, isGameOver, currentSentence, showResult, checkAnswer]); 
+
+    // New useEffect to handle naturally correct sentences immediately
+    useEffect(() => {
+        if (currentSentence && currentSentence.isNaturallyCorrect && !showResult) { // Esegui solo se showResult è false
+            setShowResult(true);
+            // Considera di incrementare itemsPlayedInSession anche per frasi naturalmente corrette
+            // se vuoi che contino nel totale delle frasi "viste" o "giocate".
+            // Per ora, itemsPlayedInSession viene incrementato in nextSentence.
+        }
+    }, [currentSentence, showResult]);
+
+    useEffect(() => {
+        if (showResult && currentSentence) {
+            const errorWords = currentSentence.words.filter(word => !word.isCorrect).map(word => word.id);
+            setFlipWords(errorWords);
+            const flipInterval = setInterval(() => {
+                setFlipWords(prev => prev.length > 0 ? [] : errorWords);
+            }, 2000);
+            return () => clearInterval(flipInterval);
+        }
+    }, [showResult, currentSentence]);
+
+    const handleWordClick = (wordId: number) => {
+        setSelectedWords(prev =>
+            prev.includes(wordId)
+                ? prev.filter(id => id !== wordId)
+                : [...prev, wordId]
+        );
     };
+
 
     const nextSentence = () => {
-        const currentIdNumeric = currentSentence ? parseInt(currentSentence.id) : -1;
+        if (currentSentence) { // Conta la frase corrente come giocata
+            setItemsPlayedInSession(prev => prev + 1);
+        }
+
+        const availableSentences = sentences.filter(s => !usedSentenceIds.has(s.id));
         
-        // Aggiungi l'ID della frase corrente (se esiste) a quelle usate PRIMA di cercare la prossima
+        if (availableSentences.length > 0) {
+            const nextIndexInAvailable = Math.floor(Math.random() * availableSentences.length);
+            const nextSentenceId = availableSentences[nextIndexInAvailable].id;
+            const newCurrentSentenceIndex = sentences.findIndex(s => s.id === nextSentenceId);
+
+            if (newCurrentSentenceIndex !== -1) {
+                 setCurrentSentenceIndex(newCurrentSentenceIndex);
+                 setUsedSentenceIds(prev => new Set(prev).add(nextSentenceId));
+            } else {
+                 // Questo non dovrebbe accadere se availableSentences.length > 0
+                 console.error("Logica errore in nextSentence: frase non trovata");
+                 setIsGameOver(true); // Termina se c'è un errore imprevisto
+                 return;
+            }
+            setSelectedWords([]);
+            setShowResult(false);
+            setTimeLeft(30);
+            setFlipWords([]);
+        } else {
+            setIsGameOver(true); 
+        }
+    };
+   /*  const nextSentence = () => {
         if (currentSentence) {
-            // È importante che questo aggiornamento di stato sia processato prima che la prossima frase sia effettivamente renderizzata
-            // per evitare di selezionare la stessa frase se l'utente clicca molto velocemente.
-            // React gestisce questo in batch, ma per essere sicuri, potremmo passare usedSentenceIds aggiornato
-            // direttamente a una funzione di ricerca se necessario, o fare affidamento sull'aggiornamento di stato.
-            // Per ora, presumiamo che l'aggiornamento di stato sia sufficientemente veloce.
             setUsedSentenceIds(prev => new Set(prev).add(currentSentence.id));
         }
-
-        let nextSentenceToShow: Sentence | undefined = undefined;
-
-        // Trova la frase con l'ID più piccolo, maggiore dell'ID corrente, e non ancora usata.
-        // L'array 'sentences' è ordinato per ID numerico.
-        // Usiamo l'insieme `usedSentenceIds` *dello stato attuale* per la ricerca,
-        // l'aggiornamento con l'ID corrente sarà disponibile al prossimo render/chiamata.
-        const updatedUsedIds = currentSentence ? new Set(usedSentenceIds).add(currentSentence.id) : usedSentenceIds;
-
-        for (let i = 0; i < sentences.length; i++) {
-            const potentialNextSentence = sentences[i];
-            if (parseInt(potentialNextSentence.id) > currentIdNumeric && !updatedUsedIds.has(potentialNextSentence.id)) {
-                nextSentenceToShow = potentialNextSentence; 
-                break; 
-            }
-        }
-        
-        if (nextSentenceToShow) {
-            setCurrentSentenceIndex(sentences.findIndex(s => s.id === nextSentenceToShow!.id));
+        const availableSentences = sentences.filter(s => !usedSentenceIds.has(s.id));
+        if (availableSentences.length > 0) {
+            const nextIndex = Math.floor(Math.random() * availableSentences.length);
+            setCurrentSentenceIndex(sentences.findIndex(s => s.id === availableSentences[nextIndex].id));
+            setSelectedWords([]);
+            setShowResult(false);
+            setTimeLeft(30);
+            setFlipWords([]);
         } else {
-            // Se non c'è una prossima frase sequenziale, verifica se ce ne sono altre non usate (magari precedenti nella sequenza o ID non contigui)
-            const anyOtherUnused = sentences.find(s => !updatedUsedIds.has(s.id));
-            if (anyOtherUnused) {
-                setCurrentSentenceIndex(sentences.findIndex(s => s.id === anyOtherUnused.id));
-            } else {
-                setIsGameOver(true);
-            }
+            setIsGameOver(true);
         }
-        // I reset di setSelectedWords, setShowResult, setTimeLeft, setFlipWords
-        // sono ora gestiti dall'useEffect che dipende da currentSentenceIndex.
     };
-
+ */
     const saveErrorDetectionSession = () => {
         if (gameEndedByExit) return; // Non salvare se il gioco è già terminato con un salvataggio precedente all'uscita
 
@@ -309,7 +297,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         const gameSession: GameSessionResult = {
             userId: usuario.id,
             gameType: 'ErrorDetection',
-            timestamp: new Date(),
+            timestamp: new Date(), 
             difficulty: level,
             score: score, // Punteggio finale
             itemsPlayed: finalItemsPlayed,
@@ -321,7 +309,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         saveGameSessionResult(gameSession);
         console.log("Risultato sessione Rilevamento Errori inviato a Firebase:", gameSession);
     };
-
+    
     const handleGameOver = () => {
         if (!isGameOver) { // Evita doppie chiamate
             saveErrorDetectionSession();
@@ -348,38 +336,9 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
     }, [isGameOver, gameEndedByExit]); // Rimosso saveErrorDetectionSession dalle dipendenze per evitare loop
 
 
-    const nextSentence = () => {
-        if (currentSentence) { // Conta la frase corrente come giocata
-            setItemsPlayedInSession(prev => prev + 1);
-        }
-
-        const availableSentences = sentences.filter(s => !usedSentenceIds.has(s.id));
-
-        if (availableSentences.length > 0) {
-            const nextIndexInAvailable = Math.floor(Math.random() * availableSentences.length);
-            const nextSentenceId = availableSentences[nextIndexInAvailable].id;
-            const newCurrentSentenceIndex = sentences.findIndex(s => s.id === nextSentenceId);
-
-            if (newCurrentSentenceIndex !== -1) {
-                 setCurrentSentenceIndex(newCurrentSentenceIndex);
-                 setUsedSentenceIds(prev => new Set(prev).add(nextSentenceId));
-            } else {
-                 // Questo non dovrebbe accadere se availableSentences.length > 0
-                 console.error("Logica errore in nextSentence: frase non trovata");
-                 setIsGameOver(true); // Termina se c'è un errore imprevisto
-                 return;
-            }
-            setSelectedWords([]);
-            setShowResult(false);
-            setTimeLeft(30);
-            setFlipWords([]);
-        } else {
-            setIsGameOver(true);
-        }
-    };
-
+    
     const restartGame = () => {
-        // L'useEffect principale [level, includePreviouslyAnswered, usuario?.id]
+        // L'useEffect principale [level, includePreviouslyAnswered, usuario?.id] 
         // si occuperà di resettare la maggior parte degli stati e ricaricare i dati.
         // Qui possiamo forzare un cambio di stato che triggera l'useEffect se necessario,
         // o semplicemente resettare gli stati che non sono coperti.
@@ -397,15 +356,14 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
     };
 
 
-
     if (loading) {
         return <Container maxWidth="sm"><Box textAlign="center" mt={4}><Typography>Caricamento frasi...</Typography></Box></Container>;
     }
     if (error) {
         return <Container maxWidth="sm"><Box textAlign="center" mt={4}><Typography color="error">{error}</Typography></Box></Container>;
     }
-
-    if (isGameOver) {
+    
+    if (isGameOver) { 
         return (
             <Container maxWidth="sm">
                 <Box textAlign="center" mt={4}>
@@ -455,7 +413,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
             </Container>
         );
     }
-
+    
     // Se currentSentence è ancora undefined ma non stiamo più caricando (dovrebbe essere coperto sopra)
     if (!currentSentence) {
         return <Typography>Errore imprevisto: nessuna frase corrente.</Typography>;
@@ -491,21 +449,20 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                         {currentSentence.words.map(word => (
                             <Chip
                                 key={word.id}
-                                label={flipWords.includes(word.id) && word.correction ? word.correction : word.text}
-                                onClick={() => !showResult && handleWordClick(word.id)}
-                                clickable={!showResult}
-                                color={selectedWords.includes(word.id) ? "primary" : "default"}
+                                label={flipWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? word.correction : word.text}
+                                onClick={() => !showResult && !isCurrentSentenceNaturallyCorrect && handleWordClick(word.id)}
+                                clickable={!isCurrentSentenceNaturallyCorrect && !showResult}
+                                color={selectedWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? "primary" : "default"}
                                 style={{
                                     margin: '4px',
-                                    backgroundColor: showResult
+                                    backgroundColor: showResult && !isCurrentSentenceNaturallyCorrect
                                         ? word.isCorrect
                                             ? selectedWords.includes(word.id)
-
-                                                ? '#ff6b6b'
+                                                ? '#ff6b6b' 
                                                 : undefined
                                             : selectedWords.includes(word.id)
-                                                ? '#66bb6a'
-                                                : '#ffcccb'
+                                                ? '#66bb6a' 
+                                                : '#ffcccb' 
                                         : undefined,                                    
                                     animation: flipWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? `${flipAnimation} 2s infinite` : 'none'
                                 }}
@@ -513,7 +470,6 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                         ))}
                     </Box>
                 </Paper>
-
                 {isCurrentSentenceNaturallyCorrect && !showResult && (
                     <Alert severity="info" style={{ marginTop: '20px' }}>Questa frase è già corretta! Premi "Prossima frase" per continuare.</Alert>
                 )}
@@ -521,20 +477,15 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                     <Button variant="contained" color="primary" onClick={checkAnswer} style={{ marginTop: '20px' }}>
                         Verifica risposta
                     </Button>
-                    <Button variant="outlined" color="secondary" onClick={handleAllCorrectAssertion} style={{ marginTop: '20px' }}>
-                        Tutto Corretto
-                    </Button>
-                </>
                 )}
-
                  {(showResult || isCurrentSentenceNaturallyCorrect) && ( // Mostra sempre i pulsanti dopo che il risultato è mostrato o se la frase è naturalmente corretta
                     <Box mt={2}>
                         {!isCurrentSentenceNaturallyCorrect && showResult && ( // Mostra solo se non naturalmente corretta E il risultato è mostrato
                             <Alert severity={isAnswerCorrect ? "success" : "error"}>
                                 <AlertTitle>
-                                    {isAnswerCorrect && currentSentence.words.filter(w => !w.isCorrect).length === selectedWords.filter(sw => currentSentence.words.find(w => w.id === sw && !w.isCorrect)).length && !selectedWords.some(sw => currentSentence.words.find(w => w.id === sw && w.isCorrect))
+                                    {isAnswerCorrect
                                         ? "Ottimo lavoro! Hai identificato correttamente tutti gli errori."
-                                        : `Attenzione! Controlla le tue selezioni. Ricorda: le parole verdi sono errori ben identificati, quelle rosse sono selezioni errate (parole corrette marcate come errore), e quelle rosso chiaro sono errori che non hai trovato.`}
+                                        : "Attenzione! Non hai identificato correttamente tutti gli errori."}
                                 </AlertTitle>
                             </Alert>
                         )}
@@ -554,7 +505,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                         )}
                     </Box>
                 )}
-                 {!showResult && onExit && (
+                 {!showResult && onExit && ( 
                     <Button variant="outlined" color="secondary" onClick={handleExitRequest} style={{ marginTop: '20px', display: 'block' }}>
                         Esci dal Gioco
                     </Button>
