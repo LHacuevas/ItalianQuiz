@@ -1,7 +1,7 @@
 // firebaseFunctions.ts
 import { collection, query, where, getDocs, addDoc, updateDoc, doc, serverTimestamp, Timestamp, setDoc, DocumentData, WhereFilterOp, Query, arrayUnion } from 'firebase/firestore';
 import { db } from './firebase';
-import { Usuario, Respuesta, RegCorrige } from './firebaseInterfaces';
+import { Usuario, Respuesta, RegCorrige, GameSessionResult } from './firebaseInterfaces';
 import Papa from 'papaparse'; // Necesitarás instalar papaparse: npm install papaparse
 import { Paragraph, ParagraphQuestion, Question, RegImpiccato, RegQuote, RegTyping } from '../MyTypes';
 import { questionsCSV } from '../questionGPT4o';
@@ -275,6 +275,37 @@ export const fetchRespuestas = async (idUsuario: string): Promise<Respuesta[]> =
     console.log("respuestas leidas: " + respuestasData.length);
     return respuestasData;
 };
+
+export const fetchAnsweredQuestionIdsGroupedByType = async (userId: string): Promise<Record<string, Set<string>>> => {
+    if (process.env.REACT_APP_USE_DATABASE === 'false') {
+        console.log("Modalità offline: impossibile recuperare ID domande risposte.");
+        return {};
+    }
+
+    const answeredQuestionsMap: Record<string, Set<string>> = {};
+    try {
+        const respuestasRef = collection(db, 'respuestas');
+        const q = query(respuestasRef, where('idUsuario', '==', userId));
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach(doc => {
+            const respuesta = doc.data() as Respuesta;
+            // Assicurati che tipoPregunta e idPregunta esistano e non siano stringhe vuote
+            if (respuesta.tipoPregunta && typeof respuesta.tipoPregunta === 'string' && respuesta.tipoPregunta.trim() !== "" &&
+                respuesta.idPregunta && typeof respuesta.idPregunta === 'string' && respuesta.idPregunta.trim() !== "") {
+                if (!answeredQuestionsMap[respuesta.tipoPregunta]) {
+                    answeredQuestionsMap[respuesta.tipoPregunta] = new Set<string>();
+                }
+                answeredQuestionsMap[respuesta.tipoPregunta].add(respuesta.idPregunta);
+            }
+        });
+        console.log(`Recuperati ID domande risposte raggruppati per tipo per utente ${userId}:`, answeredQuestionsMap);
+    } catch (error) {
+        console.error("Errore durante il recupero degli ID delle domande risposte: ", error);
+    }
+    return answeredQuestionsMap;
+};
+
 // Función para limpiar las claves del objeto
 function cleanObjectKeys(obj: Record<string, any>): Record<string, any> {
     return Object.keys(obj).reduce((acc, key) => {
@@ -404,3 +435,22 @@ export function parseCadenaCSV<T>(csv: string): T[] {
         }, {} as T);
     });
 }
+
+export const saveGameSessionResult = async (result: GameSessionResult): Promise<void> => {
+    if (process.env.REACT_APP_USE_DATABASE === 'false') {
+        console.log("Modalità offline: Risultato sessione di gioco non salvato in Firestore.", result);
+        return;
+    }
+    try {
+        const resultWithTimestamp = {
+            ...result,
+            timestamp: serverTimestamp() // Assicura che il timestamp sia quello del server
+        };
+        await addDoc(collection(db, "gameSessionResults"), resultWithTimestamp);
+        console.log("Risultato sessione di gioco salvato:", resultWithTimestamp);
+    } catch (e) {
+        console.error("Errore durante il salvataggio del risultato della sessione di gioco: ", e);
+        // Considera se rilanciare l'errore o gestirlo in modo specifico
+        // throw e;
+    }
+};

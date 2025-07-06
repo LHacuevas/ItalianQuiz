@@ -18,19 +18,23 @@ import Checkbox from '@mui/material/Checkbox';
 import { Paragraph, ParagraphQuestion, QuizParams } from './MyTypes.js';
 //import { paragraphsCSV, paragraphsQuestionsCSV } from './questionParrafo.js';
 import ResponsiveCard from './components/ResponsiveCard';
-import { Respuesta } from "./firebase/firebaseInterfaces";
-import { guardarRespuesta, fetchRespuestas, fetchParrafo, fetchParrafoSub } from './firebase/firebaseFunctions';
+import { Respuesta, GameSessionResult } from "./firebase/firebaseInterfaces";
+import { guardarRespuesta, fetchParrafo, fetchParrafoSub, saveGameSessionResult, fetchAnsweredQuestionIdsGroupedByType } from './firebase/firebaseFunctions';
 import QuestionComponent from './components/ParagraphQuestion';
+import { Typography, Box } from '@mui/material'; // Aggiunto per UI conteggi
 
 const ItalianLearningApp: React.FC<QuizParams> = ({
     numQuestions = 3,
     name = 'anonymous',
     onlyOptionQuestions = false,
     difficulty = 'B1',
-    usuario = null
+    usuario = null,
+    onExit,
+    saveResults = true, // Valore di default
+    includePreviouslyAnswered = false // Valore di default
 }) => {
     
-    const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
+    // const [respuestas, setRespuestas] = useState<Respuesta[]>([]); // Non più usato direttamente per il fetch iniziale
     const [todosParagraphs, setTodosParagraphs] = useState<Paragraph[]>([]);
     const [todosQuestions, setTodosQuestions] = useState<ParagraphQuestion[]>([]);
 
@@ -49,76 +53,97 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     const [timer, setTimer] = useState(60);
     const [quizFinished, setQuizFinished] = useState(false);
     const [reviewMode, setReviewMode] = useState(false);
-    const [preguntasQuedan, setPreguntasQuedan] = useState(0);
+    // const [preguntasQuedan, setPreguntasQuedan] = useState(0); // Sostituito da paragraphsAvailableToPlay
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    
-    useEffect(() => {      
-        const loadRespuestas = async () => {
-            try {
-                const respuestasData = await fetchRespuestas(usuario?.id??'sense');
-                setRespuestas(respuestasData);
-            } catch (error) {
-                console.error('Errore nel recupero delle parole:', error);
-            }
-        };
-        loadRespuestas();
-    }, [usuario]);
 
-    // Carica paragrafi e domande
+    // Stati per i conteggi dei paragrafi
+    const [totalParagraphsInDB, setTotalParagraphsInDB] = useState(0);
+    const [possibleParagraphsForCriteria, setPossibleParagraphsForCriteria] = useState(0); // Paragrafi che matchano difficoltà (se applicabile)
+    const [answeredParagraphsForCriteriaCount, setAnsweredParagraphsForCriteriaCount] = useState(0);
+    const [paragraphsAvailableToPlay, setParagraphsAvailableToPlay] = useState(0);
+
     useEffect(() => {
-        const loadData = async () => {
+        const loadAndFilterData = async () => {
             setLoading(true);
+            setError(null);
             try {
-                const [fetchedParagraphs, fetchedQuestions] = await Promise.all([
-                    fetchParrafo(),
-                    fetchParrafoSub()
-                ]);
-                setTodosParagraphs(fetchedParagraphs);
-                setTodosQuestions(fetchedQuestions);
-                setError(null);
+                // 1. Carica tutti i paragrafi e le loro domande (una sola volta se non già caricati)
+                let currentTodosParagraphs = todosParagraphs;
+                let currentTodosQuestions = todosQuestions;
+
+                if (currentTodosParagraphs.length === 0) {
+                    currentTodosParagraphs = await fetchParrafo();
+                    setTodosParagraphs(currentTodosParagraphs);
+                    setTotalParagraphsInDB(currentTodosParagraphs.length);
+                }
+                if (currentTodosQuestions.length === 0) {
+                    currentTodosQuestions = await fetchParrafoSub();
+                    setTodosQuestions(currentTodosQuestions);
+                }
+
+                // 2. Recupera ID dei paragrafi già risposti dall'utente
+                let answeredParagraphIds = new Set<string>();
+                if (usuario?.id && process.env.REACT_APP_USE_DATABASE === 'true') {
+                    const answeredMap = await fetchAnsweredQuestionIdsGroupedByType(usuario.id);
+                    answeredParagraphIds = answeredMap['PR'] || new Set<string>(); // 'PR' per Paragrafo
+                }
+
+                // 3. Filtra paragrafi per difficoltà (se applicabile - attualmente i paragrafi non hanno difficoltà)
+                // Per ora, tutti i paragrafi caricati sono considerati "possibili"
+                const paragraphsMatchingCriteria = [...currentTodosParagraphs]; // Copia per evitare modifiche all'originale
+                setPossibleParagraphsForCriteria(paragraphsMatchingCriteria.length);
+
+                // 4. Calcola quanti di questi sono già stati risposti
+                const answeredAmongCriteria = paragraphsMatchingCriteria.filter(p => answeredParagraphIds.has(p.id.toString()));
+                setAnsweredParagraphsForCriteriaCount(answeredAmongCriteria.length);
+
+                // 5. Determina il pool di paragrafi da cui scegliere
+                let poolOfParagraphs: Paragraph[];
+                if (includePreviouslyAnswered) {
+                    poolOfParagraphs = [...paragraphsMatchingCriteria];
+                } else {
+                    poolOfParagraphs = paragraphsMatchingCriteria.filter(p => !answeredParagraphIds.has(p.id.toString()));
+                }
+                setParagraphsAvailableToPlay(poolOfParagraphs.length);
+
+                // 6. Seleziona i paragrafi per la sessione corrente
+                const shuffledPool = poolOfParagraphs.sort(() => 0.5 - Math.random());
+                const sessionParagraphs = shuffledPool.slice(0, Math.min(numQuestions ?? 1, poolOfParagraphs.length)); // Assicura di non chiedere più del disponibile
+                setParagraphs(sessionParagraphs);
+
+                // Filtra le domande (sub-questions) corrispondenti ai paragrafi selezionati per la sessione
+                const selectedParagraphIds = sessionParagraphs.map(p => p.id);
+                const sessionSubQuestions = currentTodosQuestions.filter(q => selectedParagraphIds.includes(q.paragraphId));
+                setQuestions(sessionSubQuestions);
+
+                // Resetta stati per la nuova sessione
+                setUserAnswers({});
+                setStartTime(Date.now());
+                setCurrentParagraphIndex(0);
+                setScore(0);
+                setShowResults(false);
+                setQuizFinished(false);
+                setTimer(60);
+
             } catch (err) {
-                setError('Errore nel caricamento dei dati. Per favore, riprova.');
-                console.error('Errore nel recupero dei dati:', err);
+                console.error('Errore nel caricamento o filtraggio dei dati per Parrafo:', err);
+                setError('Errore nel caricamento dei paragrafi. Riprova.');
             } finally {
                 setLoading(false);
             }
         };
-        loadData();
-    }, []);
-    // Filtra e seleziona paragrafi e domande
-    useEffect(() => {
-        if (todosParagraphs.length > 0) {
-            let availableParagraphs = [...todosParagraphs];
-            if (respuestas.length > 0) {
-                // Filtra i paragrafi non ancora risposti
-                const respuestasIds = respuestas.map(r => r.idPregunta);
-                availableParagraphs = availableParagraphs.filter(p => !respuestasIds.includes(p.id));
-            }
-            setPreguntasQuedan(availableParagraphs.length);
-            console.log("Quedan preguntas: ", availableParagraphs.length);
-            // Seleziona casualmente i paragrafi non risposti
-            const filteredParagraphs = availableParagraphs
-                .sort(() => 0.5 - Math.random())
-                .slice(0, numQuestions);
-            setParagraphs(filteredParagraphs);
 
-            // Filtra le domande corrispondenti ai paragrafi selezionati
-            const selectedParagraphIds = filteredParagraphs.map(p => p.id);
-            const filteredQuestions = todosQuestions.filter(q => selectedParagraphIds.includes(q.paragraphId));
-            setQuestions(filteredQuestions);
+        loadAndFilterData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [numQuestions, difficulty, includePreviouslyAnswered, usuario?.id]); // Nota: difficulty non è usata per filtrare i paragrafi attualmente
 
-            setUserAnswers({});
-            setStartTime(Date.now());
-            setCurrentParagraphIndex(0);
-        }
-    }, [todosParagraphs, todosQuestions, respuestas]);
 
     const currentParagraph = paragraphs[currentParagraphIndex];
     const currentQuestions = questions.filter(q => q.paragraphId === currentParagraph?.id);
 
     useEffect(() => {
-        if (!showResults && !quizFinished) {
+        if (!showResults && !quizFinished && currentParagraph) { // Aggiunto currentParagraph per evitare errori se non ancora caricato
             const countdown = setInterval(() => {
                 setTimer((prevTimer) => {
                     if (prevTimer === 1) {
@@ -170,51 +195,82 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                 correctAnswers++;
                 respuesta.correcta = true;
             } else respuesta.correcta = false;
-            guardarRespuesta(respuesta);
+            if (saveResults && usuario?.id) { // Condiziona il salvataggio della singola risposta
+                guardarRespuesta(respuesta);
+            }
         });
 
         setScore(prevScore => prevScore + correctAnswers);
-        setTotalAnsweredQuestions(prev => prev + currentQuestions.length);
+        setTotalAnsweredQuestions(prev => prev + currentQuestions.length); // Questo conta i blank, non i paragrafi
         setShowResults(true);
     }
 
     const handleNextParagraph = () => {
         if (reviewMode) return;
-        if (!showResults) {
+        if (!showResults && currentParagraph) { // Assicurati che ci sia un currentParagraph prima di verificare
             handleVerify();
         }
         setCurrentParagraphIndex(prev => {
             const nextIndex = prev + 1;
-            if (nextIndex >= numQuestions) {
+            if (nextIndex >= paragraphs.length) { // Usa paragraphs.length (paragrafi della sessione)
                 setQuizFinished(true);
                 setEndTime(Date.now());
-                saveResult();
+                // saveResult sarà chiamato da useEffect dipendente da quizFinished
                 return prev;
             } else {
                 setShowResults(false);
-                //setUserAnswers({});
                 setTimer(60);
                 return nextIndex;
             }
         });
     };
 
-    const saveResult = () => {
-        const result = {
-            name,
-            score,
-            totalQuestions: totalAnsweredQuestions,
-            difficulty,
-            date: new Date().toLocaleString(),
-            userAnswers: userAnswers,
-            paragraphs: paragraphs,
-            questions: questions
-        };
-        localStorage.setItem('quizResult', JSON.stringify(result));
-        console.log('Risultato salvato:', result);
-    };
+    // useEffect per chiamare saveResult quando quizFinished e saveResults sono true
+    useEffect(() => {
+        if (quizFinished && saveResults) {
+            if (!usuario || !usuario.id) {
+                console.warn("Salvataggio risultato sessione (Parrafo): ID utente non disponibile.");
+                const localResult = { name, score, totalAnsweredQuestions, difficulty, date: new Date().toLocaleString(), timeTakenSeconds: startTime && endTime ? (endTime - startTime) / 1000 : undefined, };
+                console.log('Risultato sessione Parrafo (locale, utente non definito):', localResult);
+                localStorage.setItem('paragraphReviewData', JSON.stringify({ userAnswers, paragraphs, questions }));
+                return;
+            }
+
+            const gameSession: GameSessionResult = {
+                userId: usuario.id,
+                gameType: 'ParagraphCompletion',
+                timestamp: new Date(),
+                difficulty: difficulty, // difficulty della sessione generale
+                score: score, // Punteggio basato sui blank corretti
+                totalPossibleScore: totalAnsweredQuestions, // Totale blanks presentati
+                itemsPlayed: paragraphs.length, // Numero di paragrafi effettivamente giocati
+                timeTakenSeconds: startTime && endTime ? Math.round((endTime - startTime) / 1000) : undefined,
+                gameSpecificDetails: {
+                    useDropdown: useDropdown,
+                    includePreviouslyAnswered: includePreviouslyAnswered,
+                    // paragraphIds: paragraphs.map(p => p.id), // Opzionale: ID dei paragrafi giocati
+                }
+            };
+            saveGameSessionResult(gameSession);
+            console.log('Risultato sessione Parrafo inviato a Firebase:', gameSession);
+
+            const reviewData = { userAnswers, paragraphs, questions };
+            localStorage.setItem('paragraphReviewData', JSON.stringify(reviewData));
+
+        } else if (quizFinished && !saveResults) {
+            console.log("Completamento Paragrafo terminato, risultati non salvati per scelta dell'utente.");
+            // Salva comunque i dati per la review locale se necessario
+            const reviewData = { userAnswers, paragraphs, questions };
+            localStorage.setItem('paragraphReviewData', JSON.stringify(reviewData));
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [quizFinished, saveResults]);
+
+
     const startReview = () => {
-        const savedResult = JSON.parse(localStorage.getItem('quizResult') || '{}');
+        // Prova a caricare da 'paragraphReviewData'. Se non c'è, prova col vecchio 'quizResult' per retrocompatibilità.
+        const reviewDataString = localStorage.getItem('paragraphReviewData') || localStorage.getItem('quizResult');
+        const savedResult = JSON.parse(reviewDataString || '{}');
         setParagraphs(savedResult.paragraphs || []);
         setQuestions(savedResult.questions || []);
         setUserAnswers(savedResult.userAnswers || {});
@@ -278,9 +334,14 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                     <Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700">
                         Riprova con Nuove Domande
                     </Button>
-                    <Button onClick={startReview} className="w-full bg-blue-500 hover:bg-blue-700 mt-4">
+                    <Button onClick={startReview} className="w-full bg-blue-500 hover:bg-blue-700 mt-2">
                         Rivedi le risposte
                     </Button>
+                    {onExit && (
+                        <Button onClick={onExit} className="w-full bg-gray-500 hover:bg-gray-700 text-white mt-2">
+                            Torna al Menu Principale
+                        </Button>
+                    )}
                 </CardActions>
             </ResponsiveCard>
         );
@@ -316,9 +377,14 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                             </div>
                         );
                     })}
-                    <Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700 mt-4">
-                        Torna alla Pagina Iniziale
+                    <Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700 mt-4 mb-2">
+                        Pagina Iniziale (Ricarica)
                     </Button>
+                    {onExit && (
+                        <Button onClick={onExit} className="w-full bg-gray-500 hover:bg-gray-700 text-white">
+                            Torna al Menu Principale
+                        </Button>
+                    )}
                 </CardContent>
             </ResponsiveCard>
         );
@@ -389,6 +455,13 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
                         ))}
                         <Button onClick={handleNextParagraph} className="mt-4 bg-green-500 hover:bg-green-700">
                             {currentParagraphIndex === numQuestions - 1 ? "Termina il quiz" : "Prossimo paragrafo"}
+                        </Button>
+                    </div>
+                )}
+                {onExit && !showResults && !quizFinished && (
+                    <div className="flex justify-center mt-4">
+                        <Button onClick={onExit} variant="outlined" size="small">
+                            Torna al Menu Principale
                         </Button>
                     </div>
                 )}

@@ -327,6 +327,17 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRet
     return userGlobalLevel || localStorage.getItem('livello') || 'B1';
   });
 
+  // Nuovi stati per le opzioni globali
+  const [saveResultsGlobally, setSaveResultsGlobally] = useState<boolean>(() => {
+    const item = localStorage.getItem('saveResultsGlobally');
+    return item ? JSON.parse(item) : true; // Default a true
+  });
+
+  const [includeAnsweredQuestions, setIncludeAnsweredQuestions] = useState<boolean>(() => {
+    const item = localStorage.getItem('includeAnsweredQuestions');
+    return item ? JSON.parse(item) : false; // Default a false
+  });
+
   const [usuarioActividad, setUsuarioActividad] = useState<Usuario | null>(null);
 
   useEffect(() => {
@@ -362,6 +373,15 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRet
     // Save current 'livello' selection to localStorage
     localStorage.setItem('livello', livello);
   }, [livello]);
+
+  // useEffect per salvare i nuovi stati in localStorage
+  useEffect(() => {
+    localStorage.setItem('saveResultsGlobally', JSON.stringify(saveResultsGlobally));
+  }, [saveResultsGlobally]);
+
+  useEffect(() => {
+    localStorage.setItem('includeAnsweredQuestions', JSON.stringify(includeAnsweredQuestions));
+  }, [includeAnsweredQuestions]);
 
   const [componenteSelezionato, setComponenteSelezionato] = useState<string | null>(null);
 
@@ -444,24 +464,67 @@ const AppIniziale: React.FC<AppInizialeProps> = ({ email, userGlobalLevel, onRet
     setComponenteSelezionato(componente);
   };
 
+  const handleGoToMainMenu = () => {
+    setComponenteSelezionato(null);
+  };
+
   if (componenteSelezionato === 'quiz') {
-    return <QuizItaliano numQuestions={ numDomande } name = { nome } onlyOptionQuestions = { soloOpzioni } difficulty = { livello } usuario = { usuarioActividad } />;
+    return <QuizItaliano
+            numQuestions={numDomande}
+            name={nome}
+            onlyOptionQuestions={soloOpzioni}
+            difficulty={livello}
+            usuario={usuarioActividad}
+            onExit={handleGoToMainMenu}
+            saveResults={saveResultsGlobally}
+            includePreviouslyAnswered={includeAnsweredQuestions}
+            />;
   }
 
   if (componenteSelezionato === 'learning') {
-    return <ItalianLearningApp numQuestions={ numDomande } name = { nome } onlyOptionQuestions = { soloOpzioni } difficulty = { livello } usuario = { usuarioActividad } />;
+    return <ItalianLearningApp
+            numQuestions={numDomande}
+            name={nome}
+            onlyOptionQuestions={soloOpzioni}
+            difficulty={livello}
+            usuario={usuarioActividad}
+            onExit={handleGoToMainMenu}
+            saveResults={saveResultsGlobally}
+            includePreviouslyAnswered={includeAnsweredQuestions}
+            />;
   }
   if (componenteSelezionato === 'estad') {
+    // Nota: EstadisticasRespuestas potrebbe non aver bisogno di un pulsante "Esci" diretto se è inteso come una schermata veloce.
+    // Se necessario, si può aggiungere onExit anche qui. Per ora, lo lascio com'è.
     return <EstadisticasRespuestas idUsuario={usuarioActividad?.id??'sense'} />;
   }
   if (componenteSelezionato === 'impiccato') {
-     return <HangmanGame usuario={usuarioActividad} />; 
+     return <HangmanGame
+            usuario={usuarioActividad}
+            onExit={handleGoToMainMenu}
+            saveResults={saveResultsGlobally} // Anche se impiccato non salva sessioni, la prop potrebbe servire per coerenza o future necessità
+            includePreviouslyAnswered={includeAnsweredQuestions}
+            difficulty={livello} // Passiamo anche difficulty se serve per filtrare le parole
+            />;
   }
   if (componenteSelezionato === 'error') {
-    return <ItalianErrorDetectionGame level={livello} />;
+    return <ItalianErrorDetectionGame
+            level={livello}
+            usuario={usuarioActividad}
+            onExit={handleGoToMainMenu}
+            saveResults={saveResultsGlobally}
+            includePreviouslyAnswered={includeAnsweredQuestions}
+            />;
   }
   if (componenteSelezionato === 'typing') {
-    return <ItalianTypingTutor />
+    // Typing tutor non ha un concetto di "domande già risposte" allo stesso modo,
+    // ma passiamo le props per coerenza e per il salvataggio.
+    return <ItalianTypingTutor
+            usuario={usuarioActividad}
+            onExit={handleGoToMainMenu}
+            saveResults={saveResultsGlobally}
+            // includePreviouslyAnswered non molto rilevante qui
+            />;
   }
   return (
     <Card className= "w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100" >
@@ -528,8 +591,46 @@ label = {
       </span>
       </div>
           }
-className = "mb-4"
+className = "mb-2" // Ridotto mb per fare spazio
   />
+   <FormControlLabel
+            control={
+              <Checkbox
+                checked={saveResultsGlobally}
+                onChange={(e) => setSaveResultsGlobally(e.target.checked)}
+                name="saveResultsGlobally"
+                color="primary"
+              />
+            }
+            label={
+              <div className="flex items-center">
+                Salva risultati sessione
+                <span className="ml-2 cursor-pointer" title="Se deselezionato, i risultati di questa sessione non verranno salvati su Firebase.">
+                  ℹ️
+                </span>
+              </div>
+            }
+            className="mb-2"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={includeAnsweredQuestions}
+                onChange={(e) => setIncludeAnsweredQuestions(e.target.checked)}
+                name="includeAnsweredQuestions"
+                color="primary"
+              />
+            }
+            label={
+              <div className="flex items-center">
+                Includi domande già risposte
+                <span className="ml-2 cursor-pointer" title="Se selezionato, le domande a cui hai già risposto in passato potrebbero riapparire.">
+                  ℹ️
+                </span>
+              </div>
+            }
+            className="mb-4"
+          />
   <Button onClick={ () => handleStart('quiz') } className = "w-full bg-blue-500 hover:bg-blue-700 text-white mb-2" >
     Quiz a Scelta Multipla
       </Button>

@@ -3,7 +3,8 @@ import { Input, Button } from "@mui/material"
 import { Card, CardContent, CardHeader, Typography  } from "@mui/material"
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import { RegTyping } from './MyTypes';
-import { fetchTyping } from './firebase/firebaseFunctions';
+import { fetchTyping, saveGameSessionResult } from './firebase/firebaseFunctions'; // Importato saveGameSessionResult
+import { Usuario, GameSessionResult } from './firebase/firebaseInterfaces'; // Importato Usuario e GameSessionResult
 //import italianPhrases from '@/italian_phrases.json'
 
 type Lesson = {
@@ -20,7 +21,14 @@ type Result = {
   realAccuracy: number;
 };
 
-export default function ItalianTypingTutor() {
+interface ItalianTypingTutorProps {
+  onExit?: () => void;
+  usuario?: Usuario | null;
+  saveResults?: boolean;
+  includePreviouslyAnswered?: boolean; // Generalmente non applicabile al typing tutor in termini di "testi già digitati"
+}
+
+export default function ItalianTypingTutor({ onExit, usuario, saveResults, includePreviouslyAnswered }: ItalianTypingTutorProps) {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [input, setInput] = useState('');
@@ -113,6 +121,9 @@ export default function ItalianTypingTutor() {
   };
 
   const finishExercise = () => {
+    if (results.length > 0) {
+      saveTypingSessionResults(); // Salva prima di mostrare i risultati
+    }
     setShowResults(true);
   };
 
@@ -125,11 +136,60 @@ export default function ItalianTypingTutor() {
     resetLesson();
   };
 
+  const saveTypingSessionResults = () => {
+    if (!saveResults) {
+        console.log("Salvataggio sessione Dattilografia saltato per scelta dell'utente.");
+        return;
+    }
+    if (!usuario || !usuario.id || results.length === 0) {
+      console.log("Salvataggio sessione Dattilografia: Utente non loggato o nessun risultato da salvare.");
+      return;
+    }
+
+    const averageWpm = results.reduce((acc, r) => acc + r.wpm, 0) / results.length;
+    const averageAccuracy = results.reduce((acc, r) => acc + r.accuracy, 0) / results.length;
+    const averageRealAccuracy = results.reduce((acc, r) => acc + r.realAccuracy, 0) / results.length;
+    // Il livello e il tema potrebbero variare se le lezioni sono miste.
+    // Per semplicità, prendiamo il tema e il livello della prima lezione completata o dell'ultima.
+    // Oppure si potrebbe decidere di non salvare un tema/livello specifico per la sessione aggregata.
+    const representativeTheme = results[0]?.theme || 'Misto';
+    const representativeLevel = results[0]?.level || 'Misto';
+
+
+    const gameSession: GameSessionResult = {
+      userId: usuario.id,
+      gameType: 'TypingTutor',
+      timestamp: new Date(), // Sarà sovrascritto dal serverTimestamp
+      difficulty: representativeLevel, // O un modo per determinare il livello generale
+      itemsPlayed: results.length, // Numero di frasi completate
+      gameSpecificDetails: {
+        wpm: Math.round(averageWpm),
+        accuracy: Math.round(averageAccuracy),
+        realAccuracy: Math.round(averageRealAccuracy),
+        theme: representativeTheme,
+        // Potremmo anche salvare tutti i risultati individuali se necessario
+        // individualResults: results
+      }
+    };
+    saveGameSessionResult(gameSession);
+    console.log("Risultati sessione Dattilografia inviati a Firebase:", gameSession);
+  };
+
+  const handleExitRequest = () => {
+    // Salva solo se ci sono risultati E non sono ancora stati mostrati/salvati tramite finishExercise
+    if (results.length > 0 && !showResults) {
+      saveTypingSessionResults();
+    }
+    if (onExit) {
+      onExit();
+    }
+  };
+
   if (showResults) {
+    // I risultati sono già stati salvati da finishExercise, quindi non serve salvarli di nuovo qui.
     return (
       <Card className="w-full max-w-3xl mx-auto">
-        <CardHeader title="Risultati dell'Esercizio">
-        </CardHeader>
+        <CardHeader title="Risultati dell'Esercizio" />
         <CardContent>
           <Table>
             <TableHead>
@@ -153,7 +213,12 @@ export default function ItalianTypingTutor() {
               ))}
             </TableBody>
           </Table>
-          <Button onClick={restartExercise} className="mt-4">Ricomincia Esercizio</Button>
+          <Button onClick={restartExercise} className="mt-4" sx={{ mr: 1 }}>Ricomincia Esercizio</Button>
+          {onExit && (
+            <Button onClick={handleExitRequest} className="mt-4" variant="contained" color="secondary">
+              Torna al Menu Principale
+            </Button>
+          )}
         </CardContent>
       </Card>
     );
@@ -166,6 +231,13 @@ export default function ItalianTypingTutor() {
           <Typography variant="h6">
             Dattilografia Italiano - {lessons[currentLessonIndex]?.theme} (Nivel {lessons[currentLessonIndex]?.level})
           </Typography>
+        }
+        action={
+          onExit && !isCompleted && (
+            <Button onClick={handleExitRequest} variant="outlined" size="small">
+              Esci
+            </Button>
+          )
         }
       />      
       <CardContent>
@@ -194,7 +266,12 @@ export default function ItalianTypingTutor() {
             <div className="space-x-2">
               <Button onClick={repeatLesson}>Ripeti frase</Button>
               <Button onClick={nextLesson}>Lezione successiva</Button>
-              <Button onClick={finishExercise}>Termina esercizio</Button>
+              <Button onClick={finishExercise} sx={{ mr: 1 }}>Termina esercizio e Vedi Risultati</Button>
+              {onExit && (
+                <Button onClick={onExit} variant="contained" color="secondary" size="small">
+                  Torna al Menu
+                </Button>
+              )}
             </div>
           </div>
         )}
