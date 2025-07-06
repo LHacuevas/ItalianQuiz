@@ -3,40 +3,43 @@ id,nivel,fraseCompleta,idsPalabrasErroneas,palabrasErroneas,correcciones,explica
 1,A2,"Io ho mangiato una mela ieri mattina.", , , ,"La frase è corretta. Con l'ausiliare 'avere', il participio passato di solito non concorda con un oggetto diretto che segue, ma può farlo opzionalmente.",Verbi
 4,B1,"Tu hai detto che loro arriverebbero presto ma essi non sono ancora qui.",6|9,arriverebbero|essi,sarebbero arrivati|loro,"'Arriverebbero' dovrebbe essere 'sarebbero arrivati' (futuro nel passato).|'Essi' è formale e meno comune, 'loro' è sufficiente.",Verbi|Pronomi
 6,B1,"Se avessi studiato di più, avresti passato l'esame.", , , ,"La frase è corretta. Il verbo 'passare un esame' usa l'ausiliare 'avere'.",Verbi
-9,A2,"Lei è andato al cinema con i miei amici sabato scorso.",3,andato,andata,"Se il soggetto 'Io' è femminile, la parola 'andato' (parola 3) è errata e deve concordare: 'andata'. Se il soggetto è maschile, la frase è corretta.",Verbi
+9,A2,"Io sono andato al cinema con i miei amici sabato scorso.",2,sono andato,sono andata,"Se il soggetto è femminile, il participio passato deve concordare: 'andata'.",Verbi
 10,B1,"Dopo che avrò finito i compiti, ti chiamerò.", , , ,"La frase è corretta. 'Avrò finito i compiti' è una forma naturale e completa.",Verbi
-12,A2,"Loro vanno a scuola con il bus ogni giorno.",5|6,con|il,in|,"In italiano, si usa 'in bus' invece di 'con il bus' (parole 5 e 6).",Preposizioni
-15,A2,"Il gatto dorme sul il divano.",5,il,,"'sul il' (parole 4 e 5) è ridondante. 'Sul' è già la contrazione di 'su' + 'il'.",Preposizioni
+11,B2,"Se non fosse stato per il tuo aiuto, non ce l'avrei mai fatta.",11,l'avrei,l'avrei fatta,"L'espressione corretta è 'ce l'avrei fatta', non si può omettere 'fatta'.",Espressioni idiomatiche
+12,A2,"Loro vanno a scuola con il bus ogni giorno.",5,con il,in,"In italiano, si usa 'in bus' invece di 'con il bus'.",Preposizioni
+15,A2,"Il gatto dorme sul il divano.",3|4,sul il,sul,"'Sul' è già la contrazione di 'su' + 'il', quindi non serve ripetere 'il'.",Preposizioni
 19,B1,"Se l'avessi saputo prima, ti avrei avvertito.", , , ,"La frase è corretta. 'Avvertire' può significare 'informare' o 'mettere al corrente', simile ad 'avvisare'.",Vocabolario
-21,A2,"Io ho fame e voglio mangio una pizza.",6,mangio,mangiare,"Dopo 'voglio' si usa l'infinito, quindi 'mangio' (parola 6) dovrebbe essere 'mangiare'.",Verbi
-22,B1,"Se avrei tempo, andrei al cinema stasera.",2,avrei,avessi,"Nel periodo ipotetico della possibilità, la parola 'avrei' (parola 2) nella protasi è errata. Si usa il congiuntivo imperfetto: 'avessi'.",Verbi
-23,B2,"Nonostante che piove, usciremo per fare una passeggiata.",2|3,che|piove,piova,"Con 'nonostante' si usa il congiuntivo. L'espressione 'che piove' (parole 2 e 3) è errata. Dovrebbe essere 'piova' (senza 'che').",Congiunzioni|Verbi
-25,B1,"Ho visto Maria ieri e gli ho dato il tuo messaggio.",6,gli,le,"'gli' (parola 5) è un pronome maschile. Riferendosi a Maria (femminile), la forma corretta è 'le'.",Pronomi
-26,B2,"Benchè sia arrivato in ritardo, il professore le ha permesso di fare l'esame.",1,Benchè,Benché,"La parola 'Benchè' (parola 1) è scritta in modo errato. L'ortografia corretta è 'Benché' (con accento acuto).",Ortografia
-28,B1,"Se l'avrei saputo prima, non sarei venuto alla festa.",2,l'avrei,l'avessi,"Nel periodo ipotetico dell'irrealtà al passato, la parola 'l'avrei' (parola 2) nella protasi è errata. Si usa il congiuntivo trapassato: 'l'avessi'.",Verbi
-29,B2,"Mi sono accorto che avevo dimenticato il portafoglio solo dopo che sono uscito di casa.",12,sono,ero,"Per indicare un'azione anteriore ad un'altra nel passato ('mi sono accorto'), si usa il trapassato prossimo. 'sono uscito' (parole 12 e 13) è errato, dovrebbe essere 'ero uscito'.",Verbi
-30,A2,"Ieri ho andato al supermercato per comprare del latte.",2,ho,sono,"Il verbo 'andare' richiede l'ausiliare 'essere'. 'ho andato' (parole 2 e 3) è errato. La forma corretta è 'sono andato'.",Verbi
-31,B1,"Non ricordo dove ho messo le chiavi, le ho cercato dappertutto.",10,cercato,cercate,"Il participio passato 'cercato' (parola 10) deve concordare con il pronome oggetto diretto 'le' (riferito a 'chiavi', femminile plurale). Quindi, 'cercate'.",Verbi
-32,B2,"Se non fosse per il traffico, sarò già arrivato a casa.",7,sarò,sarei,"In un periodo ipotetico dell'irrealtà presente/futura, l'apodosi (frase principale) richiede il condizionale. 'sarò' (parola 7) è errato, dovrebbe essere 'sarei'.",Verbi
-33,A2,"Mia madre prepara il pranzo tutti giorni.",6,tutti,tutti i,"Manca l'articolo 'i' prima di 'giorni'. La parola 'tutti' (parola 6) da sola è errata in questo contesto. Deve essere 'tutti i'.",Articoli
-35,B2,"Qualora avrebbe bisogno di aiuto, non esiti a contattarmi.",2,avrebbe,avesse,"Con 'qualora' (che introduce una frase condizionale eventuale), si usa il congiuntivo. 'avrebbe' (parola 2) è errato, dovrebbe essere 'avesse'.",Verbi
-37,B1,"Mi piacerebbe di andare in vacanza in Grecia quest'estate.",3,di,∅,"Dopo il verbo 'piacerebbe' seguito da un altro verbo all'infinito, non si usa la preposizione 'di' (parola 3).",Preposizioni
-41,A2,"Io va al supermercato ogni settimana per comprare il cibo.",2,va,vado,"Il soggetto è 'Io' (prima persona singolare). Il verbo 'va' (parola 2) è terza persona singolare. La forma corretta è 'vado'.",Verbi
-42,B1,"Lei ha detto che non poteva venire alla festa perché era troppo occupato.",13,occupato,occupata,"L'aggettivo 'occupato' (parola 13) si riferisce a 'Lei' (soggetto femminile). Deve concordare in genere: 'occupata'.",Accordo di genere
-43,B2,"Se avrei saputo prima, avrei potuto aiutarti meglio.",2,avrei,avessi,"Nella protasi di un periodo ipotetico dell'irrealtà al passato, si usa il congiuntivo trapassato. 'avrei' (parola 2) è errato, dovrebbe essere 'avessi'.",Periodo ipotetico
-45,B1,"Ho visto un film interessante ieri sera, quale mi ha fatto riflettere molto.",8,quale,che,"'quale' (parola 8) come pronome relativo semplice è meno comune o inadatto qui. Si usa 'che'.",Pronomi relativi
-46,B2,"Nonostante avevo studiato molto, non ho superato l'esame.",2,avevo,avessi,"Dopo 'nonostante' (concessiva), si usa il congiuntivo. 'avevo' (parola 2) è errato, dovrebbe essere 'avessi'.",Congiuntivo
-47,A2,"Mia sorella è più grande di me, ma io sono più alto che lei.",13,che,di,"Nei comparativi di maggioranza/minoranza che confrontano due termini rispetto a una qualità, si usa 'di'. La parola 'che' (parola 13) è errata. 'Più alto di lei'.",Comparativi
+21,A2,"Io ho fame e voglio mangio una pizza.",6,mangio,mangiare,"Dopo 'voglio' si usa l'infinito, non il presente indicativo.",Verbi
+22,B1,"Se avrei tempo, andrei al cinema stasera.",2,avrei,avessi,"Nel periodo ipotetico della possibilità, si usa il congiuntivo imperfetto, non il condizionale.",Verbi
+23,B2,"Nonostante che piove, usciremo per fare una passeggiata.",2|3,che piove,piova,"Con 'nonostante' si usa il congiuntivo senza 'che'.",Congiunzioni|Verbi
+25,B1,"Ho visto Maria ieri e gli ho dato il tuo messaggio.",5,gli,le,"'Gli' è maschile, ma Maria è femminile, quindi si usa 'le'.",Pronomi
+26,B2,"Benchè sia arrivato in ritardo, il professore le ha permesso di fare l'esame.",1,Benchè,Benché,"'Benché' si scrive con l'accento sulla 'e'.",Ortografia
+28,B1,"Se l'avrei saputo prima, non sarei venuto alla festa.",2,l'avrei,l'avessi,"Nel periodo ipotetico dell'irrealtà al passato, si usa il congiuntivo trapassato.",Verbi
+29,B2,"Mi sono accorto che avevo dimenticato il portafoglio solo dopo che sono uscito di casa.",14,sono uscito,ero uscito,"In questo contesto, si usa il trapassato prossimo per indicare un'azione anteriore.",Verbi
+30,A2,"Ieri ho andato al supermercato per comprare del latte.",2,andato,sono andato,"'Andare' usa l'ausiliare 'essere', non 'avere'.",Verbi
+31,B1,"Non ricordo dove ho messo le chiavi, le ho cercato dappertutto.",10,cercato,cercate,"Il participio passato deve concordare con l'oggetto diretto femminile plurale 'le' (chiavi).",Verbi
+32,B2,"Se non fosse per il traffico, sarò già arrivato a casa.",8,sarò,sarei,"In un periodo ipotetico, la principale richiede il condizionale, non il futuro.",Verbi
+33,A2,"Mia madre prepara il pranzo tutti giorni.",5,tutti,tutti i,"Manca l'articolo 'i' prima di 'giorni'.",Articoli
+35,B2,"Qualora avrebbe bisogno di aiuto, non esiti a contattarmi.",2,avrebbe,avesse,"Con 'qualora' si usa il congiuntivo, non il condizionale.",Verbi
+37,B1,"Mi piacerebbe di andare in vacanza in Grecia quest'estate.",3,di,∅,"Dopo 'piacerebbe' non si usa 'di' prima dell'infinito.",Preposizioni
+41,A2,"Io va al supermercato ogni settimana per comprare il cibo.",2,va,vado,"'Va' è la terza persona singolare, ma il soggetto è 'Io' (prima persona singolare).",Verbi
+42,B1,"Lei ha detto che non poteva venire alla festa perché era troppo occupato.",11,occupato,occupata,"'Occupato' dovrebbe essere 'occupata' perché si riferisce a 'Lei' (femminile).",Accordo di genere
+43,B2,"Se avrei saputo prima, avrei potuto aiutarti meglio.",2,avrei,avessi,"In una frase ipotetica, si usa il congiuntivo trapassato 'avessi' invece del condizionale passato 'avrei'.",Periodo ipotetico
+44,A2,"Loro mangiano la pasta tutti i giorni, ma io non piace.",9|10,non piace,non mi piace,"Manca il pronome 'mi'. La forma corretta è 'non mi piace' per esprimere un gusto personale.",Verbi|Pronomi
+45,B1,"Ho visto un film interessante ieri sera, quale mi ha fatto riflettere molto.",7,quale,che,"'Quale' è usato per fare una scelta, mentre 'che' è il pronome relativo corretto in questo contesto.",Pronomi relativi
+46,B2,"Nonostante avevo studiato molto, non ho superato l'esame.",2,avevo,avessi,"Dopo 'nonostante' si usa il congiuntivo, quindi 'avessi' è la forma corretta.",Congiuntivo
+47,A2,"Mia sorella è più grande di me, ma io sono più alto che lei.",12,che,di,"Con i comparativi di maggioranza o minoranza, si usa 'di' invece di 'che'.",Comparativi
 48,B1,"Gli ho detto di non preoccuparsi, ma lui continua a essere ansioso.", , , ,"La frase è corretta. 'Gli ho detto' è una forma standard e concisa.",Pronomi
-49,B2,"Mi domando se sarebbe meglio partire domani invece che oggi.",4,sarebbe,sia,"Nelle interrogative indirette che esprimono dubbio, si preferisce il congiuntivo. 'sarebbe' (parola 4) è meno appropriato di 'sia'.",Congiuntivo
-51,B1,"Se avrei più tempo, studierei di più l'italiano.",2,avrei,avessi,"Nella protasi di un periodo ipotetico della possibilità, si usa il congiuntivo imperfetto. 'avrei' (parola 2) è errato, dovrebbe essere 'avessi'.",Periodo ipotetico
-52,B2,"L'ho visto mentre stavo andando al lavoro, ma non ho avuto il tempo di fermarmi.",13,di,per,"Con l'espressione 'avere tempo' seguita da un verbo all'infinito con valore finale, si usa 'per'. 'di fermarmi' (parole 13 e 14) è errato, dovrebbe essere 'per fermarmi'.",Preposizioni
+49,B2,"Mi domando se sarebbe meglio partire domani invece che oggi.",5,sarebbe,sia,"In una frase dubitativa indiretta, si preferisce il congiuntivo 'sia' al condizionale 'sarebbe'.",Congiuntivo
+50,A2,"Io e mia moglie andiamo in vacanza ogni estate, ma quest'anno non possiamo andare.",1|2,Io e,Mia moglie e io,"In italiano, per cortesia, si mette l'altra persona prima di se stessi.",Ordine delle parole
+51,B1,"Se avrei più tempo, studierei di più l'italiano.",2,avrei,avessi,"Nel periodo ipotetico della possibilità, si usa il congiuntivo imperfetto 'avessi' e non il condizionale 'avrei'.",Periodo ipotetico
+52,B2,"L'ho visto mentre stavo andando al lavoro, ma non ho avuto il tempo di fermarmi.",14,di fermarmi,per fermarmi,"Con il verbo 'avere' seguito da un sostantivo e un infinito, si usa 'per' invece di 'di'.",Preposizioni
 53,A2,"Ieri ho comprato un nuovo telefono, ma non funziona bene.", , , ,"La frase è corretta. 'Non funziona bene' è una espressione standard.",Avverbi
-54,B1,"Benchè fa freddo, voglio uscire per una passeggiata.",2,fa,faccia,"Dopo 'benché' (concessiva), si usa il congiuntivo. 'fa' (parola 2) è errato, dovrebbe essere 'faccia'.",Congiuntivo
-55,B2,"Mi ha chiesto di aiutarlo con il suo progetto, al quale sono molto interessato.",10|11,al|quale,a cui,"'a cui' è generalmente preferito e più comune in italiano moderno rispetto a 'al quale' (parole 9 e 10) in questo contesto.",Pronomi relativi
-56,A2,"Loro vanno spesso al cinema, ma io preferisco guardare film a casa.",10,film,i film,"Quando si parla di 'film' in senso generale come categoria, si usa l'articolo determinativo. 'film' (parola 10) da solo è errato qui. Dovrebbe essere 'i film'.",Articoli
+54,B1,"Benchè fa freddo, voglio uscire per una passeggiata.",2,fa,faccia,"Dopo 'benché' si usa il congiuntivo, quindi 'faccia' è la forma corretta.",Congiuntivo
+55,B2,"Mi ha chiesto di aiutarlo con il suo progetto, al quale sono molto interessato.",11|12,al quale,a cui,"'A cui' è più comune e naturale in italiano moderno rispetto a 'al quale' in questo contesto.",Pronomi relativi
+56,A2,"Loro vanno spesso al cinema, ma io preferisco guardare film a casa.",11,film,i film,"In italiano, quando si parla in generale, si usa l'articolo determinativo prima di 'film'.",Articoli
 57,B1,"Se avessi studiato di più, avresti passato l'esame facilmente.", , , ,"La frase è corretta. Il verbo 'passare un esame' usa l'ausiliare 'avere'.",Verbi
-58,B2,"Non ostante le difficoltà, siamo riusciti a completare il progetto in tempo.",1|2,Non|ostante,Nonostante,"'Non ostante' (parole 1 e 2) è un errore di ortografia. La forma corretta è 'Nonostante', tutto attaccato.",Ortografia
-59,A2,"Lei è andato al mercato per comprare le verdure fresche.",3,andato,andata,"Se il soggetto 'Io' è femminile, la parola 'andato' (parola 3) è errata e deve concordare: 'andata'. Se il soggetto è maschile, la frase è corretta.",Accordo di genere
+58,B2,"Non ostante le difficoltà, siamo riusciti a completare il progetto in tempo.",1|2,Non ostante,Nonostante,"'Nonostante' è una parola unica in italiano, non va separata.",Ortografia
+59,A2,"Io sono andato al mercato per comprare le verdure fresche.",2,sono andato,sono andata,"Se il soggetto 'Io' si riferisce a una donna, il participio passato deve concordare: 'andata'.",Accordo di genere
 60,B1,"Mi piacerebbe sapere cosa pensi di questo libro che ti ho prestato.", , , ,"La frase è corretta. 'Cosa' è comunemente usato al posto di 'che cosa' nelle domande indirette.",Pronomi interrogativi
 `
