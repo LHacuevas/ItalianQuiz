@@ -85,9 +85,11 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         };
 
         const fetchSentences = async () => {
-            const loadedSentences = await loadSentencesFromCSV(level);
+            let loadedSentences = await loadSentencesFromCSV(level);
+            // ORDINA LE FRASI PER ID NUMERICO CRESCENTE
+            loadedSentences.sort((a, b) => parseInt(a.id) - parseInt(b.id));
             setSentences(loadedSentences);
-            console.log("Frasi caricate:", loadedSentences.length);
+            console.log("Frasi caricate e ordinate per ID:", loadedSentences.length);
         };
 
         fetchSentences();
@@ -106,11 +108,11 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
     }, [timeLeft, isGameOver, currentSentence, showResult]); // isCurrentSentenceNaturallyCorrect is implicitly handled by currentSentence check
 
     // New useEffect to handle naturally correct sentences immediately
-    useEffect(() => {
-        if (currentSentence && currentSentence.isNaturallyCorrect) {
-            setShowResult(true);
-        }
-    }, [currentSentence]);
+// useEffect(() => {
+//     if (currentSentence && currentSentence.isNaturallyCorrect) {
+//         setShowResult(true);
+//     }
+// }, [currentSentence]);
 
     useEffect(() => {
         if (showResult && currentSentence) {
@@ -122,6 +124,18 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
             return () => clearInterval(flipInterval);
         }
     }, [showResult, currentSentence]);
+
+    useEffect(() => {
+        // Quando l'indice della frase cambia (e non siamo al primo render con sentences vuoto), 
+        // resetta lo stato per la nuova domanda.
+        // Verifica che sentences esista e abbia elementi per evitare reset al montaggio iniziale prima del caricamento.
+        if (sentences.length > 0) {
+            setShowResult(false);
+            setSelectedWords([]);
+            setFlipWords([]);
+            setTimeLeft(30);
+        }
+    }, [currentSentenceIndex, sentences]); // Aggiunto sentences alle dipendenze per il controllo iniziale
 
     const handleWordClick = (wordId: number) => {
         setSelectedWords(prev =>
@@ -156,20 +170,47 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
     };
 
     const nextSentence = () => {
+        const currentIdNumeric = currentSentence ? parseInt(currentSentence.id) : -1;
+        
+        // Aggiungi l'ID della frase corrente (se esiste) a quelle usate PRIMA di cercare la prossima
         if (currentSentence) {
+            // È importante che questo aggiornamento di stato sia processato prima che la prossima frase sia effettivamente renderizzata
+            // per evitare di selezionare la stessa frase se l'utente clicca molto velocemente.
+            // React gestisce questo in batch, ma per essere sicuri, potremmo passare usedSentenceIds aggiornato
+            // direttamente a una funzione di ricerca se necessario, o fare affidamento sull'aggiornamento di stato.
+            // Per ora, presumiamo che l'aggiornamento di stato sia sufficientemente veloce.
             setUsedSentenceIds(prev => new Set(prev).add(currentSentence.id));
         }
-        const availableSentences = sentences.filter(s => !usedSentenceIds.has(s.id));
-        if (availableSentences.length > 0) {
-            const nextIndex = Math.floor(Math.random() * availableSentences.length);
-            setCurrentSentenceIndex(sentences.findIndex(s => s.id === availableSentences[nextIndex].id));
-            setSelectedWords([]);
-            setShowResult(false);
-            setTimeLeft(30);
-            setFlipWords([]);
-        } else {
-            setIsGameOver(true);
+
+        let nextSentenceToShow: Sentence | undefined = undefined;
+
+        // Trova la frase con l'ID più piccolo, maggiore dell'ID corrente, e non ancora usata.
+        // L'array 'sentences' è ordinato per ID numerico.
+        // Usiamo l'insieme `usedSentenceIds` *dello stato attuale* per la ricerca,
+        // l'aggiornamento con l'ID corrente sarà disponibile al prossimo render/chiamata.
+        const updatedUsedIds = currentSentence ? new Set(usedSentenceIds).add(currentSentence.id) : usedSentenceIds;
+
+        for (let i = 0; i < sentences.length; i++) {
+            const potentialNextSentence = sentences[i];
+            if (parseInt(potentialNextSentence.id) > currentIdNumeric && !updatedUsedIds.has(potentialNextSentence.id)) {
+                nextSentenceToShow = potentialNextSentence; 
+                break; 
+            }
         }
+        
+        if (nextSentenceToShow) {
+            setCurrentSentenceIndex(sentences.findIndex(s => s.id === nextSentenceToShow!.id));
+        } else {
+            // Se non c'è una prossima frase sequenziale, verifica se ce ne sono altre non usate (magari precedenti nella sequenza o ID non contigui)
+            const anyOtherUnused = sentences.find(s => !updatedUsedIds.has(s.id));
+            if (anyOtherUnused) {
+                setCurrentSentenceIndex(sentences.findIndex(s => s.id === anyOtherUnused.id));
+            } else {
+                setIsGameOver(true);
+            }
+        }
+        // I reset di setSelectedWords, setShowResult, setTimeLeft, setFlipWords
+        // sono ora gestiti dall'useEffect che dipende da currentSentenceIndex.
     };
 
     const restartGame = () => {
@@ -181,6 +222,24 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         setIsGameOver(false);
         setUsedSentenceIds(new Set());
         setFlipWords([]);
+    };
+
+    const handleAllCorrectAssertion = () => {
+        if (!currentSentence) return;
+
+        if (currentSentence.isNaturallyCorrect) {
+            // L'utente ha ragione, la frase è corretta.
+            setScore(score + 1); // O un punteggio appropriato
+            console.log(`ID frase: ${currentSentence.id}, Utente ha detto 'Tutto Corretto'. Corretto!`);
+            setSelectedWords([]); // Assicurarsi che sia vuoto per il rendering del messaggio
+            setShowResult(true); 
+        } else {
+            // L'utente pensa sia tutto corretto, ma ci sono errori.
+            // Lasciamo che checkAnswer calcoli il punteggio basato su zero errori trovati.
+            setSelectedWords([]); // Assicura che nessuna parola sia selezionata per checkAnswer
+            checkAnswer(); // checkAnswer imposterà setShowResult(true)
+            console.log(`ID frase: ${currentSentence.id}, Utente ha detto 'Tutto Corretto'. Errato! Verranno mostrati gli errori.`);
+        }
     };
 
     if (isGameOver) {
@@ -227,52 +286,90 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                         {currentSentence?.words.map(word => (
                             <Chip
                                 key={word.id}
-                                label={flipWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? word.correction : word.text}
-                                onClick={() => !showResult && !isCurrentSentenceNaturallyCorrect && handleWordClick(word.id)}
-                                clickable={!isCurrentSentenceNaturallyCorrect && !showResult}
-                                color={selectedWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? "primary" : "default"}
+                                label={flipWords.includes(word.id) && word.correction ? word.correction : word.text}
+                                onClick={() => !showResult && handleWordClick(word.id)}
+                                clickable={!showResult}
+                                color={selectedWords.includes(word.id) ? "primary" : "default"}
                                 style={{
                                     margin: '4px',
-                                    backgroundColor: showResult && !isCurrentSentenceNaturallyCorrect
+                                    backgroundColor: showResult
                                         ? word.isCorrect
                                             ? selectedWords.includes(word.id)
-                                                ? '#ff6b6b' // rosso più intenso per le parole corrette erroneamente selezionate
-                                                : undefined
+                                                ? '#ff6b6b' // Falso positivo: parola corretta selezionata -> rosso
+                                                : undefined // Parola corretta non selezionata -> default
                                             : selectedWords.includes(word.id)
-                                                ? '#66bb6a' // verde per gli errori correttamente identificati
-                                                : '#ffcccb' // rosso chiaro per gli errori non identificati
-                                        : undefined,                                    
-                                    animation: flipWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? `${flipAnimation} 2s infinite` : 'none'
+                                                ? '#66bb6a' // Vero positivo: parola errata selezionata -> verde
+                                                : '#ffcccb' // Falso negativo: parola errata non selezionata -> rosso chiaro
+                                        : undefined, // Non in showResult -> default                                  
+                                    animation: flipWords.includes(word.id) && !word.isCorrect ? `${flipAnimation} 2s infinite` : 'none'
                                 }}
                             />
                         ))}
                     </Box>
                 </Paper>
-                {isCurrentSentenceNaturallyCorrect && !showResult && (
+                {/* {isCurrentSentenceNaturallyCorrect && !showResult && (
                     <Alert severity="info" style={{ marginTop: '20px' }}>Questa frase è già corretta!</Alert>
-                )}
-                {!showResult && !isCurrentSentenceNaturallyCorrect && (
-                    <Button variant="contained" color="primary" onClick={checkAnswer} style={{ marginTop: '20px' }}>
+                )} */}
+                {!showResult && (
+                    <>
+                    <Button variant="contained" color="primary" onClick={checkAnswer} style={{ marginTop: '20px', marginRight: '10px' }}>
                         Verifica risposta
                     </Button>
+                    <Button variant="outlined" color="secondary" onClick={handleAllCorrectAssertion} style={{ marginTop: '20px' }}>
+                        Tutto Corretto
+                    </Button>
+                </>
                 )}
-                 {(showResult || isCurrentSentenceNaturallyCorrect) && (
+                 {(showResult /* || isCurrentSentenceNaturallyCorrect */) && ( // isCurrentSentenceNaturallyCorrect non è più necessario qui
                     <Box mt={2}>
-                        {!isCurrentSentenceNaturallyCorrect && (
-                            <Alert severity={isAnswerCorrect ? "success" : "error"}>
+                        {/* Feedback per quando l'utente ha premuto "Tutto Corretto" */}
+                        {showResult && selectedWords.length === 0 && (
+                            <Alert 
+                                severity={currentSentence.isNaturallyCorrect ? "success" : "error"} 
+                                style={{ marginBottom: '10px' }}
+                            >
                                 <AlertTitle>
-                                    {isAnswerCorrect
-                                        ? "Ottimo lavoro! Hai identificato correttamente tutti gli errori."
-                                        : "Attenzione! Non hai identificato correttamente tutti gli errori."}
+                                    {currentSentence.isNaturallyCorrect
+                                        ? "Hai detto 'Tutto Corretto' e avevi ragione! Questa frase non conteneva errori."
+                                        : `Hai detto 'Tutto Corretto', ma la frase conteneva ${currentSentence.words.filter(w => !w.isCorrect).length} errore(i).`}
                                 </AlertTitle>
                             </Alert>
                         )}
-                        {!isCurrentSentenceNaturallyCorrect && currentSentence?.words.filter(word => !word.isCorrect).map(word => (
-                            <Alert key={word.id} severity={selectedWords.includes(word.id) ? "success":"error" } style={{ marginTop: '10px' }}>
-                                <AlertTitle>Spiegazione per "{word.text}"</AlertTitle>
+
+                        {/* Feedback per quando l'utente ha selezionato manualmente parole */}
+                        {showResult && selectedWords.length > 0 && (
+                            <Alert 
+                                severity={isAnswerCorrect && currentSentence.words.filter(w => !w.isCorrect).length === selectedWords.filter(sw => currentSentence.words.find(w => w.id === sw && !w.isCorrect)).length && !selectedWords.some(sw => currentSentence.words.find(w => w.id === sw && w.isCorrect)) ? "success" : "error"} 
+                                style={{ marginBottom: '10px' }}
+                            >
+                                <AlertTitle>
+                                    {isAnswerCorrect && currentSentence.words.filter(w => !w.isCorrect).length === selectedWords.filter(sw => currentSentence.words.find(w => w.id === sw && !w.isCorrect)).length && !selectedWords.some(sw => currentSentence.words.find(w => w.id === sw && w.isCorrect))
+                                        ? "Ottimo lavoro! Hai identificato correttamente tutti gli errori."
+                                        : `Attenzione! Controlla le tue selezioni. Ricorda: le parole verdi sono errori ben identificati, quelle rosse sono selezioni errate (parole corrette marcate come errore), e quelle rosso chiaro sono errori che non hai trovato.`}
+                                </AlertTitle>
+                            </Alert>
+                        )}
+                        
+                        {/* Spiegazioni per le parole effettivamente errate (se ce ne sono e non è una frase naturalmente corretta) */}
+                        {showResult && !currentSentence.isNaturallyCorrect && currentSentence?.words.filter(word => !word.isCorrect).map(word => (
+                            <Alert 
+                                key={word.id} 
+                                severity={selectedWords.includes(word.id) ? "success" : "error"} 
+                                style={{ marginTop: '10px' }}
+                            >
+                                <AlertTitle>Spiegazione per "{word.text}" (Correzione: {word.correction || 'N/A'})</AlertTitle>
                                 {word.explanation}
                             </Alert>
                         ))}
+
+                        {/* Messaggio specifico se la frase era naturalmente corretta e l'utente NON ha premuto "Tutto Corretto" ma ha interagito (o per il caso di "Tutto Corretto" andato a buon fine) */}
+                        {showResult && currentSentence.isNaturallyCorrect && selectedWords.length === 0 && (
+                             <Alert severity="success" style={{ marginBottom: '10px' }}>
+                                <AlertTitle>
+                                    Corretto! Questa frase non conteneva errori.
+                                </AlertTitle>
+                            </Alert>
+                        )}
                         <Button variant="contained" color="primary" onClick={nextSentence} style={{ marginTop: '20px' }}>
                             Prossima frase
                         </Button>
