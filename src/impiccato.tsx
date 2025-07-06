@@ -1,125 +1,139 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Select, MenuItem, Card, CardContent, Typography, Alert, Chip, SelectChangeEvent, Box, Button } from '@mui/material';
 import { QuizParams, RegImpiccato} from './MyTypes';
-import { fetchImpiccato, fetchRespuestas, guardarRespuesta } from './firebase/firebaseFunctions';
+import { fetchImpiccato, guardarRespuesta, fetchAnsweredQuestionIdsGroupedByType } from './firebase/firebaseFunctions'; // fetchRespuestas rimosso
 import GlobalKeyCaptureTextField from './components/global-key-capture-text-field';
-import { Respuesta } from './firebase/firebaseInterfaces';
+import { Respuesta } from './firebase/firebaseInterfaces'; // Non più usata per caricare tutte le risposte qui
 //import { impiccatoCSV } from './question.Impiccato';
-type Difficulty = 'facile' | 'medio' | 'difficile';
+
+type DifficultyInternal = 'facile' | 'medio' | 'difficile'; // Rinomina per evitare collisioni se Difficulty è globale
+type WordLevel = 'A2' | 'B1' | 'B2'; // Tipo per il livello delle parole
 
 const Imppicato: React.FC<QuizParams> = ({
-    usuario = null
+    usuario = null,
+    onExit,
+    difficulty: initialDifficulty = 'B1', // Default a B1 se non fornito, o usa quello da AppIniziale
+    saveResults = true,
+    includePreviouslyAnswered = false
 }) => {
-    const [words, setWords] = useState<RegImpiccato[]>([]);
+    const [allWordsFromDB, setAllWordsFromDB] = useState<RegImpiccato[]>([]); // Tutte le parole caricate
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [currentWord, setCurrentWord] = useState<RegImpiccato | null>(null);
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
     const [remainingAttempts, setRemainingAttempts] = useState<number>(0);
-    //const [input, setInput] = useState<string>('');
-    const [difficulty, setDifficulty] = useState<Difficulty>('medio');
-    const [level, setLevel] = useState<RegImpiccato['level']>('A2');
+
+    const [gameDifficulty, setGameDifficulty] = useState<DifficultyInternal>('medio'); // Stato per la difficoltà del gioco attuale
+    const [wordLevel, setWordLevel] = useState<WordLevel>(initialDifficulty as WordLevel); // Livello delle parole (A2,B1,B2) basato sulla prop difficulty
+
     const [message, setMessage] = useState<string>('');
     const [timer, setTimer] = useState<number>(30);
     const [gameOver, setGameOver] = useState<boolean>(false);
     const [showTip, setShowTip] = useState<boolean>(false);
-    //const [consecutiveFailures, setConsecutiveFailures] = useState<number>(0);
     const [category, setCategory] = useState<string>('Tutte');
     const [showCategory, setShowCategory] = useState<boolean>(false);
-    const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
-    useEffect(() => {
-        const loadRespuestas = async () => {
-            try {
-                const respuestasData = await fetchRespuestas(usuario?.id ?? 'sense');
-                setRespuestas(respuestasData);
-            } catch (error) {
-                console.error('Errore nel recupero delle parole:', error);
-            }
-        };
-        loadRespuestas();
-    }, [usuario]);
+    // const [respuestas, setRespuestas] = useState<Respuesta[]>([]); // Sostituito da answeredWordIds
+
+    // Stati per i conteggi
+    const [totalWordsInDB, setTotalWordsInDB] = useState(0);
+    const [possibleWordsForCriteria, setPossibleWordsForCriteria] = useState(0);
+    const [answeredWordsForCriteriaCount, setAnsweredWordsForCriteriaCount] = useState(0);
+    const [wordsAvailableToPlay, setWordsAvailableToPlay] = useState(0);
+    const [answeredWordIds, setAnsweredWordIds] = useState<Set<string>>(new Set());
 
     useEffect(() => {
-        const loadWords = async () => {
-            
+        const loadInitialData = async () => {
+            setLoading(true);
+            setError(null);
             try {
-                setLoading(true);
-                const fetchedWords = await fetchImpiccato();
-                setWords(fetchedWords);
-                setError(null);
-            } catch (err) {                
-                setError('Words desde file');
-                console.error('Error fetching words:', err);
+                // Carica tutte le parole se non già fatto
+                if (allWordsFromDB.length === 0) {
+                    const fetchedWords = await fetchImpiccato();
+                    setAllWordsFromDB(fetchedWords);
+                    setTotalWordsInDB(fetchedWords.length);
+                }
+
+                // Carica ID delle parole già risposte
+                if (usuario?.id && process.env.REACT_APP_USE_DATABASE === 'true') {
+                    const answeredMap = await fetchAnsweredQuestionIdsGroupedByType(usuario.id);
+                    setAnsweredWordIds(answeredMap['AH'] || new Set<string>()); // 'AH' per Ahorcado/Impiccato
+                }
+            } catch (err) {
+                setError('Errore nel caricamento dati iniziali. Riprova.');
+                console.error('Error fetching initial data for Hangman:', err);
             } finally {
                 setLoading(false);
             }
         };
+        loadInitialData();
+    }, [usuario?.id, allWordsFromDB.length]); // Dipende da utente e se allWordsFromDB è già popolato
 
-        loadWords();
-    }, []);
-    //cambio al pasar a FireStone lectura asyncrona
     const selectNewWord = useCallback(() => {
-        const filteredWords = words.filter(word => {
-            const levelMatch = word.level === level;
+        if (allWordsFromDB.length === 0) {
+            setError('Nessuna parola caricata dalla base dati.');
+            return;
+        }
+
+        // 1. Filtra per livello (wordLevel) e categoria
+        const wordsMatchingCriteria = allWordsFromDB.filter(word => {
+            const levelMatch = word.level === wordLevel;
             const categoryMatch = category === 'Tutte' || word.category === category;
-            //console.log('Palabra:', word.word, 'Nivel:', word.level, 'Categoría:', word.category, 'Match:', levelMatch && categoryMatch); // Depuración
             return levelMatch && categoryMatch;
         });
-        if (filteredWords.length === 0) {
-            setError('Non ci sono parole disponibili per la combinazione di livello e categoria selezionata.');
+        setPossibleWordsForCriteria(wordsMatchingCriteria.length);
+
+        // 2. Calcola quante di queste sono già state risposte
+        const answeredInCriteria = wordsMatchingCriteria.filter(p => answeredWordIds.has(p.word.toLowerCase())); // Assumendo che idPregunta sia la parola stessa
+        setAnsweredWordsForCriteriaCount(answeredInCriteria.length);
+
+        // 3. Determina il pool di parole da cui scegliere
+        let poolForWordSelection: RegImpiccato[];
+        if (includePreviouslyAnswered) {
+            poolForWordSelection = [...wordsMatchingCriteria];
+        } else {
+            poolForWordSelection = wordsMatchingCriteria.filter(p => !answeredWordIds.has(p.word.toLowerCase()));
+        }
+        setWordsAvailableToPlay(poolForWordSelection.length);
+
+        if (poolForWordSelection.length === 0) {
+            setError('Nessuna parola disponibile per i criteri selezionati. Prova a cambiare livello, categoria o includi parole già giocate.');
+            setCurrentWord(null); // Assicura che non ci sia una parola corrente
             return;
-        };
-        let availableWords;
-        if (respuestas.length > 0) {
-            // Filtra i paragrafi non ancora risposti
-            const respuestasWords = respuestas.map(r => r.idPregunta);
-            availableWords = filteredWords.filter(p => !respuestasWords.includes(p.word));
-            if (availableWords.length === 0) {
-                setError('Non ci sono parole disponibili per la combinazione di livello e categoria selezionata. Non utilizati');
-                return;
-            };
-        } else availableWords=[...filteredWords];
-        if (availableWords.length === 0) {
-            setError('Non ci sono parole disponibili per la combinazione di livello e categoria selezionata.');
-            return;
-        };
-        const randomWord = availableWords[Math.floor(Math.random() * availableWords.length)];
-        //console.log('Palabra seleccionada:', randomWord.word);
-        //Lo paso a minusculas por si aca
-        setCurrentWord({
-            ...randomWord,
-            word: randomWord.word.toLowerCase()
-        });
+        }
+        setError(null); // Pulisce errori precedenti se ora ci sono parole
+
+        const randomWord = poolForWordSelection[Math.floor(Math.random() * poolForWordSelection.length)];
+        setCurrentWord({ ...randomWord, word: randomWord.word.toLowerCase() });
         setRemainingAttempts(6);
-        setMessage(`Ci sono ${availableWords.length} di questo tipo ancora `);
+        setMessage(`Parole disponibili per questi filtri: ${poolForWordSelection.length}`);
         setTimer(30);
         setGameOver(false);
         setShowTip(false);
-        setShowCategory(false);        
+        setShowCategory(false);
         setGuessedLetters([]);
+
         let initialLetters: string[] = [];
-        if (difficulty !== 'difficile') {
-            const initialLettersCount = {
-                facile: Math.floor(randomWord.word.length / 3),
-                medio: Math.floor(randomWord.word.length / 4),
-            }[difficulty];
-
+        if (gameDifficulty !== 'difficile') {
+            const initialCountFactor = gameDifficulty === 'facile' ? 3 : 4;
+            const initialLettersCount = Math.floor(randomWord.word.length / initialCountFactor);
             const uniqueLetters = [...new Set(randomWord.word.split(''))];
-            const shuffled = uniqueLetters.sort(() => 0.5 - Math.random());
-            initialLetters = shuffled.slice(0, initialLettersCount);
+            initialLetters = uniqueLetters.sort(() => 0.5 - Math.random()).slice(0, initialLettersCount);
         }
+        setGuessedLetters(randomWord.word.split('').filter(letter => initialLetters.includes(letter)));
 
-        const allInitialLetters = randomWord.word.split('').filter(letter => initialLetters.includes(letter));
-        setGuessedLetters(allInitialLetters);
-    }, [words, level, category, difficulty, respuestas]);
+    }, [allWordsFromDB, wordLevel, category, includePreviouslyAnswered, answeredWordIds, gameDifficulty]);
 
+    // Effetto per selezionare una nuova parola quando cambiano i filtri o allWordsFromDB/answeredWordIds
     useEffect(() => {
-        if (!loading && words.length > 0) {
+        if (!loading && allWordsFromDB.length > 0) { // Assicurati che i dati base siano caricati
             selectNewWord();
         }
-    }, [loading, words, difficulty, level, category, selectNewWord]);
+    }, [loading, allWordsFromDB, selectNewWord]); // Rimosso gameDifficulty, wordLevel, category, includePreviouslyAnswered, answeredWordIds perché sono già dipendenze di selectNewWord
+                                                 // e selectNewWord è in useCallback, quindi non cambia a meno che le sue dipendenze non cambino.
+                                                 // Questo evita chiamate multiple non necessarie.
+                                                 // Mantenere selectNewWord qui assicura che venga chiamata dopo il caricamento iniziale.
 
-    const handleTimeUp =  useCallback((): void => {
+    const handleTimeUp = useCallback((): void => {
         if (currentWord) {
             setMessage(`Tempo scaduto! La parola era "${currentWord.word}".`);
             endGame('Tempo scaduto');
@@ -151,19 +165,25 @@ const Imppicato: React.FC<QuizParams> = ({
     }
     const logGameResult = (reason: string): void => {
         if (currentWord) {
-            const isCorrect = 'Parola indovinata' === reason;  //currentWord.word === guessedLetters.join('');
-            console.log(`Parola originale: ${currentWord.word} Indovinata: ${isCorrect ? 'Sì' : 'No'}
-        Livello: ${currentWord.level} Difficoltà: ${difficulty} Motivo fine gioco: ${reason}`);
-            const respuesta: Respuesta = {
-                idUsuario: usuario?.id ?? 'sense',
-                tipoPregunta: 'AH',
-                idPregunta: currentWord.word,
-                idSubPregunta: "0",
-                respuesta: reason,
-                correcta: isCorrect
-            };
-            guardarRespuesta(respuesta)
-            respuestas.push(respuesta);
+            const isCorrect = 'Parola indovinata' === reason;
+            console.log(`Parola originale: ${currentWord.word} Indovinata: ${isCorrect ? 'Sì' : 'No'} Livello: ${currentWord.level} Difficoltà interna: ${gameDifficulty} Motivo fine gioco: ${reason}`);
+
+            if (saveResults && usuario?.id) { // Condiziona il salvataggio
+                const respuesta: Respuesta = {
+                    idUsuario: usuario.id,
+                    tipoPregunta: 'AH', // Ahorcado (Impiccato)
+                    idPregunta: currentWord.word, // La parola stessa è l'ID
+                    idSubPregunta: "0", // Non applicabile o standard a 0
+                    respuesta: reason, // Es. 'Parola indovinata', 'Tentativi esauriti', 'Tempo scaduto'
+                    correcta: isCorrect
+                };
+                guardarRespuesta(respuesta);
+                // Aggiorna localmente il set di ID risposti per riflettere immediatamente la parola giocata
+                // senza dover fare un altro fetch, se l'utente continua a giocare nella stessa sessione.
+                setAnsweredWordIds(prev => new Set(prev).add(currentWord.word.toLowerCase()));
+            } else {
+                console.log("Salvataggio risposta saltato per scelta dell'utente o utente non loggato.");
+            }
         }
     }
 
@@ -234,6 +254,14 @@ const Imppicato: React.FC<QuizParams> = ({
                 <Typography variant="h5" component="div" gutterBottom>
                     Gioco dell'Impiccato
                 </Typography>
+                <Box sx={{ textAlign: 'center', fontSize: '0.75rem', color: 'text.secondary', mb: 1 }}>
+                    <Typography variant="caption" display="block">
+                        Livello Parole: {wordLevel} | Categoria: {category}
+                    </Typography>
+                    <Typography variant="caption" display="block">
+                        Parole possibili: {possibleWordsForCriteria} | Già risposte: {answeredWordsForCriteriaCount} | Disponibili: {wordsAvailableToPlay}
+                    </Typography>
+                </Box>
                 <Box sx={{
                     display: 'flex',
                     flexDirection: { xs: 'column', sm: 'row' },
@@ -243,22 +271,22 @@ const Imppicato: React.FC<QuizParams> = ({
                     marginBottom: 2
                 }}>
                     <Select
-                        value={difficulty}
-                        onChange={(e: SelectChangeEvent<Difficulty>) => setDifficulty(e.target.value as Difficulty)}
+                        value={gameDifficulty} // Usa lo stato interno per la difficoltà del gioco
+                        onChange={(e: SelectChangeEvent<DifficultyInternal>) => setGameDifficulty(e.target.value as DifficultyInternal)}
                         sx={{ minWidth: 120 }}
                     >
-                        <MenuItem value="facile">Facile</MenuItem>
-                        <MenuItem value="medio">Medio</MenuItem>
-                        <MenuItem value="difficile">Difficile</MenuItem>
+                        <MenuItem value="facile">Facile (Gioco)</MenuItem>
+                        <MenuItem value="medio">Medio (Gioco)</MenuItem>
+                        <MenuItem value="difficile">Difficile (Gioco)</MenuItem>
                     </Select>
                     <Select
-                        value={level}
-                        onChange={(e: SelectChangeEvent<RegImpiccato['level']>) => setLevel(e.target.value as RegImpiccato['level'])}
+                        value={wordLevel} // Usa lo stato per il livello delle parole
+                        onChange={(e: SelectChangeEvent<WordLevel>) => setWordLevel(e.target.value as WordLevel)}
                         sx={{ minWidth: 120 }}
                     >
-                        <MenuItem value="A2">A2</MenuItem>
-                        <MenuItem value="B1">B1</MenuItem>
-                        <MenuItem value="B2">B2</MenuItem>
+                        <MenuItem value="A2">Parole A2</MenuItem>
+                        <MenuItem value="B1">Parole B1</MenuItem>
+                        <MenuItem value="B2">Parole B2</MenuItem>
                     </Select>
                     <Typography
                         variant="h6"
@@ -319,9 +347,17 @@ const Imppicato: React.FC<QuizParams> = ({
                     </div>
                 )}
                 {currentWord && (
-                    <div><Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700">
-                        Fine del giocco
-                    </Button></div>
+                    <div style={{ marginTop: '16px' }}>
+                        {onExit ? (
+                            <Button onClick={onExit} variant="contained" color="secondary" fullWidth>
+                                Torna al Menu Principale
+                            </Button>
+                        ) : (
+                            <Button onClick={() => window.location.reload()} variant="contained" color="error" fullWidth>
+                                Esci (Ricarica)
+                            </Button>
+                        )}
+                    </div>
                 )}
             </CardContent>
         </Card>

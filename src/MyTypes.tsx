@@ -54,6 +54,9 @@ export interface QuizParams {
     onlyOptionQuestions?: boolean;
     difficulty?: string;
     usuario: Usuario | null;
+    onExit?: () => void; // Funzione per tornare al menu principale
+    saveResults?: boolean; // Opzione per salvare i risultati della sessione
+    includePreviouslyAnswered?: boolean; // Opzione per includere domande già risposte
     
 }
 
