@@ -10,8 +10,8 @@ import {
     Container,
     Paper
 } from '@mui/material';
-import { fetchCorrige, saveGameSessionResult, fetchAnsweredQuestionIdsGroupedByType } from './firebase/firebaseFunctions'; // Aggiunto fetchAnsweredQuestionIdsGroupedByType
-import { Usuario, GameSessionResult } from './firebase/firebaseInterfaces'; // Rimosso RegCorrige, Aggiunto Usuario, GameSessionResult
+import { fetchCorrige, saveGameSessionResult, fetchAnsweredQuestionIdsGroupedByType, guardarRespuesta } from './firebase/firebaseFunctions'; // Aggiunto fetchAnsweredQuestionIdsGroupedByType e guardarRespuesta
+import { Usuario, GameSessionResult, Respuesta } from './firebase/firebaseInterfaces'; // Rimosso RegCorrige, Aggiunto Usuario, GameSessionResult, Respuesta
 import { keyframes } from '@emotion/react';
 
 const flipAnimation = keyframes`
@@ -57,7 +57,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
     const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
     const [itemsPlayedInSession, setItemsPlayedInSession] = useState(0);
     const [gameEndedByExit, setGameEndedByExit] = useState(false); 
-    // const [initialSentenceLoaded, setInitialSentenceLoaded] = useState(false); // Non più necessario con la nuova logica di caricamento
+    const [lastAnswerWasCorrect, setLastAnswerWasCorrect] = useState(false); // Per tracciare se l'ultima risposta è stata corretta
 
     // Tutte le frasi dal DB/CSV
     const [allSentencesFromDB, setAllSentencesFromDB] = useState<Sentence[]>([]);
@@ -168,45 +168,61 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
         if (!currentSentence || showResult) return; // Non fare nulla se la frase non c'è o il risultato è già mostrato
 
         let newScore = score;
-        let allErrorsFound = true;
-        let noFalsePositives = true;
+        try {
+            let newScore = score;
+            let allErrorsFound = true; 
+            let noFalsePositives = true; 
 
-        currentSentence.words.forEach(word => {
-            if (!word.isCorrect && selectedWords.includes(word.id)) {
-                newScore += 2;
-            } else if (word.isCorrect && selectedWords.includes(word.id)) {
-                newScore -= 1;
-                noFalsePositives = false;
-            } else if (!word.isCorrect && !selectedWords.includes(word.id)) {
-                newScore -= 1;
-                allErrorsFound = false;
-            }
-        });
-
-        setScore(newScore);
-        setShowResult(true);
-        console.log(`ID frase: ${currentSentence.id}, Risposta completamente corretta: ${allErrorsFound && noFalsePositives ? 'Sì' : 'No'}`);
-    }, [currentSentence, showResult, score, selectedWords]);
+            currentSentence.words.forEach(word => {
+                const isSelected = selectedWords.includes(word.id);
+                if (word.isCorrect) { 
+                    if (isSelected) { 
+                        newScore -= 1;
+                        noFalsePositives = false;
+                    }
+                } else { 
+                    if (isSelected) { 
+                        newScore += 2;
+                    } else { 
+                        newScore -= 1;
+                        allErrorsFound = false;
+                    }
+                }
+            });
+            
+            const isCorrectOverall = allErrorsFound && noFalsePositives;
+            setLastAnswerWasCorrect(isCorrectOverall);
+            setScore(newScore);
+            console.log(`ID frase: ${currentSentence.id}, Risposta completamente corretta: ${isCorrectOverall ? 'Sì' : 'No'}, Selezionate: ${selectedWords.join(',')}`);
+        } catch (error) {
+            console.error("Error during checkAnswer scoring logic:", error);
+            setLastAnswerWasCorrect(false); // Default to incorrect if scoring fails
+            // Score remains unchanged or could be penalized if preferred
+        } finally {
+            setShowResult(true); // Ensure UI proceeds to show result and "Prossima frase"
+        }
+    }, [currentSentence, showResult, score, selectedWords, setLastAnswerWasCorrect]);
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
-        if (timeLeft > 0 && !isGameOver && currentSentence && !showResult && !currentSentence.isNaturallyCorrect) {
+        // Timer runs if: time > 0, game not over, sentence exists, result not shown.
+        // No longer conditional on !currentSentence.isNaturallyCorrect for timer.
+        if (timeLeft > 0 && !isGameOver && currentSentence && !showResult) {
             timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-        } else if (timeLeft === 0 && !isGameOver && !showResult && currentSentence && !currentSentence.isNaturallyCorrect) { // Aggiunto check currentSentence
+        } else if (timeLeft === 0 && !isGameOver && !showResult && currentSentence) { 
             checkAnswer(); 
         }
         return () => clearTimeout(timer);
-    }, [timeLeft, isGameOver, currentSentence, showResult, checkAnswer]); 
+    }, [timeLeft, isGameOver, currentSentence, showResult, checkAnswer]);
 
-    // New useEffect to handle naturally correct sentences immediately
-    useEffect(() => {
-        if (currentSentence && currentSentence.isNaturallyCorrect && !showResult) { // Esegui solo se showResult è false
-            setShowResult(true);
-            // Considera di incrementare itemsPlayedInSession anche per frasi naturalmente corrette
-            // se vuoi che contino nel totale delle frasi "viste" o "giocate".
-            // Per ora, itemsPlayedInSession viene incrementato in nextSentence.
-        }
-    }, [currentSentence, showResult]);
+    // Questo useEffect è stato modificato/rimosso per il Passo 2 per permettere l'interazione
+    // con frasi naturalmente corrette. Non vogliamo più settare setShowResult(true) automaticamente.
+    // useEffect(() => {
+    //     if (currentSentence && currentSentence.isNaturallyCorrect && !showResult) { 
+    //         // setLastAnswerWasCorrect(true); // Non più auto-corretta
+    //         // setShowResult(true); // Non mostrare risultati automaticamente
+    //     }
+    // }, [currentSentence, showResult, setLastAnswerWasCorrect]);
 
     useEffect(() => {
         if (showResult && currentSentence) {
@@ -229,6 +245,29 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
 
 
     const nextSentence = () => {
+        if (currentSentence && usuario && usuario.id && saveResults && process.env.REACT_APP_USE_DATABASE === 'true') {
+            const respuestaData: Respuesta = {
+                idUsuario: usuario.id,
+                idPregunta: currentSentence.id, 
+                tipoPregunta: 'CO', 
+                respuesta: selectedWords.join('|') || (currentSentence.isNaturallyCorrect && selectedWords.length === 0 ? 'NATURALLY_CORRECT_ACCEPTED' : 'NO_SELECTION'),
+                correcta: lastAnswerWasCorrect,
+                // fecha será añadida por guardarRespuesta
+            };
+            guardarRespuesta(respuestaData)
+                .then(() => {
+                    console.log(`Risposta per frase ${currentSentence.id} salvata.`);
+                    // Aggiorna il conteggio delle risposte DOPO aver salvato con successo
+                    // Questo ricaricherà i dati o aggiornerà lo stato per riflettere la nuova risposta
+                     setAnsweredSentenceIds(prevAnsweredIds => new Set(prevAnsweredIds).add(currentSentence.id));
+                     setAnsweredForCriteriaCount(prevCount => prevCount + 1);
+                     setSentencesAvailableToPlay(prevCount => Math.max(0, prevCount -1));
+
+
+                })
+                .catch(error => console.error("Errore nel salvataggio della risposta: ", error));
+        }
+
         if (currentSentence) { // Conta la frase corrente come giocata
             setItemsPlayedInSession(prev => prev + 1);
         }
@@ -449,47 +488,49 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                         {currentSentence.words.map(word => (
                             <Chip
                                 key={word.id}
-                                label={flipWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? word.correction : word.text}
-                                onClick={() => !showResult && !isCurrentSentenceNaturallyCorrect && handleWordClick(word.id)}
-                                clickable={!isCurrentSentenceNaturallyCorrect && !showResult}
-                                color={selectedWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? "primary" : "default"}
+                                label={flipWords.includes(word.id) && !currentSentence.words.find(w => w.id === word.id)?.isCorrect ? word.correction : word.text}
+                                onClick={() => !showResult && handleWordClick(word.id)} // Permetti click se showResult è false
+                                clickable={!showResult} // Cliccabile se showResult è false
+                                color={selectedWords.includes(word.id) ? "primary" : "default"}
                                 style={{
                                     margin: '4px',
-                                    backgroundColor: showResult && !isCurrentSentenceNaturallyCorrect
-                                        ? word.isCorrect
-                                            ? selectedWords.includes(word.id)
-                                                ? '#ff6b6b' 
-                                                : undefined
-                                            : selectedWords.includes(word.id)
-                                                ? '#66bb6a' 
-                                                : '#ffcccb' 
-                                        : undefined,                                    
-                                    animation: flipWords.includes(word.id) && !isCurrentSentenceNaturallyCorrect ? `${flipAnimation} 2s infinite` : 'none'
+                                    backgroundColor: showResult
+                                        ? word.isCorrect // Colora in base alla correttezza effettiva della parola
+                                            ? selectedWords.includes(word.id) // L'utente l'ha selezionata (errore da parte dell'utente)
+                                                ? '#ff6b6b' // Rosso (falso positivo)
+                                                : undefined // Grigio/default (corretta e non selezionata)
+                                            : selectedWords.includes(word.id) // Non è corretta e l'utente l'ha selezionata (corretto da parte dell'utente)
+                                                ? '#66bb6a' // Verde (errore trovato)
+                                                : '#ffcccb' // Rosa chiaro (errore non trovato)
+                                        : undefined, // Nessun colore di sfondo prima che showResult sia true
+                                    animation: flipWords.includes(word.id) && !currentSentence.words.find(w => w.id === word.id)?.isCorrect ? `${flipAnimation} 2s infinite` : 'none'
                                 }}
                             />
                         ))}
                     </Box>
                 </Paper>
-                {isCurrentSentenceNaturallyCorrect && !showResult && (
+                {/* L'alert per frase naturalmente corretta sarà gestito diversamente o rimosso/modificato */}
+                {/* {isCurrentSentenceNaturallyCorrect && !showResult && (
                     <Alert severity="info" style={{ marginTop: '20px' }}>Questa frase è già corretta! Premi "Prossima frase" per continuare.</Alert>
-                )}
-                {!showResult && !isCurrentSentenceNaturallyCorrect && (
+                )} */}
+                {!showResult && ( // Mostra "Verifica risposta" se il risultato non è ancora mostrato
                     <Button variant="contained" color="primary" onClick={checkAnswer} style={{ marginTop: '20px' }}>
                         Verifica risposta
                     </Button>
                 )}
-                 {(showResult || isCurrentSentenceNaturallyCorrect) && ( // Mostra sempre i pulsanti dopo che il risultato è mostrato o se la frase è naturalmente corretta
+                 {showResult && ( // Mostra i risultati e i pulsanti "Prossima frase" / "Menu" solo dopo che showResult è true
                     <Box mt={2}>
-                        {!isCurrentSentenceNaturallyCorrect && showResult && ( // Mostra solo se non naturalmente corretta E il risultato è mostrato
-                            <Alert severity={isAnswerCorrect ? "success" : "error"}>
-                                <AlertTitle>
-                                    {isAnswerCorrect
-                                        ? "Ottimo lavoro! Hai identificato correttamente tutti gli errori."
+                        <Alert severity={lastAnswerWasCorrect ? "success" : "error"}>
+                            <AlertTitle>
+                                    {lastAnswerWasCorrect
+                                        ? "Ottimo lavoro! Hai identificato correttamente tutti gli errori (o la frase era già corretta)."
                                         : "Attenzione! Non hai identificato correttamente tutti gli errori."}
                                 </AlertTitle>
                             </Alert>
-                        )}
-                        {!isCurrentSentenceNaturallyCorrect && showResult && currentSentence.words.filter(word => !word.isCorrect).map(word => (
+                           </Box>)}
+                        {/* Mostra spiegazioni solo se ci sono errori E il risultato è mostrato */}
+                        {showResult && currentSentence.words.some(w => !w.isCorrect) && 
+                          currentSentence.words.filter(word => !word.isCorrect).map(word => (
                             <Alert key={word.id} severity={selectedWords.includes(word.id) ? "success":"error" } style={{ marginTop: '10px' }}>
                                 <AlertTitle>Spiegazione per "{word.text}"</AlertTitle>
                                 {word.explanation}
@@ -502,9 +543,7 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                             <Button variant="contained" color="secondary" onClick={handleExitRequest} style={{ marginTop: '20px' }}>
                                 Torna al Menu Principale
                             </Button>
-                        )}
-                    </Box>
-                )}
+                        )}                                 
                  {!showResult && onExit && ( 
                     <Button variant="outlined" color="secondary" onClick={handleExitRequest} style={{ marginTop: '20px', display: 'block' }}>
                         Esci dal Gioco
