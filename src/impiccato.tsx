@@ -3,6 +3,7 @@ import { Select, MenuItem, Card, CardContent, Typography, Alert, Chip, SelectCha
 import { QuizParams, RegImpiccato} from './MyTypes';
 import { fetchImpiccato, guardarRespuesta, fetchAnsweredQuestionIdsGroupedByType } from './firebase/firebaseFunctions'; // fetchRespuestas rimosso
 import GlobalKeyCaptureTextField from './components/global-key-capture-text-field';
+import Tastiera from './components/Tastiera';
 import { Respuesta } from './firebase/firebaseInterfaces'; // Non più usata per caricare tutte le risposte qui
 //import { impiccatoCSV } from './question.Impiccato';
 
@@ -359,6 +360,7 @@ const Imppicato: React.FC<QuizParams> = ({
                             onInputChange={handleInputChange}
                             disabled={gameOver}
                         />
+                        <Tastiera onKeyPress={handleGuess} guessedLetters={guessedLetters} />
 
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 16 }}>
                             {guessedLetters.map((letter, index) => (
