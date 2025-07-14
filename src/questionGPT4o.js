@@ -821,4 +821,24 @@ id,question,option1,option2,option3,correct,explanation,difficulty,generated
 1297,"Qual è il significato di 'articolare'?","Confondere","Strutturare","Distorcere",1,"'Articolare' significa 'strutturare o esprimere chiaramente'.",B2,GPT4
 1298,"Qual è il sinonimo di 'elaborare'?","Trascurare","Ignorare","Sviluppare",2,"'Sviluppare' è un sinonimo di 'elaborare'.",B2,GPT4
 1299,"Qual è la forma corretta del congiuntivo presente del verbo 'rilevare' per 'loro'?","rilevino","rilevano","rileviate",0,"La forma corretta è 'rilevino'.",B2,GPT4
+2000,Qual è il participio passato di "prendere"?,preso,prenduto,prento,0,"Irregolare: 'prendere' → 'preso' (como 'tomar' → 'tomado', pero cuidado con el uso).",B1,DeepSeek
+2001,Come si dice "antes de ayer" in italiano?,l'altro ieri,prima di ieri,ieri l'altro,0,"Traducción literal: 'l'altro ieri' (no existe '*prima di ieri').",B1,DeepSeek
+2002,Quale verbo significa "alcanzar"?,raggiungere,alcanzare,toccare,0,"'Raggiungere' = 'alcanzar'. 'Alcanzare' no existe en italiano.",B1,DeepSeek
+2003,Qual è il femminile di "ministro"?,ministro,ministra,ministressa,0,"Invariable: 'la ministro' (como 'la pilota').",B2,DeepSeek
+2004,Come si traduce "recordar"?,ricordare,registrare,accordare,0,"'Ricordare' = 'recordar'. 'Accordare' es un falso amigo (afinar).",B1,DeepSeek
+2005,Quale preposizione usa "pensare" quando significa "recordar"?,a,di,su,1,"'Pensare di' + infinitivo (ej: 'Penso di averti visto'). 'Pensare a' = reflexionar sobre algo.",B2,DeepSeek
+2006,Come si dice "me duele la cabeza" in italiano?,Mi fa male la testa,Ho dolore la testa,Sento male la testa,0,"Literal: 'Mi fa male la testa'. 'Avere dolore' es incorrecto.",B1,DeepSeek
+2007,Qual è il contrario di "permesso"?,divieto,proibizione,libertà,0,"'Divieto' es el antónimo directo (ej: 'divieto di sosta').",B1,DeepSeek
+2008,Quale ausiliare usa "nascere" nel passato prossimo?,avere,essere,avuto,1,"Verbos de movimiento usan 'essere': 'sono nato'.",B2,DeepSeek
+2009,Come si traduce "explicar"?,spiegare,esplicare,piegare,0,"'Spiegare' es el término común. 'Esplicare' es formal/arcaico.",B1,DeepSeek
+2010,Qual è la forma corretta: "Non lo so" o "Non so lo"?,Non lo so,Non so lo,Non l'ho so,0,"Los pronomes van ANTES del verbo en italiano (a diferencia del español).",B1,DeepSeek
+2011,Come si dice "conducir un coche"?,guidare,condurre,portare,0,"'Guidare' = conducir vehículos. 'Condurre' = liderar.",B1,DeepSeek
+2012,Qual è il plurale di "problema"?,problemi,problemie,problemate,0,"Sustantivos en -a griego hacen plural en -i: 'problema' → 'problemi'.",B1,DeepSeek
+2013,Quale preposizione usa "fidarsi"?,di,a,su,0,"'Fidarsi di qualcuno' (como 'confiar en alguien').",B2,DeepSeek
+2014,Come si traduce "después de todo"?,dopo tutto,infine,alla fine,0,"Locución: 'dopo tutto' (ej: 'Dopo tutto, non è colpa tua').",B1,DeepSeek
+2015,Qual è il participio passato di "aprire"?,aprito,aperto,apruto,1,"Irregolare: 'aprire' → 'aperto'.",B1,DeepSeek
+2016,Come si dice "a pesar de" in italiano?,nonostante,malgrado,entrambe sono corrette,2,"Ambas son correctas: 'nonostante' y 'malgrado'.",B2,DeepSeek
+2017,Qual è il significato di "magari"?,forse,ojalá,quizás,1,"'Magari' ≈ 'ojalá' (deseo) o 'a lo mejor' (duda).",B2,DeepSeek
+2018,Quale articolo usa "zucchero"?,lo,il,la,0,"Palabras que empiezan con 'z-' usan 'lo': 'lo zucchero'.",B1,DeepSeek
+2019,Come si forma il futuro di "essere"?,sarò,esserò,sarà,0,"Irregolare: 'io sarò', 'tu sarai'.",B1,DeepSeek
 `
