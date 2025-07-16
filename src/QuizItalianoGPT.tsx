@@ -131,10 +131,6 @@ const QuizItaliano: React.FC<QuizParams> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [numQuestions, difficulty, onlyOptionQuestions, includePreviouslyAnswered, usuario?.id]); // Ricarica se questi parametri cambiano
 
-
-    /* // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [showExplanation, quizFinished, reviewMode, currentQuestion, questionsForSession]); */
-
     const getTextOption = (respNum: Number) => {
         if (!questionsForSession[currentQuestion]) return "Opzione non disponibile";
         if (respNum === 0) return questionsForSession[currentQuestion].option1;
@@ -226,7 +222,6 @@ const QuizItaliano: React.FC<QuizParams> = ({
         } else if (quizFinished && !saveResults) {
             console.log("Quiz terminato, risultati non salvati per scelta dell'utente.");
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [quizFinished, saveResults, difficulty, name, onlyOptionQuestions, includePreviouslyAnswered, score, questionsForSession, usuario, startTime, endTime]);
 
 

@@ -119,4 +119,83 @@ id,nivel,fraseCompleta,idsPalabrasErroneas,palabrasErroneas,correcciones,explica
 "138","B2","Qualsiasi cosa lo dici, lui non ti ascolta.","3","lo","gli","'Dire qualcosa a qualcuno' richiede il pronome indiretto 'gli'.","Pronomi|Verbi"
 "139","B2","Chiunque tu incontri, salutale con cortesia.","4","salutale","salutalo","'Chiunque' è singolare; pronome oggetto deve essere singolare: 'salutalo'.","Pronomi|Verbi"
 "140","B2","Non c'è nessuno che lo sappia rispondere.","5","lo","gli","'Rispondere a qualcuno' richiede il pronome indiretto 'gli'.","Pronomi|Verbi"
+120,A2,"I miei amici vengono sempre a casa mia la domenica mattina.",10,la,di,"'Di domenica' per indicare il giorno abituale, non 'la domenica'.",Preposizioni
+121,A2,"Ho comprato due chili di mele rosse al mercato stamattina.",6,rosse,rosse,"'Rosse' è corretto, accordo con 'mele' (femminile plurale).",Aggettivi
+122,A2,"Mia sorella suona molto bene il piano da cinque anni.",7,il,il,"'Suonare il piano' è corretto, si usa l'articolo.",Articoli
+123,B1,"Bisogna che tu fai più attenzione quando guidi la macchina.",4,fai,faccia,"Con 'bisogna che' si usa il congiuntivo 'faccia'.",Congiuntivo
+124,B1,"Mi dispiace che Marco non può venire alla festa stasera.",6,può,possa,"Dopo 'mi dispiace che' si usa il congiuntivo 'possa'.",Congiuntivo
+125,B1,"Sebbene sia tardi, preferisco finire tutto il lavoro oggi.",8,tutto,tutto,"'Tutto il lavoro' è corretto, ma si può dire anche 'tutto'.",Articoli
+126,B1,"Ho l'impressione che qualcosa non va bene in questa situazione.",6,va,vada,"Con 'ho l'impressione che' si usa il congiuntivo 'vada'.",Congiuntivo
+127,B2,"Nel caso che tu non riesca, chiedi aiuto al professore.",4,riesca,riesca,"'Riesca' è corretto con 'nel caso che' (congiuntivo presente).",Congiuntivo
+128,B2,"Suppongo che lui abbia già finito i compiti per domani.",4,abbia,abbia,"'Abbia' è corretto con 'suppongo che' (congiuntivo presente).",Congiuntivo
+129,A2,"Ogni mattina bevo un caffè e mangio due biscotti dolci.",9,dolci,dolci,"'Dolci' è corretto, ma ridondante dopo 'biscotti'.",Aggettivi
+130,A2,"La settimana scorsa ho visitato la casa di mia nonna.",9,di,di,"'Casa di mia nonna' è corretto, si usa 'di' per il possesso.",Preposizioni
+131,A2,"Stasera guarderò un film interessante alla televisione.",8,alla,in,"'In televisione' non 'alla televisione' per il mezzo.",Preposizioni
+132,B1,"È necessario che tutti gli studenti portano i libri domani.",7,portano,portino,"Con 'è necessario che' si usa il congiuntivo 'portino'.",Congiuntivo
+133,B1,"Ho sentito dire che Maria ha vinto il concorso ieri.",7,ha,abbia,"Dopo 'ho sentito dire che' si può usare il congiuntivo 'abbia'.",Congiuntivo
+134,B1,"Quantunque fosse difficile, sono riuscito a risolvere il problema.",2,fosse,fosse,"'Fosse' è corretto con 'quantunque' (congiuntivo imperfetto).",Congiuntivo
+135,B1,"Temo che il treno è già partito dalla stazione.",5,è,sia,"Con 'temo che' si usa il congiuntivo 'sia'.",Congiuntivo
+136,B2,"Dato che piove, è meglio che noi restiamo a casa.",9,restiamo,rimaniamo,"'Rimanere a casa' è più appropriato di 'restare a casa'.",Verbi
+137,B2,"A condizione che tu studi, ti aiuterò con il progetto.",5,studi,studi,"'Studi' è corretto con 'a condizione che' (congiuntivo presente).",Congiuntivo
+138,B2,"Perché tu possa capire, ti spiegherò tutto dall'inizio.",3,possa,possa,"'Possa' è corretto con 'perché' finale (congiuntivo presente).",Congiuntivo
+139,A2,"Mio padre lavora in un ufficio molto grande del centro.",9,del,in,"'In centro' o 'nel centro', non 'del centro'.",Preposizioni
+"141","A2","Mi piace i libri gialli.","3","i","gli","'Libri' è plurale, quindi serve 'mi piacciono', non 'mi piace'.","Verbi|Pronomi"
+"142","A2","Lui ha telefonato a io ieri sera.","5","io","me","Dopo preposizione si usa la forma tonica 'me'.","Pronomi"
+"143","A2","Tu si chiami Marco, vero?","2","si","ti","Il pronome riflessivo corretto per 'tu' è 'ti'.","Pronomi|Verbi"
+"144","A2","Lei va a la scuola ogni giorno.","4","a la","alla","'A' + 'la' si contraggono in 'alla'.","Preposizioni|Articoli"
+"145","A2","Noi ci andiamo al mare domani.","2","ci","Ø","'Andare' non richiede il pronome riflessivo in questo contesto.","Pronomi|Verbi"
+"146","B1","Ti ho detto che lui non viene.","6","viene","verrà","Per coerenza temporale con 'ho detto', si usa il futuro 'verrà'.","Verbi|Congiunzioni|Pronomi"
+"147","B1","Non voglio che tu mi aiuti.","6","aiuti","aiuti","Frase corretta, usata per confondere nel gioco.","Verbi|Pronomi"
+"148","B1","Mi guardano come se io non esisto.","7","esisto","esistessi","Dopo 'come se' si usa il congiuntivo imperfetto.","Verbi|Congiunzioni|Pronomi"
+"149","B1","Gli ha detto la verità a Marco.","1","Gli","Gliel'ha","Il pronome 'gli' + 'la' si uniscono in 'gliela'.","Pronomi"
+"150","B1","Tu mi dai il libro che ti ho parlato.","7","parlato","parlato di","'Parlare' regge la preposizione 'di': 'di cui ti ho parlato'.","Pronomi|Preposizioni"
+"151","B2","Ci sono molte persone che non li conosciamo.","7","li","le","'Persone' è femminile plurale, serve il pronome 'le'.","Pronomi|Concordanza"
+"152","B2","È lui che gli ho mandato l'invito.","5","gli","a lui","Si evita l'uso ambiguo del pronome, meglio 'a lui'.","Pronomi"
+"153","B2","Mi piacerebbe che tu vieni al mio compleanno.","6","vieni","venissi","Dopo 'mi piacerebbe che' si usa il congiuntivo imperfetto.","Verbi|Congiunzioni|Pronomi"
+"154","B2","Le ho detto che se lo sapeva prima, sarebbe venuto.","8","sapeva","avesse saputo","Nel periodo ipotetico di III tipo si usa il congiuntivo trapassato.","Verbi|Periodo ipotetico|Pronomi"
+"155","B2","Nonostante lui ha fatto del suo meglio, ha fallito.","3","ha","abbia","Dopo 'nonostante' si richiede il congiuntivo passato.","Congiunzioni|Verbi"
+"156","B2","Mi chiedo se lui sarebbe venuto con noi.","6","sarebbe","fosse","Dopo 'mi chiedo se' si preferisce il congiuntivo: 'fosse venuto'.","Verbi|Congiunzioni"
+"157","B2","Le ho detto che vada via subito.","6","vada","andasse","Se è un ordine diretto, si usa il congiuntivo imperfetto in alcuni casi subordinati passati.","Verbi|Pronomi|Congiunzioni"
+"158","B2","Ti ho chiesto perché non vieni.","7","vieni","venissi","Con frase passata ('ho chiesto'), si usa il congiuntivo imperfetto.","Verbi|Pronomi"
+"159","B2","Sapevo che loro sarebbero arrivato in ritardo.","6","arrivato","arrivati","Concordanza con soggetto plurale: 'arrivati'.","Verbi|Concordanza"
+"160","B2","Non gli vedo da mesi.","2","gli","lo","'Vedere' è verbo transitivo, quindi richiede pronome oggetto diretto 'lo'.","Verbi|Pronomi"
+161,A2,"Ho comprato questi scarpe nuove in un negozio del centro.",3,questi,queste,"'Queste scarpe' perché 'scarpe' è femminile plurale.",Aggettivi
+162,A2,"Mia madre prepara sempre la cena alle otto di sera.",9,di,della,"'Della sera' per indicare il momento specifico.",Preposizioni
+163,B1,"Occorre che voi finite tutto il lavoro entro domani sera.",4,finite,finiate,"Con 'occorre che' si usa il congiuntivo 'finiate'.",Congiuntivo
+164,B1,"Può darsi che lui non ha capito bene le istruzioni.",6,ha,abbia,"Con 'può darsi che' si usa il congiuntivo 'abbia'.",Congiuntivo
+165,B1,"Malgrado che piovesse, siamo usciti a fare una passeggiata.",1|2,Malgrado|che,Malgrado,∅,"'Malgrado' non richiede 'che', si usa da solo.",Congiunzioni
+166,B1,"Suppongo che tu hai già fatto i compiti per domani.",4,hai,abbia,"Con 'suppongo che' si usa il congiuntivo 'abbia'.",Congiuntivo
+167,B2,"Qualsiasi cosa tu faccia, ti sosterrò sempre in tutto.",4,faccia,faccia,"'Faccia' è corretto con 'qualsiasi' (congiuntivo presente).",Congiuntivo
+168,B2,"Ammesso che tu abbia ragione, cosa proponi di fare?",4,abbia,abbia,"'Abbia' è corretto con 'ammesso che' (congiuntivo presente).",Congiuntivo
+169,A2,"I bambini giocano sempre molto felicemente nel giardino.",4,felicemente,felici,"'Felici' come aggettivo, non 'felicemente' (avverbio).",Aggettivi|Avverbi
+170,A2,"I miei amici vengono sempre a casa mia la domenica mattina.",10,la,di,"'Di domenica' per indicare il giorno abituale, non 'la domenica'.",Preposizioni
+171,A2,"Ho comprato due chili di mele rosse al mercato stamattina.",6,rosse,rosse,"'Rosse' è corretto, accordo con 'mele' (femminile plurale).",Aggettivi
+172,A2,"Mia sorella suona molto bene il piano da cinque anni.",7,il,il,"'Suonare il piano' è corretto, si usa l'articolo.",Articoli
+173,B1,"Bisogna che tu fai più attenzione quando guidi la macchina.",4,fai,faccia,"Con 'bisogna che' si usa il congiuntivo 'faccia'.",Congiuntivo
+174,B1,"Mi dispiace che Marco non può venire alla festa stasera.",6,può,possa,"Dopo 'mi dispiace che' si usa il congiuntivo 'possa'.",Congiuntivo
+175,B1,"Sebbene sia tardi, preferisco finire tutto il lavoro oggi.",8,tutto,tutto,"'Tutto il lavoro' è corretto, ma si può dire anche 'tutto'.",Articoli
+176,B1,"Ho l'impressione che qualcosa non va bene in questa situazione.",6,va,vada,"Con 'ho l'impressione che' si usa il congiuntivo 'vada'.",Congiuntivo
+177,B2,"Nel caso che tu non riesca, chiedi aiuto al professore.",4,riesca,riesca,"'Riesca' è corretto con 'nel caso che' (congiuntivo presente).",Congiuntivo
+178,B2,"Suppongo che lui abbia già finito i compiti per domani.",4,abbia,abbia,"'Abbia' è corretto con 'suppongo che' (congiuntivo presente).",Congiuntivo
+179,A2,"Ogni mattina bevo un caffè e mangio due biscotti dolci.",9,dolci,dolci,"'Dolci' è corretto, ma ridondante dopo 'biscotti'.",Aggettivi
+180,A2,"La settimana scorsa ho visitato la casa di mia nonna.",9,di,di,"'Casa di mia nonna' è corretto, si usa 'di' per il possesso.",Preposizioni
+181,A2,"Stasera guarderò un film interessante alla televisione.",8,alla,in,"'In televisione' non 'alla televisione' per il mezzo.",Preposizioni
+182,B1,"È necessario che tutti gli studenti portano i libri domani.",7,portano,portino,"Con 'è necessario che' si usa il congiuntivo 'portino'.",Congiuntivo
+183,B1,"Ho sentito dire che Maria ha vinto il concorso ieri.",7,ha,abbia,"Dopo 'ho sentito dire che' si può usare il congiuntivo 'abbia'.",Congiuntivo
+184,B1,"Quantunque fosse difficile, sono riuscito a risolvere il problema.",2,fosse,fosse,"'Fosse' è corretto con 'quantunque' (congiuntivo imperfetto).",Congiuntivo
+185,B1,"Temo che il treno è già partito dalla stazione.",5,è,sia,"Con 'temo che' si usa il congiuntivo 'sia'.",Congiuntivo
+186,B2,"Dato che piove, è meglio che noi restiamo a casa.",9,restiamo,rimaniamo,"'Rimanere a casa' è più appropriato di 'restare a casa'.",Verbi
+187,B2,"A condizione che tu studi, ti aiuterò con il progetto.",5,studi,studi,"'Studi' è corretto con 'a condizione che' (congiuntivo presente).",Congiuntivo
+188,B2,"Perché tu possa capire, ti spiegherò tutto dall'inizio.",3,possa,possa,"'Possa' è corretto con 'perché' finale (congiuntivo presente).",Congiuntivo
+189,A2,"Mio padre lavora in un ufficio molto grande del centro.",9,del,in,"'In centro' o 'nel centro', non 'del centro'.",Preposizioni
+190,A2,"Ho bisogno di parlare con te di un argomento importante.",11,importante,importante,"'Importante' è corretto, accordo con 'argomento' (maschile).",Aggettivi
+191,A2,"Domani mattina andrò dal dentista per un controllo medico.",9,medico,dentistico,"'Controllo dentistico' non 'medico' dal dentista.",Sostantivi
+192,B1,"È probabile che domani piove tutto il giorno senza sosta.",5,piove,piova,"Con 'è probabile che' si usa il congiuntivo 'piova'.",Congiuntivo
+193,B1,"Ho paura che mia sorella non trova la strada giusta.",6,trova,trovi,"Dopo 'ho paura che' si usa il congiuntivo 'trovi'.",Congiuntivo
+194,B1,"Benché tu studiassi molto, non sei riuscito a superare l'esame.",3,studiassi,abbia studiato,"Con 'benché' al presente si usa 'abbia studiato' (congiuntivo passato).",Congiuntivo
+195,B1,"È meglio che tu non dici niente a nessuno per ora.",6,dici,dica,"Con 'è meglio che' si usa il congiuntivo 'dica'.",Congiuntivo
+196,B2,"Posto che tu sia d'accordo, possiamo iniziare subito il progetto.",3,sia,sia,"'Sia' è corretto con 'posto che' (congiuntivo presente).",Congiuntivo
+197,B2,"Senza che nessuno se ne accorga, è uscito dalla sala.",4,accorga,accorga,"'Accorga' è corretto con 'senza che' (congiuntivo presente).",Congiuntivo
+198,B2,"Tanto che tu faccia, non riuscirai mai a convincerlo.",2,che,quanto,"'Tanto quanto' non 'tanto che' in questa costruzione.",Congiunzioni
+199,A2,"Le mie amiche sono andate al cinema senza di me.",8,di,∅,"'Senza me' non 'senza di me', non serve la preposizione 'di'.",Preposizioni
 `
