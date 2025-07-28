@@ -145,11 +145,7 @@ const EstadisticasRespuestas: React.FC<EstadisticasRespuestasProps> = ({ idUsuar
           </BarChart>
         </ResponsiveContainer>
       </CardContent>
-      <CardActions>
-        <Button onClick={() => window.location.reload()} className="w-full bg-blue-500 hover:bg-blue-700">
-          Riprova con Nuove Domande
-        </Button>
-      </CardActions>
+
     </Card>
   );
 };
