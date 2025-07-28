@@ -7,9 +7,10 @@ import { Respuesta } from '@/firebase/firebaseInterfaces.jsx';
 
 interface EstadisticasRespuestasProps {
   idUsuario: string;
+  onExit?: () => void;
 }
 
-const EstadisticasRespuestas: React.FC<EstadisticasRespuestasProps> = ({ idUsuario }) => {
+const EstadisticasRespuestas: React.FC<EstadisticasRespuestasProps> = ({ idUsuario, onExit }) => {
   const [respuestas, setRespuestas] = useState<Respuesta[]>([]);
   const [periodo, setPeriodo] = useState('giorno');
   const [tipoPregunta, setTipoPregunta] = useState('tutte');
@@ -74,7 +75,23 @@ const EstadisticasRespuestas: React.FC<EstadisticasRespuestasProps> = ({ idUsuar
   //const tiposPregunta = ['tutte', 'PR', 'MR'];
   //const tiposPregunta = ['tutte', ...new Set(respuestas.map(r => r.tipoPregunta))];
   return (
-    <Card className="w-full max-w-3xl mx-auto">
+    <Card className="w-full max-w-3xl mx-auto" style={{ position: 'relative' }}>
+      {onExit && (
+        <Button
+          onClick={onExit}
+          style={{
+            position: 'absolute',
+            top: '5px',
+            right: '5px',
+            minWidth: 'auto',
+            padding: '5px',
+            color: 'black',
+            zIndex: 1000,
+          }}
+        >
+          X
+        </Button>
+      )}
       <CardHeader
         title="Statistiche delle Risposte"
         action={<div>

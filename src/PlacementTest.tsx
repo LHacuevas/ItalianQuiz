@@ -163,7 +163,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({ onTestComplete, usuario }
 
   if (testStage === "error") {
     return (
-      <Card>
+      <Card style={{ position: 'relative' }}>
         <CardContent>
           <Typography variant="h6" color="error">Errore</Typography>
           <Typography>{loadingError || "Si è verificato un errore sconosciuto."}</Typography>
@@ -232,7 +232,23 @@ const PlacementTest: React.FC<PlacementTestProps> = ({ onTestComplete, usuario }
 
 
   return (
-    <Card sx={{ maxWidth: 700, margin: 'auto', mt: 4, p: 2, boxShadow: 3 }}>
+    <Card sx={{ maxWidth: 700, margin: 'auto', mt: 4, p: 2, boxShadow: 3, position: 'relative' }}>
+      {onTestComplete && (
+        <Button
+          onClick={() => onTestComplete("A2")}
+          style={{
+            position: 'absolute',
+            top: '5px',
+            right: '5px',
+            minWidth: 'auto',
+            padding: '5px',
+            color: 'black',
+            zIndex: 1000,
+          }}
+        >
+          X
+        </Button>
+      )}
       <CardContent>
         <Typography variant="h5" gutterBottom textAlign="center">
           Test di Piazzamento

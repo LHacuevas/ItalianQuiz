@@ -301,24 +301,22 @@ const QuizItaliano: React.FC<QuizParams> = ({
     const currentQuestionData = questionsForSession[currentQuestion];
 
     return (
-        <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
+        <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100" style={{ position: 'relative' }}>
             {onExit && (
-                <div style={{ position: 'relative' }}>
-                    <Button
-                        onClick={onExit}
-                        style={{
-                            position: 'absolute',
-                            top: '5px',
-                            right: '5px',
-                            minWidth: 'auto',
-                            padding: '5px',
-                            color: 'black',
-                            zIndex: 1000,
-                        }}
-                    >
-                        X
-                    </Button>
-                </div>
+                <Button
+                    onClick={onExit}
+                    style={{
+                        position: 'absolute',
+                        top: '5px',
+                        right: '5px',
+                        minWidth: 'auto',
+                        padding: '5px',
+                        color: 'black',
+                        zIndex: 1000,
+                    }}
+                >
+                    X
+                </Button>
             )}
             <CardActions className="text-lg sm:text-xl font-bold text-center text-blue-800">
                 {reviewMode ? "Revisione" : `Domanda ${currentQuestion + 1} di ${questionsForSession.length} [${questionsAvailableToPlay}]`}

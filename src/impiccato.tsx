@@ -417,13 +417,7 @@ const Imppicato: React.FC<QuizParams> = ({
                     </div>
                 )}
                 {/* Pulsante Esci/Torna al Menu */}
-                <Box sx={{ marginTop: '16px' }}>
 
-                        <Button onClick={() => window.location.reload()} variant="contained" color="error" fullWidth>
-                            Esci (Ricarica)
-                        </Button>
-
-                </Box>
             </CardContent>
         </Card>
     );
