@@ -281,7 +281,23 @@ const Imppicato: React.FC<QuizParams> = ({
     };
 
     return (
-        <Card sx={{ maxWidth: 400, margin: 'auto', marginTop: 4 }}>
+        <Card sx={{ maxWidth: 400, margin: 'auto', marginTop: 4, position: 'relative' }}>
+            {onExit && (
+                <Button
+                    onClick={onExit}
+                    style={{
+                        position: 'absolute',
+                        top: '5px',
+                        right: '5px',
+                        minWidth: 'auto',
+                        padding: '5px',
+                        color: 'black',
+                        zIndex: 1000,
+                    }}
+                >
+                    X
+                </Button>
+            )}
             <CardContent>
                 <Typography variant="h5" component="div" gutterBottom>
                     Gioco dell'Impiccato
@@ -402,15 +418,11 @@ const Imppicato: React.FC<QuizParams> = ({
                 )}
                 {/* Pulsante Esci/Torna al Menu */}
                 <Box sx={{ marginTop: '16px' }}>
-                    {onExit ? (
-                        <Button onClick={onExit} variant="contained" color="secondary" fullWidth>
-                            Torna al Menu Principale
-                        </Button>
-                    ) : (
+
                         <Button onClick={() => window.location.reload()} variant="contained" color="error" fullWidth>
                             Esci (Ricarica)
                         </Button>
-                    )}
+
                 </Box>
             </CardContent>
         </Card>

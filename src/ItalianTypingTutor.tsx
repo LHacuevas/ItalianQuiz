@@ -225,21 +225,30 @@ export default function ItalianTypingTutor({ onExit, usuario, saveResults, inclu
   }
 
   return (
-    <Card className="w-full max-w-3xl mx-auto">
+    <Card className="w-full max-w-3xl mx-auto" style={{ position: 'relative' }}>
+      {onExit && (
+        <Button
+          onClick={onExit}
+          style={{
+            position: 'absolute',
+            top: '5px',
+            right: '5px',
+            minWidth: 'auto',
+            padding: '5px',
+            color: 'black',
+            zIndex: 1000,
+          }}
+        >
+          X
+        </Button>
+      )}
       <CardHeader
         title={
           <Typography variant="h6">
             Dattilografia Italiano - {lessons[currentLessonIndex]?.theme} (Nivel {lessons[currentLessonIndex]?.level})
           </Typography>
         }
-        action={
-          onExit && !isCompleted && (
-            <Button onClick={handleExitRequest} variant="outlined" size="small">
-              Esci
-            </Button>
-          )
-        }
-      />      
+      />
       <CardContent>
         <div className="mb-4 text-lg leading-relaxed whitespace-pre-wrap">
           {lessons[currentLessonIndex]?.text.split('').map((char, index) => (

@@ -301,13 +301,31 @@ const QuizItaliano: React.FC<QuizParams> = ({
     const currentQuestionData = questionsForSession[currentQuestion];
 
     return (
-        <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">                        
+        <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">
+            {onExit && (
+                <div style={{ position: 'relative' }}>
+                    <Button
+                        onClick={onExit}
+                        style={{
+                            position: 'absolute',
+                            top: '5px',
+                            right: '5px',
+                            minWidth: 'auto',
+                            padding: '5px',
+                            color: 'black',
+                            zIndex: 1000,
+                        }}
+                    >
+                        X
+                    </Button>
+                </div>
+            )}
             <CardActions className="text-lg sm:text-xl font-bold text-center text-blue-800">
                 {reviewMode ? "Revisione" : `Domanda ${currentQuestion + 1} di ${questionsForSession.length} [${questionsAvailableToPlay}]`}
             </CardActions>
             <CardContent>
                 {!reviewMode && (
-                    <div className="flex justify-between items-center mb-4">                        
+                    <div className="flex justify-between items-center mb-4">
                         <span className="font-semibold text-blue-800 text-xs">Id: {currentQuestionData.id}</span>
                         <span className="font-semibold text-blue-800 text-xs">Gen: {currentQuestionData.generated}</span>
                         <span className="font-semibold text-blue-800">Livello: {difficulty}</span>
@@ -325,7 +343,7 @@ const QuizItaliano: React.FC<QuizParams> = ({
                     userAnswers={userAnswers}
                     currentQuestion={currentQuestion}
                     onlyOptionQuestions={onlyOptionQuestions}
-                />              
+                />
                 {(showExplanation || reviewMode) && (
                     <Alert className="mt-4 bg-blue-50 border-blue-200">
                         <AlertTitle className="text-blue-800">
@@ -344,16 +362,10 @@ const QuizItaliano: React.FC<QuizParams> = ({
                     showExplanation && (
                         <Button onClick={nextQuestion} className="bg-green-500 hover:bg-green-700">
                             {currentQuestion === questionsForSession.length - 1 ? "Termina il quiz" : "Prossima domanda"}
-                            </Button>
-                            
+                        </Button>
                     )
                 )}
-                {onExit && !reviewMode && (
-                     <Button onClick={onExit} variant="outlined" size="small" sx={{ mt: 1, mb: 1 }}>
-                        Torna al Menu
-                    </Button>
-                )}
-            </CardActions>    
+            </CardActions>
         </Card>
     );
 };
