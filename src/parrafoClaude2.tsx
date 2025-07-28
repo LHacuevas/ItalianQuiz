@@ -400,7 +400,23 @@ const ItalianLearningApp: React.FC<QuizParams> = ({
     }
 
     return (
-        <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100">            
+        <ResponsiveCard className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-100 to-green-100" style={{ position: 'relative' }}>
+            {onExit && (
+                <Button
+                    onClick={onExit}
+                    style={{
+                        position: 'absolute',
+                        top: '5px',
+                        right: '5px',
+                        minWidth: 'auto',
+                        padding: '5px',
+                        color: 'black',
+                        zIndex: 1000,
+                    }}
+                >
+                    X
+                </Button>
+            )}
             <CardContent className="p-2 sm:p-4">
                 <div className="flex justify-between items-center mb-4">
                     <span className="font-semibold text-blue-800">Paragrafo {currentParagraphIndex + 1} di {numQuestions} [{paragraphsAvailableToPlay}]</span>

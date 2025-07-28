@@ -467,7 +467,23 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
     const isCurrentSentenceNaturallyCorrect = currentSentence.isNaturallyCorrect === true;
 
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="md" style={{ position: 'relative' }}>
+            {onExit && (
+                <Button
+                    onClick={handleExitRequest}
+                    style={{
+                        position: 'absolute',
+                        top: '5px',
+                        right: '5px',
+                        minWidth: 'auto',
+                        padding: '5px',
+                        color: 'black',
+                        zIndex: 1000,
+                    }}
+                >
+                    X
+                </Button>
+            )}
             <Box my={4}>
                 <Typography variant="h4" gutterBottom>Gioco di Rilevamento Errori</Typography>
                  <Box sx={{ textAlign: 'center', fontSize: '0.75rem', color: 'text.secondary', mb: 1 }}>
@@ -539,16 +555,8 @@ const ItalianErrorDetectionGame: React.FC<ItalianErrorDetectionGameProps> = ({ l
                         <Button variant="contained" color="primary" onClick={nextSentence} style={{ marginTop: '20px', marginRight: '10px' }}>
                             Prossima frase
                         </Button>
-                        {onExit && ( // Modificato per usare handleExitRequest
-                            <Button variant="contained" color="secondary" onClick={handleExitRequest} style={{ marginTop: '20px' }}>
-                                Torna al Menu Principale
-                            </Button>
-                        )}                                 
-                 {!showResult && onExit && ( 
-                    <Button variant="outlined" color="secondary" onClick={handleExitRequest} style={{ marginTop: '20px', display: 'block' }}>
-                        Esci dal Gioco
-                    </Button>
-                )}
+
+
             </Box>
         </Container>
     );
